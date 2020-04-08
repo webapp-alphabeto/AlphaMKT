@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./preloaders.css";
+@import "./animista.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+
+:root {
+    --color-primary:  #e18b34;
+    --color-toolbar-color-title: var(--color-primary);
+    --color-toolbar-background-color-toolbar: var(--color-primary);
+    /* --font-family-theme-bold: Fredoka One; */
+    --color-toolbar-color-default: #ffffff;
+    --color-toolbar-color-title: var(--color-toolbar-color-default);
+  }
+
+  .titulo-alphabeto {
+    font-family: 'Fredoka One', cursive;
+    color: var(--color-primary);
+    text-align: center;
+  }
+
+  .white {
+    color: #ffffff;
+  }
+
+  .cursor-hand {
+    cursor: pointer;
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+
+
+

@@ -3,11 +3,39 @@
 <head>
   <meta charset="utf-8">
   <title>AlphaBuy</title>
+  <style>
+    .logo {
+
+      width: 100%;
+      text-align: center;
+      padding: 20% 0;
+    }
+
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .img-logo {
+      border-radius: 50%;
+    }
+  </style>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="./assets/logo.jpg">
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="logo">
+      <img src="./assets/logo.jpg" width="50px" alt="" class="center img-logo">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </app-root>
 </body>
 </html>

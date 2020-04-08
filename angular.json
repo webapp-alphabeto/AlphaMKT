@@ -20,10 +20,17 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/favicon.ico",              
+              {
+                "glob": "**/*",
+                "input": "node_modules/@portinari/style/images",
+                "output": "assets/images"
+              }
             ],
             "styles": [
+              "./node_modules/@portinari/style/css/po-theme-default-variables.min.css",
+              "./node_modules/@portinari/style/css/po-theme-core.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -49,11 +56,6 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
                 }
               ]
             }
@@ -88,6 +90,8 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@portinari/style/css/po-theme-default-variables.min.css",
+              "./node_modules/@portinari/style/css/po-theme-default.min.css",
               "src/styles.css"
             ],
             "scripts": []
