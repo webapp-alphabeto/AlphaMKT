@@ -12,7 +12,6 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.0.0",
-    "@angular/cdk": "^9.2.0",
     "@angular/common": "~8.0.0",
     "@angular/compiler": "~8.0.0",
     "@angular/core": "~8.0.0",
@@ -22,9 +21,9 @@
     "@angular/router": "~8.0.0",
     "@portinari/portinari-templates": "^1.26.0",
     "@portinari/portinari-ui": "^1.26.0",
-    "rxjs": "~6.4.0",
+    "rxjs": "~6.5.5",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.10.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.800.0",
