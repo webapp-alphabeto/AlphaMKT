@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PoPageAction, PoBreadcrumb, PoTableColumn, PoMultiselectOption, PoCheckboxGroupOption, PoModalAction, PoModalComponent, PoNotificationService, PoDialogService, PoPageFilter } from '@portinari/portinari-ui';
+import { PoPageAction, PoBreadcrumb, PoTableColumn, PoMultiselectOption, PoCheckboxGroupOption, PoModalAction, PoModalComponent, PoNotificationService, PoDialogService, PoPageFilter, PoProgressStatus, PoTableAction } from '@portinari/portinari-ui';
 import { ProdutoFotoService } from 'src/app/services/produto-foto.service';
 import { Router } from '@angular/router';
+import { FotoProdutoFiltro } from 'src/app/interfaces/foto-produto-filtro';
+import { FotoProdutoView } from 'src/app/interfaces/foto-produto-view';
+
 
 @Component({
   selector: 'app-produtos',
@@ -11,10 +14,64 @@ import { Router } from '@angular/router';
 })
 export class ProdutosComponent implements OnInit {
 
-  disclaimerGroup;
-  hiringProcesses: Array<object>;
-  hiringProcessesColumns: Array<PoTableColumn>;
-  hiringProcessesFiltered: Array<object>;
+  @ViewChild('filtroAvancado', { static: true }) advancedFilterModal: PoModalComponent;
+
+  fotosProdutos: FotoProdutoView[];
+
+  constructor(
+    private produtoFotoService: ProdutoFotoService,
+    private router: Router,
+    private poNotification: PoNotificationService) { }
+
+  ngOnInit() {
+    this.disclaimerGroup = {
+      title: 'Filtros',
+      disclaimers: [],
+      change: this.onChangeDisclaimer.bind(this)
+    };
+
+    this.produtos = this.produtoFotoService.getItems();
+    this.colecoes = this.produtoFotoService.getColecoes();
+    this.mapas = this.produtoFotoService.getMapas();
+
+
+    this.produtosFiltrados = [...this.produtos];
+
+    this.getProdutos();
+  }
+
+  getProdutos() {
+    const filtro = {
+      colecao: 'INVERNO 2020',
+      mapa: 'FEVEREIRO',
+
+    } as FotoProdutoFiltro;
+
+    this.produtoFotoService.get(filtro).subscribe(
+      (x: FotoProdutoView[]) => { this.fotosProdutos = x; console.log(x) }
+    );
+  }
+
+  disclaimerGroup: any;
+  produtos: Array<object>;
+  produtoColumns: Array<PoTableColumn> = [
+    { property: 'referencia', label: 'Referência', type: 'string' },
+    { property: 'modelo', label: 'Modelo', type: 'string' },
+    { property: 'mapa', label: 'Mapa' },
+    { property: 'colecao', label: 'Coleção' },
+    { property: 'fotos', label: 'Fotos' },
+    {
+      property: 'descricao', label: 'Descrição', type: 'boolean', boolean: {
+        trueLabel: 'Sim', falseLabel: 'Não'
+      }
+    },
+  ];
+
+  produtosActions: Array<PoTableAction> = [
+    { label: 'Editar', action: () => { this.poNotification.success('Teste') } }
+  ]
+
+  produtosFiltrados: Array<object>;
 
   colecoesSelecionadas: Array<string> = [];
   colecoes: Array<PoMultiselectOption>;
@@ -23,6 +80,8 @@ export class ProdutosComponent implements OnInit {
   mapas: Array<PoMultiselectOption>;
 
   labelFilter: string = '';
+
+  progressStatus = PoProgressStatus.Default;
 
 
   public readonly breadcrumb: PoBreadcrumb = {
@@ -50,27 +109,7 @@ export class ProdutosComponent implements OnInit {
 
   private disclaimers = [];
 
-  @ViewChild('advancedFilterModal', { static: true }) advancedFilterModal: PoModalComponent;
 
-  constructor(
-    private sampleHiringProcessesService: ProdutoFotoService,
-    private router: Router) { }
-
-  ngOnInit() {
-    this.disclaimerGroup = {
-      title: 'Filtros',
-      disclaimers: [],
-      change: this.onChangeDisclaimer.bind(this)
-    };
-
-    this.hiringProcesses = this.sampleHiringProcessesService.getItems();
-    this.hiringProcessesColumns = this.sampleHiringProcessesService.getColumns();
-    this.colecoes = this.sampleHiringProcessesService.getColecoes();
-    this.mapas = this.sampleHiringProcessesService.getMapas();
-
-
-    this.hiringProcessesFiltered = [...this.hiringProcesses];
-  }
 
   advancedFilterActionModal() {
     this.advancedFilterModal.open();
@@ -78,7 +117,7 @@ export class ProdutosComponent implements OnInit {
 
   filter() {
     const filters = this.disclaimers.map(disclaimer => disclaimer.value);
-    filters.length ? this.hiringProcessesFilter(filters) : this.resetFilterHiringProcess();
+    filters.length ? this.filtrarProdutos(filters) : this.resetFilterHiringProcess();
   }
 
   filterAction(filter = [this.labelFilter]) {
@@ -86,14 +125,14 @@ export class ProdutosComponent implements OnInit {
     this.filter();
   }
 
-  hiringProcessesFilter(filters) {
-    this.hiringProcessesFiltered = this.hiringProcesses.filter(item => {
+  filtrarProdutos(filters) {
+    this.produtosFiltrados = this.produtos.filter(item => {
       return Object.keys(item)
-        .some(key => (!(item[key] instanceof Object) && this.includeFilter(item[key], filters)));
+        .some(key => (!(item[key] instanceof Object) && this.incluirFiltros(item[key], filters)));
     });
   }
 
-  includeFilter(item, filters) {
+  incluirFiltros(item, filters) {
     return filters.some(filter => String(item).toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
   }
 
@@ -113,9 +152,11 @@ export class ProdutosComponent implements OnInit {
   }
 
   resetFilterHiringProcess() {
-    this.hiringProcessesFiltered = [...this.hiringProcesses];
+    this.produtosFiltrados = [...this.produtos];
     this.mapasSelecionados = [];
     this.colecoesSelecionadas = [];
   }
+
+  items = Array.from({length: 100000}).map((_, i) => `Item #${i}`);
 
 }

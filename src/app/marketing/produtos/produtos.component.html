@@ -1,51 +1,77 @@
-<po-page-list
-    p-title="Fotos de produto"
-    [p-breadcrumb]="breadcrumb"
+<po-page-list p-title="Fotos de produto" 
+    [p-breadcrumb]="breadcrumb" 
     [p-disclaimer-group]="disclaimerGroup"
     [p-filter]="configuracoesDeFiltro">
 
-    <po-table
-        p-checkbox
-        p-single-select
-        p-sort="true"
-        p-striped="true"
-        [p-columns]="hiringProcessesColumns"
-        [p-items]="hiringProcessesFiltered">
-    </po-table>
+  <div class="po-row">
+
+    <div class="po-md-6">
+
+      <po-progress p-info="5/10" 
+          p-info-icon="po-icon-ok" 
+          [p-status]="progressStatus" 
+          p-text="Produtos com foto"
+          p-value="50">
+      </po-progress>
+
+    </div>
+
+    <div class="po-md-6">
+
+      <po-progress p-info="5/10" 
+          p-info-icon="po-icon-ok" 
+          [p-status]="progressStatus" 
+          p-text="Produtos com descrição"
+        p-value="50">
+      </po-progress>
+
+    </div>
+
+  </div>
+
+  <po-divider></po-divider>
+
+  <cdk-virtual-scroll-viewport  style="height: 500px" itemSize="90" >
+    <ng-container *cdkVirtualFor="let n of items">
+      <li> {{n}} </li>
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
+
+  <!-- <app-produto-view *ngFor="let item of fotosProdutos" 
+      [produto]="item">
+
+  </app-produto-view> -->
 
 </po-page-list>
 
-<po-modal
-    #advancedFilterModal
-    p-title="Filtro avançado"
+<po-modal #filtroAvancado 
+    p-title="Filtro avançado" 
     [p-primary-action]="advancedFilterPrimaryAction">
 
-    <form #f="ngForm">
+  <form #f="ngForm">
 
-      <div class="po-row">
+    <div class="po-row">
 
-        <div class="po-md-6">
+      <div class="po-md-6">
 
-          <po-multiselect
-              name="colecoesSelecionadas"
-              [(ngModel)]="colecoesSelecionadas"
-              p-label="Coleção"
-              [p-options]="colecoes">
-          </po-multiselect>
-        </div>
-
-        <div class="po-md-6">
-
-          <po-multiselect
-              name="mapasSelecionados"
-              [(ngModel)]="mapasSelecionados"
-              p-label="Mapa"
-              [p-options]="mapas">
-          </po-multiselect>
-        </div>
-        
+        <po-multiselect name="colecoesSelecionadas" 
+            [(ngModel)]="colecoesSelecionadas" 
+            p-label="Coleção"
+            [p-options]="colecoes">
+        </po-multiselect>
       </div>
-    
-    </form>
+
+      <div class="po-md-6">
+
+        <po-multiselect name="mapasSelecionados" 
+            [(ngModel)]="mapasSelecionados" 
+            p-label="Mapa" 
+            [p-options]="mapas">
+        </po-multiselect>
+      </div>
+
+    </div>
+
+  </form>
 
 </po-modal>

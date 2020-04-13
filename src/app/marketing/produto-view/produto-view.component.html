@@ -1,0 +1,39 @@
+<po-widget class="po-md-6 po-mb-1" 
+    p-height="300"
+    [p-title]="produto.referencia + ' - ' + produto.modelo"
+    p-primary-label="Editar"
+    (p-primary-action)="abrirModal()">
+
+    <po-widget class="po-md-4" 
+        [p-background]="produto.fotoDeCapa" 
+        p-height=200>
+    </po-widget>
+
+    <div class="po-md-8">
+        <po-info p-label="Tamanho" 
+            [p-value]="produto.tamanhoAmigavel">
+
+        </po-info>
+
+        <po-info p-label="Caracteristica" 
+            [p-value]="produto.caracteristica">
+
+        </po-info>
+
+        <po-info p-label="Descrição" 
+            [p-value]="produto.descricaoAmigavel">
+
+        </po-info>
+
+    </div>
+</po-widget>
+
+<po-modal #produtoEditModal 
+    [p-title]="produto.referencia">
+
+    <app-produto-edit
+        [ProdutoView]="produto">
+
+    </app-produto-edit>
+
+</po-modal>

@@ -3,8 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  serviceApi: 'http://localhost:5000/v1/'
 };
+
+export const SCREEN_LOCK = { 'X-Portinari-Screen-Lock': 'true' };
 
 /*
  * For easier debugging in development mode, you can import the following file
