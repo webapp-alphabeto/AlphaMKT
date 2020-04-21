@@ -3,40 +3,64 @@
     [p-disclaimer-group]="disclaimerGroup"
     [p-filter]="configuracoesDeFiltro">
 
-    
-    <cdk-virtual-scroll-viewport style="height: 400px" itemSize="100" >
-      <ng-container *ngIf="fotosProdutos.length; else noItens">        
-        <ng-container  *cdkVirtualFor="let item of fotosProdutos">
-          <app-produto-view 
-              [produto]="item"
-              (detalhar)="abrirEditModal(item)">
+
+      <po-popover [p-target]="poButton" 
+          p-trigger="click"
+          p-position="left-top"
+          p-title="Informações do mapa">
+
+          <po-progress p-info="{{ obterTotalDeItensComFoto() }}/ {{ obterTotalDeItens() }}" 
+              p-info-icon="po-icon-ok" 
+              [p-status]="progressStatus" 
+              p-text="Produtos com foto"
+              [p-value]="obterProgressoDaInclusaoDeFotos()">
+          </po-progress>
           
-          </app-produto-view>
-        </ng-container>
-      </ng-container>
-
-      <ng-template #noItens>
-        Utilize os filtros para pesquisar um produto, coleção ou mapa
-      </ng-template>
-    </cdk-virtual-scroll-viewport>
+          <po-divider></po-divider>
+          
+          <po-switch *ngIf="obterTotalDeItensComFoto() < obterTotalDeItens()" 
+              name="filtroSemFoto"
+              p-label="Sem fotos"
+              p-label-off="Não"
+              p-label-on="Sim"
+              p-tooltip="Exibir somente itens sem foto"
+              p-tooltip-position="left"
+              [(ngModel)]="exibirSomenteProdutosSemFotos">
+          </po-switch>
+      </po-popover>
+      
+      <po-container
+        class="fab-info"
+        p-no-padding="true"
+        [hidden]="!fotosProdutos.length">
   
-  <po-divider></po-divider>
-  
-  <div class="po-row">
+        <po-button p-icon="po-icon po-icon-info"
+                   p-small="true"
+                   p-type="primary"> 
+        </po-button>    
+        
+      </po-container>
 
-    <div class="po-md-6">
+    
+    <ng-container *ngIf="fotosProdutos.length; else noItens">        
+        <cdk-virtual-scroll-viewport style="height: 100%;" 
+            itemSize="1" >
+            
+            <ng-container  *cdkVirtualFor="let item of produtosFiltrados()">
+              <app-produto-view 
+                  [produto]="item"
+                  (detalhar)="abrirEditModal(item)">
+              
+              </app-produto-view>
+            </ng-container>
+              
+        </cdk-virtual-scroll-viewport>
+    </ng-container>
+      
+    <ng-template #noItens>
+      Não há dados para exibir. {{ mensagemDeErro | json }}
+    </ng-template>
 
-      <po-progress p-info="5/10" 
-          p-info-icon="po-icon-ok" 
-          [p-status]="progressStatus" 
-          p-text="Produtos com foto"
-          p-value="50">
-      </po-progress>
-
-    </div>
-
-  </div>
-  
 </po-page-list>
 
 <po-modal #filtroAvancado 

@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { PoBreadcrumb, PoModalAction, PoModalComponent, PoPageFilter, PoProgressStatus, PoComboOption, PoDisclaimerGroup, PoDisclaimer } from '@po-ui/ng-components';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { PoBreadcrumb, PoModalAction, PoModalComponent, PoPageFilter, PoProgressStatus, PoComboOption, PoDisclaimerGroup, PoDisclaimer, PoButtonComponent } from '@po-ui/ng-components';
 
 import { Router } from '@angular/router';
 import { FotoProdutoFiltro } from 'src/app/interfaces/foto-produto-filtro';
@@ -7,6 +7,7 @@ import { FotoProdutoInfoView } from 'src/app/interfaces/foto-produto-view';
 import { ProdutoEditComponent } from '../produto-edit/produto-edit.component';
 import { UtilProdutoService } from 'src/app/services/util-produto.service';
 import { ProdutoFotoService } from 'src/app/services/produto-foto.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-produtos',
@@ -18,6 +19,8 @@ export class ProdutosComponent implements OnInit {
   @ViewChild('filtroAvancado', { static: true }) advancedFilterModal: PoModalComponent;
   @ViewChild('produtoEditModal', { static: true }) produtoEditModal: PoModalComponent;
   @ViewChild(ProdutoEditComponent, { static: true }) produtoEditComponent: ProdutoEditComponent;
+  @ViewChild(PoButtonComponent, { read: ElementRef, static: true }) poButton: PoButtonComponent;
+
 
   public readonly breadcrumb: PoBreadcrumb = {
     items: [
@@ -43,22 +46,19 @@ export class ProdutosComponent implements OnInit {
   };
 
   fotosProdutos = [] as FotoProdutoInfoView[];
-  tituloProdutoEditModal: string;
-
   colecoes: Array<PoComboOption>;
   mapas: Array<PoComboOption>;
-
   disclaimerGroup: PoDisclaimerGroup;
+  filtro = {} as FotoProdutoFiltro;
+  private disclaimers = [] as PoDisclaimer[];
 
+  tituloProdutoEditModal: string;
   colecaoSelecionada: string;
   mapaSelecionado: string;
   referenciaSelecionada: string = '';
-
-  filtro = {} as FotoProdutoFiltro;
-
   progressStatus = PoProgressStatus.Default;
-
-  private disclaimers = [] as PoDisclaimer[];
+  mensagemDeErro: string;
+  exibirSomenteProdutosSemFotos = false;
 
   constructor(
     private produtoFotoService: ProdutoFotoService,
@@ -94,9 +94,13 @@ export class ProdutosComponent implements OnInit {
 
   getProdutos() {
 
+    this.mensagemDeErro = '';
     this.produtoFotoService.get(this.filtro).subscribe(
       (x: FotoProdutoInfoView[]) => { this.fotosProdutos = x; },
-      () => { this.fotosProdutos = []; }
+      (erro: HttpErrorResponse) => {
+        this.fotosProdutos.length = 0;
+        this.mensagemDeErro = erro.error.detailedMessage;
+      }
     );
   }
 
@@ -159,9 +163,33 @@ export class ProdutosComponent implements OnInit {
 
   abrirEditModal(item: FotoProdutoInfoView) {
     const referencia = item.referencia;
-    this.tituloProdutoEditModal = referencia;
+    this.tituloProdutoEditModal = item.referencia + ' - ' + item.modelo;
     this.produtoEditComponent.CarregarDados(referencia);
     this.produtoEditModal.open();
+  }
+
+  obterTotalDeItens(): number { return this.fotosProdutos.length; };
+
+  obterTotalDeItensComFoto(): number {
+
+    return this.fotosProdutos
+      .filter(x => x.quantidadeDeImagens > 0)
+      .length;
+  };
+
+  obterProgressoDaInclusaoDeFotos(): number {
+    const total = this.obterTotalDeItens();
+    const itens = this.obterTotalDeItensComFoto();
+    if (total === 0) return 0;
+    const result = itens / total * 100;
+    return result;
+  }
+
+  produtosFiltrados(): FotoProdutoInfoView[] {
+    if (this.exibirSomenteProdutosSemFotos)
+      return this.fotosProdutos.filter(x => x.quantidadeDeImagens == 0);
+
+    return this.fotosProdutos;
   }
 
 }

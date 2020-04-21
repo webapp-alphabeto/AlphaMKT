@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProdutoInfoComplementar } from 'src/app/interfaces/produto-info-complementar';
-import { FotoProdutoInfoView } from 'src/app/interfaces/foto-produto-view';
 import { ProdutoInfoComplementarService } from 'src/app/services/produto-info-complementar.service';
 import { ProdutoFotoService } from 'src/app/services/produto-foto.service';
 import { ProdutoImagem } from 'src/app/interfaces/produto-imagem';
@@ -33,7 +32,14 @@ export class ProdutoEditComponent implements OnInit {
   private carregarInfoComplementar(referencia: string) {
     this.produtoInfoComplementarService
       .getByReferencia(referencia)
-      .subscribe((x: ProdutoInfoComplementar) => { this.produtoInfoComplementar = x; });
+      .subscribe((x: ProdutoInfoComplementar) => {
+        if (x === null) {
+          this.produtoInfoComplementar = {} as ProdutoInfoComplementar;
+          return;
+        }
+
+        this.produtoInfoComplementar = x;
+      });
   }
 
   private carregarFotosDoProduto(referencia: string) {

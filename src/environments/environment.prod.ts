@@ -4,3 +4,8 @@ export const environment = {
 };
 
 export const SCREEN_LOCK = { 'X-PO-Screen-Lock': 'true' };
+export const NO_MESSAGE = { 'X-PO-No-Message': 'true' };
+export const SCREEN_LOCK_NO_MESSAGE = { 
+  'X-PO-Screen-Lock': 'true', 
+  'X-PO-No-Message': 'true' 
+};

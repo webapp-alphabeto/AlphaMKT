@@ -12,6 +12,7 @@
     /* --font-family-theme-bold: Fredoka One; */
     --color-toolbar-color-default: #ffffff;
     --color-toolbar-color-title: var(--color-toolbar-color-default);
+    --color-widget-color-default: black;
   }
 
   .titulo-alphabeto {

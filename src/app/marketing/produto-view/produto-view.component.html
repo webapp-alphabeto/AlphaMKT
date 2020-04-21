@@ -1,30 +1,30 @@
-<po-widget class="po-md-6 po-mb-1" 
+<po-widget class="po-md-3 po-mb-1" 
     p-height="300"
-    [p-title]="produto.referencia + ' - ' + produto.modelo"
-    p-primary-label="Editar"
-    (p-primary-action)="carregarDados()">
+    p-title="{{ produto.modelo.length >= 24 ? 
+                (( produto.referencia + ' - ' + produto.modelo) | slice : 0 : 33) + '..' : 
+                (( produto.referencia + ' - ' + produto.modelo)) }}"
+    [p-background]="produto.fotoDeCapa"
+    (p-click)="carregarDados()">
+    
+    <div  class="fundo-branco">
+        <po-container p-height="200"
+            p-no-shadow="true"
+            p-no-border="true">
+        
+            <po-info p-label="Tamanho" 
+                [p-value]="produto.tamanhoAmigavel">
+            
+            </po-info>
+    
+            <po-info p-label="Caracteristica" 
+                [p-value]="produto.caracteristica">
+            
+            </po-info>
 
-    <po-widget class="po-md-4" 
-        [p-background]="produto.fotoDeCapa" 
-        p-height=200>
-    </po-widget>
-
-    <div class="po-md-8">
-        <po-info p-label="Tamanho" 
-            [p-value]="produto.tamanhoAmigavel">
-
-        </po-info>
-
-        <po-info p-label="Caracteristica" 
-            [p-value]="produto.caracteristica">
-
-        </po-info>
-
-        <po-info p-label="Descrição" 
-            [p-value]="produto.descricaoAmigavel">
-
-        </po-info>
-
+            <po-info p-label="Descrição" 
+                [p-value]="produto.descricaoAmigavel">
+            
+            </po-info>
+        </po-container>
     </div>
 </po-widget>
-

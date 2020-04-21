@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
 import { FotoProdutoInfoView } from 'src/app/interfaces/foto-produto-view';
+import { PoWidgetComponent, PoButtonComponent } from '@po-ui/ng-components';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { FotoProdutoInfoView } from 'src/app/interfaces/foto-produto-view';
 })
 export class ProdutoViewComponent implements OnInit {
 
-  @Input() produto: FotoProdutoInfoView;
+  @Input() produto= {} as FotoProdutoInfoView;
   @Output() detalhar = new EventEmitter();
 
 
