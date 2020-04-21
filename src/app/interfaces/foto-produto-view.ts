@@ -1,4 +1,4 @@
-export interface FotoProdutoView {
+export interface FotoProdutoInfoView {
     referencia: string;
     modelo: string;
     tamanhoAmigavel: string;

@@ -3,4 +3,4 @@ export const environment = {
   serviceApi: 'https://integracao-alphabuyapi.azurewebsites.net/v1/'
 };
 
-export const SCREEN_LOCK = { 'X-Portinari-Screen-Lock': 'true' };
+export const SCREEN_LOCK = { 'X-PO-Screen-Lock': 'true' };

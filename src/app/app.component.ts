@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-import { PoNotificationService, PoMenuItem, PoToolbarAction } from '@portinari/portinari-ui';
+import { PoNotificationService, PoMenuItem, PoToolbarAction } from '@po-ui/ng-components';
 import { AuthService } from './services/auth.service';
 
 @Component({

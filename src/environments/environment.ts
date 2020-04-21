@@ -7,7 +7,7 @@ export const environment = {
   serviceApi: 'http://localhost:5000/v1/'
 };
 
-export const SCREEN_LOCK = { 'X-Portinari-Screen-Lock': 'true' };
+export const SCREEN_LOCK = { 'X-PO-Screen-Lock': 'true' };
 
 /*
  * For easier debugging in development mode, you can import the following file

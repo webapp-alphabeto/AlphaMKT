@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { FotoProdutoView } from 'src/app/interfaces/foto-produto-view';
-import { ProdutoEditComponent } from '../produto-edit/produto-edit.component';
-import { PoModalComponent } from '@portinari/portinari-ui';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { FotoProdutoInfoView } from 'src/app/interfaces/foto-produto-view';
+
 
 @Component({
   selector: 'app-produto-view',
@@ -10,19 +9,18 @@ import { PoModalComponent } from '@portinari/portinari-ui';
 })
 export class ProdutoViewComponent implements OnInit {
 
-  @Input() produto: FotoProdutoView;
-  
-  @ViewChild(PoModalComponent, {static:true}) produtoEditModal: PoModalComponent;
-  @ViewChild(ProdutoEditComponent, {static:true}) produtoEdit: ProdutoEditComponent;
+  @Input() produto: FotoProdutoInfoView;
+  @Output() detalhar = new EventEmitter();
+
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  abrirModal(){
-    this.produtoEdit.CarregarDados();
-    this.produtoEditModal.open();
+  carregarDados(){
+    this.detalhar.emit(null);
+
   }
 
 }

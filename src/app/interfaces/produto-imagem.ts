@@ -4,4 +4,5 @@ export interface ProdutoImagem {
     nomeEmStorage: string;
     capaSite: boolean;
     capaErp: boolean;
+    foto: string;
 }

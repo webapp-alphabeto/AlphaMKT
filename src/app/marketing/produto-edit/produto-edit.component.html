@@ -1,4 +1,106 @@
-<form #produtoEditForm="ngForm">
+<po-tabs>
+    <po-tab p-label="Informação complementar"
+        p-active="true">
+        <form #produtoEditForm="ngForm">
+            <po-input class="po-md-12" 
+                name="tamanhoAmigabel" 
+                [(ngModel)]="produtoInfoComplementar.tamanhoAmigavel" 
+                p-label="Tamanho amigável">
+            </po-input>
+        
+            <po-input class="po-md-12" 
+                name="caracateristica" 
+                [(ngModel)]="produtoInfoComplementar.caracteristica" 
+                p-label="Característica">
+            </po-input>
+        
+            <po-textarea class="po-md-12" 
+                name="descricaoAmigabel" 
+                [(ngModel)]="produtoInfoComplementar.descricaoAmigavel" 
+                p-label="Descrição" 
+                p-rows="3">
+            </po-textarea>
+        
+            <po-textarea class="po-md-12" 
+                name="palavrasChaves" 
+                [(ngModel)]="produtoInfoComplementar.palavrasChave" 
+                p-label="Palavras chaves" 
+                p-rows="3"
+                p-help="Separe as palvras por virgula (,)">
+            </po-textarea>
+        
+        </form>
+    </po-tab>
 
- {{ produtoEdit | json }}
-</form>
+    <po-tab p-label="Fotos">
+        
+        <po-button p-label="Uplaod" 
+                (p-click)="modalUpload.open(); 
+                           upload.clear()">
+        </po-button>
+        
+        <po-modal #modalUpload>
+
+            <po-upload #upload name="upload"
+                p-label="Adicionar imagens"
+                p-url="https://thf.totvs.com.br/sample/api/uploads/addFile"
+                p-drag-drop="true"
+                p-multiple="true"
+                p-auto-upload="true"
+                (p-success)="modalUpload.close()">
+                
+            </po-upload>
+                
+        </po-modal>
+
+        <po-divider></po-divider>
+        
+        <po-container p-height="335"
+            p-no-border="true">
+
+            <div *ngFor="let item of fotosDoProduto">
+    
+                <div class="po-row">                
+    
+                    <div class="po-md-4">
+    
+                        <po-widget 
+                            [p-background]="item.foto" 
+                            p-height=200>
+                        </po-widget>
+    
+                    </div>
+    
+                    <div class="po-md-4">
+    
+                        <po-switch [(ngModel)]="item.capaSite"
+                            p-label="Capa site"
+                            p-label-off="Não"
+                            p-label-on="Sim">
+            
+                        </po-switch>     
+                        
+                        <po-switch [(ngModel)]="item.capaErp"
+                            p-label="Capa Erp"
+                            p-label-off="Não"
+                            p-label-on="Sim">
+            
+                        </po-switch>
+
+                        <po-button p-icon="po-icon po-icon-delete"
+                            p-small="true"
+                            p-type="danger"
+                            p-tooltip="Deletar">
+
+                        </po-button>
+
+                    </div>
+                        
+                </div>
+                
+            </div>
+            
+        </po-container>
+    </po-tab>
+
+  </po-tabs>

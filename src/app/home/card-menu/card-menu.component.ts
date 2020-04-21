@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PoMenuItem } from '@portinari/portinari-ui';
+import { PoMenuItem } from '@po-ui/ng-components';
 import { Router } from '@angular/router';
 
 

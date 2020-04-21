@@ -2,7 +2,7 @@
     p-height="300"
     [p-title]="produto.referencia + ' - ' + produto.modelo"
     p-primary-label="Editar"
-    (p-primary-action)="abrirModal()">
+    (p-primary-action)="carregarDados()">
 
     <po-widget class="po-md-4" 
         [p-background]="produto.fotoDeCapa" 
@@ -28,12 +28,3 @@
     </div>
 </po-widget>
 
-<po-modal #produtoEditModal 
-    [p-title]="produto.referencia">
-
-    <app-produto-edit
-        [ProdutoView]="produto">
-
-    </app-produto-edit>
-
-</po-modal>
