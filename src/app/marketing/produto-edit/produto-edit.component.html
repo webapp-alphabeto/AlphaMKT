@@ -43,7 +43,7 @@
 
             <po-upload #upload name="upload"
                 p-label="Adicionar imagens"
-                p-url="https://thf.totvs.com.br/sample/api/uploads/addFile"
+                [p-url]="uploadApi"
                 p-drag-drop="true"
                 p-multiple="true"
                 p-auto-upload="true"
@@ -76,21 +76,24 @@
                         <po-switch [(ngModel)]="item.capaSite"
                             p-label="Capa site"
                             p-label-off="Não"
-                            p-label-on="Sim">
+                            p-label-on="Sim"
+                            (p-change)="alternarCapadeSite(item)">
             
                         </po-switch>     
                         
-                        <po-switch [(ngModel)]="item.capaErp"
+                        <po-switch [(ngModel)]="item.capaERP"
                             p-label="Capa Erp"
                             p-label-off="Não"
-                            p-label-on="Sim">
+                            p-label-on="Sim"
+                            (p-change)="alternarCapadeErp(item)">
             
                         </po-switch>
 
                         <po-button p-icon="po-icon po-icon-delete"
                             p-small="true"
                             p-type="danger"
-                            p-tooltip="Deletar">
+                            p-tooltip="Deletar"
+                            (p-click)="deletarImagem(item)">
 
                         </po-button>
 

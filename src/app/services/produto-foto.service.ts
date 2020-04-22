@@ -25,4 +25,14 @@ export class ProdutoFotoService {
     return this.http.get<ProdutoImagem[]>(url, { headers: SCREEN_LOCK });
   }
 
+  updateByReferencia(fotosDoProduto: ProdutoImagem[]): Observable<any> {
+    const url = `${environment.serviceApi}foto-produto`;
+    return this.http.put<ProdutoImagem[]>(url, fotosDoProduto, { headers: SCREEN_LOCK });
+  }
+
+  deleteById(id:number): Observable<ProdutoImagem> {
+    const url = `${environment.serviceApi}foto-produto/${id}`;
+    return this.http.delete<ProdutoImagem>(url);
+  }
+
 }

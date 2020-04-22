@@ -3,6 +3,6 @@ export interface ProdutoImagem {
     referencia: string;
     nomeEmStorage: string;
     capaSite: boolean;
-    capaErp: boolean;
+    capaERP: boolean;
     foto: string;
 }

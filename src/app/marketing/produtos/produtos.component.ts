@@ -59,6 +59,8 @@ export class ProdutosComponent implements OnInit {
   progressStatus = PoProgressStatus.Default;
   mensagemDeErro: string;
   exibirSomenteProdutosSemFotos = false;
+  exibirSomenteProdutosSemCapa = false;
+  exibirSomenteProdutosSemCaracteristicas = false;
 
   constructor(
     private produtoFotoService: ProdutoFotoService,
@@ -168,6 +170,31 @@ export class ProdutosComponent implements OnInit {
     this.produtoEditModal.open();
   }
 
+  obterProgressoDaInclusaoDeFotos(): number {
+    const total = this.obterTotalDeItens();
+    const itens = this.obterTotalDeItensComFoto();
+    if (total === 0) return 0;
+    const result = itens / total * 100;
+    return result;
+  }
+
+  obterProgressoDaInclusaoDeCapa(): number {
+    const total = this.obterTotalDeItens();
+    const itens = this.obterTotalDeItensComCapa();
+    if (total === 0) return 0;
+    const result = itens / total * 100;
+    return result;
+  }
+
+  obterProgressoDaInclusaoDeCaracteristicas(): number {
+    const total = this.obterTotalDeItens();
+    const itens = this.obterTotalDeItensComCaracteristica();
+    if (total === 0) return 0;
+    const result = itens / total * 100;
+    return result;
+  }
+  
+
   obterTotalDeItens(): number { return this.fotosProdutos.length; };
 
   obterTotalDeItensComFoto(): number {
@@ -177,17 +204,27 @@ export class ProdutosComponent implements OnInit {
       .length;
   };
 
-  obterProgressoDaInclusaoDeFotos(): number {
-    const total = this.obterTotalDeItens();
-    const itens = this.obterTotalDeItensComFoto();
-    if (total === 0) return 0;
-    const result = itens / total * 100;
-    return result;
+  obterTotalDeItensComCapa(): number {
+    return this.fotosProdutos
+      .filter(x => x.fotoDeCapa !== 'https://alphastorageshared.blob.core.windows.net/imagens-de-produto/sem-foto.jpg')
+      .length;
+  }
+
+  obterTotalDeItensComCaracteristica(): number {
+    return this.fotosProdutos
+      .filter(x => x.caracteristica !== null)
+      .length;
   }
 
   produtosFiltrados(): FotoProdutoInfoView[] {
     if (this.exibirSomenteProdutosSemFotos)
       return this.fotosProdutos.filter(x => x.quantidadeDeImagens == 0);
+
+    if (this.exibirSomenteProdutosSemCapa)
+      return this.fotosProdutos.filter(x => x.fotoDeCapa == 'https://alphastorageshared.blob.core.windows.net/imagens-de-produto/sem-foto.jpg');
+
+    if (this.exibirSomenteProdutosSemCaracteristicas)
+      return this.fotosProdutos.filter(x => x.caracteristica == null);
 
     return this.fotosProdutos;
   }
