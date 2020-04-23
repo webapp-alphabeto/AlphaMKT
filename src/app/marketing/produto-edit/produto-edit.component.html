@@ -47,7 +47,8 @@
                 p-drag-drop="true"
                 p-multiple="true"
                 p-auto-upload="true"
-                (p-success)="modalUpload.close()">
+                (p-success)="modalUpload.close(); uploadSuccess()"
+                (p-upload)="incluirImagemDoPerfil($event)">
                 
             </po-upload>
                 

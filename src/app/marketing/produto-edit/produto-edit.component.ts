@@ -82,4 +82,12 @@ export class ProdutoEditComponent implements OnInit {
         .deleteById(item.id)
         .subscribe((x) => { this.carregarFotosDoProduto(item.referencia) });
   }
+
+  uploadSuccess() {
+    this.carregarFotosDoProduto(this.produtoInfoComplementar.referencia);
+  }
+
+  incluirImagemDoPerfil(evento: any) {
+    evento.data.referencia = this.produtoInfoComplementar.referencia;
+  }
 }
