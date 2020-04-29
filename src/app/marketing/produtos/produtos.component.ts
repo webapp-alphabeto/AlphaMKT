@@ -45,6 +45,15 @@ export class ProdutosComponent implements OnInit {
     placeholder: 'Referência',
   };
 
+  public readonly salvarProduto: PoModalAction = {
+    action: () => {
+      this.produtoEditModal.close();
+      this.produtoEditComponent.atualizarInfoComplementar()
+        .subscribe((x) => { this.getProdutos(); } );
+    },
+    label: 'Salvar'
+  };
+
   fotosProdutos = [] as FotoProdutoInfoView[];
   colecoes: Array<PoComboOption>;
   mapas: Array<PoComboOption>;

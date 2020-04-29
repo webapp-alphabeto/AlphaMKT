@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProdutoInfoComplementar } from 'src/app/interfaces/produto-info-complementar';
 import { ProdutoInfoComplementarService } from 'src/app/services/produto-info-complementar.service';
 import { ProdutoFotoService } from 'src/app/services/produto-foto.service';
 import { ProdutoImagem } from 'src/app/interfaces/produto-imagem';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-produto-edit',
@@ -17,6 +18,9 @@ export class ProdutoEditComponent implements OnInit {
 
   uploadApi = `${environment.serviceApi}foto-produto/upload`;
 
+  private inserir = false;
+  private referencia: string;
+
   constructor(
     private produtoInfoComplementarService: ProdutoInfoComplementarService,
     private produtoFotoService: ProdutoFotoService) { }
@@ -27,6 +31,7 @@ export class ProdutoEditComponent implements OnInit {
   }
 
   CarregarDados(referencia: string) {
+    this.referencia = referencia;
     this.carregarInfoComplementar(referencia);
     this.carregarFotosDoProduto(referencia);
 
@@ -37,10 +42,12 @@ export class ProdutoEditComponent implements OnInit {
       .getByReferencia(referencia)
       .subscribe((x: ProdutoInfoComplementar) => {
         if (x === null) {
+          this.inserir = true;
           this.produtoInfoComplementar = {} as ProdutoInfoComplementar;
           return;
         }
 
+        this.inserir = false;
         this.produtoInfoComplementar = x;
       });
   }
@@ -79,8 +86,8 @@ export class ProdutoEditComponent implements OnInit {
 
   deletarImagem(item: ProdutoImagem) {
     this.produtoFotoService
-        .deleteById(item.id)
-        .subscribe((x) => { this.carregarFotosDoProduto(item.referencia) });
+      .deleteById(item.id)
+      .subscribe((x) => { this.carregarFotosDoProduto(item.referencia) });
   }
 
   uploadSuccess() {
@@ -89,5 +96,18 @@ export class ProdutoEditComponent implements OnInit {
 
   incluirImagemDoPerfil(evento: any) {
     evento.data.referencia = this.produtoInfoComplementar.referencia;
+  }
+
+  atualizarInfoComplementar() : Observable<any> {
+    if (this.inserir) {
+
+      this.produtoInfoComplementar.referencia = this.referencia;
+
+     return this.produtoInfoComplementarService
+        .incluirInfoComplementarProduto(this.produtoInfoComplementar);  
+    }
+
+   return this.produtoInfoComplementarService
+      .atualizarInfoComplementarProduto(this.produtoInfoComplementar);
   }
 }

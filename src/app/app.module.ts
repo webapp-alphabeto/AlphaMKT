@@ -18,8 +18,7 @@ import { PoModule } from '@po-ui/ng-components';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    PortinariModule,
-    PoModule,
+    PortinariModule
   ],
   providers: [],
   bootstrap: [AppComponent]

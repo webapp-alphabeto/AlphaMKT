@@ -15,4 +15,15 @@ export class ProdutoInfoComplementarService {
     const url = `${environment.serviceApi}produto-complemento/${referencia}`
     return this.http.get<ProdutoInfoComplementar>(url, { headers: SCREEN_LOCK });
   }
+  
+  incluirInfoComplementarProduto(produto: ProdutoInfoComplementar): Observable<any> {
+    const url = `${environment.serviceApi}produto-complemento`
+    return this.http.post<any>(url, produto);
+  }
+
+  atualizarInfoComplementarProduto(produto: ProdutoInfoComplementar): Observable<any> {
+    const url = `${environment.serviceApi}produto-complemento/${produto.id}`
+    return this.http.put<any>(url, produto);
+  }
+
 }

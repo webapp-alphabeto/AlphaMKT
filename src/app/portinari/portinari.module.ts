@@ -5,7 +5,6 @@ import { PoModalPasswordRecoveryModule } from '@po-ui/ng-templates';
 
 
 @NgModule({
-  
   exports:[
     PoModule,
     PoToolbarModule,
