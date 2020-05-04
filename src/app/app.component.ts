@@ -5,6 +5,7 @@ import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 import { UserTypeService } from './services/user-type.service';
 import { UserIdService } from './services/user-id.service';
+import { PoNavbarIconAction, PoNavbarItem	, PoNavbarLiterals  } from '@po-ui/ng-components'
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
 
   public routeLoading = false;
   public isHome = true;
+
 
   constructor(
     private router: Router,
@@ -43,6 +45,28 @@ export class AppComponent {
     });
 
   }
+
+  acoesDeNavegacao: PoNavbarIconAction[] = [
+    {
+      label: 'Teste',
+      action: () => { this.poNotification.success('Ok') },
+      icon: 'po-icon po-icon-cart',
+      link: 'https://www.monnalisa.com/home',
+      tooltip: 'Teste'
+    }
+  ];
+
+  itemsDeNavegacao: Array<PoNavbarItem> = [
+    { 
+      label: 'Teste', 
+      link: 'https://www.monnalisa.com/home', 
+      action: () => { this.poNotification.success("Ok") } 
+    }
+  ];
+
+  literaisDeNavegacao: PoNavbarLiterals = {
+    navbarLinks: 'Itens de navegação'
+  };
 
   private RemoverAutoCompleteDeTodosInputs() {
     setTimeout(() => {

@@ -1,13 +1,15 @@
 <ng-container *ngIf="!routeLoading; else AnimacaoDeRota">
-   <!-- <div [class.po-wrapper]="(auth.Autenticado$() | async) && !isHome"> -->
+    <div [class.po-wrapper]="(auth.Autenticado$() | async) && !isHome"> 
     <po-navbar
-        p-icon-actions="Array<PoNavbarIconAction>"
-        p-items="Array<PoNavbarItem>"
-        p-literals="PoNavbarLiterals"
+        [p-icon-actions]="acoesDeNavegacao"
+        [p-items]="itemsDeNavegacao"
+        [p-literals]="literaisDeNavegacao"
         p-logo="../../../assets/logo-alphabeto.png"
-        p-menu="PoMenuComponent"
-        p-shadow="true" >
+        [p-menu]="meuMenu"
+        p-shadow="false" >
     </po-navbar>
+
+    <po-divider></po-divider>
 
     <po-toolbar *ngIf="(auth.Autenticado$() | async)" 
         [p-profile]="profileService.profile"
@@ -15,7 +17,8 @@
         p-title="AlphaBuy">
     </po-toolbar>
 
-  <!--  <po-menu *ngIf="(auth.Autenticado$() | async) && !isHome" 
+   <po-menu #meuMenu
+        *ngIf="(auth.Autenticado$() | async) && !isHome" 
         p-filter="true" 
         [p-menus]="menuFiltrado">
 
@@ -27,8 +30,8 @@
     </po-menu>
 
     
-  </div> -->
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+   </div> 
 </ng-container>
 
 
