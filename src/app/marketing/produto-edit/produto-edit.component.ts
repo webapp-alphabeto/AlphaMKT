@@ -91,11 +91,11 @@ export class ProdutoEditComponent implements OnInit {
   }
 
   uploadSuccess() {
-    this.carregarFotosDoProduto(this.produtoInfoComplementar.referencia);
+    this.carregarFotosDoProduto(this.referencia);
   }
 
   incluirImagemDoPerfil(evento: any) {
-    evento.data.referencia = this.produtoInfoComplementar.referencia;
+    evento.data.referencia = this.referencia;
   }
 
   atualizarInfoComplementar() : Observable<any> {
