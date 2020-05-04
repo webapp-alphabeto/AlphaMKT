@@ -13,6 +13,7 @@
     --color-toolbar-color-default: #ffffff;
     --color-toolbar-color-title: var(--color-toolbar-color-default);
     --color-widget-color-default: black;
+    --color-page-login-background-color: white;
   }
 
   .titulo-alphabeto {
@@ -30,7 +31,7 @@
   }
 
   body {
-    overflow: hidden;
+    overflow: hidden;    
   }
 
 

@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { PoNotificationService, PoMenuItem, PoToolbarAction } from '@po-ui/ng-components';
 import { AuthService } from './services/auth.service';
+import { ProfileService } from './services/profile.service';
+import { UserTypeService } from './services/user-type.service';
+import { UserIdService } from './services/user-id.service';
 
 @Component({
   selector: 'app-root',
@@ -16,13 +19,15 @@ export class AppComponent {
   constructor(
     private router: Router,
     private poNotification: PoNotificationService,
-    public auth: AuthService) {
-
+    public auth: AuthService,
+    public profileService: ProfileService,
+    private userType: UserTypeService,
+    private userIdService: UserIdService) {
 
     router.events.subscribe((event) => {
-      this.isHome = router.isActive('/home/principal', true);
+      this.isHome = router.isActive('/home/home', true);
 
-      this.configurarMenu(true);
+      this.configurarMenu(this.userType.nivelDeAcesso == 'Administrador');
 
       if (event instanceof NavigationStart) {
         this.routeLoading = true;
@@ -32,13 +37,21 @@ export class AppComponent {
         event instanceof NavigationCancel ||
         event instanceof NavigationError) {
         this.routeLoading = false;
+        this.RemoverAutoCompleteDeTodosInputs();
       }
 
     });
 
   }
 
-
+  private RemoverAutoCompleteDeTodosInputs() {
+    setTimeout(() => {
+      var list = Array.from(document.getElementsByTagName("input"));
+      list.forEach(input => {
+        input.autocomplete = "off";
+      });
+    }, 1000);
+  }
 
 
   ngOnInit(): void {
@@ -48,12 +61,12 @@ export class AppComponent {
   }
 
   private VerificarSeUsuarioJaEstaAutenticado() {
-    // this.auth.Autenticado$().subscribe((autenticado: boolean) => {
-    //   if (!autenticado) {
-    //     this.router.navigateByUrl("/login");
+    this.auth.Autenticado$().subscribe((autenticado: boolean) => {
+      if (!autenticado) {
+        this.router.navigateByUrl("/login");
 
-    //   }
-    // });
+      }
+    });
   }
 
   menuFiltrado: Array<PoMenuItem> = [];
@@ -64,34 +77,16 @@ export class AppComponent {
       return;
     }
 
-    this.menuFiltrado = this.menus.filter(x => x.label !== 'Cadastros');
+    this.menuFiltrado = this.menus
+      .filter(x => x.label !== 'Cadastros')
+      .filter(x => x.label !== 'Analytics');
 
   }
 
   profileActions: Array<PoToolbarAction> = [
     { icon: 'po-icon-user', label: 'Meu Perfil', action: () => this.router.navigateByUrl("/meu-perfil") },
+    { icon: 'po-icon po-icon-chart-columns', label: 'Minha Pontuação', action: () => this.router.navigateByUrl(`/relatorios/meus-pontos/${this.userIdService.Id}`) },
     { icon: 'po-icon-exit', label: 'Exit', type: 'danger', separator: true, action: () => this.auth.logout() }
-  ];
-
-  notificationActions: Array<PoToolbarAction> = [
-    {
-      icon: 'po-icon-po', label: 'PO news, stay tuned!', type: 'danger',
-      action: item => () => { console.log("implementar") }
-    },
-    {
-      icon: 'po-icon-message', label: 'New message', type: 'danger',
-      action: item => () => { console.log("implementar") }
-    },
-  ];
-
-  getNotificationNumber() {
-    return this.notificationActions.filter(not => not.type === 'danger').length;
-  }
-
-  actions: Array<PoToolbarAction> = [
-    { label: 'Start cash register', action: item => this.showAction(item) },
-    { label: 'Finalize cash register', action: item => this.showAction(item) },
-    { label: 'Cash register options', action: item => this.showAction(item) }
   ];
 
   showAction(item: PoToolbarAction): void {
@@ -125,5 +120,7 @@ export class AppComponent {
       ]
     }
   ];
+
+
 
 }
