@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PoMenuItem } from '@po-ui/ng-components';
+import { PoMenuItem, PoToolbarAction } from '@po-ui/ng-components';
+import { ProfileService } from 'src/app/services/profile.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,7 +12,25 @@ import { PoMenuItem } from '@po-ui/ng-components';
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public profileService: ProfileService,
+    public auth: AuthService,
+    private router: Router) { }
+
+  profileActions: Array<PoToolbarAction> = [
+    {
+      icon: 'po-icon-user',
+      label: 'Meu Perfil',
+      action: () => this.router.navigateByUrl("/meu-perfil")
+    },
+    {
+      icon: 'po-icon-exit',
+      label: 'Exit',
+      type: 'danger',
+      separator: true,
+      action: () => this.auth.logout()
+    }
+  ];
 
   ngOnInit() {
   }

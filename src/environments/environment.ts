@@ -7,7 +7,12 @@ export const environment = {
   serviceApi: 'http://localhost:5000/v1/'
 };
 
+
+export const TOKEN_STORAGE = 'NOME_CHAVE_TOKEN';
+export const PROFILE_STORAGE = 'PROFILE';
+export const USERID_STORAGE = 'USERID';
 export const SCREEN_LOCK = { 'X-PO-Screen-Lock': 'true' };
+export const USERTYPE_STORAGE = 'USERTYPE_STORAGE';
 export const NO_MESSAGE = { 'X-PO-No-Message': 'true' };
 export const SCREEN_LOCK_NO_MESSAGE = { 
   'X-PO-Screen-Lock': 'true', 

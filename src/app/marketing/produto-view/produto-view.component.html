@@ -1,7 +1,7 @@
 <po-widget class="po-md-3 po-mb-1" 
     p-height="300"
-    p-title="{{ produto.modelo.length >= 24 ? 
-                (( produto.referencia + ' - ' + produto.modelo) | slice : 0 : 33) + '..' : 
+    p-title="{{ produto.modelo.length >= 18 ? 
+                (( produto.referencia + ' - ' + produto.modelo) | slice : 0 : 26) + '..' : 
                 (( produto.referencia + ' - ' + produto.modelo)) }}"
     [p-background]="produto.fotoDeCapa"
     (p-click)="carregarDados()">
