@@ -10,7 +10,11 @@ import { ProdutoEditComponent } from './produto-edit/produto-edit.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
-  declarations: [ProdutosComponent, ProdutoViewComponent, ProdutoEditComponent],
+  declarations: [
+    ProdutosComponent, 
+    ProdutoViewComponent, 
+    ProdutoEditComponent
+  ],
   imports: [
     CommonModule,
     PortinariModule,

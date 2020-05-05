@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { PoBreadcrumb, PoModalAction, PoModalComponent, PoPageFilter, PoProgressStatus, PoComboOption, PoDisclaimerGroup, PoDisclaimer, PoButtonComponent } from '@po-ui/ng-components';
 
 import { Router } from '@angular/router';

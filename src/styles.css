@@ -8,13 +8,15 @@
 :root {
     --color-primary:  #e18b34;
     --color-toolbar-color-title: var(--color-primary);
-    --color-toolbar-background-color-toolbar: var(--color-primary);
+    /* --color-toolbar-background-color-toolbar: var(--color-primary); */
     /* --font-family-theme-bold: Fredoka One; */
-    --color-toolbar-color-default: #ffffff;
-    --color-toolbar-color-title: var(--color-toolbar-color-default);
+    /* --color-toolbar-color-default: #ffffff; */
+    /* --color-toolbar-color-title: var(--color-toolbar-color-default); */
+    /* --color-toolbar-color-title: var(--color-primary); */
     --color-widget-color-default: black;
     --color-page-login-background-color: white; 
   }
+
 
   .titulo-alphabeto {
     font-family: 'Fredoka One', cursive;
