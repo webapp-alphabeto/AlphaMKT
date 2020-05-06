@@ -8,6 +8,7 @@
 :root {
     --color-primary:  #e18b34;
     --color-toolbar-color-title: var(--color-primary);
+    --color-page-header-color-title: var(--color-primary);
     /* --color-toolbar-background-color-toolbar: var(--color-primary); */
     /* --font-family-theme-bold: Fredoka One; */
     /* --color-toolbar-color-default: #ffffff; */

@@ -18,6 +18,11 @@ const routes: Routes = [
     loadChildren: () => import('./marketing/marketing.module').then(m => m.MarketingModule),
     canActivate: [BasicGuard]
   },
+  {
+    path: 'administracao', 
+    loadChildren: () => import('./administracao/administracao.module').then(m => m.AdministracaoModule),
+    canActivate: [BasicGuard]
+  },
   { path: '', pathMatch: 'full', redirectTo: 'home' }
 ];
 

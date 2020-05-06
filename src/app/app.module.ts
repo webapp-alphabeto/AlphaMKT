@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PortinariModule } from './portinari/portinari.module';
+import { PoModule } from '@po-ui/ng-components';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PortinariModule } from './portinari/portinari.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    PortinariModule
+    PortinariModule,
+    PoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

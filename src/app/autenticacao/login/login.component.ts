@@ -14,8 +14,7 @@ import { ILoginResponse } from 'src/app/interfaces/ilogin-response';
 export class LoginComponent implements OnInit {
 
   customLiterals: PoPageLoginLiterals = {
-    highlightInfo: 'AlphaBuy',
-    title: 'AlphaBuy',
+    
     loginErrorPattern: 'Login obrigatório',
     loginHint: 'Caso não possua usuário entre em contato com o suporte',    
     titlePopover: 'Opa!',    

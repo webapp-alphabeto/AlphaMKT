@@ -127,10 +127,10 @@ export class AppComponent {
   }
 
   menus: Array<PoMenuItem> = [
-    { label: 'Home', icon: 'po-icon po-icon-home', shortLabel: 'Home', link: '/home/home' },
+    { label: 'Home', icon: 'po-icon po-icon-home', shortLabel: 'Home', link: '/home' },
     {
       label: 'Cadastros', icon: 'po-icon po-icon-settings', shortLabel: 'Cadastros', subItems: [
-        { label: 'Usuário', link: '/cadastros/usuario' },
+        { label: 'Usuário', link: '/administracao/usuario' },
       ]
     },
 

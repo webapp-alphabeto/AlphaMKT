@@ -57,6 +57,7 @@ export class PrincipalComponent implements OnInit {
     { label: "Natureza" },
     { label: "Grupo de venda" },
     { label: "Metas" },
+    { label: "Usuários", link: "administracao/usuario" },
   ];
 
   menuAnalitico: Array<PoMenuItem> = [
