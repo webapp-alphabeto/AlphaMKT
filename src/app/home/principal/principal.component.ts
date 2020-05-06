@@ -21,7 +21,7 @@ export class PrincipalComponent implements OnInit {
     {
       icon: 'po-icon-user',
       label: 'Meu Perfil',
-      action: () => this.router.navigateByUrl("/meu-perfil")
+      action: () => this.router.navigateByUrl('/meu-perfil')
     },
     {
       icon: 'po-icon-exit',
@@ -36,32 +36,32 @@ export class PrincipalComponent implements OnInit {
   }
 
   menuDeVendas: Array<PoMenuItem> = [
-    { label: "Representante" },
-    { label: "Catálogo" },
-    { label: "Clientes" },
-    { label: "Pedidos" },
-    { label: "Compras" },
-    { label: "Vendas" }
+    { label: 'Representante' },
+    { label: 'Catálogo' },
+    { label: 'Clientes' },
+    { label: 'Pedidos' },
+    { label: 'Compras' },
+    { label: 'Vendas' }
   ];
 
   menuDeMarketing: Array<PoMenuItem> = [
-    { label: "Fotos de produto", link: "marketing/produtos" },
-    { label: "Banners" },
-    { label: "Campanhas" }
+    { label: 'Fotos de produto', link: 'marketing/produtos' },
+    { label: 'Banners' },
+    { label: 'Campanhas' }
   ];
 
   menuDeAdministracao: Array<PoMenuItem> = [
-    { label: "Representantes" },
-    { label: "Clientes" },
-    { label: "Condições de pagamento" },
-    { label: "Natureza" },
-    { label: "Grupo de venda" },
-    { label: "Metas" },
-    { label: "Usuários", link: "administracao/usuario" },
+    { label: 'Representantes' },
+    { label: 'Clientes' },
+    { label: 'Condições de pagamento' },
+    { label: 'Natureza' },
+    { label: 'Grupo de venda', link: '/administracao/grupo-de-vendas' },
+    { label: 'Metas' },
+    { label: 'Usuários', link: 'administracao/usuario' },
   ];
 
   menuAnalitico: Array<PoMenuItem> = [
-    { label: "Relatório de vendas" },
+    { label: 'Relatório de vendas' },
   ];
 
 

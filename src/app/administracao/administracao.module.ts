@@ -8,10 +8,12 @@ import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenApiService } from '../interceptors/token-api.service';
 import { InvalidTokenApiService } from '../interceptors/invalid-token-api.service';
+import { GrupoDeVendasComponent } from './grupo-de-vendas/grupo-de-vendas.component';
+import { GrupoDeVendasEditComponent } from './grupo-de-vendas-edit/grupo-de-vendas-edit.component';
 
 
 @NgModule({
-  declarations: [UsuarioComponent, UsuarioEditComponent],
+  declarations: [UsuarioComponent, UsuarioEditComponent, GrupoDeVendasComponent, GrupoDeVendasEditComponent],
   imports: [
     CommonModule,
     AdministracaoRoutingModule,

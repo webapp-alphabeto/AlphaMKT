@@ -152,6 +152,7 @@ export class AppComponent {
     {
       label: 'Cadastros', icon: 'po-icon po-icon-settings', shortLabel: 'Cadastros', subItems: [
         { label: 'Usuário', link: '/administracao/usuario' },
+        { label: 'Grupo de vendas', link: '/administracao/grupo-de-vendas' },
       ]
     },
 
