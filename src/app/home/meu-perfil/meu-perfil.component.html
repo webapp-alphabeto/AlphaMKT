@@ -1,0 +1,38 @@
+<po-page-default 
+    [p-breadcrumb]="breadcrumb" 
+    p-title="Meu perfil"
+    [p-actions]="actions">
+
+    <div class="po-md-3">
+ 
+        <div class="centralizar">
+            <po-avatar [p-src]="profileService.profile.avatar"
+                p-size="xl">
+            
+            </po-avatar>
+        </div>
+        
+        <po-upload name="upload" p-label="Alterar imagem" 
+            [p-url]="uploadApi"
+            (p-upload)="incluirImagemDoPerfil($event)"
+            (p-success)="obterPerfil($event)">
+        </po-upload>
+
+
+    </div>
+
+    <div class="po-md-4">
+
+        <po-input name="nome" 
+            [(ngModel)]="usuario.nome"
+            p-label="Nome">
+        </po-input>
+    
+        <po-email name="email"
+            [(ngModel)]="usuario.email"
+            p-label="Email">
+    
+        </po-email>
+    </div>
+
+</po-page-default>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-import { PoDialogService,PoNotificationService, PoMenuItem, PoToolbarAction } from '@po-ui/ng-components';
+import { PoDialogService, PoNotificationService, PoMenuItem, PoToolbarAction } from '@po-ui/ng-components';
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 import { UserTypeService } from './services/user-type.service';
@@ -15,7 +15,7 @@ import { UserIdService } from './services/user-id.service';
 export class AppComponent {
 
   public routeLoading = false;
-  public isHome = true;
+  public exibirMenu = true;
 
 
   constructor(
@@ -28,7 +28,9 @@ export class AppComponent {
     private poDialog: PoDialogService) {
 
     router.events.subscribe((event) => {
-      this.isHome = router.isActive('/home/principal', true);
+
+      this.ExibirMenu(router);
+
 
       this.configurarMenu(this.userType.nivelDeAcesso == 'Administrador');
 
@@ -45,6 +47,25 @@ export class AppComponent {
 
     });
 
+  }
+
+  private ExibirMenu(router: Router) {
+    if (router.isActive('/home/principal', true)) {
+      this.exibirMenu = true;
+      return;
+    }
+
+    if (router.isActive('/home/meu-perfil', true)){
+      this.exibirMenu = true;
+      return;
+    }
+
+    if (router.isActive('/home/alterar-senha', true)){
+      this.exibirMenu = true;
+      return;
+    }
+
+    this.exibirMenu = false;
   }
 
   private RemoverAutoCompleteDeTodosInputs() {
@@ -118,7 +139,7 @@ export class AppComponent {
   }
 
   profileActions: Array<PoToolbarAction> = [
-    { icon: 'po-icon-user', label: 'Meu Perfil', action: () => this.router.navigateByUrl("/meu-perfil") },    
+    { icon: 'po-icon-user', label: 'Meu Perfil', action: () => this.router.navigateByUrl("/home/meu-perfil") },
     { icon: 'po-icon-exit', label: 'Exit', type: 'danger', separator: true, action: () => this.auth.logout() }
   ];
 
