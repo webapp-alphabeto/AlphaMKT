@@ -14,10 +14,11 @@ import { NaturezaComponent } from './natureza/natureza.component';
 import { NaturezaEditComponent } from './natureza-edit/natureza-edit.component';
 import { CondicoesDePagamentoComponent } from './condicoes-de-pagamento/condicoes-de-pagamento.component';
 import { CondicoesDePagamentoEditComponent } from './condicoes-de-pagamento-edit/condicoes-de-pagamento-edit.component';
+import { MonitorDeIntegracaoComponent } from './monitor-de-integracao/monitor-de-integracao.component';
 
 
 @NgModule({
-  declarations: [UsuarioComponent, UsuarioEditComponent, GrupoDeVendasComponent, GrupoDeVendasEditComponent, NaturezaComponent, NaturezaEditComponent, CondicoesDePagamentoComponent, CondicoesDePagamentoEditComponent],
+  declarations: [UsuarioComponent, UsuarioEditComponent, GrupoDeVendasComponent, GrupoDeVendasEditComponent, NaturezaComponent, NaturezaEditComponent, CondicoesDePagamentoComponent, CondicoesDePagamentoEditComponent, MonitorDeIntegracaoComponent],
   imports: [
     CommonModule,
     AdministracaoRoutingModule,

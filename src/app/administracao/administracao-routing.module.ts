@@ -8,6 +8,7 @@ import { NaturezaComponent } from './natureza/natureza.component';
 import { NaturezaEditComponent } from './natureza-edit/natureza-edit.component';
 import { CondicoesDePagamentoComponent } from './condicoes-de-pagamento/condicoes-de-pagamento.component';
 import { CondicoesDePagamentoEditComponent } from './condicoes-de-pagamento-edit/condicoes-de-pagamento-edit.component';
+import { MonitorDeIntegracaoComponent } from './monitor-de-integracao/monitor-de-integracao.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,8 @@ const routes: Routes = [
 
   { path: 'condicoes-de-pagamento', component: CondicoesDePagamentoComponent },
   { path: 'condicoes-de-pagamento-edit/:id', component: CondicoesDePagamentoEditComponent },
+
+  { path: 'monitor-de-integracao', component: MonitorDeIntegracaoComponent },
 
   { path: '', pathMatch: 'full', redirectTo: 'usuario' }
 ];

@@ -155,6 +155,7 @@ export class AppComponent {
         { label: 'Grupo de vendas', link: '/administracao/grupo-de-vendas' },
         { label: 'Natureza', link: '/administracao/natureza' },
         { label: 'Condições de pagamento', link: '/administracao/condicoes-de-pagamento' },
+        { label: 'Integração', link: '/administracao/monitor-de-integracao' },
         
       ]
     },
