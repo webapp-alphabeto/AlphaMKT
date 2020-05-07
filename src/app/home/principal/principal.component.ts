@@ -53,10 +53,9 @@ export class PrincipalComponent implements OnInit {
   menuDeAdministracao: Array<PoMenuItem> = [
     { label: 'Representantes' },
     { label: 'Clientes' },
-    { label: 'Condições de pagamento' },
+    { label: 'Condições de pagamento', link: '/administracao/condicoes-de-pagamento' },
     { label: 'Natureza', link: 'administracao/natureza' },
     { label: 'Grupo de venda', link: '/administracao/grupo-de-vendas' },
-    { label: 'Metas' },
     { label: 'Usuários', link: 'administracao/usuario' },
   ];
 

@@ -6,6 +6,8 @@ import { GrupoDeVendasComponent } from './grupo-de-vendas/grupo-de-vendas.compon
 import { GrupoDeVendasEditComponent } from './grupo-de-vendas-edit/grupo-de-vendas-edit.component';
 import { NaturezaComponent } from './natureza/natureza.component';
 import { NaturezaEditComponent } from './natureza-edit/natureza-edit.component';
+import { CondicoesDePagamentoComponent } from './condicoes-de-pagamento/condicoes-de-pagamento.component';
+import { CondicoesDePagamentoEditComponent } from './condicoes-de-pagamento-edit/condicoes-de-pagamento-edit.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,9 @@ const routes: Routes = [
 
   { path: 'natureza', component: NaturezaComponent },
   { path: 'natureza-edit/:id', component: NaturezaEditComponent },
+
+  { path: 'condicoes-de-pagamento', component: CondicoesDePagamentoComponent },
+  { path: 'condicoes-de-pagamento-edit/:id', component: CondicoesDePagamentoEditComponent },
 
   { path: '', pathMatch: 'full', redirectTo: 'usuario' }
 ];

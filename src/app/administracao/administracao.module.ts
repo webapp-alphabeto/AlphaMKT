@@ -12,10 +12,12 @@ import { GrupoDeVendasComponent } from './grupo-de-vendas/grupo-de-vendas.compon
 import { GrupoDeVendasEditComponent } from './grupo-de-vendas-edit/grupo-de-vendas-edit.component';
 import { NaturezaComponent } from './natureza/natureza.component';
 import { NaturezaEditComponent } from './natureza-edit/natureza-edit.component';
+import { CondicoesDePagamentoComponent } from './condicoes-de-pagamento/condicoes-de-pagamento.component';
+import { CondicoesDePagamentoEditComponent } from './condicoes-de-pagamento-edit/condicoes-de-pagamento-edit.component';
 
 
 @NgModule({
-  declarations: [UsuarioComponent, UsuarioEditComponent, GrupoDeVendasComponent, GrupoDeVendasEditComponent, NaturezaComponent, NaturezaEditComponent],
+  declarations: [UsuarioComponent, UsuarioEditComponent, GrupoDeVendasComponent, GrupoDeVendasEditComponent, NaturezaComponent, NaturezaEditComponent, CondicoesDePagamentoComponent, CondicoesDePagamentoEditComponent],
   imports: [
     CommonModule,
     AdministracaoRoutingModule,
