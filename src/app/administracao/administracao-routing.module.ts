@@ -4,6 +4,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
 import { GrupoDeVendasComponent } from './grupo-de-vendas/grupo-de-vendas.component';
 import { GrupoDeVendasEditComponent } from './grupo-de-vendas-edit/grupo-de-vendas-edit.component';
+import { NaturezaComponent } from './natureza/natureza.component';
+import { NaturezaEditComponent } from './natureza-edit/natureza-edit.component';
 
 
 const routes: Routes = [
@@ -13,6 +15,9 @@ const routes: Routes = [
 
   { path: 'grupo-de-vendas', component: GrupoDeVendasComponent },
   { path: 'grupo-de-vendas-edit/:id', component: GrupoDeVendasEditComponent },
+
+  { path: 'natureza', component: NaturezaComponent },
+  { path: 'natureza-edit/:id', component: NaturezaEditComponent },
 
   { path: '', pathMatch: 'full', redirectTo: 'usuario' }
 ];

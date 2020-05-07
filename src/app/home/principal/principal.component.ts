@@ -54,7 +54,7 @@ export class PrincipalComponent implements OnInit {
     { label: 'Representantes' },
     { label: 'Clientes' },
     { label: 'Condições de pagamento' },
-    { label: 'Natureza' },
+    { label: 'Natureza', link: 'administracao/natureza' },
     { label: 'Grupo de venda', link: '/administracao/grupo-de-vendas' },
     { label: 'Metas' },
     { label: 'Usuários', link: 'administracao/usuario' },

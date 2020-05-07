@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { PoPageDynamicEditActions } from '@po-ui/ng-templates';
 import { PoBreadcrumb, PoDynamicFormField } from '@po-ui/ng-components';
-import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-grupo-de-vendas-edit',
-  templateUrl: './grupo-de-vendas-edit.component.html',
-  styleUrls: ['./grupo-de-vendas-edit.component.css']
+  selector: 'app-natureza-edit',
+  templateUrl: './natureza-edit.component.html',
+  styleUrls: ['./natureza-edit.component.css']
 })
-export class GrupoDeVendasEditComponent implements OnInit {
+export class NaturezaEditComponent implements OnInit {
 
-  public readonly serviceApi = `${environment.serviceApi}grupo-de-vendas`;;
+  public readonly serviceApi = `${environment.serviceApi}natureza`;;
 
   public readonly actions: PoPageDynamicEditActions = {
-    save: 'administracao/grupo-de-vendas'
+    save: 'administracao/natureza'
   };
 
   public readonly breadcrumb: PoBreadcrumb = {
     items: [
       { label: 'Home', link: '/' },
-      { label: 'Grupo de vendas', link: '/administracao/grupo-de-vendas' },
-      { label: 'Editar grupo de vendas' }
+      { label: 'Natureza', link: '/administracao/natureza' },
+      { label: 'Editar natureza' }
     ]
   };
 
@@ -37,5 +37,6 @@ export class GrupoDeVendasEditComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 
 }

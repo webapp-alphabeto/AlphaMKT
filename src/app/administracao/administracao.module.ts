@@ -10,10 +10,12 @@ import { TokenApiService } from '../interceptors/token-api.service';
 import { InvalidTokenApiService } from '../interceptors/invalid-token-api.service';
 import { GrupoDeVendasComponent } from './grupo-de-vendas/grupo-de-vendas.component';
 import { GrupoDeVendasEditComponent } from './grupo-de-vendas-edit/grupo-de-vendas-edit.component';
+import { NaturezaComponent } from './natureza/natureza.component';
+import { NaturezaEditComponent } from './natureza-edit/natureza-edit.component';
 
 
 @NgModule({
-  declarations: [UsuarioComponent, UsuarioEditComponent, GrupoDeVendasComponent, GrupoDeVendasEditComponent],
+  declarations: [UsuarioComponent, UsuarioEditComponent, GrupoDeVendasComponent, GrupoDeVendasEditComponent, NaturezaComponent, NaturezaEditComponent],
   imports: [
     CommonModule,
     AdministracaoRoutingModule,
