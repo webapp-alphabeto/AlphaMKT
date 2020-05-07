@@ -64,5 +64,36 @@ export class PrincipalComponent implements OnInit {
     { label: 'Relatório de vendas' },
   ];
 
+  sampleItems: Array<any> = [
+    {
+      title: 'Administrar',
+      description: 'Cadastro de parâmetros e configurações',
+      date: 'December 11, 2016',
+      author: 'Patrick Buggy',
+      link: '/administracao',
+      imagem: '/assets/graphics/landscape-01.jpeg'
+    },
+    {
+      title: 'Marketing',
+      description: 'Meditating won’t solve your problems — but it will help you face them honestly',
+      date: 'August 17, 2018',
+      author: 'Seizan Egyo',
+      link: '/marketing',
+      imagem: '/assets/graphics/landscape-02.jpeg'
+    },
+    {
+      title: 'Vendas',
+      description: 'You Can’t Change without Transforming Your World',
+      date: 'January 22, 2019',
+      author: 'Gustavo Razzetti',
+      link: 'https://bit.ly/2Tbc16b',
+      imagem: '/assets/graphics/landscape-03.jpeg'
+    }
+  ];
+
+  redirectLink(link: string) {
+    window.open(link, '_blank');
+  }
+
 
 }

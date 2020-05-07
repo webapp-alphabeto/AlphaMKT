@@ -55,12 +55,12 @@ export class AppComponent {
       return;
     }
 
-    if (router.isActive('/home/meu-perfil', true)){
+    if (router.isActive('/home/meu-perfil', true)) {
       this.exibirMenu = true;
       return;
     }
 
-    if (router.isActive('/home/alterar-senha', true)){
+    if (router.isActive('/home/alterar-senha', true)) {
       this.exibirMenu = true;
       return;
     }
@@ -150,13 +150,17 @@ export class AppComponent {
   menus: Array<PoMenuItem> = [
     { label: 'Home', icon: 'po-icon po-icon-home', shortLabel: 'Home', link: '/home' },
     {
-      label: 'Cadastros', icon: 'po-icon po-icon-settings', shortLabel: 'Cadastros', subItems: [
+      label: 'Marketing', icon: 'po-icon po-icon-camera', shortLabel: 'Marketing', subItems: [
+        { label: 'Fotos de Produtos', link: '/marketing/produtos' }
+      ]
+    },
+    {
+      label: 'Administração', icon: 'po-icon po-icon-edit', shortLabel: 'Administração', subItems: [
         { label: 'Usuário', link: '/administracao/usuario' },
         { label: 'Grupo de vendas', link: '/administracao/grupo-de-vendas' },
         { label: 'Natureza', link: '/administracao/natureza' },
         { label: 'Condições de pagamento', link: '/administracao/condicoes-de-pagamento' },
         { label: 'Integração', link: '/administracao/monitor-de-integracao' },
-        
       ]
     },
 

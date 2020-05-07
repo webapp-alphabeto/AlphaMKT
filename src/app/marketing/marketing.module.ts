@@ -8,6 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { ProdutoViewComponent } from './produto-view/produto-view.component';
 import { ProdutoEditComponent } from './produto-edit/produto-edit.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenApiService } from '../interceptors/token-api.service';
+import { InvalidTokenApiService } from '../interceptors/invalid-token-api.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,18 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     FormsModule,
     ScrollingModule,
     MarketingRoutingModule
-  ]
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenApiService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InvalidTokenApiService,
+      multi: true
+    }
+  ],
 })
 export class MarketingModule { }

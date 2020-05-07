@@ -1,6 +1,6 @@
 
 <po-page-list p-title="Fotos de produto" 
-[p-breadcrumb]="breadcrumb" 
+
 [p-disclaimer-group]="disclaimerGroup"
 [p-filter]="configuracoesDeFiltro">
 
@@ -108,16 +108,18 @@
     
     <ng-container *ngIf="fotosProdutos.length; else noItens">        
         <cdk-virtual-scroll-viewport style="height: 100%;" 
-            itemSize="4" >
-            
-            <ng-container  *cdkVirtualFor="let item of produtosFiltrados()">
+            [itemSize]="300">
+
+            <div *cdkVirtualFor="let item of produtosFiltrados()"  class=" po-md-12 ">
+
               <app-produto-view 
                   [produto]="item"
-                  (detalhar)="abrirEditModal(item)">
+                  (detalhar)="abrirEditModal(item)"
+                  >
               
               </app-produto-view>
-            </ng-container>
-              
+            </div>
+
         </cdk-virtual-scroll-viewport>
     </ng-container>
       
