@@ -156,6 +156,7 @@ export class AppComponent {
     },
     {
       label: 'Administração', icon: 'po-icon po-icon-edit', shortLabel: 'Administração', subItems: [
+        { label: 'Representante', link: '/administracao/representante' },
         { label: 'Usuário', link: '/administracao/usuario' },
         { label: 'Grupo de vendas', link: '/administracao/grupo-de-vendas' },
         { label: 'Natureza', link: '/administracao/natureza' },
