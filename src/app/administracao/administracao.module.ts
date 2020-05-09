@@ -17,10 +17,12 @@ import { CondicoesDePagamentoEditComponent } from './condicoes-de-pagamento-edit
 import { MonitorDeIntegracaoComponent } from './monitor-de-integracao/monitor-de-integracao.component';
 import { RepresentanteComponent } from './representante/representante.component';
 import { RepresentanteEditComponent } from './representante-edit/representante-edit.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import { ClienteEditComponent } from './cliente-edit/cliente-edit.component';
 
 
 @NgModule({
-  declarations: [UsuarioComponent, UsuarioEditComponent, GrupoDeVendasComponent, GrupoDeVendasEditComponent, NaturezaComponent, NaturezaEditComponent, CondicoesDePagamentoComponent, CondicoesDePagamentoEditComponent, MonitorDeIntegracaoComponent, RepresentanteComponent, RepresentanteEditComponent],
+  declarations: [UsuarioComponent, UsuarioEditComponent, GrupoDeVendasComponent, GrupoDeVendasEditComponent, NaturezaComponent, NaturezaEditComponent, CondicoesDePagamentoComponent, CondicoesDePagamentoEditComponent, MonitorDeIntegracaoComponent, RepresentanteComponent, RepresentanteEditComponent, ClienteComponent, ClienteEditComponent],
   imports: [
     CommonModule,
     AdministracaoRoutingModule,

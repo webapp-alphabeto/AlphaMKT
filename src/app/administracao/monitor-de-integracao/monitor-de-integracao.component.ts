@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { PoBreadcrumb, PoTableColumn } from '@po-ui/ng-components';
-import { PoPageDynamicTableField } from '@po-ui/ng-templates';
 import { MonitorDeIntegracao } from 'src/app/interfaces/monitor-de-integracao';
 import { MonitorDeIntegracaoService } from 'src/app/services/monitor-de-integracao.service';
 
@@ -61,7 +60,7 @@ export class MonitorDeIntegracaoComponent implements OnInit {
     this.monitorDeIntegracaoService
       .get()
       .subscribe(
-        (x: MonitorDeIntegracao[]) => { this.items = x; console.log('monitor de integração') });
+        (x: MonitorDeIntegracao[]) => { this.items = x; console.log('monitor de integração') });        
   }
 
 
