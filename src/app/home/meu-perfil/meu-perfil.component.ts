@@ -62,4 +62,8 @@ export class MeuPerfilComponent implements OnInit {
     this.profileService.profile = profile;
   }
 
+  obterErro(evento) {
+    this.notification.error(evento)
+  }
+
 }

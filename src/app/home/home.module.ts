@@ -8,6 +8,9 @@ import { CardMenuComponent } from './card-menu/card-menu.component';
 import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
 import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenApiService } from '../interceptors/token-api.service';
+import { InvalidTokenApiService } from '../interceptors/invalid-token-api.service';
 
 @NgModule({
   declarations: [PrincipalComponent, CardMenuComponent, MeuPerfilComponent, AlterarSenhaComponent],
@@ -16,6 +19,18 @@ import { FormsModule } from '@angular/forms';
     HomeRoutingModule,
     PortinariModule,
     FormsModule
+  ],
+  providers:[
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenApiService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InvalidTokenApiService,
+      multi: true
+    }
   ]
 })
 export class HomeModule { }

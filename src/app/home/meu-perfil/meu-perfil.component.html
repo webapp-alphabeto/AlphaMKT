@@ -15,7 +15,8 @@
         <po-upload name="upload" p-label="Alterar imagem" 
             [p-url]="uploadApi"
             (p-upload)="incluirImagemDoPerfil($event)"
-            (p-success)="obterPerfil($event)">
+            (p-success)="obterPerfil($event)"
+            (p-error)="obterErro($event)">
         </po-upload>
 
 
