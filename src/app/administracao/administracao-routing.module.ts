@@ -18,7 +18,7 @@ import { ClienteEditComponent } from './cliente-edit/cliente-edit.component';
 const routes: Routes = [
   { path: 'cliente', component: ClienteComponent },
   { path: 'cliente-new', component: ClienteEditComponent },
-  { path: 'cliente-edit/:id', component: RepresentanteEditComponent },
+  { path: 'cliente-edit/:id', component: ClienteEditComponent },
 
   { path: 'representante', component: RepresentanteComponent },
   { path: 'representante-new', component: RepresentanteEditComponent },
