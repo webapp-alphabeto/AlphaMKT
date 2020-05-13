@@ -32,10 +32,11 @@ export class ClienteComponent implements OnInit {
 
   public readonly fields: Array<PoPageDynamicTableField> = [
     { property: 'id', key: true, visible: false },
-    { property: 'nomeFantasia', label: 'Nome', filter: true,  },
+    { property: 'nomeFantasia', label: 'Nome', filter: true, },
     { property: 'representante', label: 'Representante', filter: true, optionsService: `${environment.serviceApi}representante/po-combo` },
     { property: 'grupoDeVenda', label: 'Grupo de Venda', filter: true, optionsService: `${environment.serviceApi}grupo-de-vendas/po-combo` },
-    { property: 'deletado', label: 'Deletado', filter: true, type:'boolean' }
+    { property: 'estadoDaIntegracao', label: 'Integração' },
+    { property: 'deletado', label: 'Deletado', filter: true, type: 'boolean' }
   ];
 
 }
