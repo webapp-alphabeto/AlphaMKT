@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { PoPageDynamicTableActions, PoPageDynamicTableField } from '@po-ui/ng-templates';
-import { PoBreadcrumb, PoMultiselectOption } from '@po-ui/ng-components';
+import { PoBreadcrumb } from '@po-ui/ng-components';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-usuario',
@@ -14,6 +15,7 @@ export class UsuarioComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   public readonly actions: PoPageDynamicTableActions = {
@@ -30,16 +32,14 @@ export class UsuarioComponent implements OnInit {
     ]
   };
 
-  public readonly cityOptions: Array<PoMultiselectOption> = [
-    { value: 'Administrador', label: 'Administrador' }
-  ];
+
 
   public readonly fields: Array<PoPageDynamicTableField> = [
     { property: 'id', key: true, visible: false },
     { property: 'nome', label: 'Nome', filter: true, gridColumns: 6 },
     { property: 'email', label: 'E-mail', filter: true, gridColumns: 6, duplicate: true },
     { property: 'ativo', label: 'Ativo', type: 'boolean', booleanFalse: 'Não', booleanTrue: 'Sim', gridColumns: 6 },
-    { property: 'nivelDeAcesso', label: 'Nível de acesso', filter: true, duplicate: true, options: this.cityOptions, gridColumns: 12 }
+    { property: 'nivelDeAcesso', label: 'Nível de acesso', filter: true, duplicate: true, optionsService: `${this.serviceApi}/niveis-de-acesso`, gridColumns: 12 }
   ];
 
 }

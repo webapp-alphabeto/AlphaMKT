@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserIdService } from './user-id.service';
-import { USERTYPE_STORAGE } from 'src/environments/environment';
+import { NIVEL_DE_ACESSO } from 'src/environments/environment';
+import { NivelDeAcesso } from '../autenticacao/nivel-de-acesso.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,12 @@ export class UserTypeService {
 
   constructor(private userIdService: UserIdService) { }
 
-  get nivelDeAcesso() {
-    return localStorage.getItem(USERTYPE_STORAGE);
+  get nivelDeAcesso(): NivelDeAcesso {
+    return parseInt(localStorage.getItem(NIVEL_DE_ACESSO));
   }
 
   get IsAdministrador(): Boolean {
-    return localStorage.getItem(USERTYPE_STORAGE) == 'Administrador';
+    return localStorage.getItem(NIVEL_DE_ACESSO) == 'Administrador';
   }
   /** 
    * Verificar se o usuário que está logado é o usuário que criou o conteúdo
@@ -25,11 +26,11 @@ export class UserTypeService {
     return this.userIdService.Id == userId || this.IsAdministrador;
   }
 
-  set nivelDeAcesso(nivelDeAcesso: string) {
-    localStorage.setItem(USERTYPE_STORAGE, nivelDeAcesso);
+  set nivelDeAcesso(nivelDeAcesso: NivelDeAcesso) {
+    localStorage.setItem(NIVEL_DE_ACESSO, nivelDeAcesso.toString());
   }
 
   resetarNivelDeAcesso() {
-    localStorage.removeItem(USERTYPE_STORAGE);
+    localStorage.removeItem(NIVEL_DE_ACESSO);
   }
 }

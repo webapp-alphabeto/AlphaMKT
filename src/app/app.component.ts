@@ -5,6 +5,7 @@ import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 import { UserTypeService } from './services/user-type.service';
 import { UserIdService } from './services/user-id.service';
+import { NivelDeAcesso } from './autenticacao/nivel-de-acesso.enum';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class AppComponent {
       this.ExibirMenu(router);
 
 
-      this.configurarMenu(this.userType.nivelDeAcesso == 'Administrador');
+      this.configurarMenu(this.userType.nivelDeAcesso == NivelDeAcesso.Administracao);
 
       if (event instanceof NavigationStart) {
         this.routeLoading = true;
