@@ -1,6 +1,6 @@
 export enum NivelDeAcesso {
-    Administracao,
-    Representante,
-    Marketing,
-    Cliente
+    Administracao = 1,
+    Representante = 2,
+    Marketing = 3,
+    Cliente = 4
 }

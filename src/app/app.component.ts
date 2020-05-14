@@ -4,8 +4,8 @@ import { PoDialogService, PoNotificationService, PoMenuItem, PoToolbarAction } f
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 import { UserTypeService } from './services/user-type.service';
-import { UserIdService } from './services/user-id.service';
 import { NivelDeAcesso } from './autenticacao/nivel-de-acesso.enum';
+import { PoMenuItemNivelDeAcesso } from './interfaces/po-menu-item-nivel-de-acesso';
 
 
 @Component({
@@ -25,7 +25,6 @@ export class AppComponent {
     public auth: AuthService,
     public profileService: ProfileService,
     private userType: UserTypeService,
-    private userIdService: UserIdService,
     private poDialog: PoDialogService) {
 
     router.events.subscribe((event) => {
@@ -33,7 +32,7 @@ export class AppComponent {
       this.ExibirMenu(router);
 
 
-      this.configurarMenu(this.userType.nivelDeAcesso == NivelDeAcesso.Administracao);
+      this.configurarMenu(this.userType.nivelDeAcesso);
 
       if (event instanceof NavigationStart) {
         this.routeLoading = true;
@@ -43,7 +42,6 @@ export class AppComponent {
         event instanceof NavigationCancel ||
         event instanceof NavigationError) {
         this.routeLoading = false;
-        this.RemoverAutoCompleteDeTodosInputs();
       }
 
     });
@@ -67,15 +65,6 @@ export class AppComponent {
     }
 
     this.exibirMenu = false;
-  }
-
-  private RemoverAutoCompleteDeTodosInputs() {
-    setTimeout(() => {
-      var list = Array.from(document.getElementsByTagName("input"));
-      list.forEach(input => {
-        input.autocomplete = "off";
-      });
-    }, 1000);
   }
 
   actions: Array<PoToolbarAction> = [
@@ -127,16 +116,13 @@ export class AppComponent {
 
   menuFiltrado: Array<PoMenuItem> = [];
 
-  configurarMenu(administrador: boolean) {
-    if (administrador) {
+  configurarMenu(nivelDeAcesso: NivelDeAcesso) {
+    if (nivelDeAcesso == NivelDeAcesso.Administracao) {
       this.menuFiltrado = this.menus;
       return;
     }
 
-    this.menuFiltrado = this.menus
-      .filter(x => x.label !== 'Cadastros')
-      .filter(x => x.label !== 'Analytics');
-
+    this.menuFiltrado = this.menus.filter(x => x.nivelDeAcesso.includes(nivelDeAcesso));
   }
 
   profileActions: Array<PoToolbarAction> = [
@@ -148,15 +134,27 @@ export class AppComponent {
     this.poNotification.success(`Action clicked: ${item.label}`);
   }
 
-  menus: Array<PoMenuItem> = [
-    { label: 'Home', icon: 'po-icon po-icon-home', shortLabel: 'Home', link: '/home' },
+  menus: Array<PoMenuItemNivelDeAcesso> = [
     {
-      label: 'Marketing', icon: 'po-icon po-icon-camera', shortLabel: 'Marketing', subItems: [
+      label: 'Home', icon: 'po-icon po-icon-home', shortLabel: 'Home', link: '/home', nivelDeAcesso: [
+        NivelDeAcesso.Administracao,
+        NivelDeAcesso.Cliente,
+        NivelDeAcesso.Marketing,
+        NivelDeAcesso.Representante
+      ]
+    },
+    {
+      label: 'Marketing', icon: 'po-icon po-icon-camera', shortLabel: 'Marketing', nivelDeAcesso: [
+        NivelDeAcesso.Administracao,
+        NivelDeAcesso.Marketing
+      ], subItems: [
         { label: 'Fotos de Produtos', link: '/marketing/produtos' }
       ]
     },
     {
-      label: 'Administração', icon: 'po-icon po-icon-edit', shortLabel: 'Administração', subItems: [
+      label: 'Administração', icon: 'po-icon po-icon-edit', shortLabel: 'Administração', nivelDeAcesso: [
+        NivelDeAcesso.Administracao
+      ], subItems: [
         { label: 'Cliente', link: '/administracao/cliente' },
         { label: 'Representante', link: '/administracao/representante' },
         { label: 'Usuário', link: '/administracao/usuario' },

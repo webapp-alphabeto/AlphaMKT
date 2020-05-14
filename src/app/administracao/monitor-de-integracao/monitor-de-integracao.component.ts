@@ -60,7 +60,7 @@ export class MonitorDeIntegracaoComponent implements OnInit {
     this.monitorDeIntegracaoService
       .get()
       .subscribe(
-        (x: MonitorDeIntegracao[]) => { this.items = x; console.log('monitor de integração') });        
+        (x: MonitorDeIntegracao[]) => { this.items = x; });        
   }
 
 

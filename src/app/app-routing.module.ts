@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BasicGuard } from './guards/basic.guard';
+import { AdministradorGuard } from './guards/administrador.guard';
 
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
   {
     path: 'administracao', 
     loadChildren: () => import('./administracao/administracao.module').then(m => m.AdministracaoModule),
-    canActivate: [BasicGuard]
+    canActivate: [AdministradorGuard]
   },
   { path: '', pathMatch: 'full', redirectTo: 'home' }
 ];
