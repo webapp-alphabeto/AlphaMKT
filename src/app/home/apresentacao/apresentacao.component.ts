@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { IApresentacaoButtons } from 'src/app/interfaces/iapresentacao-buttons';
 
 @Component({
   selector: "app-apresentacao",
@@ -8,14 +9,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 export class ApresentacaoComponent implements OnInit {
   @Input() mensagem: string;
   @Input() setor: string;
-  @Input() buttonLabel: string;
-  @Input() buttonIcon: string;
-  @Output() buttonAction = new EventEmitter();
+  @Input() buttons: IApresentacaoButtons[];
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  acao() {
-    this.buttonAction.emit();
-  }
+
 }

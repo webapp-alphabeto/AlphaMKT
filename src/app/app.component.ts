@@ -7,7 +7,6 @@ import { UserTypeService } from './services/user-type.service';
 import { NivelDeAcesso } from './autenticacao/nivel-de-acesso.enum';
 import { PoMenuItemNivelDeAcesso } from './interfaces/po-menu-item-nivel-de-acesso';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

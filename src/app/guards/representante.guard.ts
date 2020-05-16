@@ -13,7 +13,7 @@ export class RepresentanteGuard implements CanActivate {
     private poNotification: PoNotificationService) { }
 
   canActivate(): boolean {
-    const response = this.userType.nivelDeAcesso == NivelDeAcesso.Representante;
+    const response = this.userType.nivelDeAcesso == NivelDeAcesso.Representante;    
     if (!response)
       this.poNotification.error('Não permitido');
     return response;

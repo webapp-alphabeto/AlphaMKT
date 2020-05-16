@@ -133,9 +133,7 @@
     <app-apresentacao
       setor="Setor de Marketing"
       mensagem="Repositório de imagens alphabeto"
-      buttonLabel="Buscar imagens"
-      buttonIcon="po-icon po-icon-search"
-      (buttonAction)="filtroAvancado.open()"
+      [buttons]="buttons"
     ></app-apresentacao>
   </ng-template>
 </po-page-list>
