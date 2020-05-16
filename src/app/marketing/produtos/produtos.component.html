@@ -114,43 +114,29 @@
   </po-container>
 
   <ng-container *ngIf="fotosProdutos.length; else noItens">
-      <virtual-scroller
-        #scroll
-        [items]="produtosFiltrados()"
-        bufferAmount="4"
-        style="height: 100%;"      
+    <virtual-scroller
+      #scroll
+      [items]="produtosFiltrados()"
+      bufferAmount="4"
+      style="height: 100%;"
+    >
+      <app-produto-view
+        *ngFor="let item of scroll.viewPortItems"
+        class="po-xl-3 po-lg-3 po-md-4 po-sm-12 po-mb-1"
+        [produto]="item"
+        (detalhar)="abrirEditModal(item)"
       >
-        <app-produto-view
-          *ngFor="let item of scroll.viewPortItems"
-          class="po-xl-3 po-lg-3 po-md-4 po-sm-12 po-mb-1"
-          [produto]="item"
-          (detalhar)="abrirEditModal(item)"
-        >
-        </app-produto-view>
-      </virtual-scroller>
-    
+      </app-produto-view>
+    </virtual-scroller>
   </ng-container>
   <ng-template #noItens>
-   <!-- <p>{{ mensagemDeErro }}</p> 
-    <po-button (p-click)="filtroAvancado.open()" p-label="Buscar"> </po-button> -->
-    <div class="po-md-8">
-      <div class="sample-background-image" [style.backgroundSize]="'cover'" [style.height.%]="100">
-          <div class="po-row">
-              <div class="po-offset-sm-1 po-offset-md-1 po-offset-lg-1 po-offset-xl-1 po-lg-5 po-sm-10 po-mt-4 po-mb-4 po-p-5"
-                  [style.background]="'white'">
-                  <div class="po-font-text slide-in-left">Repositório de imagens alphabeto</div>
-                  <div class="po-font-display titulo-alphabeto tracking-in-expand"> AlphaBuy </div>
-                  <po-divider></po-divider>
-                  <div class="po-font-text-large-bold po-mb-3 slide-in-right">Setor de marketing</div>
-                  <po-button class="po-md-12 slide-in-bottom" 
-                      p-label="Buscar imagens" 
-                      (p-click)="filtroAvancado.open()"
-                      p-icon="po-icon po-icon-search">
-                  </po-button>
-              </div>
-          </div>
-      </div>
-  </div>
+    <app-apresentacao
+      setor="Setor de Marketing"
+      mensagem="Repositório de imagens alphabeto"
+      buttonLabel="Buscar imagens"
+      buttonIcon="po-icon po-icon-search"
+      (buttonAction)="filtroAvancado.open()"
+    ></app-apresentacao>
   </ng-template>
 </po-page-list>
 

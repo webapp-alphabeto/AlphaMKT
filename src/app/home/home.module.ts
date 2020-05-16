@@ -11,14 +11,18 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenApiService } from '../interceptors/token-api.service';
 import { InvalidTokenApiService } from '../interceptors/invalid-token-api.service';
+import { ApresentacaoComponent } from './apresentacao/apresentacao.component';
 
 @NgModule({
-  declarations: [PrincipalComponent, CardMenuComponent, MeuPerfilComponent, AlterarSenhaComponent],
+  declarations: [PrincipalComponent, CardMenuComponent, MeuPerfilComponent, AlterarSenhaComponent, ApresentacaoComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
     PortinariModule,
     FormsModule
+  ],
+  exports: [
+    ApresentacaoComponent
   ],
   providers:[
     {

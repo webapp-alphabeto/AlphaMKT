@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenApiService } from '../interceptors/token-api.service';
 import { InvalidTokenApiService } from '../interceptors/invalid-token-api.service';
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
+import { HomeModule } from '../home/home.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { VirtualScrollerModule } from 'ngx-virtual-scroller';
     FormsModule,
     ScrollingModule,
     VirtualScrollerModule,
-    MarketingRoutingModule
+    MarketingRoutingModule,
+    HomeModule
   ],
   providers: [
     {

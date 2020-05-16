@@ -1,0 +1,32 @@
+<div class="po-md-8">
+  <div
+    class="sample-background-image"
+    [style.backgroundSize]="'cover'"
+    [style.height.%]="100"
+  >
+    <div class="po-row">
+      <div
+        class="po-offset-sm-1 po-offset-md-1 po-offset-lg-1 po-offset-xl-1 po-lg-5 po-sm-10 po-mt-4 po-mb-4 po-p-5"
+        [style.background]="'white'"
+      >
+        <div class="po-font-text slide-in-left">
+          {{ mensagem }}
+        </div>
+        <div class="po-font-display titulo-alphabeto tracking-in-expand">
+          AlphaBuy
+        </div>
+        <po-divider></po-divider>
+        <div class="po-font-text-large-bold po-mb-3 slide-in-right">
+          {{ setor }}
+        </div>
+        <po-button
+          class="po-md-12 slide-in-bottom"
+          [p-label]="buttonLabel"
+          (p-click)="acao()"
+          [p-icon]="buttonIcon"
+        >
+        </po-button>
+      </div>
+    </div>
+  </div>
+</div>

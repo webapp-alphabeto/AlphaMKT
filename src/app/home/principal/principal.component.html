@@ -1,80 +1,10 @@
 <po-page-default>
-    <div class="po-md-8">
-        <div class="sample-background-image" [style.backgroundSize]="'cover'" [style.height.%]="100">
-            <div class="po-row">
-                <div class="po-offset-sm-1 po-offset-md-1 po-offset-lg-1 po-offset-xl-1 po-lg-5 po-sm-10 po-mt-4 po-mb-4 po-p-5"
-                    [style.background]="'white'">
-                    <div class="po-font-text slide-in-left"> Vendas multicanal alphapbeto</div>
-                    <div class="po-font-display titulo-alphabeto tracking-in-expand"> AlphaBuy </div>
-                    <po-divider></po-divider>
-                    <div class="po-font-text-large-bold po-mb-3 slide-in-right">Vestindo criança como criança</div>
-                    <po-button class="po-md-6 slide-in-bottom" 
-                        p-label="Começar" 
-                        (p-click)="irPara()">
-                    </po-button>
-                </div>
-            </div>
-        </div>
-    </div>
-</po-page-default>
-    
-    
-    
-    
-
-    <!-- <div class="po-mb-5">
-
-      
-        <div class="po-md-12">
-
-            <h4 class="titulo-alphabeto tracking-in-expand">Vendas multicanal</h4>
-        </div>
-
-
-        <div class="po-m-1">
-
-            <h2 class="titulo-alphabeto tracking-in-expand">Vestindo criança como criança!</h2>
-
-            <div class="po-row po-mt-2">
-
-                <div class="po-md-6 slide-in-left">
-                    <app-card-menu
-                        altura="600"
-                        [menu]="menuDeVendas"
-                        imagem="../../../assets/1.jpg"
-                        titulo="Vendas">
-                    </app-card-menu>
-                </div>
-
-                <div class="po-md-6">
-
-                    <app-card-menu
-                        class="po-md-12  slide-in-right"
-                        altura="350"
-                        [menu]="menuDeAdministracao"
-                        imagem="../../../assets/3.jpg"
-                        titulo="Administração">
-                    </app-card-menu>
-
-                    <app-card-menu
-                        class="po-md-6 po-mt-2 slide-in-bottom"
-                        altura="230"
-                        [menu]="menuDeMarketing"
-                        imagem="../../../assets/4.jpg"
-                        titulo="Marketing">
-                    </app-card-menu>
-
-                    <app-card-menu
-                            class="po-md-6 po-mt-2 slide-in-bottom"
-                            altura="230"
-                            [menu]="menuAnalitico"
-                            imagem="../../../assets/2.jpg"
-                            titulo="Análises">
-                    </app-card-menu>
-
-                </div>
-            </div>
-
-        </div>
-
-    </div> -->
+  <app-apresentacao
+    setor="Vestindo criança como criança"
+    mensagem="Vendas multicanal alphapbeto"
+    buttonLabel="Começar"
+    buttonIcon="po-icon po-icon-ok"
+    (buttonAction)="irPara()"
+  >
+  </app-apresentacao>
+  
