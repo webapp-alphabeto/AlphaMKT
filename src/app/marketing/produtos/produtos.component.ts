@@ -8,6 +8,8 @@ import { ProdutoEditComponent } from '../produto-edit/produto-edit.component';
 import { UtilProdutoService } from 'src/app/services/util-produto.service';
 import { ProdutoFotoService } from 'src/app/services/produto-foto.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ProdutoInfoComplementar } from 'src/app/interfaces/produto-info-complementar';
+import { IArrayForVirtualSdk } from 'src/app/interfaces/iarray-for-virtual-sdk';
 
 @Component({
   selector: 'app-produtos',
@@ -49,7 +51,7 @@ export class ProdutosComponent implements OnInit {
     action: () => {
       this.produtoEditModal.close();
       this.produtoEditComponent.atualizarInfoComplementar()
-        .subscribe((x) => { this.getProdutos(); } );
+        .subscribe((x) => { this.getProdutos(); });
     },
     label: 'Salvar'
   };
@@ -107,13 +109,17 @@ export class ProdutosComponent implements OnInit {
 
     this.mensagemDeErro = '';
     this.produtoFotoService.get(this.filtro).subscribe(
-      (x: FotoProdutoInfoView[]) => { this.fotosProdutos = x; },
+      (x: FotoProdutoInfoView[]) => {
+        this.fotosProdutos = x;
+      },
       (erro: HttpErrorResponse) => {
         this.fotosProdutos.length = 0;
         this.mensagemDeErro = erro.error.detailedMessage;
       }
     );
   }
+
+
 
   filterAction(filter = [this.referenciaSelecionada]) {
     this.popularDisclaimers(filter);
@@ -202,7 +208,7 @@ export class ProdutosComponent implements OnInit {
     const result = itens / total * 100;
     return result;
   }
-  
+
 
   obterTotalDeItens(): number { return this.fotosProdutos.length; };
 
@@ -236,6 +242,17 @@ export class ProdutosComponent implements OnInit {
       return this.fotosProdutos.filter(x => x.caracteristica == null);
 
     return this.fotosProdutos;
+  }
+
+  groupColumns(fotos: FotoProdutoInfoView[]): IArrayForVirtualSdk<FotoProdutoInfoView>[] {
+
+    const newRows =[] as IArrayForVirtualSdk<FotoProdutoInfoView>[];
+
+    for (let index = 0; index < fotos.length; index += 4) {
+      let item = { items: fotos.slice(index, index + 4) } as IArrayForVirtualSdk<FotoProdutoInfoView> ;
+      newRows.push(item);
+    }
+    return newRows;
   }
 
 }

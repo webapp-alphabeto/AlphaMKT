@@ -1,171 +1,193 @@
-
-<po-page-list p-title="Fotos de produto" 
-
-[p-disclaimer-group]="disclaimerGroup"
-[p-filter]="configuracoesDeFiltro">
-
-
-
-      <po-popover [p-target]="poButton" 
-          p-trigger="click"
-          p-position="left-top"
-          p-title="Informações do mapa">
-
-          <div class="row">
-            <div class="po-md-10" >
-
-              <po-progress p-info="{{ obterTotalDeItensComFoto() }}/ {{ obterTotalDeItens() }}" 
-                  p-info-icon="po-icon-ok" 
-                  [p-status]="progressStatus" 
-                  p-text="Produtos com foto"
-                  [p-value]="obterProgressoDaInclusaoDeFotos()">
-              </po-progress>
-            </div>
-
-            <div class="po-md-2">
-
-              <po-switch name="filtroSemFoto"
-                  p-help="Sem foto"
-                  p-label-off="Não"
-                  p-label-on="Sim"
-                  p-tooltip="Exibir somente itens sem foto"
-                  p-tooltip-position="left"
-                  [(ngModel)]="exibirSomenteProdutosSemFotos"
-                  (p-change)="exibirSomenteProdutosSemCapa = false; exibirSomenteProdutosSemCaracteristicas = false;">
-              </po-switch>
-            </div>
-              
-          </div>
-
-          
-          
-          <div class="row">
-            <po-divider class="po-md-12"></po-divider>
-
-            <div class="po-md-10">
-
-              <po-progress p-info="{{ obterTotalDeItensComCapa() }}/ {{ obterTotalDeItens() }}" 
-                  p-info-icon="po-icon-ok" 
-                  [p-status]="progressStatus" 
-                  p-text="Produtos com capa"
-                  [p-value]="obterProgressoDaInclusaoDeCapa()">
-              </po-progress>
-            </div>
-            <div class="po-md-2">
-
-              <po-switch name="filtroSemCapa"
-                  p-help="Sem capa"
-                  p-label-off="Não"
-                  p-label-on="Sim"
-                  p-tooltip="Exibir somente itens sem capa"
-                  p-tooltip-position="left"
-                  [(ngModel)]="exibirSomenteProdutosSemCapa"
-                  (p-change)="exibirSomenteProdutosSemFotos = false; exibirSomenteProdutosSemCaracteristicas = false;">
-              </po-switch>
-            </div>
-            
-          </div>
-
-          <div class="po-row">
-            <po-divider class="po-md-12"></po-divider>
-
-            <div class="po-md-10">
-              <po-progress p-info="{{ obterTotalDeItensComCaracteristica() }}/ {{ obterTotalDeItens() }}" 
-                  p-info-icon="po-icon-ok" 
-                  [p-status]="progressStatus" 
-                  p-text="Produtos com caracteristica"
-                  [p-value]="obterProgressoDaInclusaoDeCaracteristicas()">
-              </po-progress>
-            </div>
-            <div class="po-md-2">
-
-              <po-switch name="filtroSemCaracteristica"
-                    p-help="Sem caracteristicas"
-                    p-label-off="Não"
-                    p-label-on="Sim"
-                    p-tooltip="Exibir somente itens sem caracteristicas"
-                    p-tooltip-position="left"
-                    [(ngModel)]="exibirSomenteProdutosSemCaracteristicas"
-                    (p-change)="exibirSomenteProdutosSemFotos = false; exibirSomenteProdutosSemCapa = false;">
-              </po-switch>
-            </div>
-          </div>          
-         
-      </po-popover>
-      
-      <po-container
-        class="fab-info"
-        p-no-padding="true"
-        [hidden]="!fotosProdutos.length">
-  
-        <po-button p-icon="po-icon po-icon-info"
-                   p-small="true"
-                   p-type="primary"> 
-        </po-button>    
-        
-      </po-container>
-
-    
-    <ng-container *ngIf="fotosProdutos.length; else noItens">        
-        <cdk-virtual-scroll-viewport style="height: 100%;" 
-            [itemSize]="300">
-
-            <div *cdkVirtualFor="let item of produtosFiltrados()"  class=" po-md-12 ">
-
-              <app-produto-view 
-                  [produto]="item"
-                  (detalhar)="abrirEditModal(item)"
-                  >
-              
-              </app-produto-view>
-            </div>
-
-        </cdk-virtual-scroll-viewport>
-    </ng-container>
-      
-    <ng-template #noItens>
-      Não há dados para exibir. {{ mensagemDeErro | json }}
-    </ng-template>
-
-</po-page-list>
-
-<po-modal #filtroAvancado 
-    p-title="Filtro avançado" 
-    [p-primary-action]="advancedFilterPrimaryAction">
-
-  <form #f>
-
-    <div class="po-row">
-
-      <div class="po-md-6">
-
-        <po-combo name="colecaoSelecionada" 
-            [(ngModel)]="colecaoSelecionada" 
-            p-label="Coleção"
-            [p-options]="colecoes">
-        </po-combo>
+<po-page-list
+  p-title="Fotos de produto"
+  [p-disclaimer-group]="disclaimerGroup"
+  [p-filter]="configuracoesDeFiltro"
+>
+  <po-popover
+    [p-target]="poButton"
+    p-trigger="click"
+    p-position="left-top"
+    p-title="Informações do mapa"
+  >
+    <div class="row">
+      <div class="po-md-10">
+        <po-progress
+          p-info="{{ obterTotalDeItensComFoto() }}/ {{ obterTotalDeItens() }}"
+          p-info-icon="po-icon-ok"
+          [p-status]="progressStatus"
+          p-text="Produtos com foto"
+          [p-value]="obterProgressoDaInclusaoDeFotos()"
+        >
+        </po-progress>
       </div>
 
-      <div class="po-md-6">
-
-        <po-combo name="mapaSelecionado" 
-            [(ngModel)]="mapaSelecionado" 
-            p-label="Mapa" 
-            [p-options]="mapas">
-        </po-combo>
+      <div class="po-md-2">
+        <po-switch
+          name="filtroSemFoto"
+          p-help="Sem foto"
+          p-label-off="Não"
+          p-label-on="Sim"
+          p-tooltip="Exibir somente itens sem foto"
+          p-tooltip-position="left"
+          [(ngModel)]="exibirSomenteProdutosSemFotos"
+          (p-change)="
+            exibirSomenteProdutosSemCapa = false;
+            exibirSomenteProdutosSemCaracteristicas = false
+          "
+        >
+        </po-switch>
       </div>
-
     </div>
 
+    <div class="row">
+      <po-divider class="po-md-12"></po-divider>
+
+      <div class="po-md-10">
+        <po-progress
+          p-info="{{ obterTotalDeItensComCapa() }}/ {{ obterTotalDeItens() }}"
+          p-info-icon="po-icon-ok"
+          [p-status]="progressStatus"
+          p-text="Produtos com capa"
+          [p-value]="obterProgressoDaInclusaoDeCapa()"
+        >
+        </po-progress>
+      </div>
+      <div class="po-md-2">
+        <po-switch
+          name="filtroSemCapa"
+          p-help="Sem capa"
+          p-label-off="Não"
+          p-label-on="Sim"
+          p-tooltip="Exibir somente itens sem capa"
+          p-tooltip-position="left"
+          [(ngModel)]="exibirSomenteProdutosSemCapa"
+          (p-change)="
+            exibirSomenteProdutosSemFotos = false;
+            exibirSomenteProdutosSemCaracteristicas = false
+          "
+        >
+        </po-switch>
+      </div>
+    </div>
+
+    <div class="po-row">
+      <po-divider class="po-md-12"></po-divider>
+
+      <div class="po-md-10">
+        <po-progress
+          p-info="{{ obterTotalDeItensComCaracteristica() }}/ {{
+            obterTotalDeItens()
+          }}"
+          p-info-icon="po-icon-ok"
+          [p-status]="progressStatus"
+          p-text="Produtos com caracteristica"
+          [p-value]="obterProgressoDaInclusaoDeCaracteristicas()"
+        >
+        </po-progress>
+      </div>
+      <div class="po-md-2">
+        <po-switch
+          name="filtroSemCaracteristica"
+          p-help="Sem caracteristicas"
+          p-label-off="Não"
+          p-label-on="Sim"
+          p-tooltip="Exibir somente itens sem caracteristicas"
+          p-tooltip-position="left"
+          [(ngModel)]="exibirSomenteProdutosSemCaracteristicas"
+          (p-change)="
+            exibirSomenteProdutosSemFotos = false;
+            exibirSomenteProdutosSemCapa = false
+          "
+        >
+        </po-switch>
+      </div>
+    </div>
+  </po-popover>
+
+  <po-container
+    class="fab-info"
+    p-no-padding="true"
+    [hidden]="!fotosProdutos.length"
+  >
+    <po-button p-icon="po-icon po-icon-info" p-small="true" p-type="primary">
+    </po-button>
+  </po-container>
+
+  <ng-container *ngIf="fotosProdutos.length; else noItens">
+      <virtual-scroller
+        #scroll
+        [items]="produtosFiltrados()"
+        bufferAmount="4"
+        style="height: 100%;"      
+      >
+        <app-produto-view
+          *ngFor="let item of scroll.viewPortItems"
+          class="po-xl-3 po-lg-3 po-md-4 po-sm-12 po-mb-1"
+          [produto]="item"
+          (detalhar)="abrirEditModal(item)"
+        >
+        </app-produto-view>
+      </virtual-scroller>
+    
+  </ng-container>
+  <ng-template #noItens>
+   <!-- <p>{{ mensagemDeErro }}</p> 
+    <po-button (p-click)="filtroAvancado.open()" p-label="Buscar"> </po-button> -->
+    <div class="po-md-8">
+      <div class="sample-background-image" [style.backgroundSize]="'cover'" [style.height.%]="100">
+          <div class="po-row">
+              <div class="po-offset-sm-1 po-offset-md-1 po-offset-lg-1 po-offset-xl-1 po-lg-5 po-sm-10 po-mt-4 po-mb-4 po-p-5"
+                  [style.background]="'white'">
+                  <div class="po-font-text slide-in-left">Repositório de imagens alphabeto</div>
+                  <div class="po-font-display titulo-alphabeto tracking-in-expand"> AlphaBuy </div>
+                  <po-divider></po-divider>
+                  <div class="po-font-text-large-bold po-mb-3 slide-in-right">Setor de marketing</div>
+                  <po-button class="po-md-12 slide-in-bottom" 
+                      p-label="Buscar imagens" 
+                      (p-click)="filtroAvancado.open()"
+                      p-icon="po-icon po-icon-search">
+                  </po-button>
+              </div>
+          </div>
+      </div>
+  </div>
+  </ng-template>
+</po-page-list>
+
+<po-modal
+  #filtroAvancado
+  p-title="Filtro avançado"
+  [p-primary-action]="advancedFilterPrimaryAction"
+>
+  <form #f>
+    <div class="po-row">
+      <div class="po-md-6">
+        <po-combo
+          name="colecaoSelecionada"
+          [(ngModel)]="colecaoSelecionada"
+          p-label="Coleção"
+          [p-options]="colecoes"
+        >
+        </po-combo>
+      </div>
+
+      <div class="po-md-6">
+        <po-combo
+          name="mapaSelecionado"
+          [(ngModel)]="mapaSelecionado"
+          p-label="Mapa"
+          [p-options]="mapas"
+        >
+        </po-combo>
+      </div>
+    </div>
   </form>
+</po-modal>
 
-</po-modal> 
-
-<po-modal #produtoEditModal 
-    [p-title]="tituloProdutoEditModal"
-    [p-primary-action]="salvarProduto">
-     <app-produto-edit>
-
-    </app-produto-edit>
-
+<po-modal
+  #produtoEditModal
+  [p-title]="tituloProdutoEditModal"
+  [p-primary-action]="salvarProduto"
+>
+  <app-produto-edit> </app-produto-edit>
 </po-modal>

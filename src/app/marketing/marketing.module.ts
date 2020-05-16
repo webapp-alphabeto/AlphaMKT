@@ -11,6 +11,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenApiService } from '../interceptors/token-api.service';
 import { InvalidTokenApiService } from '../interceptors/invalid-token-api.service';
+import { VirtualScrollerModule } from 'ngx-virtual-scroller';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { InvalidTokenApiService } from '../interceptors/invalid-token-api.servic
     PortinariModule,
     FormsModule,
     ScrollingModule,
+    VirtualScrollerModule,
     MarketingRoutingModule
   ],
   providers: [
