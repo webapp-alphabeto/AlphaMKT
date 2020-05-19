@@ -4,14 +4,7 @@
     
     <div [class.po-wrapper]="(auth.Autenticado$() | async) && !exibirMenu">
   
-      <po-toolbar *ngIf="(auth.Autenticado$() | async)" 
-          [p-profile]="profileService.profile"
-          [p-profile-actions]="profileActions" 
-          p-title="AlphaBuy" 
-          p-actions-icon="po-icon-cart" 
-          [p-actions]="actions"
-          [p-notification-actions]="notificationActions">
-      </po-toolbar>
+<app-toolbar></app-toolbar>
   
       <po-menu #meuMenu 
           *ngIf="(auth.Autenticado$() | async) && !exibirMenu" 

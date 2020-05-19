@@ -1,0 +1,170 @@
+<po-container  p-no-border="true">
+  <form #clienteForm="ngForm" p-autocomplete="off">
+    <div class="po-row">
+      <po-input
+        class="po-md-3"
+        name="documento"
+        p-clean
+        p-icon="po-icon po-icon-company"
+        p-label="CNPJ"
+        p-mask="99.999.999/9999-99"
+        [(ngModel)]="clienteEdit.documento"
+        p-required
+      >
+      </po-input>
+
+      <po-button
+        p-label="Buscar"
+        style="align-self: flex-end;"
+        class="po-mb-1"
+        [p-disabled]="!clienteEdit.documento"
+        (p-click)="buscarNoDeps()"
+      ></po-button>
+
+      <div class="po-ml-5 po-mt-3"  >
+        <po-popover p-trigger="hover" [p-target]="limiteInfoRef">
+          <po-info          
+            p-label="Classificação"
+            p-value="{{ classificacaoDeCredito }}"
+          >
+          </po-info>
+          <po-info p-label="Risco" p-value="{{ risco }}"> </po-info>
+        </po-popover>
+
+        <po-info
+          #limiteInfo
+          p-label="Limite de crédito"
+          p-orientation="horizontal"
+          p-value="{{ clienteEdit.limiteDeCredito | currency: 'BRL' }}"
+        >
+        </po-info>
+      </div>
+    </div>
+
+    <po-divider p-label="Dados Cadastrais"></po-divider>
+
+    <div class="po-row">
+      <po-input
+        class="po-md-3"
+        name="razaoSocial"
+        p-clean
+        p-label="Razão Social"
+        [(ngModel)]="clienteEdit.razaoSocial"
+        p-required
+      >
+      </po-input>
+
+      <po-input
+        class="po-md-3"
+        name="nomeFantasia"
+        p-clean
+        p-label="Nome Fantasia"
+        [(ngModel)]="clienteEdit.nomeFantasia"
+        p-required
+      >
+      </po-input>
+
+      <po-input
+        class="po-md-3"
+        name="inscricaoEstadual"
+        p-clean
+        p-label="Inscrição Estadual"
+        [(ngModel)]="clienteEdit.inscricaoEstadual"
+        p-required
+      >
+      </po-input>
+
+      <po-input
+        class="po-md-3"
+        name="endereco"
+        p-clean
+        p-label="Endereço"
+        [(ngModel)]="clienteEdit.endereco"
+        p-required
+      >
+      </po-input>
+
+      <po-input
+        class="po-md-3"
+        name="bairro"
+        p-clean
+        p-label="Bairro"
+        [(ngModel)]="clienteEdit.bairro"
+        p-required
+      >
+      </po-input>
+
+      <po-input
+        class="po-md-3"
+        name="complemento"
+        p-clean
+        p-label="Complemento"
+        p-optional="true"
+        [(ngModel)]="clienteEdit.complemento"
+      >
+      </po-input>
+
+      <po-input
+        class="po-md-3"
+        name="cep"
+        p-clean
+        p-label="CEP"
+        [(ngModel)]="clienteEdit.cep"
+        p-mask="99999-999"
+        p-required
+      >
+      </po-input>
+    </div>
+
+    <po-divider p-label="Contatos"></po-divider>
+    <div class="po-row">
+      <po-input
+        class="po-md-1"
+        name="ddd"
+        p-clean
+        p-label="DDD"
+        [(ngModel)]="clienteEdit.ddd"
+        p-mask="99"
+        p-maxlength="2"
+        p-required
+      >
+      </po-input>
+
+      <po-input
+        class="po-md-3"
+        name="telefone"
+        p-clean
+        p-label="Telefone"
+        [(ngModel)]="clienteEdit.telefone"
+        p-mask="9999-9999?9"
+        p-required
+      >
+      </po-input>
+
+      <po-email
+        class="po-md-3"
+        name="email"
+        p-clean
+        p-label="E-mail"
+        [(ngModel)]="clienteEdit.email"
+        p-required
+      >
+      </po-email>
+    </div>
+
+    <po-divider p-label="Avaliação"></po-divider>
+
+    <div class="po-row">
+      <po-textarea
+        class="po-md-12"
+        name="avaliacao"
+        p-clean
+        p-label="Avaliação"
+        [(ngModel)]="clienteEdit.avaliacao"
+        p-maxlength="300"
+        p-required
+      >
+      </po-textarea>
+    </div>
+  </form>
+</po-container>

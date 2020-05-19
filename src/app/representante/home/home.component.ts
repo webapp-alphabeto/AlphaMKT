@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { IApresentacaoButtons } from "src/app/interfaces/iapresentacao-buttons";
+import { Router } from '@angular/router';
+import { ToolBarService } from 'src/app/services/tool-bar.service';
 
 @Component({
   selector: "app-home",
@@ -24,12 +26,14 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private route: Router, private toolBarService: ToolBarService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   irParaCliente() {
-    console.log("rota para cliente");
+    this.route.navigateByUrl('/representante/cliente-novo');    
   }
 
   irParaVendas() {

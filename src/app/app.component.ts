@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-import { PoDialogService, PoNotificationService, PoMenuItem, PoToolbarAction } from '@po-ui/ng-components';
+import { PoMenuItem } from '@po-ui/ng-components';
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 import { UserTypeService } from './services/user-type.service';
 import { NivelDeAcesso } from './autenticacao/nivel-de-acesso.enum';
 import { PoMenuItemNivelDeAcesso } from './interfaces/po-menu-item-nivel-de-acesso';
+import { ToolBarService } from './services/tool-bar.service';
 
 @Component({
   selector: 'app-root',
@@ -20,11 +21,11 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private poNotification: PoNotificationService,
     public auth: AuthService,
     public profileService: ProfileService,
     private userType: UserTypeService,
-    private poDialog: PoDialogService) {
+    
+    public toolBarService: ToolBarService) {
 
     router.events.subscribe((event) => {
 
@@ -66,38 +67,6 @@ export class AppComponent {
     this.exibirMenu = false;
   }
 
-  actions: Array<PoToolbarAction> = [
-    { label: 'Start cash register', action: item => this.showAction(item) },
-    { label: 'Finalize cash register', action: item => this.showAction(item) },
-    { label: 'Cash register options', action: item => this.showAction(item) }
-  ];
-
-  notificationActions: Array<PoToolbarAction> = [
-    {
-      icon: 'po-icon-news',
-      label: 'PO news, stay tuned!',
-      type: 'danger',
-      action: item => this.onClickNotification(item)
-    },
-    { icon: 'po-icon-message', label: 'New message', type: 'danger', action: item => this.openDialog(item) }
-  ];
-
-  onClickNotification(item: PoToolbarAction) {
-    window.open('https://github.com/po-ui/po-angular/blob/master/CHANGELOG.md', '_blank');
-
-    item.type = 'default';
-  }
-
-  openDialog(item: PoToolbarAction) {
-    this.poDialog.alert({
-      title: 'Welcome',
-      message: `Hello Mr. Dev! Congratulations, you are a TOTVER!`,
-      ok: undefined
-    });
-
-    item.type = 'default';
-  }
-
   ngOnInit(): void {
 
     this.VerificarSeUsuarioJaEstaAutenticado();
@@ -122,15 +91,6 @@ export class AppComponent {
     }
 
     this.menuFiltrado = this.menus.filter(x => x.nivelDeAcesso.includes(nivelDeAcesso));
-  }
-
-  profileActions: Array<PoToolbarAction> = [
-    { icon: 'po-icon-user', label: 'Meu Perfil', action: () => this.router.navigateByUrl("/home/meu-perfil") },
-    { icon: 'po-icon-exit', label: 'Exit', type: 'danger', separator: true, action: () => this.auth.logout() }
-  ];
-
-  showAction(item: PoToolbarAction): void {
-    this.poNotification.success(`Action clicked: ${item.label}`);
   }
 
   menus: Array<PoMenuItemNivelDeAcesso> = [

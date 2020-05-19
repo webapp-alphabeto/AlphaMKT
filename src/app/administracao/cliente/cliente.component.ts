@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { PoPageDynamicTableActions, PoPageDynamicTableField } from '@po-ui/ng-templates';
 import { PoBreadcrumb, PoMultiselectOption } from '@po-ui/ng-components';
+import { ToolBarService } from 'src/app/services/tool-bar.service';
 
 @Component({
   selector: 'app-cliente',
@@ -14,6 +15,7 @@ export class ClienteComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
   public readonly actions: PoPageDynamicTableActions = {

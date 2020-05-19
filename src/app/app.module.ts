@@ -9,6 +9,7 @@ import { PoModule } from '@po-ui/ng-components';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InvalidTokenApiService } from './interceptors/invalid-token-api.service';
 import { TokenApiService } from './interceptors/token-api.service';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TokenApiService } from './interceptors/token-api.service';
     BrowserAnimationsModule,
     AppRoutingModule,
     PortinariModule,
-    PoModule
+    PoModule,
+    SharedModule
   ],
   providers: [
     {

@@ -1,0 +1,36 @@
+<po-page-default p-title="Cadastro de cliente">
+  <po-stepper #stepper>
+    <po-step p-label="Informações básicas"
+    >
+      <!-- TODO: Reativar formulário
+      [p-can-active-next-step]="canActiveNextStep.bind(this, infoBasica.clienteForm)"
+    -->
+      <po-widget
+        [p-height]="450"
+        p-primary-label="Avançar"
+        (p-primary-action)="stepper.next()"
+      >
+        <app-cliente-informacoes-basicas #infoBasica>
+        </app-cliente-informacoes-basicas>
+      </po-widget>
+    </po-step>
+
+    <po-step p-label="Referências comerciais"  
+    [p-can-active-next-step]="canActiveNextStep2.bind(this, referenciaComercial.referenciasComerciais)" >
+      <po-widget
+        [p-height]="450"
+        p-primary-label="Avançar"
+        (p-primary-action)="stepper.next()"
+        p-title="Inclua o menos 3 fornecedores"
+      >
+        <app-referencia-comercial #referenciaComercial></app-referencia-comercial>
+      </po-widget>
+    </po-step>
+
+    <po-step p-label="Fotos do ponto"></po-step>
+
+    <po-step p-label="Revisão do cadastro"></po-step>
+
+    <po-step p-label="Finalizar"></po-step>
+  </po-stepper>
+</po-page-default>
