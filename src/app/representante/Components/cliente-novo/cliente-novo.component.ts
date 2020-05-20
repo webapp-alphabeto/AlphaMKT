@@ -11,7 +11,7 @@ import {
   PoNotificationService,
   PoStepperComponent,
 } from "@po-ui/ng-components";
-import { IReferenciaComercial } from "src/app/interfaces/ireferencia-comercial";
+import { IReferenciaComercial } from "src/app/representante/interfaces/ireferencia-comercial";
 
 @Component({
   selector: "app-cliente-novo",
@@ -31,8 +31,11 @@ export class ClienteNovoComponent implements OnInit, OnDestroy, AfterViewInit {
 
   //TODO: Método existente somente para debug
   ngAfterViewInit(): void {
-    this.stepper.active(1);
+    // this.stepper.active(0);
+    // this.stepper.active(1);
+    // this.stepper.active(2);
   }
+
   ngOnDestroy(): void {
     this.toolBarService.exibir();
   }

@@ -5,6 +5,7 @@ import { ProdutoFotoService } from 'src/app/services/produto-foto.service';
 import { ProdutoImagem } from 'src/app/interfaces/produto-imagem';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { PoUploadFileRestrictions } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-produto-edit',
@@ -15,11 +16,16 @@ export class ProdutoEditComponent implements OnInit {
 
   produtoInfoComplementar = {} as ProdutoInfoComplementar;
   fotosDoProduto = [] as ProdutoImagem[];
+  restrictions: PoUploadFileRestrictions = {
+    maxFileSize: 1000000
+  };
+
 
   uploadApi = `${environment.serviceApi}foto-produto/upload`;
 
   private inserir = false;
   private referencia: string;
+
 
   constructor(
     private produtoInfoComplementarService: ProdutoInfoComplementarService,

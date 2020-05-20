@@ -16,8 +16,9 @@
     </po-step>
 
     <po-step p-label="Referências comerciais"  
-    [p-can-active-next-step]="canActiveNextStep2.bind(this, referenciaComercial.referenciasComerciais)" >
-      <po-widget
+     >
+     <!-- [p-can-active-next-step]="canActiveNextStep2.bind(this, referenciaComercial.referenciasComerciais)" -->
+     <po-widget
         [p-height]="450"
         p-primary-label="Avançar"
         (p-primary-action)="stepper.next()"
@@ -27,7 +28,17 @@
       </po-widget>
     </po-step>
 
-    <po-step p-label="Fotos do ponto"></po-step>
+    <po-step p-label="Fotos do ponto">
+      <po-widget
+      [p-height]="450"
+      p-primary-label="Avançar"
+      (p-primary-action)="stepper.next()"
+      p-title="Inclua as fotos conforme indicado"
+    >
+      
+      <app-fotos-do-ponto #fotosDoProduto></app-fotos-do-ponto>
+    </po-widget>
+    </po-step>
 
     <po-step p-label="Revisão do cadastro"></po-step>
 

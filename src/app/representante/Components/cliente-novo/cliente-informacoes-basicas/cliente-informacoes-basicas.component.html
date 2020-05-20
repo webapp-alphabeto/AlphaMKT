@@ -1,4 +1,4 @@
-<po-container  p-no-border="true">
+<po-container p-no-border="true">
   <form #clienteForm="ngForm" p-autocomplete="off">
     <div class="po-row">
       <po-input
@@ -21,9 +21,9 @@
         (p-click)="buscarNoDeps()"
       ></po-button>
 
-      <div class="po-ml-5 po-mt-3"  >
+      <div class="po-ml-5 po-mt-3">
         <po-popover p-trigger="hover" [p-target]="limiteInfoRef">
-          <po-info          
+          <po-info
             p-label="Classificação"
             p-value="{{ classificacaoDeCredito }}"
           >
@@ -150,7 +150,20 @@
         p-required
       >
       </po-email>
+
+      <div class="po-row">
+        <po-button
+          p-icon="po-icon po-icon-plus"
+          class="po-md-2"
+          p-label="Mais contatos"
+          (p-click)="modal.open()"
+        ></po-button>
+      </div>
     </div>
+
+    <po-modal #modal p-title="PO Modal">
+      Lógica para novos contatos não obrigatório
+    </po-modal>
 
     <po-divider p-label="Avaliação"></po-divider>
 

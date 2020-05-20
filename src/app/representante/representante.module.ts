@@ -1,16 +1,19 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-
-import { RepresentanteRoutingModule } from "./representante-routing.module";
-import { HomeComponent } from "./home/home.component";
-import { HomeModule } from "../home/home.module";
-import { ClientesComponent } from "./clientes/clientes.component";
-import { ClienteNovoComponent } from "./cliente-novo/cliente-novo.component";
-import { PortinariModule } from "../portinari/portinari.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
+import { PortinariModule } from "../portinari/portinari.module";
 import { PoModule } from "@po-ui/ng-components";
-import { ClienteInformacoesBasicasComponent } from "./cliente-novo/cliente-informacoes-basicas/cliente-informacoes-basicas.component";
-import { ReferenciaComercialComponent } from './cliente-novo/referencia-comercial/referencia-comercial.component';
+
+import { HomeModule } from "../home/home.module";
+import { RepresentanteRoutingModule } from "./representante-routing.module";
+
+import { HomeComponent } from "./Components/home/home.component";
+import { ClientesComponent } from "./Components/clientes/clientes.component";
+import { ClienteNovoComponent } from "./Components/cliente-novo/cliente-novo.component";
+import { ClienteInformacoesBasicasComponent } from "./Components/cliente-novo/cliente-informacoes-basicas/cliente-informacoes-basicas.component";
+import { ReferenciaComercialComponent } from "./Components/cliente-novo/referencia-comercial/referencia-comercial.component";
+import { FotosDoPontoComponent } from "./Components/cliente-novo/fotos-do-ponto/fotos-do-ponto.component";
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import { ReferenciaComercialComponent } from './cliente-novo/referencia-comercia
     ClienteNovoComponent,
     ClienteInformacoesBasicasComponent,
     ReferenciaComercialComponent,
+    FotosDoPontoComponent,
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { IReferenciaComercial } from "src/app/interfaces/ireferencia-comercial";
+import { IReferenciaComercial } from "src/app/representante/interfaces/ireferencia-comercial";
 import { NgForm } from "@angular/forms";
 import { PoTableComponent, PoTableColumn } from '@po-ui/ng-components';
 

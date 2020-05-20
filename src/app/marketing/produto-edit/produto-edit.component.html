@@ -47,6 +47,8 @@
                 p-drag-drop="true"
                 p-multiple="true"
                 p-auto-upload="true"
+                [p-restrictions]="restrictions"
+                p-hide-restrictions-info="false"
                 (p-success)="modalUpload.close(); uploadSuccess()"
                 (p-upload)="incluirImagemDoPerfil($event)">
                 

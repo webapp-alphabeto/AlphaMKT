@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { IClienteEdit } from "src/app/interfaces/icliente-edit";
+import { IClienteEdit } from "src/app/representante/interfaces/icliente-edit";
 import { PoNotificationService, PoButtonComponent } from "@po-ui/ng-components";
 import { DepsService } from "src/app/services/deps.service";
 import { Form, NgForm } from "@angular/forms";
 import { switchMap, map } from "rxjs/operators";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-cliente-informacoes-basicas",
@@ -24,10 +25,17 @@ export class ClienteInformacoesBasicasComponent implements OnInit {
   risco: string;
   constructor(
     private depsService: DepsService,
-    private poNotification: PoNotificationService
+    private poNotification: PoNotificationService,
+    private http: HttpClient
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.http.get('https://www.receitaws.com.br/v1/cnpj/32850140000226').subscribe(
+      (x)=> {console.log(x)},
+      (err)=> {this.poNotification.error(err.message)}
+    );
+
+  }
 
   buscarNoDeps() {
     this.depsService

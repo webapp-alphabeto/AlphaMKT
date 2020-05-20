@@ -1,6 +1,7 @@
 <form #form="ngForm" >
   <div class="po-row">
     <po-input p-no-autocomplete
+      #cnpj
       class="po-md-3"
       name="documento"
       p-clean
@@ -35,7 +36,7 @@
 
     <po-button
       [p-disabled]="form.invalid"
-      (p-click)="onSubmit()"
+      (p-click)="onSubmit(); cnpj.focus()"
       p-icon="po-icon po-icon-plus"
       style="align-self: flex-end;"
       class="po-mb-1"
