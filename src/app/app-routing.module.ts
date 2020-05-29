@@ -1,33 +1,33 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { BasicGuard } from "./guards/basic.guard";
-import { AdministradorGuard } from "./guards/administrador.guard";
-import { MarketingGuard } from "./guards/marketing.guard";
-import { RepresentanteGuard } from './guards/representante.guard';
+import { BasicGuard } from './core/guards/basic.guard';
+import { MarketingGuard } from './core/guards/marketing.guard';
+import { AdministradorGuard } from './core/guards/administrador.guard';
+import { RepresentanteGuard } from './core/guards/representante.guard';
 
 const routes: Routes = [
   {
     path: "login",
     loadChildren: () =>
-      import("./autenticacao/autenticacao.module").then(
-        (m) => m.AutenticacaoModule
+      import("./core/core.module").then(
+        (m) => m.CoreModule
       ),
   },
   {
     path: "home",
-    loadChildren: () => import("./home/home.module").then((m) => m.HomeModule),
+    loadChildren: () => import("./pages/home/home.module").then((m) => m.HomeModule),
     canActivate: [BasicGuard],
   },
   {
     path: "marketing",
     loadChildren: () =>
-      import("./marketing/marketing.module").then((m) => m.MarketingModule),
+      import("./pages/marketing/marketing.module").then((m) => m.MarketingModule),
     canActivate: [MarketingGuard],
   },
   {
     path: "administracao",
     loadChildren: () =>
-      import("./administracao/administracao.module").then(
+      import("./pages/administracao/administracao.module").then(
         (m) => m.AdministracaoModule
       ),
     canActivate: [AdministradorGuard],
@@ -36,7 +36,7 @@ const routes: Routes = [
   {
     path: "representante",
     loadChildren: () =>
-      import("./representante/representante.module").then(
+      import("./pages/representante/representante.module").then(
         (m) => m.RepresentanteModule
       ),
       canActivate:[ RepresentanteGuard],      

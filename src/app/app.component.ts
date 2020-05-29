@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { PoMenuItem } from '@po-ui/ng-components';
-import { AuthService } from './services/auth.service';
-import { ProfileService } from './services/profile.service';
-import { UserTypeService } from './services/user-type.service';
-import { NivelDeAcesso } from './autenticacao/nivel-de-acesso.enum';
-import { PoMenuItemNivelDeAcesso } from './interfaces/po-menu-item-nivel-de-acesso';
-import { ToolBarService } from './services/tool-bar.service';
+import { AuthService } from './core/services/auth.service';
+import { ProfileService } from './shared/services/profile.service';
+import { UserTypeService } from './core/services/user-type.service';
+import { PoMenuItemNivelDeAcesso } from './shared/interfaces/po-menu-item-nivel-de-acesso';
+import { ToolBarService } from './shared/services/tool-bar.service';
+import { NivelDeAcesso } from './core/enums/nivel-de-acesso.enum';
 
 @Component({
   selector: 'app-root',
