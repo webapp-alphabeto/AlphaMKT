@@ -1,7 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePt, 'pt');
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PortinariModule } from './portinari/portinari.module';
@@ -15,7 +19,6 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     PortinariModule,
     PoModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     {
@@ -35,7 +38,11 @@ import { SharedModule } from './shared/shared.module';
       provide: HTTP_INTERCEPTORS,
       useClass: InvalidTokenApiService,
       multi: true
-    }
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt'
+    },
   ],
   bootstrap: [AppComponent]
 })

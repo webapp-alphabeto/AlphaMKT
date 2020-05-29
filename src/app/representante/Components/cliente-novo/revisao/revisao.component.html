@@ -1,0 +1,121 @@
+<h1 class="po-page-header-title ng-star-inserted">
+  {{ cliente.nomeFantasia }}
+</h1>
+
+<po-divider p-label="Dados cadastrasis"></po-divider>
+
+<div class="po-row">
+  <po-info
+    class="po-md-3"
+    p-label="CNPJ"
+    p-value="{{ cliente.documento | mask: '99.999.999/9999-99' }}"
+  >
+  </po-info>
+
+  <po-info
+    class="po-md-3"
+    p-label="Limite de crédito"
+    p-value="{{ cliente.limiteDeCredito | currency: 'BRL' }}"
+  >
+  </po-info>
+
+  <po-info
+    class="po-md-3"
+    p-label="Razão social"
+    [p-value]="cliente.razaoSocial"
+  >
+  </po-info>
+
+  <po-info
+    class="po-md-3"
+    p-label="Nome Fantasia"
+    [p-value]="cliente.nomeFantasia"
+  >
+  </po-info>
+
+  <po-info
+    class="po-md-3"
+    p-label="Inscrição Estadual"
+    [p-value]="cliente.inscricaoEstadual"
+  >
+  </po-info>
+
+  <po-info
+    class="po-md-3"
+    p-label="Inscrição Municipal"
+    [p-value]="cliente.inscricaoMunicipal"
+  >
+  </po-info>
+
+  <po-info class="po-md-3" p-label="Suframa" [p-value]="cliente.suframa">
+  </po-info>
+</div>
+
+<po-divider p-label="Endereço"></po-divider>
+
+<div class="po-row">
+  <po-info class="po-md-3" p-label="Cidade" [p-value]="cliente.municipio">
+  </po-info>
+
+  <po-info class="po-md-3" p-label="Endereço" [p-value]="cliente.endereco">
+  </po-info>
+
+  <po-info class="po-md-3" p-label="Bairro" [p-value]="cliente.bairro">
+  </po-info>
+
+  <po-info class="po-md-3" p-label="CEP" [p-value]="cliente.cep"> </po-info>
+
+  <po-info
+    class="po-md-3"
+    p-label="Complemento"
+    [p-value]="cliente.complemento"
+  >
+  </po-info>
+</div>
+
+<po-divider p-label="Contatos"></po-divider>
+
+<div class="po-row">
+  <po-info class="po-md-3" p-label="Contato (Nome)" [p-value]="cliente.contato">
+  </po-info>
+
+  <po-info class="po-md-3" p-label="Telefone" [p-value]="cliente.telefone">
+  </po-info>
+
+  <po-info class="po-md-3" p-label="Email" [p-value]="cliente.email"> </po-info>
+  <div class="po-row po-mt-2 po-mb-2">
+    <h5>(+) Contatos adicionais</h5>
+    <po-table class="po-md-12" [p-items]="cliente.contatos"></po-table>
+  </div>
+</div>
+
+<po-divider p-label="Avaliação"></po-divider>
+
+<div class="po-row">
+  <po-info class="po-md-3" p-label="Avaliação" [p-value]="cliente.avaliacao">
+  </po-info>
+</div>
+
+<po-divider p-label="Referências comerciais"></po-divider>
+
+<div class="po-row">
+  <div class="po-row po-mt-2 po-mb-2">
+    <po-table
+      class="po-md-12"
+      [p-items]="cliente.referenciasComerciais"
+    ></po-table>
+  </div>
+</div>
+
+<po-divider p-label="Fotos do estabelecimento"></po-divider>
+
+<div class="po-row">
+  <div
+    *ngFor="let item of cliente.fotos"
+    class="po-md-3 po-sm-12 po-m-1"    
+  >
+    <po-avatar [p-src]="item.url" p-size="xl" ></po-avatar>
+    <h5 class="po-font-text">{{ item.dataFoto.posicaoDaFoto | posicaoToString }}</h5>
+  </div>
+</div>
+

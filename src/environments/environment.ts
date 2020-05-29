@@ -19,6 +19,8 @@ export const SCREEN_LOCK_NO_MESSAGE = {
   'X-PO-No-Message': 'true' 
 };
 
+export const SEM_FOTO = 'https://alphastorageshared.blob.core.windows.net/imagens-de-produto/sem-foto.jpg'
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

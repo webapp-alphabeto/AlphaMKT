@@ -1,33 +1,20 @@
-<div class="po-row" >
-  <po-upload
-    name="fachada"
-    p-label="Fachada"
-    p-url="https://thf.totvs.com.br/sample/api/uploads/addFile"
-    p-auto-upload="true"
-  >
-  </po-upload>
-</div>
+<div *ngFor="let item of fotos">
+  <div class="po-row">
+    <div class="po-row">
+      <po-upload
+        [p-label]="item.dataFoto.posicaoDaFoto | posicaoToString"
+        [p-url]="serviceApi"
+        p-auto-upload="true"
+        (p-success)="retornoComSucesso($event, item)"
+        (p-upload)="setDataFoto($event, item)"
+      >
+      </po-upload>
+    </div>
 
-<po-divider></po-divider>
-
-<div class="po-row">
-  <po-upload
-    name="daPortaParaOsFundos"
-    p-label="Da porta para os fundos"
-    p-url="https://thf.totvs.com.br/sample/api/uploads/addFile"
-    p-auto-upload="true"
-  >
-  </po-upload>
-</div>
-
-<po-divider></po-divider>
-
-<div class="po-row">
-  <po-upload
-    name="dosFundosPraPorta"
-    p-label="Dos fundos pra porta"
-    p-url="https://thf.totvs.com.br/sample/api/uploads/addFile"
-    p-auto-upload="true"
-  >
-  </po-upload>
+    <div class="po-row">
+      <po-avatar [p-src]="item?.url == null ? fotoPadrao : item.url">
+      </po-avatar>
+    </div>
+  </div>
+  <po-divider></po-divider>
 </div>

@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { IClienteEdit } from "src/app/representante/interfaces/icliente-edit";
-import { PoNotificationService, PoButtonComponent } from "@po-ui/ng-components";
-import { DepsService } from "src/app/services/deps.service";
-import { Form, NgForm } from "@angular/forms";
-import { switchMap, map } from "rxjs/operators";
-import { HttpClient } from "@angular/common/http";
+import { Component, OnInit, ViewChild, Input } from "@angular/core";
+import { PoButtonComponent } from "@po-ui/ng-components";
+import { NgForm } from "@angular/forms";
+import { environment } from "src/environments/environment";
+
+import { IRepresentanteClienteEdit } from "src/app/representante/Interfaces/irepresentante-cliente-edit";
+import { ClienteService } from "src/app/representante/Services/cliente.service";
+import { Contato } from "src/app/representante/Interfaces/contato";
 
 @Component({
   selector: "app-cliente-informacoes-basicas",
@@ -12,60 +13,39 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ["./cliente-informacoes-basicas.component.css"],
 })
 export class ClienteInformacoesBasicasComponent implements OnInit {
-  @ViewChild("limiteInfo", { read: ElementRef, static: true })
-  limiteInfoRef: ElementRef;
   @ViewChild("clienteForm", { static: true }) clienteForm: NgForm;
+  @Input() clienteEdit = {} as IRepresentanteClienteEdit;
 
-  poButton: PoButtonComponent;
+  classificacaoDeCredito: string = "-.- ---";
+  cidadeService = `${environment.serviceApi}cidades/po-combo`;
 
-  clienteEdit = {
-    pessoa: "J",
-  } as IClienteEdit;
-  classificacaoDeCredito: string;
-  risco: string;
-  constructor(
-    private depsService: DepsService,
-    private poNotification: PoNotificationService,
-    private http: HttpClient
-  ) {}
+  constructor(private clienteService: ClienteService) {}
 
-  ngOnInit(): void {
-    this.http.get('https://www.receitaws.com.br/v1/cnpj/32850140000226').subscribe(
-      (x)=> {console.log(x)},
-      (err)=> {this.poNotification.error(err.message)}
-    );
-
-  }
+  ngOnInit(): void {}
 
   buscarNoDeps() {
-    this.depsService
-      .analiseCliente(this.clienteEdit.documento)
-      .pipe(
-        switchMap(() =>
-          this.depsService.consultaDados(this.clienteEdit.documento)
-        )
-      )
-      .subscribe(
-        (cliente) => {
-          console.log(cliente);
-          if (cliente == null) return;
-          this.clienteEdit.razaoSocial = cliente.dadosCadastrais.razaoSocial;
-          this.clienteEdit.nomeFantasia = cliente.dadosCadastrais.nome;
-          this.clienteEdit.endereco = `${cliente.enderecos.endereco[0].rua}, ${cliente.enderecos.endereco[0].numero}`;
-          this.clienteEdit.bairro = cliente.enderecos.endereco[0].bairro;
-          this.clienteEdit.complemento =
-            cliente.enderecos.endereco[0].complemento;
-          this.clienteEdit.cep = cliente.enderecos.endereco[0].cep;
-          this.clienteEdit.inscricaoEstadual =
-            cliente.dadosCadastrais.inscricaoEstadual ?? "ISENTO";
-          this.clienteEdit.limiteDeCredito =
-            cliente.resultadoAnalise.limiteSugerido ?? 0;
-          this.classificacaoDeCredito = cliente.resultadoAnalise.classificacao;
-          this.risco = cliente.resultadoAnalise.risco;
-        },
-        (err) => {
-          this.poNotification.error(err.message);
-        }
-      );
+    const representanteId = 1;
+    const documento = this.clienteEdit.documento;
+
+    this.clienteService
+      .get(documento, representanteId)
+      .subscribe((resposta: any) => {
+        const cliente = resposta.cliente as IRepresentanteClienteEdit;
+        this.atribuirPropriedadesDocliente(cliente);
+        this.classificacaoDeCredito =
+          resposta.consultaDados.resultadoAnalise.classificacao;
+      });
+  }
+
+  private atribuirPropriedadesDocliente(cliente: IRepresentanteClienteEdit) {
+    const propriedades = Object.keys(cliente);
+    for (const propriedade of propriedades)
+      this.clienteEdit[propriedade] = cliente[propriedade];
+  }
+
+  corDoLimiteDeCredito(): string {
+    if (this.classificacaoDeCredito == "Sem análise") return "danger";
+    if (this.clienteEdit.limiteDeCredito > 0) return "success";
+    return "info";
   }
 }

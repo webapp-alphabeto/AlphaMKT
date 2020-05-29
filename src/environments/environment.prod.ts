@@ -13,3 +13,4 @@ export const SCREEN_LOCK_NO_MESSAGE = {
   'X-PO-Screen-Lock': 'true', 
   'X-PO-No-Message': 'true' 
 };
+export const SEM_FOTO = 'https://alphastorageshared.blob.core.windows.net/imagens-de-produto/sem-foto.jpg'

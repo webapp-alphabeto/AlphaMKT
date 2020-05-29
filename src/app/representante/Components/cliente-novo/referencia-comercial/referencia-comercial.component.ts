@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, Input } from "@angular/core";
 import { IReferenciaComercial } from "src/app/representante/interfaces/ireferencia-comercial";
 import { NgForm } from "@angular/forms";
-import { PoTableComponent, PoTableColumn } from '@po-ui/ng-components';
 
 @Component({
   selector: "app-referencia-comercial",
@@ -10,9 +9,8 @@ import { PoTableComponent, PoTableColumn } from '@po-ui/ng-components';
 })
 export class ReferenciaComercialComponent implements OnInit {
   @ViewChild(NgForm, { static: true }) form: NgForm;
-  @ViewChild(PoTableComponent, {static:true}) table: PoTableComponent;
+  @Input() referenciasComerciais = [] as IReferenciaComercial[];
   referenciaComercial = {} as IReferenciaComercial;
-  referenciasComerciais = [] as IReferenciaComercial[];
   constructor() {}
 
   ngOnInit(): void {}
