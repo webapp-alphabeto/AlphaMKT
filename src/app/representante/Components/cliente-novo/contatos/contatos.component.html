@@ -65,7 +65,7 @@
     <div class="po-md-12">
       <po-table
         class="po-xl-6 po-md-6 po-sm-12"
-        [p-items]="contatos"
+        [p-items]="contatos | maskArray: 'telefone':'(99) 9999-9999?9'"
         [p-columns]="columns"
       >
       </po-table>

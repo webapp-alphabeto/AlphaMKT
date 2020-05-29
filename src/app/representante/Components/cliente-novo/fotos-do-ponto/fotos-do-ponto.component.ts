@@ -40,15 +40,14 @@ export class FotosDoPontoComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // this.fotos.push(this.fachada);
-    // this.fotos.push(this.daPortaParaOsFundos);
-    // this.fotos.push(this.dosFundosParaAPorta);
+    if (this.fotos.length == 0) {
+      this.fotos.push(this.fachada);
+      this.fotos.push(this.daPortaParaOsFundos);
+      this.fotos.push(this.dosFundosParaAPorta);
+    }
   }
 
-  retornoComSucesso(
-    reponse: HttpResponse<FotosDoPonto>,
-    item: FotosDoPonto
-  ) {
+  retornoComSucesso(reponse: HttpResponse<FotosDoPonto>, item: FotosDoPonto) {
     item.nome = reponse.body.nome;
     item.url = reponse.body.url;
   }
@@ -57,5 +56,4 @@ export class FotosDoPontoComponent implements OnInit {
     item.dataFoto.cnpj = this.cnpj;
     event.data = item.dataFoto;
   }
-
 }

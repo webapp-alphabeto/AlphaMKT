@@ -4,7 +4,7 @@ import { FotosDoPonto } from "./fotos-do-ponto";
 
 export interface IRepresentanteClienteEdit {
   cidadeId: number; //ok
-  municipio: string;
+  cidade: string; //ok
   representanteId: number;
   documento: string; // ok
   razaoSocial: string; // ok
@@ -26,4 +26,5 @@ export interface IRepresentanteClienteEdit {
   contatos: Contato[];
   referenciasComerciais: IReferenciaComercial[];
   fotos: FotosDoPonto[];
+  observacao: string;
 }

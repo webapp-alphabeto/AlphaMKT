@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import {
   PoNotificationService,
-  PoStepperComponent,
   PoDialogService,
   PoDialogType,
 } from "@po-ui/ng-components";
@@ -19,7 +19,6 @@ import { FotosDoPonto } from "../../Interfaces/fotos-do-ponto";
   styleUrls: ["./cliente-novo.component.css"],
 })
 export class ClienteNovoComponent implements OnInit, OnDestroy {
-  @ViewChild(PoStepperComponent, { static: true }) stepper: PoStepperComponent;
   clientEdit = {
     limiteDeCredito: 0,
     contatos: [] as Contato[],
@@ -30,12 +29,14 @@ export class ClienteNovoComponent implements OnInit, OnDestroy {
   constructor(
     public toolBarService: ToolBarService,
     public poDialog: PoDialogService,
-    private poNotification: PoNotificationService
+    private poNotification: PoNotificationService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
     this.toolBarService.ocultar();
     this.clientEdit = JSON.parse(localStorage.getItem("mock"));
+
   }
 
   ngOnDestroy(): void {
@@ -66,11 +67,17 @@ export class ClienteNovoComponent implements OnInit, OnDestroy {
   }
 
   incluir() {
-    // localStorage.setItem("mock", JSON.stringify(this.clientEdit));
     this.poDialog.openDialog(PoDialogType.Confirm, {
-      message: "Cliente incluído com sucesso, você pode fazer uma venda agora.",
-
+      message:
+        "Tudo certo? Se sim ao clicar em confirmar o cliente será incluído.",
       title: "Inclusão de cliente",
+      confirm: () => this.confirmarInclusao(),
     });
+  }
+
+  confirmarInclusao() {
+    localStorage.setItem("mock", JSON.stringify(this.clientEdit));
+
+    this.route.navigateByUrl("/representante/home");
   }
 }

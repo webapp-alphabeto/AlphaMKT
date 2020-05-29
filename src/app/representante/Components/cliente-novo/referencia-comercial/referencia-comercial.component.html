@@ -1,9 +1,10 @@
-<form #form="ngForm" >
+<form #form="ngForm">
   <div class="po-row">
-    <po-input p-no-autocomplete
+    <po-input
+      p-no-autocomplete
       #cnpj
       class="po-md-3"
-      name="documento"
+      name="cnpj"
       p-clean
       p-icon="po-icon po-icon-company"
       p-label="CNPJ"
@@ -45,5 +46,7 @@
   </div>
 
   <po-divider></po-divider>
-  <po-table [p-items]="referenciasComerciais"></po-table>
+  <po-table
+    [p-items]="referenciasComerciais | maskArray: 'cnpj':'99.999.999/9999-99'"
+  ></po-table>
 </form>

@@ -22,6 +22,8 @@ import { FotosDoPontoComponent } from "./Components/cliente-novo/fotos-do-ponto/
 import { ContatosComponent } from './Components/cliente-novo/contatos/contatos.component';
 import { RevisaoComponent } from './Components/cliente-novo/revisao/revisao.component';
 import { PosicaoToStringPipe } from './pipe/posicao-to-string.pipe';
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { PosicaoToStringPipe } from './pipe/posicao-to-string.pipe';
     FormsModule,
     ReactiveFormsModule,
     PoModule,
-    NgxMaskModule.forRoot(maskConfig),
+    SharedModule
   ],
+  
 })
 export class RepresentanteModule {}
