@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/pages/home/services/usuario.service';
 import { PoPageChangePassword } from '@po-ui/ng-templates';
-import { UserIdService } from 'src/app/shared/services/user-id.service';
+import { TokenService } from 'src/app/core/services/token.service';
 
 @Component({
   selector: 'app-alterar-senha',
@@ -11,7 +11,7 @@ import { UserIdService } from 'src/app/shared/services/user-id.service';
 export class AlterarSenhaComponent implements OnInit {
 
   constructor(
-    private userIdService: UserIdService,
+    private tokenService: TokenService,
     private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
@@ -19,7 +19,7 @@ export class AlterarSenhaComponent implements OnInit {
 
   alterarSenha(evento: PoPageChangePassword) {
     this.usuarioService
-      .alterarSenha(this.userIdService.Id, evento)
+      .alterarSenha(this.tokenService.DadosDoUsuario.id, evento)
       .subscribe(() => { });
   }
 

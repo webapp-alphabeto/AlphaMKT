@@ -1,39 +1,21 @@
-<ng-container *ngIf="!routeLoading; else AnimacaoDeRota">
-  <ng-container *ngIf="auth.Autenticado$() | async; else elseTemplate">
-    <div [class.po-wrapper]="(auth.Autenticado$() | async) && !exibirMenu">
-      <app-toolbar></app-toolbar>
+<app-animacao-entre-rotas [exibirAnimacaoDeRota]="exibirAnimacaoDeRota">
+  <div
+    [class.po-wrapper]="
+      (auth.Autenticado$() | async) && !(menuService.exibirMenu | async)
+    "
+    style="height: 100%;"
+  >
+    <app-toolbar></app-toolbar>
 
-      <po-menu
-        #meuMenu
-        *ngIf="(auth.Autenticado$() | async) && !exibirMenu"
-        p-filter="true"
-        [p-menus]="menuFiltrado"
-        [p-collapsed]="true"
-        p-short-logo="../../assets/logo2.png"
-      >
-      </po-menu>
+    <po-menu
+      *ngIf="(auth.Autenticado$() | async) && !(menuService.exibirMenu | async)"
+      p-filter="true"
+      [p-menus]="menuService.getMenu(tokenService.DadosDoUsuario.nivelDeAcesso)"
+      [p-collapsed]="true"
+      p-short-logo="../../assets/logo2.png"
+    >
+    </po-menu>
 
-      <router-outlet></router-outlet>
-    </div>
-  </ng-container>
-  <ng-template #elseTemplate>
     <router-outlet></router-outlet>
-  </ng-template>
-</ng-container>
-
-<ng-template #AnimacaoDeRota>
-  <div class="logo">
-    <img
-      src="../assets/logo2.png"
-      width="50px"
-      alt=""
-      class="center img-logo"
-    />
-    <div class="lds-ellipsis">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
   </div>
-</ng-template>
+</app-animacao-entre-rotas>

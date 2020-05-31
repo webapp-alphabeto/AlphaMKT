@@ -1,0 +1,20 @@
+<ng-container *ngIf="!exibirAnimacaoDeRota; else animacaoDeRota">
+  <ng-content> </ng-content>
+</ng-container>
+
+<ng-template #animacaoDeRota>
+  <div class="logo">
+    <img
+      src="../assets/logo2.png"
+      width="50px"
+      alt=""
+      class="center img-logo"
+    />
+    <div class="lds-ellipsis">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>

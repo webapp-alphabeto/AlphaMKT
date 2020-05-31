@@ -1,19 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { ILoginResponse } from '../interfaces/ilogin-response';
-import { environment } from 'src/environments/environment';
-import { ILogin } from '../interfaces/ilogin';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
+import { PoPageLogin } from '@po-ui/ng-templates';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class LoginService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  logar(login: ILogin): Observable<ILoginResponse> {
+  logar(login: PoPageLogin): Observable<{ token: string }> {
     const url = `${environment.serviceApi}login`;
-    return this.http.post<ILoginResponse>(url, login);
+    return this.http.post<{ token: string }>(url, login);
   }
 }
