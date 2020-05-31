@@ -35,7 +35,7 @@ export class ClienteNovoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.toolBarService.ocultar();
-    this.clientEdit = JSON.parse(localStorage.getItem("mock"));
+    // this.clientEdit = JSON.parse(localStorage.getItem("mock"));
   }
 
   ngOnDestroy(): void {
