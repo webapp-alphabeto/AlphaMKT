@@ -13,4 +13,8 @@ export class ProfileService {
   set profile(profile: PoToolbarProfile) {
     localStorage.setItem(PROFILE_STORAGE, JSON.stringify(profile));
   }
+
+  resetarProfile() {
+    localStorage.removeItem(PROFILE_STORAGE);
+  }
 }

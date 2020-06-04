@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { TokenService } from './token.service';
+import { ProfileService } from 'src/app/shared/services/profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService,
+    private profileService: ProfileService) { }
 
   Autenticado = new BehaviorSubject<boolean>(this.hasToken());
 
@@ -30,6 +32,7 @@ export class AuthService {
 
   logout(): void {
     this.tokenService.resetarToken();    
+    this.profileService.resetarProfile();
     this.Autenticado.next(false);
   }
 }
