@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, Input } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { environment } from "src/environments/environment";
-import { IRepresentanteClienteEdit } from '../../../Interfaces/irepresentante-cliente-edit';
-import { ClienteService } from '../../../services/cliente.service';
+import { IRepresentanteClienteEdit } from "../../../Interfaces/irepresentante-cliente-edit";
+import { ClienteService } from "../../../services/cliente.service";
+import { TokenService } from "src/app/core/services/token.service";
 
 @Component({
   selector: "app-cliente-informacoes-basicas",
@@ -16,16 +17,21 @@ export class ClienteInformacoesBasicasComponent implements OnInit {
   classificacaoDeCredito: string = "-.- ---";
   cidadeService = `${environment.serviceApi}cidades/po-combo`;
 
-  constructor(private clienteService: ClienteService) {}
+  constructor(
+    private clienteService: ClienteService,
+    private tokenService: TokenService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.clienteEdit.representanteId = this.tokenService.DadosDoUsuario.representanteId;
+  }
 
-  buscarNoDeps() {
-    const representanteId = 1;
+  consultCustomer() {
+    
     const documento = this.clienteEdit.documento;
 
     this.clienteService
-      .get(documento, representanteId)
+      .get(documento, this.tokenService.DadosDoUsuario.representanteId)
       .subscribe((resposta: any) => {
         const cliente = resposta.cliente as IRepresentanteClienteEdit;
         this.atribuirPropriedadesDocliente(cliente);

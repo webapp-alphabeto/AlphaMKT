@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { PoTableColumn, PoNotificationService } from "@po-ui/ng-components";
 import { NgForm } from "@angular/forms";
-import { Contato } from '../../../Interfaces/contato';
+import { Contato } from "../../../Interfaces/contato";
 
 @Component({
   selector: "app-contatos",
@@ -15,6 +15,7 @@ export class ContatosComponent implements OnInit {
   contato = {} as Contato;
   mostrarFormulario = true;
   columns: Array<PoTableColumn> = [
+    { property: "tipo", label: "Tipo" },
     { property: "nome", label: "Nome" },
     { property: "telefone", label: "Telefone" },
     { property: "email", label: "Email" },

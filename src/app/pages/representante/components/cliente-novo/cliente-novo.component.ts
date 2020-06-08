@@ -12,6 +12,7 @@ import { IRepresentanteClienteEdit } from "../../interfaces/irepresentante-clien
 import { Contato } from "../../interfaces/contato";
 import { FotosDoPonto } from "../../Interfaces/fotos-do-ponto";
 import { IReferenciaComercial } from "../../Interfaces/ireferencia-comercial";
+import { ClienteService } from "../../services/cliente.service";
 
 @Component({
   selector: "app-cliente-novo",
@@ -30,12 +31,12 @@ export class ClienteNovoComponent implements OnInit, OnDestroy {
     public toolBarService: ToolBarService,
     public poDialog: PoDialogService,
     private poNotification: PoNotificationService,
-    private route: Router
+    private route: Router,
+    private clientService: ClienteService
   ) {}
 
   ngOnInit(): void {
     this.toolBarService.ocultar();
-    // this.clientEdit = JSON.parse(localStorage.getItem("mock"));
   }
 
   ngOnDestroy(): void {
@@ -75,8 +76,11 @@ export class ClienteNovoComponent implements OnInit, OnDestroy {
   }
 
   confirmarInclusao() {
-    localStorage.setItem("mock", JSON.stringify(this.clientEdit));
-
-    this.route.navigateByUrl("/representante/home");
+    this.clientService
+      .add(this.clientEdit)
+      .subscribe((x: IRepresentanteClienteEdit) => {
+        this.poNotification.success(`Cliente incluido.`);
+        this.route.navigateByUrl("/representante/home");
+      });
   }
 }

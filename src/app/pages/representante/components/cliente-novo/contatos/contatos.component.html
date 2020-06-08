@@ -10,6 +10,18 @@
     <ng-template #novo>
       <po-divider p-label="Novo contato" class="po-md-12"></po-divider>
       <po-input
+        #tipo
+        class="po-md-3"
+        name="tipo"
+        p-clean
+        p-placeholder="Pessoal, casa..."
+        p-label="Contato (Tipo)"
+        [(ngModel)]="contato.tipo"
+        p-auto-focus
+        p-required
+      >
+      </po-input>
+      <po-input
         #nome
         class="po-md-3"
         name="nome"
@@ -60,7 +72,7 @@
       ></po-button>
     </ng-template>
   </div>
-  
+
   <div class="po-row">
     <div class="po-md-12">
       <po-table
