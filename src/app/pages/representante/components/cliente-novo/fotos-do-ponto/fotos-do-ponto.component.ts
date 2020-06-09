@@ -3,7 +3,7 @@ import { environment, SEM_FOTO } from "src/environments/environment";
 import { HttpResponse } from "@angular/common/http";
 import { FotosDoPonto } from '../../../Interfaces/fotos-do-ponto';
 import { DataFoto } from '../../../Interfaces/data-foto';
-import { PosicaoDataFoto } from '../../../enums/posicao-da-foto.enum';
+import { PosicaoDaFoto } from '../../../enums/posicao-da-foto.enum';
 
 @Component({
   selector: "app-fotos-do-ponto",
@@ -19,21 +19,21 @@ export class FotosDoPontoComponent implements OnInit {
   fachada = {
     dataFoto: {
       cnpj: this.cnpj,
-      posicaoDaFoto: PosicaoDataFoto.Fachada,
+      posicaoDaFoto: PosicaoDaFoto.Fachada,
     } as DataFoto,
   } as FotosDoPonto;
 
   daPortaParaOsFundos = {
     dataFoto: {
       cnpj: this.cnpj,
-      posicaoDaFoto: PosicaoDataFoto.DaPortaParaOsFundos,
+      posicaoDaFoto: PosicaoDaFoto.DaPortaParaOsFundos,
     } as DataFoto,
   } as FotosDoPonto;
 
   dosFundosParaAPorta = {
     dataFoto: {
       cnpj: this.cnpj,
-      posicaoDaFoto: PosicaoDataFoto.DosFundosParaAPorta,
+      posicaoDaFoto: PosicaoDaFoto.DosFundosParaAPorta,
     } as DataFoto,
   } as FotosDoPonto;
 

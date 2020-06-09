@@ -1,6 +1,6 @@
-import { PosicaoDataFoto } from "../enums/posicao-da-foto.enum";
+import { PosicaoDaFoto } from "../enums/posicao-da-foto.enum";
 
 export interface DataFoto {
   cnpj: string;
-  posicaoDaFoto: PosicaoDataFoto;
+  posicaoDaFoto: PosicaoDaFoto;
 }

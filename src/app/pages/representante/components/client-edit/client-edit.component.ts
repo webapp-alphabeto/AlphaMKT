@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Component, OnInit, OnChanges, SimpleChanges } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { PoBreadcrumb } from "@po-ui/ng-components";
 import { MyClientService } from "../../services/my-client.service";
+import { IMyClientEdit } from "../../interfaces/imy-client";
 
 @Component({
   selector: "app-client-edit",
@@ -10,9 +11,9 @@ import { MyClientService } from "../../services/my-client.service";
 })
 export class ClientEditComponent implements OnInit {
   clientId: number;
-  client: any;
+  client: IMyClientEdit;
 
-  public readonly breadcrumb: PoBreadcrumb = {
+  public breadcrumb: PoBreadcrumb = {
     items: [
       {
         label: "Home",
@@ -37,11 +38,20 @@ export class ClientEditComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getClientById();
+  }
 
-  getClientById(id: number) {
-    this.myClientService.getById(id).subscribe((x) => {
-      this.client = x;
-    });
+  getClientById() {
+    this.myClientService
+      .getById(this.clientId)
+      .subscribe((x: IMyClientEdit) => {
+        this.client = x;
+        this.updateBreadCrumb();        
+      });
+  }
+
+  private updateBreadCrumb() {
+    this.breadcrumb.items[2].label = this.client.cliente.nomeFantasia ?? "Cliente";
   }
 }

@@ -1,4 +1,4 @@
-export enum PosicaoDataFoto {
+export enum PosicaoDaFoto {
     Fachada,
     DaPortaParaOsFundos,
     DosFundosParaAPorta

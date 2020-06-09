@@ -1,17 +1,17 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { PosicaoDataFoto } from "../enums/posicao-da-foto.enum";
+import { PosicaoDaFoto } from "../enums/posicao-da-foto.enum";
 
 @Pipe({
   name: "posicaoToString",
 })
 export class PosicaoToStringPipe implements PipeTransform {
-  transform(value: PosicaoDataFoto, ...args: unknown[]): unknown {
+  transform(value: PosicaoDaFoto, ...args: unknown[]): unknown {
     switch (value) {
-      case PosicaoDataFoto.Fachada:
+      case PosicaoDaFoto.Fachada:
         return "Fachada";
-      case PosicaoDataFoto.DaPortaParaOsFundos:
+      case PosicaoDaFoto.DaPortaParaOsFundos:
         return "Da porta para os fundos";
-      case PosicaoDataFoto.DosFundosParaAPorta:
+      case PosicaoDaFoto.DosFundosParaAPorta:
         return "Dos fundos para a porta";
     }
   }

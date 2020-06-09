@@ -1,0 +1,37 @@
+<form #form="ngForm" *ngIf="contact">
+  <div class="po-row">
+    <po-input
+      class="po-md-12"
+      name="tipo"
+      [(ngModel)]="contact.tipo"
+      p-label="Tipo"
+      p-placeholder="Pessoal, comercial..."
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-12"
+      name="nome"
+      [(ngModel)]="contact.nome"
+      p-label="Nome"
+    >
+    </po-input>
+  </div>
+
+  <po-input
+    class="po-md-12"
+    name="telefone"
+    p-mask="(99) 9999-9999?9"
+    [(ngModel)]="contact.telefone"
+    p-label="Telefone"
+  >
+  </po-input>
+
+  <po-email
+    class="po-md-12"
+    name="email"
+    [(ngModel)]="contact.email"
+    p-label="Email"
+  >
+  </po-email>
+</form>

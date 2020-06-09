@@ -18,6 +18,12 @@ import { ContatosComponent } from './Components/cliente-novo/contatos/contatos.c
 import { RevisaoComponent } from './Components/cliente-novo/revisao/revisao.component';
 import { PosicaoToStringPipe } from './pipe/posicao-to-string.pipe';
 import { ClientEditComponent } from './components/client-edit/client-edit.component';
+import { ClientFormComponent } from './components/client-edit/client-form/client-form.component';
+import { ClientContactsComponent } from './components/client-edit/client-contacts/client-contacts.component';
+import { ClientContactsEditComponent } from './components/client-edit/client-contacts/client-contacts-edit/client-contacts-edit.component';
+import { ClientPhotosOfPointComponent } from './components/client-edit/client-photos-of-point/client-photos-of-point.component';
+import { ClientComercialReferencesComponent } from './components/client-edit/client-comercial-references/client-comercial-references.component';
+import { ComercialReferencesEditComponent } from './components/client-edit/client-comercial-references/comercial-references-edit/comercial-references-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,13 @@ import { ClientEditComponent } from './components/client-edit/client-edit.compon
     ContatosComponent,
     RevisaoComponent,
     PosicaoToStringPipe,
-    ClientEditComponent
+    ClientEditComponent,
+    ClientFormComponent,
+    ClientContactsComponent,
+    ClientContactsEditComponent,
+    ClientPhotosOfPointComponent,
+    ClientComercialReferencesComponent,
+    ComercialReferencesEditComponent
   ],
   imports: [
     CommonModule,

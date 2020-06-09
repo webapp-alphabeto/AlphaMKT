@@ -10,7 +10,7 @@ import { IMyClientEdit } from '../interfaces/imy-client';
 export class MyClientService {
   constructor(private httpClient: HttpClient) {}
   getById(id: number): Observable<IMyClientEdit> {
-    const url = `${environment.serviceApi}/representative-area/my-client/client/${id}`;
-    return this.httpClient.get(url, { headers: SCREEN_LOCK });
+    const url = `${environment.serviceApi}representative-area/my-client/client/${id}`;
+    return this.httpClient.get<IMyClientEdit>(url, { headers: SCREEN_LOCK });
   }
 }

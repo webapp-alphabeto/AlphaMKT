@@ -1,0 +1,25 @@
+<div class="po-page-header-actions">
+  <po-button
+    p-label="Novo"
+    p-type="primary"
+    (p-click)="openForCreate()"
+  ></po-button>
+</div>
+
+<div class="po-row ">
+  <po-table
+    class="po-md-12 po-mt-2"
+    [p-items]="contacts"
+    [p-columns]="columns"
+    [p-actions]="actions"
+  ></po-table>
+
+  <po-modal
+    #editContact
+    p-title="Editar contato"
+    [p-primary-action]="modalEditPrimaryAction"
+  >
+    <app-client-contacts-edit [contact]="contact"> </app-client-contacts-edit>
+  </po-modal>
+  <pre>{{ contacts | json }}</pre>
+</div>
