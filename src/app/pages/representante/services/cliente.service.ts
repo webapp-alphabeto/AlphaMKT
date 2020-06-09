@@ -11,14 +11,14 @@ export class ClienteService {
   constructor(private http: HttpClient) {}
 
   get(cnpj: string, representanteId: number): Observable<any> {
-    const url = `${environment.serviceApi}novo-cliente/${cnpj}/${representanteId}`;
+    const url = `${environment.serviceApi}area-do-representante/novo-cliente/${cnpj}/${representanteId}`;
     return this.http.get<any>(url, { headers: SCREEN_LOCK });
   }
 
   add(
     cliente: IRepresentanteClienteEdit
   ): Observable<IRepresentanteClienteEdit> {
-    const url = `${environment.serviceApi}novo-cliente/incluir`;
+    const url = `${environment.serviceApi}area-do-representante/novo-cliente/incluir`;
     return this.http.post<IRepresentanteClienteEdit>(url, cliente, {
       headers: SCREEN_LOCK,
     });

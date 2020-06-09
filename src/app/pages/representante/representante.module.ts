@@ -17,6 +17,7 @@ import { FotosDoPontoComponent } from "./Components/cliente-novo/fotos-do-ponto/
 import { ContatosComponent } from './Components/cliente-novo/contatos/contatos.component';
 import { RevisaoComponent } from './Components/cliente-novo/revisao/revisao.component';
 import { PosicaoToStringPipe } from './pipe/posicao-to-string.pipe';
+import { ClientEditComponent } from './components/client-edit/client-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PosicaoToStringPipe } from './pipe/posicao-to-string.pipe';
     FotosDoPontoComponent,
     ContatosComponent,
     RevisaoComponent,
-    PosicaoToStringPipe
+    PosicaoToStringPipe,
+    ClientEditComponent
   ],
   imports: [
     CommonModule,

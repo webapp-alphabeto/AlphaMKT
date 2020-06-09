@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   irParaCliente() {
-    this.route.navigateByUrl('/representante/cliente-novo');    
+    this.route.navigateByUrl('/representante/clientes');    
   }
 
   irParaVendas() {
