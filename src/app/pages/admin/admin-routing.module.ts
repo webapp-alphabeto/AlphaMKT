@@ -13,7 +13,7 @@ import { NaturezaComponent } from './natureza/natureza-view/natureza.component';
 import { NaturezaEditComponent } from './natureza/natureza-edit/natureza-edit.component';
 import { PaymentTermsComponent } from './payment-terms/payment-terms-view/payment-terms.component';
 import { PaymentTermsEditComponent } from './payment-terms/payment-terms-edit/payment-terms-edit.component';
-import { MonitorDeIntegracaoComponent } from './monitor-de-integracao/monitor-de-integracao.component';
+import { IntegrationMonitorComponent } from './integration-monitor/integration-monitor.component';
 
 
 
@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'condicoes-de-pagamento', component: PaymentTermsComponent },
   { path: 'condicoes-de-pagamento-edit/:id', component: PaymentTermsEditComponent },
 
-  { path: 'monitor-de-integracao', component: MonitorDeIntegracaoComponent },
+  { path: 'monitor-de-integracao', component: IntegrationMonitorComponent },
 
   { path: '', pathMatch: 'full', redirectTo: 'usuario' }
 ];

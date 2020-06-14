@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { MonitorDeIntegracao } from '../interfaces/monitor-de-integracao';
+import { IntegrationMonitor } from '../interfaces/integration-monitor';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,8 +11,8 @@ export class MonitorDeIntegracaoService {
 
   constructor(private http: HttpClient) { }
 
-  get(): Observable<MonitorDeIntegracao[]> {
+  get(): Observable<IntegrationMonitor[]> {
     const url = `${environment.serviceApi}integracao/monitor-de-integracao`;
-    return this.http.get<MonitorDeIntegracao[]>(url);
+    return this.http.get<IntegrationMonitor[]>(url);
   }
 }

@@ -13,7 +13,7 @@ import { NaturezaComponent } from "./natureza/natureza-view/natureza.component";
 import { NaturezaEditComponent } from "./natureza/natureza-edit/natureza-edit.component";
 import { PaymentTermsComponent } from "./payment-terms/payment-terms-view/payment-terms.component";
 import { PaymentTermsEditComponent } from "./payment-terms/payment-terms-edit/payment-terms-edit.component";
-import { MonitorDeIntegracaoComponent } from "./monitor-de-integracao/monitor-de-integracao.component";
+import { IntegrationMonitorComponent } from "./integration-monitor/integration-monitor.component";
 import { RepresentanteComponent } from "./representante/representante-view/representante.component";
 import { RepresentanteEditComponent } from "./representante/representante-edit/representante-edit.component";
 import { ClientComponent } from "./client/client-view/client.component";
@@ -32,7 +32,7 @@ import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-
     NaturezaEditComponent,
     PaymentTermsComponent,
     PaymentTermsEditComponent,
-    MonitorDeIntegracaoComponent,
+    IntegrationMonitorComponent,
     RepresentanteComponent,
     RepresentanteEditComponent,
     ClientComponent,
