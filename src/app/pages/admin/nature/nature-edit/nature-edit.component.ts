@@ -5,10 +5,10 @@ import { PoBreadcrumb, PoDynamicFormField } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-natureza-edit',
-  templateUrl: './natureza-edit.component.html',
-  styleUrls: ['./natureza-edit.component.css']
+  templateUrl: './nature-edit.component.html',
+  styleUrls: ['./nature-edit.component.css']
 })
-export class NaturezaEditComponent implements OnInit {
+export class NatureEditComponent implements OnInit {
 
   public readonly serviceApi = `${environment.serviceApi}natureza`;;
 
@@ -28,8 +28,8 @@ export class NaturezaEditComponent implements OnInit {
   public readonly fields: Array<PoDynamicFormField> = [
     { property: 'id', key: true, required: false, visible: false },
 
-    { property: 'nome', required: true, errorMessage: "Nome é obrigatório ", gridColumns: 4, disabled:true },
-    { property: 'ativo', type: 'boolean', booleanFalse: "Inativo", booleanTrue: "Ativo", gridColumns: 2 },
+    { property: 'name', required: true, errorMessage: "Nome é obrigatório ", gridColumns: 4, disabled:true },
+    { property: 'active', type: 'boolean', booleanFalse: "Inativo", booleanTrue: "Ativo", gridColumns: 2 },
 
   ];
 

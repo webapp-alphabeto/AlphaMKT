@@ -5,10 +5,10 @@ import { PoBreadcrumb } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-natureza',
-  templateUrl: './natureza.component.html',
-  styleUrls: ['./natureza.component.css']
+  templateUrl: './nature.component.html',
+  styleUrls: ['./nature.component.css']
 })
-export class NaturezaComponent implements OnInit {
+export class NatureComponent implements OnInit {
 
   serviceApi = `${environment.serviceApi}natureza`;
   constructor() { }
@@ -30,8 +30,8 @@ export class NaturezaComponent implements OnInit {
 
   public readonly fields: Array<PoPageDynamicTableField> = [
     { property: 'id', key: true, visible: false },
-    { property: 'nome', label: 'Nome', filter: true, gridColumns: 6 },
-    { property: 'ativo', label: 'Ativo', filter: true, type: 'boolean', booleanFalse: 'Não', booleanTrue: 'Sim', gridColumns: 6 }
+    { property: 'name', label: 'Nome', filter: true, gridColumns: 6 },
+    { property: 'active', label: 'Ativo', filter: true, type: 'boolean', booleanFalse: 'Não', booleanTrue: 'Sim', gridColumns: 6 }
   ];
 
 }

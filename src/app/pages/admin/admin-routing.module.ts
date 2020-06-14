@@ -9,8 +9,8 @@ import { UsuarioComponent } from './usuario/usuario-view/usuario.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { SalesGroupComponent } from './sales-group/sales-group-view/sales-group.component';
 import { SalesGroupEditComponent } from './sales-group/sales-group-edit/sales-group-edit.component';
-import { NaturezaComponent } from './natureza/natureza-view/natureza.component';
-import { NaturezaEditComponent } from './natureza/natureza-edit/natureza-edit.component';
+import { NatureComponent } from './nature/nature-view/nature.component';
+import { NatureEditComponent } from './nature/nature-edit/nature-edit.component';
 import { PaymentTermsComponent } from './payment-terms/payment-terms-view/payment-terms.component';
 import { PaymentTermsEditComponent } from './payment-terms/payment-terms-edit/payment-terms-edit.component';
 import { IntegrationMonitorComponent } from './integration-monitor/integration-monitor.component';
@@ -33,8 +33,8 @@ const routes: Routes = [
   { path: 'grupo-de-vendas', component: SalesGroupComponent },
   { path: 'grupo-de-vendas-edit/:id', component: SalesGroupEditComponent },
 
-  { path: 'natureza', component: NaturezaComponent },
-  { path: 'natureza-edit/:id', component: NaturezaEditComponent },
+  { path: 'natureza', component: NatureComponent },
+  { path: 'natureza-edit/:id', component: NatureEditComponent },
 
   { path: 'condicoes-de-pagamento', component: PaymentTermsComponent },
   { path: 'condicoes-de-pagamento-edit/:id', component: PaymentTermsEditComponent },
