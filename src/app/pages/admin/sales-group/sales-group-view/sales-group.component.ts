@@ -4,11 +4,11 @@ import { PoBreadcrumb } from '@po-ui/ng-components';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-grupo-de-vendas',
-  templateUrl: './grupo-de-vendas.component.html',
-  styleUrls: ['./grupo-de-vendas.component.css']
+  selector: 'app-sales-group',
+  templateUrl: './sales-group.component.html',
+  styleUrls: ['./sales-group.component.css']
 })
-export class GrupoDeVendasComponent implements OnInit {
+export class SalesGroupComponent implements OnInit {
 
   serviceApi = `${environment.serviceApi}grupo-de-vendas`;
   constructor() { }
@@ -30,7 +30,7 @@ export class GrupoDeVendasComponent implements OnInit {
 
   public readonly fields: Array<PoPageDynamicTableField> = [
     { property: 'id', key: true, visible: false },
-    { property: 'nome', label: 'Nome', filter: true, gridColumns: 6 },
-    { property: 'ativo', label: 'Ativo', filter: true, type: 'boolean', booleanFalse: 'Não', booleanTrue: 'Sim', gridColumns: 6 }
+    { property: 'name', label: 'Nome', filter: true, gridColumns: 6 },
+    { property: 'active', label: 'Ativo', filter: true, type: 'boolean', booleanFalse: 'Não', booleanTrue: 'Sim', gridColumns: 6 }
   ];
 }

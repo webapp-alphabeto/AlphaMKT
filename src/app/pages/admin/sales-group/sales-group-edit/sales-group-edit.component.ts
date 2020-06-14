@@ -4,11 +4,11 @@ import { PoBreadcrumb, PoDynamicFormField } from '@po-ui/ng-components';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-grupo-de-vendas-edit',
-  templateUrl: './grupo-de-vendas-edit.component.html',
-  styleUrls: ['./grupo-de-vendas-edit.component.css']
+  selector: 'app-sales-group-edit',
+  templateUrl: './sales-group-edit.component.html',
+  styleUrls: ['./sales-group-edit.component.css']
 })
-export class GrupoDeVendasEditComponent implements OnInit {
+export class SalesGroupEditComponent implements OnInit {
 
   public readonly serviceApi = `${environment.serviceApi}grupo-de-vendas`;;
 
@@ -28,8 +28,8 @@ export class GrupoDeVendasEditComponent implements OnInit {
   public readonly fields: Array<PoDynamicFormField> = [
     { property: 'id', key: true, required: false, visible: false },
 
-    { property: 'nome', required: true, errorMessage: "Nome é obrigatório ", gridColumns: 4, disabled:true },
-    { property: 'ativo', type: 'boolean', booleanFalse: "Inativo", booleanTrue: "Ativo", gridColumns: 2 },
+    { property: 'name', required: true, errorMessage: "Nome é obrigatório ", gridColumns: 4, disabled:true },
+    { property: 'active', type: 'boolean', booleanFalse: "Inativo", booleanTrue: "Ativo", gridColumns: 2 },
 
   ];
 

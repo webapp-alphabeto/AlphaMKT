@@ -7,8 +7,8 @@ import { RepresentanteComponent } from './representante/representante-view/repre
 import { RepresentanteEditComponent } from './representante/representante-edit/representante-edit.component';
 import { UsuarioComponent } from './usuario/usuario-view/usuario.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
-import { GrupoDeVendasComponent } from './grupo-de-vendas/grupo-de-vendas-view/grupo-de-vendas.component';
-import { GrupoDeVendasEditComponent } from './grupo-de-vendas/grupo-de-vendas-edit/grupo-de-vendas-edit.component';
+import { SalesGroupComponent } from './sales-group/sales-group-view/sales-group.component';
+import { SalesGroupEditComponent } from './sales-group/sales-group-edit/sales-group-edit.component';
 import { NaturezaComponent } from './natureza/natureza-view/natureza.component';
 import { NaturezaEditComponent } from './natureza/natureza-edit/natureza-edit.component';
 import { PaymentTermsComponent } from './payment-terms/payment-terms-view/payment-terms.component';
@@ -30,8 +30,8 @@ const routes: Routes = [
   { path: 'usuario-new', component: UsuarioEditComponent },
   { path: 'usuario-edit/:id', component: UsuarioEditComponent },
 
-  { path: 'grupo-de-vendas', component: GrupoDeVendasComponent },
-  { path: 'grupo-de-vendas-edit/:id', component: GrupoDeVendasEditComponent },
+  { path: 'grupo-de-vendas', component: SalesGroupComponent },
+  { path: 'grupo-de-vendas-edit/:id', component: SalesGroupEditComponent },
 
   { path: 'natureza', component: NaturezaComponent },
   { path: 'natureza-edit/:id', component: NaturezaEditComponent },
