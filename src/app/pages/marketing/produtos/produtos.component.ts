@@ -12,7 +12,7 @@ import {
 } from "@po-ui/ng-components";
 
 import { Router } from "@angular/router";
-import { FotoProdutoFiltro } from "src/app/pages/marketing/interfaces/foto-produto-filtro";
+import { ProductPhotoFilter } from "src/app/pages/marketing/interfaces/foto-produto-filtro";
 import { FotoProdutoInfoView } from "src/app/pages/marketing/interfaces/foto-produto-view";
 import { ProdutoEditComponent } from "../produto-edit/produto-edit.component";
 import { UtilProdutoService } from "src/app/shared/services/util-produto.service";
@@ -94,7 +94,7 @@ export class ProdutosComponent implements OnInit {
   colecoes: Array<PoComboOption>;
   mapas: Array<PoComboOption>;
   disclaimerGroup: PoDisclaimerGroup;
-  filtro = {} as FotoProdutoFiltro;
+  filtro = {} as ProductPhotoFilter;
   private disclaimers = [] as PoDisclaimer[];
 
   tituloProdutoEditModal: string;
@@ -204,7 +204,7 @@ export class ProdutosComponent implements OnInit {
   resetarFiltros() {
     const filters = this.disclaimers.map((disclaimer) => disclaimer.value);
     if (filters.length == 0) {
-      this.filtro = {} as FotoProdutoFiltro;
+      this.filtro = {} as ProductPhotoFilter;
       this.referenciaSelecionada = "";
       this.mapaSelecionado = undefined;
       this.colecaoSelecionada = undefined;

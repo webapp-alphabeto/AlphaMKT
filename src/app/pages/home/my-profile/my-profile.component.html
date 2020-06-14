@@ -14,9 +14,9 @@
         
         <po-upload name="upload" p-label="Alterar imagem" 
             [p-url]="uploadApi"
-            (p-upload)="incluirImagemDoPerfil($event)"
-            (p-success)="obterPerfil($event)"
-            (p-error)="obterErro($event)">
+            (p-upload)="addProfilePicture($event)"
+            (p-success)="getProfile($event)"
+            (p-error)="getError($event)">
         </po-upload>
 
 
@@ -25,12 +25,12 @@
     <div class="po-md-4">
 
         <po-input name="nome" 
-            [(ngModel)]="usuario.nome"
+            [(ngModel)]="user.name"
             p-label="Nome">
         </po-input>
     
         <po-email name="email"
-            [(ngModel)]="usuario.email"
+            [(ngModel)]="user.email"
             p-label="Email">
     
         </po-email>

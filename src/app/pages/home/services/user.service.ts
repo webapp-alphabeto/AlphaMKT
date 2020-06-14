@@ -1,31 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PoComboOption } from '@po-ui/ng-components';
 import { environment } from 'src/environments/environment';
-import { IUsuario } from '../interfaces/iusuario';
+import { IUser } from '../../../shared/models/IUser';
 import { PoPageChangePassword } from '@po-ui/ng-templates';
 import { SCREEN_LOCK } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getById(id: number): Observable<IUsuario> {
+  getById(id: number): Observable<IUser> {
     const url = `${environment.serviceApi}usuario/${id}`;
-    return this.http.get<IUsuario>(url);
+    return this.http.get<IUser>(url);
   }
 
-  update(usuario:IUsuario):Observable<IUsuario> {
+  update(usuario:IUser):Observable<IUser> {
     const url =`${environment.serviceApi}usuario/${usuario.id}`;
-    return this.http.put<IUsuario>(url, usuario);
+    return this.http.put<IUser>(url, usuario);
   }
 
-  alterarSenha(id: number, password: PoPageChangePassword) {
+  changePassword(id: number, password: PoPageChangePassword) {
     const url = `${environment.serviceApi}usuario/alterar-senha/${id}`;
-    return this.http.put<IUsuario>(url, password, { headers: SCREEN_LOCK });
+    return this.http.put<IUser>(url, password, { headers: SCREEN_LOCK });
   }
 }

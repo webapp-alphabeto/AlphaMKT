@@ -8,9 +8,9 @@ import { HomeRoutingModule } from "./home-routing.module";
 
 import { PrincipalComponent } from "./principal/principal.component";
 import { CardMenuComponent } from "./card-menu/card-menu.component";
-import { MeuPerfilComponent } from "./meu-perfil/meu-perfil.component";
-import { AlterarSenhaComponent } from "./alterar-senha/alterar-senha.component";
-import { ApresentacaoComponent } from "./apresentacao/apresentacao.component";
+import { MyProfileComponent } from "./my-profile/my-profile.component";
+import { ChangePasswordComponent } from "./my-profile/change-password/change-password.component";
+import { CommonPresentationComponent } from "./common-presentation/common-presentation.component";
 
 import { TokenApiService } from 'src/app/core/interceptors/token-api.service';
 import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-api.service';
@@ -19,12 +19,12 @@ import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-
   declarations: [
     PrincipalComponent,
     CardMenuComponent,
-    MeuPerfilComponent,
-    AlterarSenhaComponent,
-    ApresentacaoComponent,
+    MyProfileComponent,
+    ChangePasswordComponent,
+    CommonPresentationComponent,
   ],
   imports: [CommonModule, HomeRoutingModule, PortinariModule, FormsModule],
-  exports: [ApresentacaoComponent],
+  exports: [CommonPresentationComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

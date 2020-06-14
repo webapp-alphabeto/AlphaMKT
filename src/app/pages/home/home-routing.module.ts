@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PrincipalComponent } from './principal/principal.component';
-import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
-import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { ChangePasswordComponent } from './my-profile/change-password/change-password.component';
 
 const routes: Routes = [
   { path: 'principal', component: PrincipalComponent },
-  { path: 'meu-perfil', component: MeuPerfilComponent },
-  { path: 'alterar-senha', component: AlterarSenhaComponent },
+  { path: 'meu-perfil', component: MyProfileComponent },
+  { path: 'alterar-senha', component: ChangePasswordComponent },
   { path: '', pathMatch: 'full', redirectTo: 'principal' }
 ];
 

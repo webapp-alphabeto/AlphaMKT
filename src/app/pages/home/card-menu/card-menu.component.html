@@ -1,16 +1,16 @@
 <po-widget
-    [p-background]="imagem"
-    [p-height]="altura" 
+    [p-background]="image"
+    [p-height]="height" 
     p-primary="true">
     
     <div class="po-m-5">
 
-        <h1 class="titulo-alphabeto white" >{{ titulo }}</h1>
+        <h1 class="titulo-alphabeto white" >{{ title }}</h1>
         <po-divider></po-divider>
 
         <h2 *ngFor="let item of menu"
             class="titulo-alphabeto white cursor-hand"
-            (click)="irPara(item.link)">
+            (click)="goTo(item.link)">
                 {{ item.label }}
         </h2>
         

@@ -10,17 +10,17 @@ import { Router } from '@angular/router';
 })
 export class CardMenuComponent implements OnInit {
 
-  @Input() altura: number = 600;
+  @Input() height: number = 600;
   @Input() menu: Array<PoMenuItem> = [];
-  @Input() imagem: string;
-  @Input() titulo: string;
+  @Input() image: string;
+  @Input() title: string;
 
   constructor(private route: Router) { }
 
   ngOnInit() {
   }
 
-  irPara(link: string) {
+  goTo(link: string) {
     this.route.navigateByUrl(link);
   }
 
