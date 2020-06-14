@@ -4,11 +4,11 @@ import { PoMultiselectOption, PoBreadcrumb } from '@po-ui/ng-components';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-representante',
-  templateUrl: './representante.component.html',
-  styleUrls: ['./representante.component.css']
+  selector: 'app-representantive',
+  templateUrl: './representative.component.html',
+  styleUrls: ['./representative.component.css']
 })
-export class RepresentanteComponent implements OnInit {
+export class RepresentativeComponent implements OnInit {
 
   serviceApi = `${environment.serviceApi}representante`;
   constructor() { }
@@ -36,9 +36,9 @@ export class RepresentanteComponent implements OnInit {
 
   public readonly fields: Array<PoPageDynamicTableField> = [
     { property: 'id', key: true, visible: false },
-    { property: 'nomeFantasia', label: 'Nome', filter: true,  },
-    { property: 'documento', label: 'Documento', filter: true, mask: '99.999.999/9999-99' },
-    { property: 'deletado', label: 'Deletado', filter: true, type:'boolean' }
+    { property: 'fantasyName', label: 'Nome', filter: true,  },
+    { property: 'document', label: 'Documento', filter: true, mask: '99.999.999/9999-99' },
+    { property: 'deleted', label: 'Deletado', filter: true, type:'boolean' }
 
   ];
 

@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ClientComponent } from './client/client-view/client.component';
 import { ClientEditComponent } from './client/client-edit/client-edit.component';
-import { RepresentanteComponent } from './representante/representante-view/representante.component';
-import { RepresentanteEditComponent } from './representante/representante-edit/representante-edit.component';
+import { RepresentativeComponent } from './representative/representative-view/representative.component';
+import { RepresentativeEditComponent } from './representative/representative-edit/representative-edit.component';
 import { UsuarioComponent } from './usuario/usuario-view/usuario.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { SalesGroupComponent } from './sales-group/sales-group-view/sales-group.component';
@@ -22,9 +22,9 @@ const routes: Routes = [
   { path: 'cliente-new', component: ClientEditComponent },
   { path: 'cliente-edit/:id', component: ClientEditComponent },
 
-  { path: 'representante', component: RepresentanteComponent },
-  { path: 'representante-new', component: RepresentanteEditComponent },
-  { path: 'representante-edit/:id', component: RepresentanteEditComponent },
+  { path: 'representante', component: RepresentativeComponent },
+  { path: 'representante-new', component: RepresentativeEditComponent },
+  { path: 'representante-edit/:id', component: RepresentativeEditComponent },
 
   { path: 'usuario', component: UsuarioComponent },
   { path: 'usuario-new', component: UsuarioEditComponent },

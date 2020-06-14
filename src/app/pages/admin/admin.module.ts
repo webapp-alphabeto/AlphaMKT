@@ -14,8 +14,8 @@ import { NatureEditComponent } from "./nature/nature-edit/nature-edit.component"
 import { PaymentTermsComponent } from "./payment-terms/payment-terms-view/payment-terms.component";
 import { PaymentTermsEditComponent } from "./payment-terms/payment-terms-edit/payment-terms-edit.component";
 import { IntegrationMonitorComponent } from "./integration-monitor/integration-monitor.component";
-import { RepresentanteComponent } from "./representante/representante-view/representante.component";
-import { RepresentanteEditComponent } from "./representante/representante-edit/representante-edit.component";
+import { RepresentativeComponent } from "./representative/representative-view/representative.component";
+import { RepresentativeEditComponent } from "./representative/representative-edit/representative-edit.component";
 import { ClientComponent } from "./client/client-view/client.component";
 import { ClientEditComponent } from "./client/client-edit/client-edit.component";
 
@@ -33,8 +33,8 @@ import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-
     PaymentTermsComponent,
     PaymentTermsEditComponent,
     IntegrationMonitorComponent,
-    RepresentanteComponent,
-    RepresentanteEditComponent,
+    RepresentativeComponent,
+    RepresentativeEditComponent,
     ClientComponent,
     ClientEditComponent,
   ],
