@@ -1,10 +1,10 @@
 <po-widget  
     p-height="300"
-    p-title="{{ produto.modelo.length >= 18 ? 
-                (( produto.referencia + ' - ' + produto.modelo) | slice : 0 : 26) + '..' : 
-                (( produto.referencia + ' - ' + produto.modelo)) }}"
-    [p-background]="produto.fotoDeCapa"
-    (p-click)="carregarDados()">
+    p-title="{{ product.model.length >= 18 ? 
+                (( product.reference + ' - ' + product.model) | slice : 0 : 26) + '..' : 
+                (( product.reference + ' - ' + product.model)) }}"
+    [p-background]="product.coverPhoto"
+    (p-click)="loadData()">
     
     <div  class="fundo-branco">
         <po-container p-height="200"
@@ -12,17 +12,17 @@
             p-no-border="true">
         
             <po-info p-label="Tamanho" 
-                [p-value]="produto.tamanhoAmigavel">
+                [p-value]="product.friendlySize">
             
             </po-info>
     
             <po-info p-label="Caracteristica" 
-                [p-value]="produto.caracteristica">
+                [p-value]="product.feature">
             
             </po-info>
 
             <po-info p-label="Descrição" 
-                [p-value]="produto.descricaoAmigavel">
+                [p-value]="product.friendlyDescription">
             
             </po-info>
         </po-container>

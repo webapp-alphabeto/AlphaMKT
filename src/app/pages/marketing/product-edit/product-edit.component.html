@@ -4,26 +4,26 @@
         <form #produtoEditForm="ngForm">
             <po-input class="po-md-12" 
                 name="tamanhoAmigabel" 
-                [(ngModel)]="produtoInfoComplementar.tamanhoAmigavel" 
+                [(ngModel)]="complementaryProductInformation.friendlySize" 
                 p-label="Tamanho amigável">
             </po-input>
         
             <po-input class="po-md-12" 
                 name="caracateristica" 
-                [(ngModel)]="produtoInfoComplementar.caracteristica" 
+                [(ngModel)]="complementaryProductInformation.feature" 
                 p-label="Característica">
             </po-input>
         
             <po-textarea class="po-md-12" 
                 name="descricaoAmigabel" 
-                [(ngModel)]="produtoInfoComplementar.descricaoAmigavel" 
+                [(ngModel)]="complementaryProductInformation.friendlyDescription" 
                 p-label="Descrição" 
                 p-rows="3">
             </po-textarea>
         
             <po-textarea class="po-md-12" 
                 name="palavrasChaves" 
-                [(ngModel)]="produtoInfoComplementar.palavrasChave" 
+                [(ngModel)]="complementaryProductInformation.keyWords" 
                 p-label="Palavras chaves" 
                 p-rows="3"
                 p-help="Separe as palvras por virgula (,)">
@@ -50,7 +50,7 @@
                 [p-restrictions]="restrictions"
                 p-hide-restrictions-info="false"
                 (p-success)="modalUpload.close(); uploadSuccess()"
-                (p-upload)="incluirImagemDoPerfil($event)">
+                (p-upload)="includeReferenceInTheRequest($event)">
                 
             </po-upload>
                 
@@ -61,14 +61,14 @@
         <po-container p-height="335"
             p-no-border="true">
 
-            <div *ngFor="let item of fotosDoProduto">
+            <div *ngFor="let item of productPhotos">
     
                 <div class="po-row">                
     
                     <div class="po-md-4">
     
                         <po-widget 
-                            [p-background]="item.foto" 
+                            [p-background]="item.photo" 
                             p-height=200>
                         </po-widget>
     
@@ -76,19 +76,19 @@
     
                     <div class="po-md-4">
     
-                        <po-switch [(ngModel)]="item.capaSite"
+                        <po-switch [(ngModel)]="item.webSiteCover"
                             p-label="Capa site"
                             p-label-off="Não"
                             p-label-on="Sim"
-                            (p-change)="alternarCapadeSite(item)">
+                            (p-change)="switchSiteCover(item)">
             
                         </po-switch>     
                         
-                        <po-switch [(ngModel)]="item.capaERP"
+                        <po-switch [(ngModel)]="item.erpCover"
                             p-label="Capa Erp"
                             p-label-off="Não"
                             p-label-on="Sim"
-                            (p-change)="alternarCapadeErp(item)">
+                            (p-change)="switchErpCover(item)">
             
                         </po-switch>
 
@@ -96,7 +96,7 @@
                             p-small="true"
                             p-type="danger"
                             p-tooltip="Deletar"
-                            (p-click)="deletarImagem(item)">
+                            (p-click)="deleteImage(item)">
 
                         </po-button>
 

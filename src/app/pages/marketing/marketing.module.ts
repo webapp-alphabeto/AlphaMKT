@@ -11,18 +11,18 @@ import { HomeModule } from '../home/home.module';
 import { PoModule } from '@po-ui/ng-components';
 import { MarketingRoutingModule } from './marketing-routing.module';
 
-import { ProdutosComponent } from './produtos/produtos.component';
-import { ProdutoViewComponent } from './produto-view/produto-view.component';
-import { ProdutoEditComponent } from './produto-edit/produto-edit.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductViewComponent } from './product-view/product-view.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 
 import { TokenApiService } from 'src/app/core/interceptors/token-api.service';
 import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-api.service';
 
 @NgModule({
   declarations: [
-    ProdutosComponent, 
-    ProdutoViewComponent, 
-    ProdutoEditComponent
+    ProductsComponent, 
+    ProductViewComponent, 
+    ProductEditComponent
   ],
   imports: [
     CommonModule,
