@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class MonitorDeIntegracaoService {
+export class IntegrationMonitorService {
 
   constructor(private http: HttpClient) { }
 

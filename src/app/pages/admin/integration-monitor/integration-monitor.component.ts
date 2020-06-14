@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { PoBreadcrumb, PoTableColumn } from "@po-ui/ng-components";
 import { IntegrationMonitor } from "src/app/pages/admin/interfaces/integration-monitor";
-import { MonitorDeIntegracaoService } from "src/app/pages/admin/services/monitor-de-integracao.service";
+import { IntegrationMonitorService } from "src/app/pages/admin/services/integration-monitor.service";
 
 @Component({
   selector: "app-integration-monitor",
@@ -41,7 +41,7 @@ export class IntegrationMonitorComponent implements OnInit, OnDestroy {
   timeOutRequest: any;
   timeOutCount: any;
 
-  constructor(private integrationMonitorService: MonitorDeIntegracaoService) {}
+  constructor(private integrationMonitorService: IntegrationMonitorService) {}
 
   ngOnInit(): void {
     this.getIntegrationMonitor();

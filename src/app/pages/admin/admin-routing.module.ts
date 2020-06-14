@@ -5,8 +5,8 @@ import { ClientComponent } from './client/client-view/client.component';
 import { ClientEditComponent } from './client/client-edit/client-edit.component';
 import { RepresentativeComponent } from './representative/representative-view/representative.component';
 import { RepresentativeEditComponent } from './representative/representative-edit/representative-edit.component';
-import { UsuarioComponent } from './usuario/usuario-view/usuario.component';
-import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
+import { UserComponent } from './user/user-view/user.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { SalesGroupComponent } from './sales-group/sales-group-view/sales-group.component';
 import { SalesGroupEditComponent } from './sales-group/sales-group-edit/sales-group-edit.component';
 import { NatureComponent } from './nature/nature-view/nature.component';
@@ -26,9 +26,9 @@ const routes: Routes = [
   { path: 'representante-new', component: RepresentativeEditComponent },
   { path: 'representante-edit/:id', component: RepresentativeEditComponent },
 
-  { path: 'usuario', component: UsuarioComponent },
-  { path: 'usuario-new', component: UsuarioEditComponent },
-  { path: 'usuario-edit/:id', component: UsuarioEditComponent },
+  { path: 'usuario', component: UserComponent },
+  { path: 'usuario-new', component: UserEditComponent },
+  { path: 'usuario-edit/:id', component: UserEditComponent },
 
   { path: 'grupo-de-vendas', component: SalesGroupComponent },
   { path: 'grupo-de-vendas-edit/:id', component: SalesGroupEditComponent },

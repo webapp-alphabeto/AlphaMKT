@@ -5,8 +5,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PortinariModule } from "src/app/portinari/portinari.module";
 import { AdminRoutingModule } from "./admin-routing.module";
 
-import { UsuarioComponent } from "./usuario/usuario-view/usuario.component";
-import { UsuarioEditComponent } from "./usuario/usuario-edit/usuario-edit.component";
+import { UserComponent } from "./user/user-view/user.component";
+import { UserEditComponent } from "./user/user-edit/user-edit.component";
 import { SalesGroupComponent } from "./sales-group/sales-group-view/sales-group.component";
 import { SalesGroupEditComponent } from "./sales-group/sales-group-edit/sales-group-edit.component";
 import { NatureComponent } from "./nature/nature-view/nature.component";
@@ -24,8 +24,8 @@ import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-
 
 @NgModule({
   declarations: [
-    UsuarioComponent,
-    UsuarioEditComponent,
+    UserComponent,
+    UserEditComponent,
     SalesGroupComponent,
     SalesGroupEditComponent,
     NatureComponent,
