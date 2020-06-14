@@ -10,7 +10,7 @@ import { PoPageLogin } from '@po-ui/ng-templates';
 export class LoginService {
   constructor(private http: HttpClient) {}
 
-  logar(login: PoPageLogin): Observable<{ token: string }> {
+  login(login: PoPageLogin): Observable<{ token: string }> {
     const url = `${environment.serviceApi}login`;
     return this.http.post<{ token: string }>(url, login);
   }

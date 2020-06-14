@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   Login(login: PoPageLogin) {
     this.loginLoad = true;
-    this.loginService.logar(login).subscribe(
+    this.loginService.login(login).subscribe(
       (response: { token: string }) => {
         this.authService.login(response.token);
       },

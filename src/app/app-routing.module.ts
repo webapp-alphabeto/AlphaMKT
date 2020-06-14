@@ -2,8 +2,8 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { BasicGuard } from './core/guards/basic.guard';
 import { MarketingGuard } from './core/guards/marketing.guard';
-import { AdministradorGuard } from './core/guards/administrador.guard';
-import { RepresentanteGuard } from './core/guards/representante.guard';
+import { AdministratorGuard } from './core/guards/administrator.guard';
+import { RepresentativeGuard } from './core/guards/representative.guard';
 
 const routes: Routes = [
   {
@@ -27,10 +27,10 @@ const routes: Routes = [
   {
     path: "administracao",
     loadChildren: () =>
-      import("./pages/administracao/administracao.module").then(
+      import("./pages/admin/admin.module").then(
         (m) => m.AdministracaoModule
       ),
-    canActivate: [AdministradorGuard],
+    canActivate: [AdministratorGuard],
   },
 
   {
@@ -39,7 +39,7 @@ const routes: Routes = [
       import("./pages/representante/representante.module").then(
         (m) => m.RepresentanteModule
       ),
-      canActivate:[ RepresentanteGuard],      
+      canActivate:[ RepresentativeGuard],      
   },
 
   { path: "", pathMatch: "full", redirectTo: "home" },

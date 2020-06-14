@@ -4,11 +4,11 @@ import { PoPageDynamicTableActions, PoPageDynamicTableField } from '@po-ui/ng-te
 import { PoBreadcrumb } from '@po-ui/ng-components';
 
 @Component({
-  selector: 'app-condicoes-de-pagamento',
-  templateUrl: './condicoes-de-pagamento.component.html',
-  styleUrls: ['./condicoes-de-pagamento.component.css']
+  selector: 'app-payment-terms',
+  templateUrl: './payment-terms.component.html',
+  styleUrls: ['./payment-terms.component.css']
 })
-export class CondicoesDePagamentoComponent implements OnInit {
+export class PaymentTermsComponent implements OnInit {
 
   serviceApi = `${environment.serviceApi}condicoes-de-pagamento`;
   constructor() { }
@@ -30,9 +30,9 @@ export class CondicoesDePagamentoComponent implements OnInit {
 
   public readonly fields: Array<PoPageDynamicTableField> = [
     { property: 'id', key: true, visible: false },
-    { property: 'condicao', label: 'Condição', filter: true, gridColumns: 6 },
-    { property: 'nome', label: 'Nome', filter: true, gridColumns: 6 },
-    { property: 'acrescimo', label: 'Acrescimo', filter: true, gridColumns: 6 },
-    { property: 'ativo', label: 'Ativo', filter: true, type: 'boolean', booleanFalse: 'Não', booleanTrue: 'Sim', gridColumns: 6 }
+    { property: 'term', label: 'Condição', filter: true, gridColumns: 6 },
+    { property: 'name', label: 'Nome', filter: true, gridColumns: 6 },
+    { property: 'addtion', label: 'Acrescimo', filter: true, gridColumns: 6 },
+    { property: 'active', label: 'Ativo', filter: true, type: 'boolean', booleanFalse: 'Não', booleanTrue: 'Sim', gridColumns: 6 }
   ];
 }

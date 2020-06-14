@@ -19,7 +19,7 @@ export class AlterarSenhaComponent implements OnInit {
 
   alterarSenha(evento: PoPageChangePassword) {
     this.usuarioService
-      .alterarSenha(this.tokenService.DadosDoUsuario.id, evento)
+      .alterarSenha(this.tokenService.Claims.id, evento)
       .subscribe(() => { });
   }
 

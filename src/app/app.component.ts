@@ -54,7 +54,7 @@ export class AppComponent {
   }
 
   private verificarSeUsuarioJaEstaAutenticado() {
-    this.auth.Autenticado$().subscribe((autenticado: boolean) => {
+    this.auth.Authenticated$().subscribe((autenticado: boolean) => {
       if (!autenticado) {
         this.router.navigateByUrl("/login");
       }

@@ -10,7 +10,7 @@ import { TokenService } from "src/app/core/services/token.service";
   styleUrls: ["./clientes.component.css"],
 })
 export class ClientesComponent implements OnInit {
-  public readonly serviceApi = `${environment.serviceApi}representative-area/my-client/${this.tokenService.DadosDoUsuario.representanteId}`;
+  public readonly serviceApi = `${environment.serviceApi}representative-area/my-client/${this.tokenService.Claims.representativeId}`;
 
   constructor(private tokenService: TokenService) {}
 

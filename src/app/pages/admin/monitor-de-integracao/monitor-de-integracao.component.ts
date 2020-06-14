@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { PoBreadcrumb, PoTableColumn } from "@po-ui/ng-components";
-import { MonitorDeIntegracao } from "src/app/pages/administracao/interfaces/monitor-de-integracao";
-import { MonitorDeIntegracaoService } from "src/app/pages/administracao/services/monitor-de-integracao.service";
+import { MonitorDeIntegracao } from "src/app/pages/admin/interfaces/monitor-de-integracao";
+import { MonitorDeIntegracaoService } from "src/app/pages/admin/services/monitor-de-integracao.service";
 
 @Component({
   selector: "app-monitor-de-integracao",

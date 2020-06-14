@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { NivelDeAcesso } from 'src/app/core/enums/nivel-de-acesso.enum';
+import { AccessLevel } from 'src/app/core/enums/access-level.enum';
 import { PoMenuItemNivelDeAcesso } from '../interfaces/po-menu-item-nivel-de-acesso';
 import { PoMenuItem } from '@po-ui/ng-components';
 
@@ -32,8 +32,8 @@ export class MenuService {
     this.exibirMenu.next(false);
   }
 
-  getMenu(nivelDeAcesso: NivelDeAcesso) {
-    if (nivelDeAcesso == NivelDeAcesso.Administracao) {
+  getMenu(nivelDeAcesso: AccessLevel) {
+    if (nivelDeAcesso == AccessLevel.Administracao) {
       // this.menuFiltrado = this.menu;
       return this.menu;
     }
@@ -50,24 +50,24 @@ export class MenuService {
       shortLabel: "Home",
       link: "/home",
       nivelDeAcesso: [
-        NivelDeAcesso.Administracao,
-        NivelDeAcesso.Cliente,
-        NivelDeAcesso.Marketing,
-        NivelDeAcesso.Representante,
+        AccessLevel.Administracao,
+        AccessLevel.Cliente,
+        AccessLevel.Marketing,
+        AccessLevel.Representante,
       ],
     },
     {
       label: "Marketing",
       icon: "po-icon po-icon-camera",
       shortLabel: "Marketing",
-      nivelDeAcesso: [NivelDeAcesso.Administracao, NivelDeAcesso.Marketing],
+      nivelDeAcesso: [AccessLevel.Administracao, AccessLevel.Marketing],
       subItems: [{ label: "Fotos de Produtos", link: "/marketing/produtos" }],
     },
     {
       label: "Administração",
       icon: "po-icon po-icon-edit",
       shortLabel: "Administração",
-      nivelDeAcesso: [NivelDeAcesso.Administracao],
+      nivelDeAcesso: [AccessLevel.Administracao],
       subItems: [
         { label: "Cliente", link: "/administracao/cliente" },
         { label: "Representante", link: "/administracao/representante" },

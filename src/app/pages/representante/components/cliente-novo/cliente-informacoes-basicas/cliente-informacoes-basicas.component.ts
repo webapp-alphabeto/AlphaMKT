@@ -23,7 +23,7 @@ export class ClienteInformacoesBasicasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.clienteEdit.representanteId = this.tokenService.DadosDoUsuario.representanteId;
+    this.clienteEdit.representanteId = this.tokenService.Claims.representativeId;
   }
 
   consultCustomer() {
@@ -31,7 +31,7 @@ export class ClienteInformacoesBasicasComponent implements OnInit {
     const documento = this.clienteEdit.documento;
 
     this.clienteService
-      .get(documento, this.tokenService.DadosDoUsuario.representanteId)
+      .get(documento, this.tokenService.Claims.representativeId)
       .subscribe((resposta: any) => {
         const cliente = resposta.cliente as IRepresentanteClienteEdit;
         this.atribuirPropriedadesDocliente(cliente);

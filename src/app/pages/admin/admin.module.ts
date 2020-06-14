@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { PortinariModule } from "src/app/portinari/portinari.module";
-import { AdministracaoRoutingModule } from "./administracao-routing.module";
+import { AdminRoutingModule } from "./admin-routing.module";
 
 import { UsuarioComponent } from "./usuario/usuario-view/usuario.component";
 import { UsuarioEditComponent } from "./usuario/usuario-edit/usuario-edit.component";
@@ -11,13 +11,13 @@ import { GrupoDeVendasComponent } from "./grupo-de-vendas/grupo-de-vendas-view/g
 import { GrupoDeVendasEditComponent } from "./grupo-de-vendas/grupo-de-vendas-edit/grupo-de-vendas-edit.component";
 import { NaturezaComponent } from "./natureza/natureza-view/natureza.component";
 import { NaturezaEditComponent } from "./natureza/natureza-edit/natureza-edit.component";
-import { CondicoesDePagamentoComponent } from "./condicoes-de-pagamento/condicoes-de-pagamento-view/condicoes-de-pagamento.component";
-import { CondicoesDePagamentoEditComponent } from "./condicoes-de-pagamento/condicoes-de-pagamento-edit/condicoes-de-pagamento-edit.component";
+import { PaymentTermsComponent } from "./payment-terms/payment-terms-view/payment-terms.component";
+import { PaymentTermsEditComponent } from "./payment-terms/payment-terms-edit/payment-terms-edit.component";
 import { MonitorDeIntegracaoComponent } from "./monitor-de-integracao/monitor-de-integracao.component";
 import { RepresentanteComponent } from "./representante/representante-view/representante.component";
 import { RepresentanteEditComponent } from "./representante/representante-edit/representante-edit.component";
-import { ClienteComponent } from "./cliente/cliente-view/cliente.component";
-import { ClienteEditComponent } from "./cliente/cliente-edit/cliente-edit.component";
+import { ClientComponent } from "./client/client-view/client.component";
+import { ClientEditComponent } from "./client/client-edit/client-edit.component";
 
 import { TokenApiService } from 'src/app/core/interceptors/token-api.service';
 import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-api.service';
@@ -30,15 +30,15 @@ import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-
     GrupoDeVendasEditComponent,
     NaturezaComponent,
     NaturezaEditComponent,
-    CondicoesDePagamentoComponent,
-    CondicoesDePagamentoEditComponent,
+    PaymentTermsComponent,
+    PaymentTermsEditComponent,
     MonitorDeIntegracaoComponent,
     RepresentanteComponent,
     RepresentanteEditComponent,
-    ClienteComponent,
-    ClienteEditComponent,
+    ClientComponent,
+    ClientEditComponent,
   ],
-  imports: [CommonModule, AdministracaoRoutingModule, PortinariModule],
+  imports: [CommonModule, AdminRoutingModule, PortinariModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

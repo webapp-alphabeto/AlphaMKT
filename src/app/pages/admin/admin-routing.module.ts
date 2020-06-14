@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ClienteComponent } from './cliente/cliente-view/cliente.component';
-import { ClienteEditComponent } from './cliente/cliente-edit/cliente-edit.component';
+import { ClientComponent } from './client/client-view/client.component';
+import { ClientEditComponent } from './client/client-edit/client-edit.component';
 import { RepresentanteComponent } from './representante/representante-view/representante.component';
 import { RepresentanteEditComponent } from './representante/representante-edit/representante-edit.component';
 import { UsuarioComponent } from './usuario/usuario-view/usuario.component';
@@ -11,16 +11,16 @@ import { GrupoDeVendasComponent } from './grupo-de-vendas/grupo-de-vendas-view/g
 import { GrupoDeVendasEditComponent } from './grupo-de-vendas/grupo-de-vendas-edit/grupo-de-vendas-edit.component';
 import { NaturezaComponent } from './natureza/natureza-view/natureza.component';
 import { NaturezaEditComponent } from './natureza/natureza-edit/natureza-edit.component';
-import { CondicoesDePagamentoComponent } from './condicoes-de-pagamento/condicoes-de-pagamento-view/condicoes-de-pagamento.component';
-import { CondicoesDePagamentoEditComponent } from './condicoes-de-pagamento/condicoes-de-pagamento-edit/condicoes-de-pagamento-edit.component';
+import { PaymentTermsComponent } from './payment-terms/payment-terms-view/payment-terms.component';
+import { PaymentTermsEditComponent } from './payment-terms/payment-terms-edit/payment-terms-edit.component';
 import { MonitorDeIntegracaoComponent } from './monitor-de-integracao/monitor-de-integracao.component';
 
 
 
 const routes: Routes = [
-  { path: 'cliente', component: ClienteComponent },
-  { path: 'cliente-new', component: ClienteEditComponent },
-  { path: 'cliente-edit/:id', component: ClienteEditComponent },
+  { path: 'cliente', component: ClientComponent },
+  { path: 'cliente-new', component: ClientEditComponent },
+  { path: 'cliente-edit/:id', component: ClientEditComponent },
 
   { path: 'representante', component: RepresentanteComponent },
   { path: 'representante-new', component: RepresentanteEditComponent },
@@ -36,8 +36,8 @@ const routes: Routes = [
   { path: 'natureza', component: NaturezaComponent },
   { path: 'natureza-edit/:id', component: NaturezaEditComponent },
 
-  { path: 'condicoes-de-pagamento', component: CondicoesDePagamentoComponent },
-  { path: 'condicoes-de-pagamento-edit/:id', component: CondicoesDePagamentoEditComponent },
+  { path: 'condicoes-de-pagamento', component: PaymentTermsComponent },
+  { path: 'condicoes-de-pagamento-edit/:id', component: PaymentTermsEditComponent },
 
   { path: 'monitor-de-integracao', component: MonitorDeIntegracaoComponent },
 
@@ -48,4 +48,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdministracaoRoutingModule { }
+export class AdminRoutingModule { }

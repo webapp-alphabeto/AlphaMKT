@@ -14,26 +14,26 @@ export class AuthService {
     private tokenService: TokenService,
     private profileService: ProfileService) { }
 
-  Autenticado = new BehaviorSubject<boolean>(this.hasToken());
+  Authenticated = new BehaviorSubject<boolean>(this.hasToken());
 
   private hasToken(): boolean {
     return !!this.tokenService.token;
   }
 
-  Autenticado$(): Observable<boolean> {
-    return this.Autenticado.asObservable();
+  Authenticated$(): Observable<boolean> {
+    return this.Authenticated.asObservable();
   }
 
   login(token: string): void {
     this.tokenService.token = token;
-    this.Autenticado.next(true);
+    this.Authenticated.next(true);
     this.router.navigateByUrl("/");
   }
 
   logout(): void {
-    this.tokenService.resetarToken();    
+    this.tokenService.resetToken();    
     this.profileService.resetarProfile();
-    this.Autenticado.next(false);
+    this.Authenticated.next(false);
   }
 }
 

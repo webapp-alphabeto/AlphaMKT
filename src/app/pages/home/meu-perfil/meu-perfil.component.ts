@@ -44,7 +44,7 @@ export class MeuPerfilComponent implements OnInit {
 
   private ObterUsuario() {
     this.usuarioService
-      .getById(this.tokenService.DadosDoUsuario.id)
+      .getById(this.tokenService.Claims.id)
       .subscribe((x: IUsuario) => {
         this.usuario = x;
       });
@@ -63,7 +63,7 @@ export class MeuPerfilComponent implements OnInit {
   }
 
   incluirImagemDoPerfil(evento: any) {
-    evento.data.id = this.tokenService.DadosDoUsuario.id;
+    evento.data.id = this.tokenService.Claims.id;
   }
 
   obterPerfil(evento: HttpResponse<PoToolbarProfile>) {

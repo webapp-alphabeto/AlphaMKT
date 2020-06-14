@@ -1,10 +1,10 @@
-import { NivelDeAcesso } from '../enums/nivel-de-acesso.enum';
+import { AccessLevel } from '../enums/access-level.enum';
 
 export interface IClaims {
-  nome: string;
-  nivelDeAcesso: NivelDeAcesso;
+  name: string;
+  accessLevel: AccessLevel;
   email: string;
-  foto: string;
+  photo: string;
   id: number;
-  representanteId: number;
+  representativeId: number;
 }

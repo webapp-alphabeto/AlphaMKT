@@ -21,30 +21,30 @@ export class TokenService {
   }
 
   private claimsToProfile() {
-    const claims = this.DadosDoUsuario;
+    const claims = this.Claims;
 
     const profile = {
-      title: claims.nome,
-      avatar: claims.foto,
+      title: claims.name,
+      avatar: claims.photo,
       subtitle: claims.email,
     } as PoToolbarProfile;
 
     this.profileService.profile = profile;
   }
 
-  get DadosDoUsuario(): IClaims {
+  get Claims(): IClaims {
     try {
-      const decode = jwt_decode(this.token);
+      let decode = jwt_decode(this.token);
       decode.id = parseInt(decode.id);
-      decode.representanteId = parseInt(decode.representanteId);
-      decode.nivelDeAcesso = parseInt(decode.nivelDeAcesso);
+      decode.representativeId = parseInt(decode.representativeId);
+      decode.accessLevel = parseInt(decode.accessLevel);
       return decode;
     } catch (error) {
       return null;
     }
   }
 
-  resetarToken() {
+  resetToken() {
     localStorage.removeItem(TOKEN_STORAGE);
   }
 }
