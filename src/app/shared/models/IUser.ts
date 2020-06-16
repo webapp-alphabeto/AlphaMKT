@@ -10,5 +10,3 @@ export interface IUser extends IEntityIdentity {
     active: boolean;
     representativeId: number | null;
 }
-
-

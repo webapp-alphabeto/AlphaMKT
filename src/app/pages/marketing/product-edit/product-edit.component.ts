@@ -6,7 +6,7 @@ import { ProductPhotoService } from 'src/app/pages/marketing/services/product-ph
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { PoUploadFileRestrictions } from '@po-ui/ng-components';
-import { IProductWithPhoto } from 'src/app/shared/models/IProductWithPhoto';
+import { IProductWithPhoto } from 'src/app/pages/marketing/interfaces/IProductWithPhoto';
 
 @Component({
   selector: 'app-product-edit',

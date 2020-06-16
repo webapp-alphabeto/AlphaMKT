@@ -1,0 +1,44 @@
+import { IEntityIdentity } from './IEntityIdentity';
+import { ICity } from './ICity';
+import { Systems } from '../enums/system.enums';
+import { IntegrationStatus } from 'src/app/pages/admin/enums/integration-status.enum';
+
+export interface IRepresentative extends IEntityIdentity {
+    cityId: string;
+    county: ICity;
+    personalCityId: string;
+    personalCounty: ICity;
+    providerProtheusId: string;
+    salesManProtheusId: string;
+    document: string;
+    companyName: string;
+    fantasyName: string;
+    uF: string;
+    countyCode: string;
+    city: string;
+    adrres: string;
+    neighborhood: string;
+    complement: string;
+    zipCode: string;
+    dDD: string;
+    phone: string;
+    email: string;
+    stateRegistration: string;
+    system: Systems;
+    integrationStatus: IntegrationStatus;
+    municipalRegistration: string;
+    deleted: boolean;
+    bank: string;
+    agency: string;
+    account: string;
+    coreNumber: string;
+    cpf: string;
+    rG: string;
+    personalUf: string;
+    personalCountyCode: string;
+    personalCity: string;
+    personalAddress: string;
+    personalNeighborhood: string;
+    personalComplement: string;
+    personalZipCode: string;
+}

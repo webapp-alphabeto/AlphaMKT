@@ -1,0 +1,52 @@
+<form #form="ngForm">
+  <div class="po-row">
+    <po-input
+      p-no-autocomplete
+      #cnpj
+      class="po-md-3"
+      name="cnpj"
+      p-clean
+      p-icon="po-icon po-icon-company"
+      p-label="CNPJ"
+      p-mask="99.999.999/9999-99"
+      [(ngModel)]="referenciaComercial.cnpj"
+      p-required
+      p-auto-focus
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-3"
+      name="empresa"
+      p-clean
+      p-label="Empresa"
+      [(ngModel)]="referenciaComercial.company"
+      p-required
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-3"
+      name="contato"
+      p-clean
+      p-label="Contato"
+      [(ngModel)]="referenciaComercial.contact"
+      p-required
+    >
+    </po-input>
+
+    <po-button
+      [p-disabled]="form.invalid"
+      (p-click)="onSubmit(); cnpj.focus()"
+      p-icon="po-icon po-icon-plus"
+      style="align-self: flex-end;"
+      class="po-mb-1"
+      p-tooltip="Incluir"
+    ></po-button>
+  </div>
+
+  <po-divider></po-divider>
+  <po-table
+    [p-items]="referenciasComerciais | maskArray: 'cnpj':'99.999.999/9999-99'"
+  ></po-table>
+</form>

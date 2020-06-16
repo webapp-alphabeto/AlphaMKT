@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
   @ViewChild("advancedFilter", { static: true })
   advancedFilterModal: PoModalComponent;
   @ViewChild("productEditModal", { static: true })
-  produtoEditModal: PoModalComponent;
+  productEditModal: PoModalComponent;
   @ViewChild(ProductEditComponent, { static: true })
   productEditComponent: ProductEditComponent;
   @ViewChild(PoButtonComponent, { read: ElementRef, static: true })
@@ -72,7 +72,7 @@ export class ProductsComponent implements OnInit {
 
   public readonly saveProduct: PoModalAction = {
     action: () => {
-      this.produtoEditModal.close();
+      this.productEditModal.close();
       this.productEditComponent
         .updateComplementaryProductInformation()
         .subscribe((x) => {
@@ -218,7 +218,7 @@ export class ProductsComponent implements OnInit {
     const referencia = item.reference;
     this.titleProductEditModal = item.reference + " - " + item.model;
     this.productEditComponent.runQueries(referencia);
-    this.produtoEditModal.open();
+    this.productEditModal.open();
   }
 
   progressOfAddingPhotos(): number {

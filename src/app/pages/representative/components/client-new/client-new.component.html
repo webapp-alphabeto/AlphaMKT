@@ -1,0 +1,63 @@
+<po-page-default p-title="Cadastro de cliente">
+  <po-stepper #stepper>
+    <po-step
+      p-label="Informações básicas"
+      [p-can-active-next-step]="validarInformacaoesBasicas.bind(this, infoBasica.clienteForm)"
+    >
+      <po-widget
+        p-primary-label="Avançar"
+        (p-primary-action)="stepper.next()"
+        p-no-shadow="true"
+      >
+        <app-client-new-form #infoBasica [clienteEdit]="clientEdit">
+        </app-client-new-form>
+      </po-widget>
+    </po-step>
+
+    <po-step
+      p-label="Referências comerciais"
+      [p-can-active-next-step]="validarReferenciasComerciais.bind(this, referenciaComercial.referenciasComerciais)"
+    >
+      <po-widget
+        p-primary-label="Avançar"
+        (p-primary-action)="stepper.next()"
+        p-title="Inclua ao menos 3 fornecedores"
+        p-no-shadow="true"
+      >
+        <app-client-new-commercial-references
+          #referenciaComercial
+          [referenciasComerciais]="clientEdit.commercialReferences"
+        ></app-client-new-commercial-references>
+      </po-widget>
+    </po-step>
+
+    <po-step
+      p-label="Fotos do ponto"
+      [p-can-active-next-step]="validarFotosDoPonto.bind(this, fotosDoProduto.fotos)"
+    >
+      <po-widget
+        p-primary-label="Avançar"
+        (p-primary-action)="stepper.next()"
+        p-title="Inclua as fotos conforme indicado"
+        p-no-shadow="true"
+      >
+        <app-client-new-store-pictures
+          #fotosDoProduto
+          [cnpj]="clientEdit.document"
+          [fotos]="clientEdit.photos"
+        ></app-client-new-store-pictures>
+      </po-widget>
+    </po-step>
+
+    <po-step p-label="Revisão do cadastro + Finalizar">
+      <po-widget
+        p-primary-label="Finalizar"
+        (p-primary-action)="incluir()"
+        p-title="Revise o cadastro e clique em finalizar"
+        p-no-shadow="true"
+      >
+        <app-review [client]="clientEdit"></app-review>
+      </po-widget>
+    </po-step>
+  </po-stepper>
+</po-page-default>

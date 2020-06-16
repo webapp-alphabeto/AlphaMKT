@@ -24,8 +24,8 @@ import { InvalidTokenApiService } from './core/interceptors/invalid-token-api.se
     BrowserAnimationsModule,
     AppRoutingModule,
     PortinariModule,
-    PoModule,
     SharedModule,
+    PoModule,
   ],
   providers: [
     {

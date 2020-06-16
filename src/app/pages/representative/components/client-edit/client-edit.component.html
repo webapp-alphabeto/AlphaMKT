@@ -1,0 +1,30 @@
+<po-page-default [p-breadcrumb]="breadcrumb">
+  <po-tabs *ngIf="client; else nothingToShow">
+    <po-tab p-label="informação geral">
+      <app-client-form [client]="client.client"> </app-client-form>
+    </po-tab>
+
+    <po-tab p-label="Contatos" p-active>
+      <app-client-edit-contacts
+        [contacts]="client.contacts"
+        [clientId]="clientId"
+      ></app-client-edit-contacts>
+    </po-tab>
+
+    <po-tab p-label="Referências comerciais">
+      <app-client-edit-commercial-references
+        [comercialReferences]="client.commercialReference"
+      ></app-client-edit-commercial-references>
+    </po-tab>
+
+    <po-tab p-label="Fotos do ponto">
+      <app-client-edit-store-pictures
+        [storePictures]="client.storePictures"
+      ></app-client-edit-store-pictures>
+    </po-tab>
+  </po-tabs>
+
+  <ng-template #nothingToShow>
+    Não foi possível carregar os dados do cliente
+  </ng-template>
+</po-page-default>

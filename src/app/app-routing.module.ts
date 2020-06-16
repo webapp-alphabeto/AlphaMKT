@@ -36,7 +36,7 @@ const routes: Routes = [
   {
     path: "representante",
     loadChildren: () =>
-      import("./pages/representante/representante.module").then(
+      import("./pages/representative/representative.module").then(
         (m) => m.RepresentanteModule
       ),
       canActivate:[ RepresentativeGuard],      
