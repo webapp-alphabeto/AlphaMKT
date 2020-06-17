@@ -2,21 +2,21 @@
   <po-stepper #stepper>
     <po-step
       p-label="Informações básicas"
-      [p-can-active-next-step]="validarInformacaoesBasicas.bind(this, infoBasica.clienteForm)"
+      [p-can-active-next-step]="validateNewClient.bind(this, infoBasica.clienteForm)"
     >
       <po-widget
         p-primary-label="Avançar"
         (p-primary-action)="stepper.next()"
         p-no-shadow="true"
       >
-        <app-client-new-form #infoBasica [clienteEdit]="clientEdit">
+        <app-client-new-form #infoBasica [clientEdit]="clientEdit">
         </app-client-new-form>
       </po-widget>
     </po-step>
 
     <po-step
       p-label="Referências comerciais"
-      [p-can-active-next-step]="validarReferenciasComerciais.bind(this, referenciaComercial.referenciasComerciais)"
+      [p-can-active-next-step]="validateCommercialReferences.bind(this, referenciaComercial.commercialReferences)"
     >
       <po-widget
         p-primary-label="Avançar"
@@ -26,14 +26,14 @@
       >
         <app-client-new-commercial-references
           #referenciaComercial
-          [referenciasComerciais]="clientEdit.commercialReferences"
+          [commercialReferences]="clientEdit.commercialReferences"
         ></app-client-new-commercial-references>
       </po-widget>
     </po-step>
 
     <po-step
       p-label="Fotos do ponto"
-      [p-can-active-next-step]="validarFotosDoPonto.bind(this, fotosDoProduto.fotos)"
+      [p-can-active-next-step]="validateStorePictures.bind(this, fotosDoProduto.fotos)"
     >
       <po-widget
         p-primary-label="Avançar"
@@ -52,7 +52,7 @@
     <po-step p-label="Revisão do cadastro + Finalizar">
       <po-widget
         p-primary-label="Finalizar"
-        (p-primary-action)="incluir()"
+        (p-primary-action)="add()"
         p-title="Revise o cadastro e clique em finalizar"
         p-no-shadow="true"
       >

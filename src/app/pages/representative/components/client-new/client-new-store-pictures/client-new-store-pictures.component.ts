@@ -13,7 +13,7 @@ import { UploadResponse } from '../../../interfaces/UploadResponse';
 export class ClientNewStorePicturesComponent implements OnInit {
   @Input() cnpj: string;
   @Input() fotos: UploadResponse[];
-  serviceApi = `${environment.serviceApi}novo-cliente/upload`;
+  serviceApi = `${environment.serviceApi}area-do-representante/novo-cliente/upload`;
   fotoPadrao = SEM_FOTO;
 
   fachada = {

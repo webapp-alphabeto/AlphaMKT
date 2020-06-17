@@ -46,7 +46,6 @@ export class ClientEditComponent implements OnInit {
     this.clientService
       .getById(this.clientId)
       .subscribe((x: MyClientEdit) => {
-        console.log(x)
         this.client = x;
         this.updateBreadCrumb();        
       });

@@ -5,12 +5,11 @@ import {
   PoTableAction,
   PoModalComponent,
   PoDialogService,
-  PoNotificationService,
   PoDialogType,
   PoModalAction,
 } from "@po-ui/ng-components";
 import { ContactService } from "../../../../../shared/services/contact.service";
-import { IContact } from 'src/app/shared/models/IContact';
+import { IContact } from "src/app/shared/models/IContact";
 
 @Component({
   selector: "app-client-edit-contacts",
@@ -24,9 +23,9 @@ export class ClientEditContactsComponent implements OnInit {
   contact: IContact;
 
   columns: Array<PoTableColumn> = [
-    { property: "tipo", label: "Tipo" },
-    { property: "nome", label: "Nome" },
-    { property: "telefone", label: "Telefone" },
+    { property: "type", label: "Tipo" },
+    { property: "name", label: "Nome" },
+    { property: "phone", label: "Telefone" },
     { property: "email", label: "Email" },
   ];
 
@@ -37,13 +36,7 @@ export class ClientEditContactsComponent implements OnInit {
     },
     {
       label: "Excluir",
-      action: () => {
-        this.poDialogDelete.openDialog(PoDialogType.Alert, {
-          title: "Deseja deletar esse contato:",
-          message: "Essa ação é irreversível",
-          confirm: this.deleteById.bind(this),
-        });
-      },
+      action: this.checkDelete.bind(this),
     },
   ];
 
@@ -54,14 +47,25 @@ export class ClientEditContactsComponent implements OnInit {
 
   constructor(
     private poDialogDelete: PoDialogService,
-    private poNotification: PoNotificationService,
-    private contatoService: ContactService
+    private contactService: ContactService
   ) {}
 
   ngOnInit(): void {}
 
+  checkDelete(contact: IContact) {
+    this.poDialogDelete.openDialog(PoDialogType.Alert, {
+      title: `Deseja deletar esse contato?`,
+      message: "Essa ação é irreversível",
+      ok: () => {
+        this.deleteById(contact);
+      },
+    });
+  }
+
   deleteById(contact: IContact) {
-    this.poNotification.success(`${contact.name} Deletado!`);
+    this.contactService.delete(contact.id).subscribe(() => {
+      this.getContacts();
+    });
   }
 
   openForEdit(contact: IContact) {
@@ -78,20 +82,22 @@ export class ClientEditContactsComponent implements OnInit {
 
   save() {
     if (this.contact.id) {
-      this.poNotification.success("update");
+      this.contactService.put(this.contact).subscribe(() => {
+        this.editaContact.close();
+        this.getContacts();
+      });
       return;
     }
 
-    this.contatoService.post(this.contact).subscribe((x) => {
+    this.contactService.post(this.contact).subscribe(() => {
       this.editaContact.close();
+      this.getContacts();
     });
   }
 
   getContacts() {
-    this.contacts.length = 0;
-
-    this.contatoService.get(this.clientId).subscribe((x) => {
-      this.contacts.push(x[x.length-1])
+    this.contactService.get(this.clientId).subscribe((x) => {
+      this.contacts = x;
     });
   }
 }

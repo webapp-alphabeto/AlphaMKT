@@ -86,6 +86,8 @@
   <div class="po-row po-mt-2 po-mb-2">
     <h5>(+) Contatos adicionais</h5>
     <po-table class="po-md-12" [p-items]="client.contacts"></po-table>
+
+    <pre>{{ client.contacts | json }}</pre>
   </div>
 </div>
 

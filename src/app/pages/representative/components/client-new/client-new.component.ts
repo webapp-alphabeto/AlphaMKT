@@ -31,7 +31,7 @@ export class ClientNewComponent implements OnInit, OnDestroy {
     public toolBarService: ToolBarService,
     public poDialog: PoDialogService,
     private poNotification: PoNotificationService,
-    private route: Router,
+    private router: Router,
     private clientService: ClientService
   ) {}
 
@@ -43,19 +43,19 @@ export class ClientNewComponent implements OnInit, OnDestroy {
     this.toolBarService.exibir();
   }
 
-  validarInformacaoesBasicas(form: NgForm) {
+  validateNewClient(form: NgForm) {
     if (form.invalid)
       this.poNotification.error("Preencha todos campos obrigatórios");
     return form.valid;
   }
 
-  validarReferenciasComerciais(items: Array<NewComercialReferences>) {
+  validateCommercialReferences(items: Array<NewComercialReferences>) {
     if (items.length < 3)
       this.poNotification.error("Preencha ao menos 3 fornecedores");
     return items.length >= 3;
   }
 
-  validarFotosDoPonto(items: Array<UploadResponse>) {
+  validateStorePictures(items: Array<UploadResponse>) {
     for (let index = 0; index < items.length; index++) {
       const item = items[index];
       if (item.name == null) {
@@ -66,21 +66,21 @@ export class ClientNewComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  incluir() {
+  add() {
     this.poDialog.openDialog(PoDialogType.Confirm, {
       message:
         "Tudo certo? Se sim ao clicar em confirmar o cliente será incluído.",
       title: "Inclusão de cliente",
-      confirm: () => this.confirmarInclusao(),
+      confirm: () => this.confirmAdd(),
     });
   }
 
-  confirmarInclusao() {
+  confirmAdd() {
     this.clientService
       .add(this.clientEdit)
       .subscribe((x: NewClient) => {
         this.poNotification.success(`Cliente incluido.`);
-        this.route.navigateByUrl("/representante/home");
+        this.router.navigateByUrl("/representante/home");
       });
   }
 }

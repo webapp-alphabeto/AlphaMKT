@@ -10,15 +10,15 @@ import { NewComercialReferences } from '../../../interfaces/NewComercialReferenc
 })
 export class ClientNewCommercialReferencesComponent implements OnInit {
   @ViewChild(NgForm, { static: true }) form: NgForm;
-  @Input() referenciasComerciais = [] as NewComercialReferences[];
-  referenciaComercial = {} as NewComercialReferences;
+  @Input() commercialReferences = [] as NewComercialReferences[];
+  commercialReference = {} as NewComercialReferences;
   constructor() {}
 
   ngOnInit(): void {}
 
-  onSubmit() {
-    const novoItem = this.form.value;
-    this.referenciasComerciais.push(novoItem);
+  add() {
+    const newItem = this.form.value;
+    this.commercialReferences.push(newItem);
     this.form.reset();
   }
 }

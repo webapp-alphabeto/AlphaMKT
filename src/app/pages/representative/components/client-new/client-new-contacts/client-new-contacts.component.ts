@@ -10,14 +10,14 @@ import { NewContact } from "../../../interfaces/NewContact";
 })
 export class ClientNewContactsComponent implements OnInit {
   @ViewChild(NgForm, { static: true }) form: NgForm;
-  @Input() contatos = [] as NewContact[];
+  @Input() contacts = [] as NewContact[];
 
-  contato = {} as NewContact;
-  mostrarFormulario = true;
+  contact = {} as NewContact;
+  showForm = true;
   columns: Array<PoTableColumn> = [
-    { property: "tipo", label: "Tipo" },
-    { property: "nome", label: "Nome" },
-    { property: "telefone", label: "Telefone" },
+    { property: "type", label: "Tipo" },
+    { property: "name", label: "Nome" },
+    { property: "phone", label: "Telefone" },
     { property: "email", label: "Email" },
   ];
 
@@ -25,28 +25,28 @@ export class ClientNewContactsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  incluir() {
-    const novoItem = this.form.value as NewContact;
+  add() {
+    const newItem = this.form.value as NewContact;
 
-    if (this.verificarSeContatoJaFoiInformado(novoItem)) return;
+    if (this.exists(newItem)) return;
 
-    this.contatos.push(novoItem);
+    this.contacts.push(newItem);
     this.form.reset();
   }
 
-  private verificarSeContatoJaFoiInformado(novoItem: NewContact): boolean {
-    const propriedades = Object.keys(novoItem);
-    for (const contato of this.contatos) {
-      for (const propriedade of propriedades)
-        if (contato[propriedade] == novoItem[propriedade])
-          return this.notificarExistencia(propriedade);
+  private exists(newItem: NewContact): boolean {
+    const props = Object.keys(newItem);
+    for (const contact of this.contacts) {
+      for (const prop of props)
+        if (contact[prop] == newItem[prop])
+          return this.notifyExistence(prop);
     }
 
     return false;
   }
 
-  private notificarExistencia(campo: string): boolean {
-    this.poNotification.error(`Você já informou um contato com esse ${campo}.`);
+  private notifyExistence(field: string): boolean {
+    this.poNotification.error(`Você já informou um contato com esse ${field}.`);
     return true;
   }
 }

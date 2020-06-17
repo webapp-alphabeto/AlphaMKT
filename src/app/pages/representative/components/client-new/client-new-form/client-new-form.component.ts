@@ -13,43 +13,43 @@ import { DataClient } from '../../../interfaces/DataClient';
 })
 export class ClientNewFormComponent implements OnInit {
   @ViewChild("clienteForm", { static: true }) clienteForm: NgForm;
-  @Input() clienteEdit = {} as NewClient;
+  @Input() clientEdit = {} as NewClient;
 
-  classificacaoDeCredito: string = "-.- ---";
-  cidadeService = `${environment.serviceApi}cidades/po-combo`;
+  creditRating: string = "-.- ---";
+  cityService = `${environment.serviceApi}cidades/po-combo`;
 
   constructor(
-    private clienteService: ClientService,
+    private clientService: ClientService,
     private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
-    this.clienteEdit.representativeId = this.tokenService.Claims.representativeId;
+    this.clientEdit.representativeId = this.tokenService.Claims.representativeId;
   }
 
   consultCustomer() {
     
-    const documento = this.clienteEdit.document;
+    const document = this.clientEdit.document;
 
-    this.clienteService
-      .get(documento, this.tokenService.Claims.representativeId)
-      .subscribe((resposta: DataClient) => {
-        const cliente = resposta.client as NewClient;
-        this.atribuirPropriedadesDocliente(cliente);
-        this.classificacaoDeCredito =
-          resposta.queryData.resultadoAnalise.classificacao;
+    this.clientService
+      .get(document, this.tokenService.Claims.representativeId)
+      .subscribe((response: DataClient) => {
+        const client = response.client as NewClient;
+        this.assignClientProperties(client);
+        this.creditRating =
+          response.queryData.resultadoAnalise.classificacao;
       });
   }
 
-  private atribuirPropriedadesDocliente(cliente: NewClient) {
+  private assignClientProperties(cliente: NewClient) {
     const propriedades = Object.keys(cliente);
     for (const propriedade of propriedades)
-      this.clienteEdit[propriedade] = cliente[propriedade];
+      this.clientEdit[propriedade] = cliente[propriedade];
   }
 
-  corDoLimiteDeCredito(): string {
-    if (this.classificacaoDeCredito == "Sem análise") return "danger";
-    if (this.clienteEdit.creditLimit > 0) return "success";
+  creditLimitColor(): string {
+    if (this.creditRating == "Sem análise") return "danger";
+    if (this.clientEdit.creditLimit > 0) return "success";
     return "info";
   }
 }

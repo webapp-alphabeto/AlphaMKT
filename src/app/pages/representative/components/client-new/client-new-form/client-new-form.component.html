@@ -1,5 +1,6 @@
 <form #clienteForm="ngForm" p-autocomplete="off">
   <div class="po-row">
+
     <po-input
       class="po-md-3"
       name="documento"
@@ -7,7 +8,7 @@
       p-icon="po-icon po-icon-company"
       p-label="CNPJ"
       p-mask="99.999.999/9999-99"
-      [(ngModel)]="clienteEdit.document"
+      [(ngModel)]="clientEdit.document"
       p-required
       p-auto-focus
     >
@@ -17,7 +18,7 @@
       p-label="Buscar"
       style="align-self: flex-end;"
       class="po-mb-1 po-ml-1"
-      [p-disabled]="!clienteEdit.document"
+      [p-disabled]="!clientEdit.document"
       (p-click)="consultCustomer()"
     ></po-button>
   </div>
@@ -29,19 +30,19 @@
       <po-tag
         class="po-ml-1"
         p-inverse="true"
-        [p-type]="corDoLimiteDeCredito()"
+        [p-type]="creditLimitColor()"
         p-icon="true"
-        p-value="Classificação: {{ classificacaoDeCredito }}"
+        p-value="Classificação: {{ creditRating }}"
       >
       </po-tag>
 
       <po-tag
         class="po-ml-1"
         p-inverse="true"
-        [p-type]="corDoLimiteDeCredito()"
+        [p-type]="creditLimitColor()"
         p-icon="true"
         p-value="Limite de crédito: {{
-          clienteEdit.creditLimit | currency: 'BRL'
+          clientEdit.creditLimit | currency: 'BRL'
         }}"
       >
       </po-tag>
@@ -56,7 +57,7 @@
       name="razaoSocial"
       p-clean
       p-label="Razão Social"
-      [(ngModel)]="clienteEdit.companyName"
+      [(ngModel)]="clientEdit.companyName"
       p-required
     >
     </po-input>
@@ -66,7 +67,7 @@
       name="nomeFantasia"
       p-clean
       p-label="Nome Fantasia"
-      [(ngModel)]="clienteEdit.fantasyName"
+      [(ngModel)]="clientEdit.fantasyName"
       p-required
     >
     </po-input>
@@ -76,7 +77,7 @@
       name="inscricaoEstadual"
       p-clean
       p-label="Inscrição Estadual"
-      [(ngModel)]="clienteEdit.stateRegistration"
+      [(ngModel)]="clientEdit.stateRegistration"
       p-required
     >
     </po-input>
@@ -86,7 +87,7 @@
       name="inscricaoMunicipal"
       p-clean
       p-label="Inscrição Municipal"
-      [(ngModel)]="clienteEdit.municipalRegistration"
+      [(ngModel)]="clientEdit.municipalRegistration"
       p-optional
     >
     </po-input>
@@ -96,7 +97,7 @@
       name="suframa"
       p-clean
       p-label="Suframa"
-      [(ngModel)]="clienteEdit.suframa"
+      [(ngModel)]="clientEdit.suframa"
       p-optional
     >
     </po-input>
@@ -108,8 +109,8 @@
       class="po-md-3"
       name="cidade"
       p-label="Cidade"
-      [p-filter-service]="cidadeService"
-      [(ngModel)]="clienteEdit.cityId"
+      [p-filter-service]="cityService"
+      [(ngModel)]="clientEdit.cityId"
     >
     </po-combo>
 
@@ -118,7 +119,7 @@
       name="endereco"
       p-clean
       p-label="Endereço"
-      [(ngModel)]="clienteEdit.address"
+      [(ngModel)]="clientEdit.address"
       p-required
     >
     </po-input>
@@ -128,7 +129,7 @@
       name="bairro"
       p-clean
       p-label="Bairro"
-      [(ngModel)]="clienteEdit.neighborhood"
+      [(ngModel)]="clientEdit.neighborhood"
       p-required
     >
     </po-input>
@@ -138,7 +139,7 @@
       name="cep"
       p-clean
       p-label="CEP"
-      [(ngModel)]="clienteEdit.cep"
+      [(ngModel)]="clientEdit.cep"
       p-mask="99999-999"
       p-required
     >
@@ -150,7 +151,7 @@
       p-clean
       p-label="Complemento"
       p-optional="true"
-      [(ngModel)]="clienteEdit.complement"
+      [(ngModel)]="clientEdit.complement"
     >
     </po-input>
   </div>
@@ -163,7 +164,7 @@
       name="contato"
       p-clean
       p-label="Contato (Nome)"
-      [(ngModel)]="clienteEdit.contact"
+      [(ngModel)]="clientEdit.contact"
       p-required
     >
     </po-input>
@@ -173,7 +174,7 @@
       name="telefone"
       p-clean
       p-label="Telefone"
-      [(ngModel)]="clienteEdit.phone"
+      [(ngModel)]="clientEdit.phone"
       p-mask="9999-9999?9"
       p-required
     >
@@ -184,7 +185,7 @@
       name="email"
       p-clean
       p-label="E-mail"
-      [(ngModel)]="clienteEdit.email"
+      [(ngModel)]="clientEdit.email"
       p-required
     >
     </po-email>
@@ -192,7 +193,7 @@
     <div class="po-row">
       <app-client-new-contacts
         class="po-md-12"
-        [contatos]="clienteEdit.contacts"
+        [contacts]="clientEdit.contacts"
       ></app-client-new-contacts>
     </div>
   </div>
@@ -205,7 +206,7 @@
       name="avaliacao"
       p-clean
       p-label="Avaliação"
-      [(ngModel)]="clienteEdit.rating"
+      [(ngModel)]="clientEdit.rating"
       p-maxlength="300"
       p-required
     >

@@ -1,44 +1,43 @@
 <form #contatoForm="ngForm">
   <div class="po-row">
     <po-button
-      *ngIf="mostrarFormulario; else novo"
+      *ngIf="showForm; else novo"
       p-icon="po-icon po-icon-plus"
       p-label="Mais contatos"
-      (p-click)="mostrarFormulario = !mostrarFormulario"
+      (p-click)="showForm = !showForm"
     ></po-button>
 
     <ng-template #novo>
       <po-divider p-label="Novo contato" class="po-md-12"></po-divider>
       <po-input
-        #tipo
+        #type
         class="po-md-3"
-        name="tipo"
+        name="type"
         p-clean
         p-placeholder="Pessoal, casa..."
         p-label="Contato (Tipo)"
-        [(ngModel)]="contato.type"
+        [(ngModel)]="contact.type"
         p-auto-focus
         p-required
       >
       </po-input>
       <po-input
-        #nome
+        #name
         class="po-md-3"
-        name="nome"
+        name="name"
         p-clean
         p-label="Contato (Nome)"
-        [(ngModel)]="contato.name"
-        p-auto-focus
+        [(ngModel)]="contact.name"
         p-required
       >
       </po-input>
 
       <po-input
         class="po-md-3"
-        name="telefone"
+        name="phone"
         p-clean
         p-label="Telefone"
-        [(ngModel)]="contato.phone"
+        [(ngModel)]="contact.phone"
         p-mask="(99) 9999-9999?9"
         p-required
       >
@@ -49,7 +48,7 @@
         name="email"
         p-clean
         p-label="E-mail"
-        [(ngModel)]="contato.email"
+        [(ngModel)]="contact.email"
         p-required
       >
       </po-email>
@@ -60,7 +59,7 @@
         p-icon="po-icon po-icon-plus"
         [p-disabled]="contatoForm.invalid"
         p-tooltip="Adicionar"
-        (p-click)="incluir(); nome.focus()"
+        (p-click)="add(); type.focus()"
       ></po-button>
 
       <po-button
@@ -68,7 +67,7 @@
         class="po-mb-1 po-ml-1"
         p-icon="po-icon po-icon-delete"
         p-tooltip="Cancelar"
-        (p-click)="mostrarFormulario = !mostrarFormulario"
+        (p-click)="showForm = !showForm"
       ></po-button>
     </ng-template>
   </div>
@@ -77,7 +76,7 @@
     <div class="po-md-12">
       <po-table
         class="po-xl-6 po-md-6 po-sm-12"
-        [p-items]="contatos | maskArray: 'telefone':'(99) 9999-9999?9'"
+        [p-items]="contacts | maskArray: 'telefone':'(99) 9999-9999?9'"
         [p-columns]="columns"
       >
       </po-table>
