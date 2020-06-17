@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ICommercialReference } from 'src/app/shared/models/ICommercialReference';
 
 @Component({
   selector: 'app-client-edit-commercial-references-edit',
@@ -6,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./client-edit-commercial-references-edit.component.css']
 })
 export class ClientEditCommercialReferencesEditComponent implements OnInit {
+  @Input() commercialReference: ICommercialReference;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

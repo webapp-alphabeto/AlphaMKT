@@ -1,1 +1,27 @@
-<p>client-comercial-references works!</p>
+<div class="po-page-header-actions">
+  <po-button
+    p-label="Novo"
+    p-type="primary"
+    (p-click)="openForCreate()"
+  ></po-button>
+</div>
+
+<div class="po-row">
+  <po-table
+    class="po-md-12 po-mt-2"
+    [p-items]="commercialReferences"
+    [p-columns]="columns"
+    [p-actions]="actions"
+  ></po-table>
+
+  <po-modal
+    #editCommercialReference
+    p-title="Editar contato"
+    [p-primary-action]="modalEditPrimaryAction"
+  >
+    <app-client-edit-commercial-references-edit
+      [commercialReference]="commercialReference"
+    >
+    </app-client-edit-commercial-references-edit>
+  </po-modal>
+</div>

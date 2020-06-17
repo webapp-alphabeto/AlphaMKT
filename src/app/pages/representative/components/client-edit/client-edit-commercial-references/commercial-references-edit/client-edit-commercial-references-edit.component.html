@@ -1,1 +1,30 @@
-<p>comercial-references-edit works!</p>
+<form #form="ngForm" *ngIf="commercialReference">
+    <div class="po-row">
+      <po-input
+        class="po-md-12"
+        name="cnpj"
+        [(ngModel)]="commercialReference.cnpj"
+        p-label="Cnpj"
+        p-mask="99.999.999/9999-99"
+      >
+      </po-input>
+  
+      <po-input
+        class="po-md-12"
+        name="company"
+        [(ngModel)]="commercialReference.company"
+        p-label="Empresa"
+      >
+      </po-input>
+    </div>
+  
+    <po-input
+      class="po-md-12"
+      name="contact"
+      [(ngModel)]="commercialReference.contact"
+      p-label="Contato"
+    >
+    </po-input>
+  
+  </form>
+  

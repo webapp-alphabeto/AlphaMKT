@@ -4,16 +4,17 @@
       <app-client-form [client]="client.client"> </app-client-form>
     </po-tab>
 
-    <po-tab p-label="Contatos" p-active>
+    <po-tab p-label="Contatos">
       <app-client-edit-contacts
         [contacts]="client.contacts"
         [clientId]="clientId"
       ></app-client-edit-contacts>
     </po-tab>
 
-    <po-tab p-label="Referências comerciais">
+    <po-tab p-label="Referências comerciais" p-active>
       <app-client-edit-commercial-references
-        [comercialReferences]="client.commercialReference"
+        [commercialReferences]="client.commercialReference"
+        [clientId]="clientId"
       ></app-client-edit-commercial-references>
     </po-tab>
 
