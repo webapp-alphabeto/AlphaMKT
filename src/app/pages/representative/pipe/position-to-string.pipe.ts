@@ -5,7 +5,7 @@ import { PhotoPosition } from "../enums/photo-position.enum";
   name: "positionToString",
 })
 export class PositionToStringPipe implements PipeTransform {
-  transform(value: PhotoPosition, ...args: unknown[]): unknown {
+  transform(value: PhotoPosition, ...args: unknown[]): string {
     switch (value) {
       case PhotoPosition.Fachada:
         return "Fachada";

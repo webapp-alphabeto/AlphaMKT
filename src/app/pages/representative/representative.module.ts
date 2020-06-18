@@ -25,6 +25,7 @@ import { ClientNewStorePicturesComponent } from "./components/client-new/client-
 import { ReviewComponent } from "./components/client-new/review/review.component";
 import { ClientNewComponent } from "./components/client-new/client-new.component";
 import { ClientEditCommercialReferencesEditComponent } from './components/client-edit/client-edit-commercial-references/commercial-references-edit/client-edit-commercial-references-edit.component';
+import { ClientEditStorePicturesEditComponent } from './components/client-edit/client-edit-store-pictures/client-edit-store-pictures-edit/client-edit-store-pictures-edit.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ClientEditCommercialReferencesEditComponent } from './components/client
     ClientNewStorePicturesComponent,
     ReviewComponent,
     ClientNewComponent,
+    ClientEditStorePicturesEditComponent,
   ],
   imports: [
     CommonModule,

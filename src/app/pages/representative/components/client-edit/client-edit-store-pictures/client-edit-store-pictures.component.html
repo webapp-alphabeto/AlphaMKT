@@ -1,1 +1,51 @@
-<p>client-photos-of-point works!</p>
+<div class="po-page-header-actions po-mb-2">
+  <po-button
+    p-label="Novo"
+    p-type="primary"
+    (p-click)="openForCreate()"
+  ></po-button>
+</div>
+
+<div class="po-row po-mt-2">
+  <po-widget
+    class="po-md-4"
+    *ngFor="let item of storePictures"
+    [p-title]="item.photoPosition | positionToString"
+  >
+    <po-avatar [p-src]="item.photo" p-size="xl"> </po-avatar>
+
+    <po-button
+      p-type="link"
+      (p-click)="download(item.photo)"
+      p-label="Download"
+      p-icon="po-icon po-icon-download"
+    ></po-button>
+
+    <po-button
+      p-type="link"
+      (p-click)="delete(item)"
+      p-label="Excluir"
+      p-icon="po-icon po-icon-delete"
+    ></po-button>
+
+    <po-button
+      p-type="link"
+      (p-click)="openForCreate()"
+      p-label="Alterar"
+      p-icon="po-icon po-icon-edit"
+    ></po-button>
+  </po-widget>
+</div>
+
+<po-modal
+  #newStorePictures
+  p-title="Nova foto"
+  [p-primary-action]="modalNewPrimaryAction"
+>
+  <app-client-edit-store-pictures-edit
+    [clientId]="clientId"
+    [cnpj]="cnpj"
+    (refresh)="get()"
+  >
+  </app-client-edit-store-pictures-edit>
+</po-modal>

@@ -1,0 +1,17 @@
+<po-radio-group
+  p-columns="3"
+  name="radioGroupBasic"
+  p-label="Posição"
+  [p-options]="options"
+  [(ngModel)]="photoPosition"
+>
+</po-radio-group>
+
+<po-upload
+  p-label="Upload"
+  [p-url]="serviceApi"
+  p-auto-upload="true"
+  (p-success)="successfulReturn($event)"
+  (p-upload)="setDataFoto($event)"
+>
+</po-upload>

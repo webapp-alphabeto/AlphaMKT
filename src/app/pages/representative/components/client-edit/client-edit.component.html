@@ -11,16 +11,18 @@
       ></app-client-edit-contacts>
     </po-tab>
 
-    <po-tab p-label="Referências comerciais" p-active>
+    <po-tab p-label="Referências comerciais" >
       <app-client-edit-commercial-references
         [commercialReferences]="client.commercialReference"
         [clientId]="clientId"
       ></app-client-edit-commercial-references>
     </po-tab>
 
-    <po-tab p-label="Fotos do ponto">
+    <po-tab p-label="Fotos do ponto" p-active>
       <app-client-edit-store-pictures
         [storePictures]="client.storePictures"
+        [clientId]="clientId"
+        [cnpj]="client.client.document"
       ></app-client-edit-store-pictures>
     </po-tab>
   </po-tabs>
