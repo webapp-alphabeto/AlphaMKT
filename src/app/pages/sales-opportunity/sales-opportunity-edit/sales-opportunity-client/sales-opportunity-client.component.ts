@@ -1,14 +1,9 @@
 import { Component, OnInit, Input } from "@angular/core";
-import {
-  PoTableColumn,
-  PoTableAction,
-  PoComboOption,
-} from "@po-ui/ng-components";
+import { PoTableColumn, PoTableAction } from "@po-ui/ng-components";
 import { SalesOpportunityRestrictionByClient } from "src/app/shared/models/SalesOpportunityRestrictionByClient";
-import { SalesOpportunity } from "src/app/shared/models/SalesOpportunity";
 import { environment } from "src/environments/environment";
 import { SalesOpportunityRestrictionByClientService } from "../../services/sales-opportunity-restriction-by-client.service";
-import { RestrictionByClientView } from '../../interfaces/RestrictionByClientView';
+import { RestrictionByClientView } from "../../interfaces/RestrictionByClientView";
 
 @Component({
   selector: "app-sales-opportunity-client",

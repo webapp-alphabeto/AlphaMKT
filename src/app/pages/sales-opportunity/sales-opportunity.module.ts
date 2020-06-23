@@ -8,9 +8,14 @@ import { PoModule } from "@po-ui/ng-components";
 import { SalesOpportunityEditComponent } from "./sales-opportunity-edit/sales-opportunity-edit.component";
 import { FormsModule } from "@angular/forms";
 import { SalesOpportunityFormComponent } from "./sales-opportunity-edit/sales-opportunity-form/sales-opportunity-form.component";
-import { HttpClientModule } from "@angular/common/http";
+
 import { LimitersToStringPipe } from './pipe/limiters-to-string.pipe';
 import { SalesOpportunityClientComponent } from './sales-opportunity-edit/sales-opportunity-client/sales-opportunity-client.component';
+import { SalesOpportunityRepresentativeComponent } from './sales-opportunity-edit/sales-opportunity-representative/sales-opportunity-representative.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenApiService } from 'src/app/core/interceptors/token-api.service';
+import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-api.service';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +23,8 @@ import { SalesOpportunityClientComponent } from './sales-opportunity-edit/sales-
     SalesOpportunityEditComponent,
     SalesOpportunityFormComponent,
     LimitersToStringPipe,
-    SalesOpportunityClientComponent
+    SalesOpportunityClientComponent,
+    SalesOpportunityRepresentativeComponent
   ],
   imports: [
     CommonModule,
@@ -27,5 +33,17 @@ import { SalesOpportunityClientComponent } from './sales-opportunity-edit/sales-
     FormsModule,
     SalesOpportunityRoutingModule,
   ],
+  providers:[
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenApiService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InvalidTokenApiService,
+      multi: true,
+    },
+  ]
 })
 export class SalesOpportunityModule {}

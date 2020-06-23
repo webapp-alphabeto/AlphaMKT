@@ -8,19 +8,26 @@
         [salesOpportunityId]="salesOpportunityId"
       ></app-sales-opportunity-form>
     </po-tab>
+
     <po-tab
       p-label="Restrição por cliente"
       [p-disabled]="salesOpportunityId == 0"
-      p-active
     >
       <app-sales-opportunity-client
         [salesOpportunityId]="salesOpportunityId"
       ></app-sales-opportunity-client>
     </po-tab>
+
     <po-tab
       p-label="Restrição por representante"
       [p-disabled]="salesOpportunityId == 0"
-    ></po-tab>
+      p-active
+    >
+      <app-sales-opportunity-representative
+        [salesOpportunityId]="salesOpportunityId"
+      ></app-sales-opportunity-representative>
+    </po-tab>
+
     <po-tab
       p-label="Restrição por grupo de venda"
       [p-disabled]="salesOpportunityId == 0"

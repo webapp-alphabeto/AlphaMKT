@@ -6,5 +6,3 @@ export interface SalesOpportunityRestrictionByClient extends SalesOpportunityNav
     clientId: number;
     client: IClient;
 }
-
-
