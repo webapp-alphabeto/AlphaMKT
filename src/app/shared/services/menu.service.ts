@@ -79,6 +79,7 @@ export class MenuService {
           link: "/administracao/condicoes-de-pagamento",
         },
         { label: "Integração", link: "/administracao/monitor-de-integracao" },
+        { label: "Oportunidade de vendas", link: "/oportunidade-de-venda" },
       ],
     },
   ];

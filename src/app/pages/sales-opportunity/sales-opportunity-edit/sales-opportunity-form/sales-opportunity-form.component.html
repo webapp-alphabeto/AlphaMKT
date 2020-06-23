@@ -1,0 +1,73 @@
+<form #form="ngForm">
+  <div class="po-row">
+    <po-button
+      class="po-offset-lg-11 po-offset-xl-11 po-xl-1 po-lg-3 po-md-12 po-sm-12"
+      p-label="Salvar"
+      p-icon="po-icon po-icon-ok"
+      p-type="primary"
+      [p-disabled]="form.invalid"
+      (p-click)="save()"
+    >
+    </po-button>
+  </div>
+
+  <div class="po-row">
+    <po-input
+      class="po-md-3"
+      name="name"
+      p-clean
+      p-no-autocomplete
+      p-label="Nome"
+      [(ngModel)]="salesOpportunity.name"
+      p-help="Nome da oportunidade"
+      p-icon="po-icon po-icon-sale"
+      p-required
+      p-placeholder="Verão 2020 - Julho"
+    ></po-input>
+
+    <po-datepicker
+      class="po-md-2"
+      name="start"
+      p-label="Início"
+      [(ngModel)]="salesOpportunity.start"
+      p-help="Início do período de vendas"
+      p-required
+    ></po-datepicker>
+
+    <po-datepicker
+      class="po-md-2"
+      name="end"
+      p-label="Fim"
+      [(ngModel)]="salesOpportunity.end"
+      p-help="Fim do período de vendas"
+      p-tooltip="Após essa data o período será bloqueado"
+      p-required
+    ></po-datepicker>
+
+    <po-switch
+      class="po-md-3"
+      name="active"
+      p-label="Ativo"
+      p-label-off="Não"
+      p-label-on="Sim"
+      [(ngModel)]="salesOpportunity.active"
+      p-help="Ativar período de vendas"
+      p-required
+    ></po-switch>
+  </div>
+
+  <div class="po-row">
+    <po-radio-group
+      class="po-md-4"
+      p-columns="3"
+      name="limiter"
+      p-label="Limitador"
+      [p-options]="limiters"
+      [(ngModel)]="salesOpportunity.limiter"
+      p-help="Define como a oportunidade de venda será limitada"
+      [p-disabled]="salesOpportunityId > 0"
+      p-tooltip="Após adiconar um estoque não é possível editar"
+    >
+    </po-radio-group>
+  </div>
+</form>

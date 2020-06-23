@@ -1,0 +1,108 @@
+<po-page-default
+  p-title="Oportunidades de venda"
+  [p-actions]="actions"
+  [p-breadcrumb]="breadcrumb"
+>
+  <po-container p-no-shadow>
+    <form #formFilter="ngForm">
+      <div class="po-row">
+        <po-datepicker
+          class="po-xl-2 p-lg-2 po-md-2 po-sm-12"
+          name="start"
+          p-label="Início"
+          p-clean
+          p-no-autocomplete
+          [(ngModel)]="filter.start"
+          (p-change)="get()"
+        ></po-datepicker>
+
+        <po-datepicker
+          class="po-xl-2 p-lg-2 po-md-2 po-sm-12"
+          name="end"
+          p-label="Fim"
+          p-clean
+          p-no-autocomplete
+          [(ngModel)]="filter.end"
+          (p-change)="get()"
+        ></po-datepicker>
+
+        <po-switch
+          class="po-xl-2 p-lg-2 po-md-2 po-sm-12"
+          name="active"
+          p-label="Somente ativos?"
+          p-label-off="Não"
+          p-label-on="Sim"
+          [(ngModel)]="filter.onlyActive"
+          (p-change)="get()"
+        ></po-switch>
+
+        <po-button
+          class="po-mt-3 po-xl-2 po-lg-2 po-md-2 po-sm-12 po-offset-lg-4 po-offset-xl-4"
+          p-label="Buscar"
+          (p-click)="get()"
+          p-icon="po-icon po-icon-refresh"
+          [p-disabled]="formFilter.invalid"
+        >
+        </po-button>
+      </div>
+    </form>
+  </po-container>
+
+  <div class="po-row po-mt-2">
+    <po-widget
+      *ngFor="let salesOpportunity of salesOpportunitys"
+      class="po-lg-4"
+      p-height="270"
+      [p-title]="salesOpportunity.name"
+      p-no-shadow
+    >
+      <div class="po-row">
+        <po-info
+          class="po-md-6"
+          p-label="Início"
+          p-value="{{ salesOpportunity.start | date: 'dd/MM/yyyy' }}"
+        ></po-info>
+
+        <po-info
+          class="po-md-6"
+          p-label="Fim"
+          p-value="{{ salesOpportunity.end | date: 'dd/MM/yyyy' }}"
+        ></po-info>
+      </div>
+
+      <div class="po-row">
+        <po-info
+          class="po-md-6"
+          p-label="Limitador"
+          p-value="{{ salesOpportunity.limiter | limitersToString }}"
+        ></po-info>
+
+        <po-tag
+          class="po-md-6"
+          p-label="Ativo"
+          p-value="{{ salesOpportunity.active ? 'Sim' : 'Não' }}"
+          [p-type]="salesOpportunity.active ? 'success' : 'danger'"
+        ></po-tag>
+      </div>
+
+      <po-divider></po-divider>
+
+      <div class="po-row">
+        <po-button
+          class="po-mr-1"
+          p-icon="po-icon-edit"
+          p-tooltip="Editar | Ver detalhes"
+          [routerLink]="['oportunidade-de-venda-editar', salesOpportunity.id]"
+        ></po-button>
+
+        <po-button
+          class="po-mr-1"
+          p-icon="po-icon-delete"
+          p-tooltip="Deletar"
+          p-type="danger"
+          (p-click)="deleteById(salesOpportunity)"
+        ></po-button>
+      </div>
+    </po-widget>
+  </div>
+</po-page-default>

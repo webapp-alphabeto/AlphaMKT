@@ -1,0 +1,27 @@
+<p class="po-font-text-small">
+  Adicione apenas os clientes que podem acessar essa oportunidade.
+</p>
+<p class="po-font-text-small">
+  Se todos clientes podem acessar, deixe essa tabela em branco
+</p>
+
+<po-divider></po-divider>
+
+<div class="po-row">
+  <po-combo
+    class="po-md-4"
+    p-label="Cliente"
+    [(ngModel)]="client.clientId"
+    [p-filter-service]="serviceApiClient"
+  >
+  </po-combo>
+
+  <po-button class="po-mt-4" p-icon="po-icon-plus" (p-click)="add()">
+  </po-button>
+</div>
+
+<po-table
+  [p-columns]="columns"
+  [p-items]="clients"
+  [p-actions]="actions"
+></po-table>

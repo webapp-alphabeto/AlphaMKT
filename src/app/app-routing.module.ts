@@ -32,7 +32,6 @@ const routes: Routes = [
       ),
     canActivate: [AdministratorGuard],
   },
-
   {
     path: "representante",
     loadChildren: () =>
@@ -40,6 +39,14 @@ const routes: Routes = [
         (m) => m.RepresentanteModule
       ),
       canActivate:[ RepresentativeGuard],      
+  },
+  {
+    path: "oportunidade-de-venda",
+    loadChildren: () =>
+      import("./pages/sales-opportunity/sales-opportunity.module").then(
+        (m) => m.SalesOpportunityModule
+      ),
+      canActivate:[AdministratorGuard],      
   },
 
   { path: "", pathMatch: "full", redirectTo: "home" },

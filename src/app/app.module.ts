@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, LOCALE_ID } from "@angular/core";
 import localePt from "@angular/common/locales/pt";
 import { registerLocaleData } from "@angular/common";
@@ -25,7 +25,7 @@ import { InvalidTokenApiService } from './core/interceptors/invalid-token-api.se
     AppRoutingModule,
     PortinariModule,
     SharedModule,
-    PoModule,
+    PoModule
   ],
   providers: [
     {

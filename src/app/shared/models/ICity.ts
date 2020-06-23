@@ -4,5 +4,3 @@ export interface ICity {
     codCounty: string;
     name: string;
 }
-
-

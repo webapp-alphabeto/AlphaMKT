@@ -1,0 +1,31 @@
+<po-page-default
+  p-title="Nova oportunidade de venda"
+  [p-breadcrumb]="breadcrumb"
+>
+  <po-tabs>
+    <po-tab p-label="Oportunidade de venda">
+      <app-sales-opportunity-form
+        [salesOpportunityId]="salesOpportunityId"
+      ></app-sales-opportunity-form>
+    </po-tab>
+    <po-tab
+      p-label="Restrição por cliente"
+      [p-disabled]="salesOpportunityId == 0"
+      p-active
+    >
+      <app-sales-opportunity-client
+        [salesOpportunityId]="salesOpportunityId"
+      ></app-sales-opportunity-client>
+    </po-tab>
+    <po-tab
+      p-label="Restrição por representante"
+      [p-disabled]="salesOpportunityId == 0"
+    ></po-tab>
+    <po-tab
+      p-label="Restrição por grupo de venda"
+      [p-disabled]="salesOpportunityId == 0"
+    ></po-tab>
+    <po-tab p-label="PO Tabs 2" [p-disabled]="salesOpportunityId == 0"></po-tab>
+    <po-tab p-label="PO Tabs 2" [p-disabled]="salesOpportunityId == 0"></po-tab>
+  </po-tabs>
+</po-page-default>
