@@ -21,7 +21,6 @@
     <po-tab
       p-label="Restrição por representante"
       [p-disabled]="salesOpportunityId == 0"
-      p-active
     >
       <app-sales-opportunity-representative
         [salesOpportunityId]="salesOpportunityId"
@@ -31,7 +30,13 @@
     <po-tab
       p-label="Restrição por grupo de venda"
       [p-disabled]="salesOpportunityId == 0"
-    ></po-tab>
+      p-active
+    >
+      <app-sales-opportunity-sales-group
+        [salesOpportunityId]="salesOpportunityId"
+      >
+      </app-sales-opportunity-sales-group>
+    </po-tab>
     <po-tab p-label="PO Tabs 2" [p-disabled]="salesOpportunityId == 0"></po-tab>
     <po-tab p-label="PO Tabs 2" [p-disabled]="salesOpportunityId == 0"></po-tab>
   </po-tabs>

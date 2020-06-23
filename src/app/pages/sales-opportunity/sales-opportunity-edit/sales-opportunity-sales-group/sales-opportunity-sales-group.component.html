@@ -1,8 +1,8 @@
 <p class="po-font-text-small">
-    Adicione apenas os representantes que podem acessar essa oportunidade.
+    Adicione apenas os grupos que podem acessar essa oportunidade.
   </p>
   <p class="po-font-text-small">
-    Se todos representantes podem acessar, deixe essa tabela em branco
+    Se todos grupos podem acessar, deixe essa tabela em branco
   </p>
   
   <po-divider></po-divider>
@@ -10,9 +10,9 @@
   <div class="po-row">
     <po-combo
       class="po-md-4"
-      p-label="Representante"
-      [(ngModel)]="representative.representativeId"
-      [p-filter-service]="serviceApiRepresentative"
+      p-label="Grupo de vendas"
+      [(ngModel)]="salesGroup.salesGroupId"
+      [p-filter-service]="serviceApiSalesGroup"
     >
     </po-combo>
   
@@ -22,7 +22,7 @@
   
   <po-table
     [p-columns]="columns"
-    [p-items]="representatives"
+    [p-items]="salesGroups"
     [p-actions]="actions"
   ></po-table>
   

@@ -15,6 +15,7 @@ import { SalesOpportunityRepresentativeComponent } from './sales-opportunity-edi
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenApiService } from 'src/app/core/interceptors/token-api.service';
 import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-api.service';
+import { SalesOpportunitySalesGroupComponent } from './sales-opportunity-edit/sales-opportunity-sales-group/sales-opportunity-sales-group.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-
     SalesOpportunityFormComponent,
     LimitersToStringPipe,
     SalesOpportunityClientComponent,
-    SalesOpportunityRepresentativeComponent
+    SalesOpportunityRepresentativeComponent,
+    SalesOpportunitySalesGroupComponent
   ],
   imports: [
     CommonModule,
