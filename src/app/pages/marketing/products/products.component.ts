@@ -20,6 +20,7 @@ import { ProductPhotoService } from "src/app/pages/marketing/services/product-ph
 import { HttpErrorResponse } from "@angular/common/http";
 import { IArrayForVirtualSdk } from "src/app/pages/marketing/interfaces/iarray-for-virtual-sdk";
 import { IApresentacaoButtons } from "src/app/shared/interfaces/iapresentacao-buttons";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-products",
@@ -93,8 +94,6 @@ export class ProductsComponent implements OnInit {
   ];
 
   productPhotos = [] as IProductView[];
-  collections: Array<PoComboOption>;
-  maps: Array<PoComboOption>;
   disclaimerGroup: PoDisclaimerGroup;
   filter = {} as IProductPhotoFilter;
   private disclaimers = [] as PoDisclaimer[];
@@ -102,6 +101,10 @@ export class ProductsComponent implements OnInit {
   titleProductEditModal: string;
   selectedCollection: string;
   selectedMap: string;
+
+  serviceApiCollection = `${environment.serviceApi}util/produto/colecao`;
+  serviceApiMap = `${environment.serviceApi}util/produto/mapa`;
+
   selectedReference: string = "";
   progressStatus = PoProgressStatus.Default;
   messageError: string;
@@ -122,21 +125,9 @@ export class ProductsComponent implements OnInit {
       change: this.onChangeDisclaimer.bind(this),
     };
 
-    this.getCollections();
-    this.getMaps();
+
   }
 
-  getCollections() {
-    this.utilProductService.getColecoes().subscribe((x: PoComboOption[]) => {
-      this.collections = x;
-    });
-  }
-
-  getMaps() {
-    this.utilProductService.getMapas().subscribe((x: PoComboOption[]) => {
-      this.maps = x;
-    });
-  }
 
   getProducts() {
     this.messageError = "";

@@ -1,12 +1,31 @@
 <po-page-default
-  p-title="Nova oportunidade de venda"
+  p-title="{{
+    salesOpportunityId == 0 ? 'Nova' : 'Editar'
+  }} oportunidade de venda"
   [p-breadcrumb]="breadcrumb"
 >
   <po-tabs>
-    <po-tab p-label="Oportunidade de venda">
+    <po-tab p-label="Oportunidade de venda" p-active>
       <app-sales-opportunity-form
-        [salesOpportunityId]="salesOpportunityId"
+        [salesOpportunity]="salesOpportunity"
       ></app-sales-opportunity-form>
+    </po-tab>
+
+    <po-tab p-label="Produtos" [p-disabled]="salesOpportunityId == 0">
+      <app-sales-opportunity-products
+        [salesOpportunityId]="salesOpportunityId"
+        [salesOpportunity]="salesOpportunity"
+      ></app-sales-opportunity-products>
+    </po-tab>
+
+    <po-tab
+      p-label="Restrição por grupo de venda"
+      [p-disabled]="salesOpportunityId == 0"
+    >
+      <app-sales-opportunity-sales-group
+        [salesOpportunityId]="salesOpportunityId"
+      >
+      </app-sales-opportunity-sales-group>
     </po-tab>
 
     <po-tab
@@ -26,18 +45,5 @@
         [salesOpportunityId]="salesOpportunityId"
       ></app-sales-opportunity-representative>
     </po-tab>
-
-    <po-tab
-      p-label="Restrição por grupo de venda"
-      [p-disabled]="salesOpportunityId == 0"
-      p-active
-    >
-      <app-sales-opportunity-sales-group
-        [salesOpportunityId]="salesOpportunityId"
-      >
-      </app-sales-opportunity-sales-group>
-    </po-tab>
-    <po-tab p-label="PO Tabs 2" [p-disabled]="salesOpportunityId == 0"></po-tab>
-    <po-tab p-label="PO Tabs 2" [p-disabled]="salesOpportunityId == 0"></po-tab>
   </po-tabs>
 </po-page-default>

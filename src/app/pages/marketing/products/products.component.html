@@ -150,7 +150,7 @@
           name="colecaoSelecionada"
           [(ngModel)]="selectedCollection"
           p-label="Coleção"
-          [p-options]="collections"
+          [p-filter-service]="serviceApiCollection"
         >
         </po-combo>
       </div>
@@ -160,7 +160,7 @@
           name="mapaSelecionado"
           [(ngModel)]="selectedMap"
           p-label="Mapa"
-          [p-options]="maps"
+          [p-filter-service]="serviceApiMap"
         >
         </po-combo>
       </div>

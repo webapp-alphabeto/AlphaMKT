@@ -12,8 +12,7 @@ import { SalesOpportunityService } from "../../services/sales-opportunity.servic
   providers: [LimitersToStringPipe],
 })
 export class SalesOpportunityFormComponent implements OnInit {
-  @Input() salesOpportunityId: number;
-  salesOpportunity = {} as SalesOpportunity;
+  @Input() salesOpportunity = {} as SalesOpportunity;
 
   limiters: Array<PoComboOption> = [
     {
@@ -35,16 +34,15 @@ export class SalesOpportunityFormComponent implements OnInit {
     private poNotification: PoNotificationService
   ) {}
 
-  ngOnInit(): void {
-    this.salesOpportunity.id = this.salesOpportunityId;
-    if (this.salesOpportunityId > 0) this.get();
-  }
+  ngOnInit(): void {}
 
   get() {
     this.salesOpportunityService
-      .getById(this.salesOpportunityId)
+      .getById(this.salesOpportunity.id)
       .subscribe((x) => {
-        this.setSalesOpportunity(x);
+        this.salesOpportunity = this.salesOpportunityService.mapSalesOpportunity(
+          x
+        );
       });
   }
 
@@ -56,7 +54,7 @@ export class SalesOpportunityFormComponent implements OnInit {
   }
 
   private createOrUpdate() {
-    if (this.salesOpportunityId == 0)
+    if (this.salesOpportunity.id == 0)
       return this.salesOpportunityService.post(this.salesOpportunity);
 
     return this.salesOpportunityService.put(this.salesOpportunity);

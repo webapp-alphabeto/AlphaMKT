@@ -65,7 +65,7 @@
       [p-options]="limiters"
       [(ngModel)]="salesOpportunity.limiter"
       p-help="Define como a oportunidade de venda será limitada"
-      [p-disabled]="salesOpportunityId > 0"
+      [p-disabled]="salesOpportunity.id > 0"
       p-tooltip="Após adiconar um estoque não é possível editar"
     >
     </po-radio-group>

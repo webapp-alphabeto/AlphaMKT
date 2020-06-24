@@ -4,4 +4,3 @@ export interface FilterDateOnlyActive extends FilterData {
   onlyActive: boolean;
 }
 
-

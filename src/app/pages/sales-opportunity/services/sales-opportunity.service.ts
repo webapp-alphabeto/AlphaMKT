@@ -4,7 +4,7 @@ import { SalesOpportunity } from "src/app/shared/models/SalesOpportunity";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { FilterDateOnlyActive } from "../interfaces/FilterDateOnlyActive";
-import * as moment from 'moment'
+import * as moment from "moment";
 
 @Injectable({
   providedIn: "root",
@@ -16,8 +16,8 @@ export class SalesOpportunityService {
     const url = `${environment.serviceApi}sales-opportunity`;
 
     let params = new HttpParams()
-      .append("start", moment(filter.start).format('YYYY-MM-DD'))
-      .append("end", moment(filter.end).format('YYYY-MM-DD'))
+      .append("start", moment(filter.start).format("YYYY-MM-DD"))
+      .append("end", moment(filter.end).format("YYYY-MM-DD"))
       .append("onlyActive", filter.onlyActive.toString());
 
     return this.http.get<SalesOpportunity[]>(url, { params });
@@ -41,5 +41,12 @@ export class SalesOpportunityService {
   deleteById(id: number): Observable<SalesOpportunity> {
     const url = `${environment.serviceApi}sales-opportunity/${id}`;
     return this.http.delete<SalesOpportunity>(url);
+  }
+
+  mapSalesOpportunity(reponse: SalesOpportunity): SalesOpportunity {
+    const salesOpportunity = reponse;
+    salesOpportunity.start = new Date(reponse.start);
+    salesOpportunity.end = new Date(reponse.end);
+    return salesOpportunity;
   }
 }

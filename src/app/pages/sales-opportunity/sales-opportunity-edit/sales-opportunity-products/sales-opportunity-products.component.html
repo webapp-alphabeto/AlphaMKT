@@ -1,0 +1,57 @@
+<p class="po-font-text-small">
+  Escolha <strong>Filtro</strong> para adicionar por mapa e coleção.
+</p>
+<p class="po-font-text-small">
+  Escolha <strong>Produto</strong> para adicionar produto a produto. Ou importar
+  uma planilha com os códigos dos produtos.
+</p>
+
+<po-divider></po-divider>
+
+<div class="po-row">
+  <po-radio-group
+    class="po-md-4"
+    name="typeRestriction"
+    p-label="Restringir por"
+    [p-options]="[
+      { label: 'Produto', value: 0 },
+      { label: 'Filtro', value: 1 }
+    ]"
+    [(ngModel)]="salesOpportunity.typeRestrictionProduct"
+    (p-change)="update()"
+  >
+  </po-radio-group>
+</div>
+
+<po-divider></po-divider>
+
+<div *ngIf="isByFilter(); else product">
+  <div class="po-row">
+    <po-combo
+      class="po-md-2"
+      p-label="Coleção"
+      [(ngModel)]="filterProduct.collection"
+      [p-filter-service]="serviceApiCollection"
+    >
+    </po-combo>
+
+    <po-combo
+      class="po-md-2"
+      p-label="Mapa"
+      [(ngModel)]="filterProduct.map"
+      [p-filter-service]="serviceApiMap"
+    >
+    </po-combo>
+
+    <po-button class="po-mt-4" p-icon="po-icon-plus" (p-click)="add()">
+    </po-button>
+  </div>
+
+  <po-table
+    [p-columns]="columns"
+    [p-items]="filterProducts"
+    [p-actions]="actions"
+  ></po-table>
+</div>
+
+<ng-template #product></ng-template>
