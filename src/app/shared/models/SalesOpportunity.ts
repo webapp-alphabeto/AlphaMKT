@@ -10,5 +10,3 @@ export interface SalesOpportunity extends IEntityIdentity {
     limiter: Limiters;
     typeRestrictionProduct: TypeRestrictionProduct;
 }
-
-

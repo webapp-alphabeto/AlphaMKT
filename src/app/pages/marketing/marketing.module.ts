@@ -17,12 +17,14 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 
 import { TokenApiService } from 'src/app/core/interceptors/token-api.service';
 import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-api.service';
+import { BannersComponent } from './banners/banners.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     ProductsComponent, 
     ProductViewComponent, 
-    ProductEditComponent
+    ProductEditComponent, BannersComponent
   ],
   imports: [
     CommonModule,

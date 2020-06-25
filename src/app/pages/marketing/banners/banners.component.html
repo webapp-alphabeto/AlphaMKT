@@ -1,0 +1,89 @@
+<po-page-default p-title="Banners">
+  <div class="po-row">
+    <po-container class="po-md-12" p-no-shadow>
+      <po-combo
+        class="po-md-4"
+        p-label="Oportunidade de venda"
+        [p-filter-service]="serviceApiSalesOpportunity"
+        [(ngModel)]="salesOpportunityId"
+        (p-change)="get()"
+      >
+      </po-combo>
+
+      <!-- <po-radio-group
+        class="po-md-4"
+        name="bannerType"
+        p-label="Para"
+        [p-options]="[
+          { label: 'Desktop', value: 0 },
+          { label: 'Mobile', value: 1 },
+          { label: 'Tablet', value: 2 }
+        ]"
+        [(ngModel)]="banner.bannerType"
+      >
+      </po-radio-group> -->
+
+      <!-- <p>{{ banner | json }}</p> -->
+
+      <po-upload
+        class="po-md-12"
+        #upload
+        name="upload"
+        p-label="Adicionar banner"
+        [p-url]="serviceApiBannerUpload"
+        p-multiple="true"
+        p-auto-upload="true"
+        [p-restrictions]="restrictions"
+        p-hide-restrictions-info="false"
+        (p-success)="uploadSuccess()"
+        (p-upload)="includePropertiesInTheRequest($event)"
+        p-help="Adicione no máximo 5 banners por Oportunidade"
+      >
+      </po-upload>
+    </po-container>
+  </div>
+
+  <po-divider p-label="Visualizar"></po-divider>
+
+  <div *ngIf="banners" class="po-row">
+    <po-progress
+      p-text="Total de banners recomendado"
+      [p-value]="(banners.length / 5) * 100"
+      p-info="{{ banners.length }}/5"
+    ></po-progress>
+
+    <po-slide
+      class="po-md-12"
+      p-height="450"
+      [p-slides]="banners"
+      [p-interval]="0"
+    >
+      <ng-template p-slide-content-template let-item>
+        <div
+          class="sample-background-image"
+          [style.background-image]="'url(' + item.photo + ')'"
+          [style.backgroundSize]="'cover'"
+          [style.background-repeat]="'no-repeat'"
+          [style.height.%]="100"
+        >
+          <div class="po-row">
+            <div class="po-m-2 po-p-1">
+              <po-button
+                p-type="primary"
+                p-label="Deletar"
+                (p-click)="delete(item)"
+              ></po-button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </po-slide>
+    <!-- <po-modal
+      #deleteModal
+      p-title="Landscape detail"
+      [p-primary-action]="delete()"
+    >
+      Deseja deletar esse banner?
+    </po-modal> -->
+  </div>
+</po-page-default>

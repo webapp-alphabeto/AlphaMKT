@@ -61,7 +61,10 @@ export class MenuService {
       icon: "po-icon po-icon-camera",
       shortLabel: "Marketing",
       nivelDeAcesso: [AccessLevel.Administracao, AccessLevel.Marketing],
-      subItems: [{ label: "Fotos de Produtos", link: "/marketing/produtos" }],
+      subItems: [
+        { label: "Fotos de Produtos", link: "/marketing/produtos" },
+        { label: "Banners", link: "/marketing/banners" },
+      ],
     },
     {
       label: "Administração",

@@ -16,7 +16,8 @@ export class MarketingGuard implements CanActivate {
 
   canActivate(): boolean {
     const response =
-      this.tokenService.Claims.accessLevel == AccessLevel.Marketing;
+      this.tokenService.Claims.accessLevel == AccessLevel.Marketing
+      || this.tokenService.Claims.accessLevel == AccessLevel.Administracao;
     if (!response) this.poNotification.error("Não permitido");
     return response;
   }
