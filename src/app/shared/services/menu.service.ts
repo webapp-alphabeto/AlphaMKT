@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { AccessLevel } from 'src/app/core/enums/access-level.enum';
-import { PoMenuItemNivelDeAcesso } from '../interfaces/po-menu-item-nivel-de-acesso';
-import { PoMenuItem } from '@po-ui/ng-components';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
+import { AccessLevel } from "src/app/core/enums/access-level.enum";
+import { PoMenuItemNivelDeAcesso } from "../interfaces/po-menu-item-nivel-de-acesso";
+import { PoMenuItem } from "@po-ui/ng-components";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MenuService {
-
   exibirMenu = new BehaviorSubject<boolean>(true);
-  constructor() { }
+  constructor() {}
 
   public checkShowMenu(router: Router) {
     if (router.isActive("/home/principal", true)) {
@@ -38,9 +37,7 @@ export class MenuService {
       return this.menu;
     }
 
-    return this.menu.filter((x) =>
-      x.nivelDeAcesso.includes(nivelDeAcesso)
-    );
+    return this.menu.filter((x) => x.nivelDeAcesso.includes(nivelDeAcesso));
   }
 
   private menu: Array<PoMenuItemNivelDeAcesso> = [
@@ -83,8 +80,8 @@ export class MenuService {
         },
         { label: "Integração", link: "/administracao/monitor-de-integracao" },
         { label: "Oportunidade de vendas", link: "/oportunidade-de-venda" },
+        { label: "Tabela  de preços", link: "/tabela-de-precos" },
       ],
     },
   ];
-
 }

@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { PoNotificationService } from "@po-ui/ng-components";
 
-import { IApresentacaoButtons } from 'src/app/shared/interfaces/iapresentacao-buttons';
-import { AccessLevel } from 'src/app/core/enums/access-level.enum';
-import { TokenService } from 'src/app/core/services/token.service';
+import { IApresentacaoButtons } from "src/app/shared/interfaces/iapresentacao-buttons";
+import { AccessLevel } from "src/app/core/enums/access-level.enum";
+import { TokenService } from "src/app/core/services/token.service";
 
 @Component({
   selector: "app-principal",
@@ -17,34 +17,33 @@ export class PrincipalComponent implements OnInit {
       buttonAction: () => {
         this.irPara();
       },
-      buttonIcon: 'po-icon po-icon-ok',
-      buttonLabel: 'Começar',
+      buttonIcon: "po-icon po-icon-ok",
+      buttonLabel: "Começar",
     },
   ];
   constructor(
     private tokenService: TokenService,
-    private router: Router,
-    private notification: PoNotificationService
+    private router: Router
   ) {}
 
   ngOnInit() {}
 
   irPara(): void {
     if (this.tokenService.Claims.accessLevel == AccessLevel.Administracao) {
-      this.router.navigateByUrl('/administracao');
+      this.router.navigateByUrl("/administracao");
       return;
     }
 
     if (this.tokenService.Claims.accessLevel == AccessLevel.Marketing) {
-      this.router.navigateByUrl('/marketing');
+      this.router.navigateByUrl("/marketing");
       return;
     }
 
-    if(this.tokenService.Claims.accessLevel == AccessLevel.Representante) {
-      this.router.navigateByUrl('/representante');
+    if (this.tokenService.Claims.accessLevel == AccessLevel.Representante) {
+      this.router.navigateByUrl("/representante");
       return;
     }
 
-    this.notification.warning('Sem rota definida.')
+    this.router.navigateByUrl("/login");
   }
 }

@@ -1,0 +1,24 @@
+<po-page-default p-title="Tabela de preços" [p-breadcrumb]="breadcrumb">
+  <po-container p-no-shadow>
+    <po-combo
+      class="po-md-4"
+      p-label="Oportunidade de venda"
+      [p-filter-service]="serviceApiSalesOpportunity"
+      [(ngModel)]="salesOpportunityId"
+      (p-change)="get()"
+    >
+    </po-combo>
+  </po-container>
+
+  <po-tabs *ngIf="salesOpportunityId > 0">
+    <po-tab p-label="Por Markup" p-active>
+      <app-price-list-by-mkup
+        [salesOpportunityId]="salesOpportunityId"
+      ></app-price-list-by-mkup>
+    </po-tab>
+    <!-- <po-tab p-label="Por Referência">
+      <app-price-list-by-reference></app-price-list-by-reference>
+    </po-tab> -->
+    <po-tab p-label="Visualizar produtos"></po-tab>
+  </po-tabs>
+</po-page-default>

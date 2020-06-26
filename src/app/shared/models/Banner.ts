@@ -6,3 +6,4 @@ export interface Banner extends SalesOpportunityNavigate {
     storageName: string;
     bannerType: BannerType;
 }
+

@@ -1,0 +1,69 @@
+<div class="po-row">
+  <po-button
+    class="po-offset-lg-11 po-offset-xl-11 po-xl-1 po-lg-3 po-md-12 po-sm-12"
+    p-label="Novo"
+    p-icon="po-icon po-icon-plus"
+    p-type="primary"
+    (p-click)="modalEditMkup.open()"
+  >
+  </po-button>
+</div>
+
+<po-modal
+  #modalEditMkup
+  p-title="Novo mkup"
+  [p-primary-action]="primaryModalEditMkup"
+>
+  <form #form="ngForm">
+    <po-input
+      class="po-md-12"
+      name="name"
+      p-label="Nome"
+      p-placeholder="Base, Qualidicada..."
+      p-help="Esse é o nome que o representante vai ver ao selecionar uma tabela"
+      p-no-autocomplete
+      p-clean
+      [(ngModel)]="mkup.name"
+    ></po-input>
+
+    <po-input
+      class="po-md-12"
+      name="alias"
+      p-label="Apelido"
+      p-placeholder="T20, T19..."
+      p-help="Esse é o nome para ser utilizado na integração com o protheus"
+      p-no-autocomplete
+      p-clean
+      [(ngModel)]="mkup.alias"
+    ></po-input>
+
+    <po-number
+      class="po-md-12"
+      name="mkup"
+      p-label="Mkup"
+      p-placeholder="2.8"
+      p-help="O preço de venda final será dividido por esse mkup para gerar o preço para o cliente"
+      p-no-autocomplete
+      p-clean
+      [(ngModel)]="mkup.mkup"
+    >
+    </po-number>
+
+    <po-number
+      class="po-md-12"
+      name="termination"
+      p-label="Terminação"
+      p-placeholder="0,95"
+      p-help="Atribuir uma terminação para o preço"
+      p-no-autocomplete
+      p-clean
+      [(ngModel)]="mkup.termination"
+    ></po-number>
+  </form>
+</po-modal>
+
+<po-table
+  [p-columns]="columns"
+  [p-actions]="actions"
+  [p-items]="mkups"
+></po-table>
