@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { PoBreadcrumb } from "@po-ui/ng-components";
 import { environment } from "src/environments/environment";
+import { PriceListViewService } from "../services/price-list-view.service";
+import { PriceListProductPreview } from "../interfaces/PriceListProductPreview";
 
 @Component({
   selector: "app-price-list-view",
@@ -8,7 +10,7 @@ import { environment } from "src/environments/environment";
   styleUrls: ["./price-list-view.component.css"],
 })
 export class PriceListViewComponent implements OnInit {
-  salesOpportunityId: number;
+  salesOpportunityId: number = 1;
   serviceApiSalesOpportunity = `${environment.serviceApi}sales-opportunity/po-combo`;
 
   breadcrumb: PoBreadcrumb = {

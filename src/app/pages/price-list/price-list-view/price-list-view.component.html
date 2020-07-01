@@ -1,5 +1,5 @@
-<po-page-default p-title="Tabela de preços" [p-breadcrumb]="breadcrumb">
-  <po-container p-no-shadow>
+<po-page-default p-title="Tabela de preços">
+  <po-container p-no-shadow >
     <po-combo
       class="po-md-4"
       p-label="Oportunidade de venda"
@@ -19,6 +19,9 @@
     <!-- <po-tab p-label="Por Referência">
       <app-price-list-by-reference></app-price-list-by-reference>
     </po-tab> -->
-    <po-tab p-label="Visualizar produtos"></po-tab>
+    <po-tab p-label="Visualizar produtos" (p-click)="preview.get()">
+      <app-price-list-product-preview #preview
+      [salesOpportunityId]="salesOpportunityId"></app-price-list-product-preview>
+    </po-tab>
   </po-tabs>
 </po-page-default>

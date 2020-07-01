@@ -10,12 +10,14 @@ registerLocaleData(localePt, "pt");
 import { AppRoutingModule } from "./app-routing.module";
 import { PortinariModule } from "./portinari/portinari.module";
 import { SharedModule } from "./shared/shared.module";
-import { PoModule } from "@po-ui/ng-components";
+
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppComponent } from "./app.component";
 
 import { TokenApiService } from './core/interceptors/token-api.service';
 import { InvalidTokenApiService } from './core/interceptors/invalid-token-api.service';
+import { PoTemplatesModule } from '@po-ui/ng-templates';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,9 +25,9 @@ import { InvalidTokenApiService } from './core/interceptors/invalid-token-api.se
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    PortinariModule,
     SharedModule,
-    PoModule
+    PortinariModule,
+    NgxPaginationModule
   ],
   providers: [
     {

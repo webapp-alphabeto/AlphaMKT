@@ -15,6 +15,7 @@ import {
 } from "@po-ui/ng-components";
 import { PriceListService } from "../services/price-list.service";
 import { Observable } from "rxjs";
+import { PriceListProductPreviewComponent } from '../price-list-product-preview/price-list-product-preview.component';
 
 @Component({
   selector: "app-price-list-by-mkup",

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { PoModule, PoToolbarModule, PoModalModule, PoPopoverModule } from '@po-ui/ng-components';
-import { PoPageLoginModule, PoPageDynamicTableModule, PoPageDynamicEditModule, PoPageChangePasswordModule } from '@po-ui/ng-templates';
+import { PoModule, PoToolbarModule, PoModalModule, PoPopoverModule, PoTableModule } from '@po-ui/ng-components';
+import { PoPageLoginModule, PoPageDynamicTableModule, PoPageDynamicEditModule, PoPageChangePasswordModule, PoTemplatesModule } from '@po-ui/ng-templates';
 import { PoModalPasswordRecoveryModule } from '@po-ui/ng-templates';
 import { PoNavbarModule, PoBreadcrumbModule } from '@po-ui/ng-components';
 
@@ -16,7 +16,9 @@ import { PoNavbarModule, PoBreadcrumbModule } from '@po-ui/ng-components';
     PoPageDynamicTableModule,
     PoPopoverModule,
     PoNavbarModule,
-    PoBreadcrumbModule
+    PoBreadcrumbModule,
+    PoTableModule,
+    PoTemplatesModule
   ]
 })
 export class PortinariModule { }

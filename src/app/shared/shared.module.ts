@@ -5,6 +5,7 @@ import { PoModule } from "@po-ui/ng-components";
 import { NgxMaskModule, IConfig, MaskPipe } from "ngx-mask";
 import { MaskArrayPipe } from "./pipes/mask-array.pipe";
 import { AnimacaoEntreRotasComponent } from "./components/animacao-entre-rotas/animacao-entre-rotas.component";
+import { PortinariModule } from '../portinari/portinari.module';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -12,7 +13,7 @@ const maskConfig: Partial<IConfig> = {
 
 @NgModule({
   declarations: [ToolbarComponent, MaskArrayPipe, AnimacaoEntreRotasComponent],
-  imports: [CommonModule, PoModule, NgxMaskModule.forRoot(maskConfig)],
+  imports: [CommonModule, PortinariModule, NgxMaskModule.forRoot(maskConfig)],
   exports: [
     ToolbarComponent,
     AnimacaoEntreRotasComponent,

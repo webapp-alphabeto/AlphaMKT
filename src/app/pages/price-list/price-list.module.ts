@@ -12,6 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenApiService } from 'src/app/core/interceptors/token-api.service';
 import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-api.service';
+import { PriceListProductPreviewComponent } from './price-list-product-preview/price-list-product-preview.component';
+import { PortinariModule } from 'src/app/portinari/portinari.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterByReferencePipe } from './pipes/filter-by-reference.pipe';
 
 @NgModule({
   declarations: [
@@ -20,8 +24,15 @@ import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-
     PriceListByMkupEditComponent,
     PriceListByReferenceComponent,
     PriceListByReferenceEditComponent,
+    PriceListProductPreviewComponent,
+    FilterByReferencePipe 
   ],
-  imports: [CommonModule, PriceListRoutingModule, FormsModule, PoModule],
+  imports: [
+    CommonModule, 
+    PriceListRoutingModule, 
+    FormsModule, 
+    PortinariModule,
+    NgxPaginationModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

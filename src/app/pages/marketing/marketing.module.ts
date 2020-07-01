@@ -33,8 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     VirtualScrollerModule,
     MarketingRoutingModule,
     HomeModule,
-    PortinariModule,
-    PoModule
+    PortinariModule
   ],
   providers: [
     {

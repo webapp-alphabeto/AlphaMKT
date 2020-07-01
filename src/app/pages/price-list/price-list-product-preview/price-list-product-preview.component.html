@@ -1,0 +1,100 @@
+<div class="po-row">
+  <div class="po-md-3">
+    <po-widget
+      *ngFor="let group of groupProducts"
+      class="po-md-12"
+      p-height="140"
+      [p-primary]="products === group.products"
+      [p-title]="group.collection"
+      (p-click)="products = group.products; referenceFilter = undefined"
+    >
+      <div class="po-font-subtitle po-text-center">{{ group.map }}</div>
+      <div class="po-text-center">
+        {{ group.products.length }} referência{{
+          groupProducts.length == 1 ? "" : "s"
+        }}
+      </div>
+    </po-widget>
+  </div>
+
+  <div class="po-md-9">
+    <po-container p-no-shadow p-no-padding>
+      <div class="po-row">
+        <po-input
+          class="po-md-12"
+          p-icon="po-icon-search"
+          p-placeholder="Referência"
+          p-clean
+          [(ngModel)]="referenceFilter"
+          (p-enter)="paginated = 1"
+        ></po-input>
+      </div>
+
+      <div class="po-row">
+        <po-table
+          class="po-md-12"
+          p-hide-columns-manager
+          [p-items]="
+            products
+              | filterByReference: referenceFilter
+              | paginate: { itemsPerPage: 5, currentPage: paginated }
+          "
+          [p-columns]="columns"
+          p-striped="true"
+        >
+          <ng-template p-table-cell-template let-column="column" let-row="row">
+            <div
+              *ngIf="column.property === 'photo'"
+              class="po-row"
+              style="align-items: center;"
+            >
+              <img  [src]="row.photo" alt="" height="50" />
+              <po-button
+                p-type="link"
+                p-icon="po-icon po-icon-eye"
+                p-tooltip="ampliar"
+                (p-click)="highlightProduct = row; amplifyModal.open()"
+              ></po-button>
+            </div>
+
+            <po-table
+              *ngIf="column.property === 'priceList'"
+              p-hide-columns-manager
+              [p-columns]="priceListColumns"
+              [p-items]="row.priceList"
+            ></po-table>
+          </ng-template>
+        </po-table>
+      </div>
+    </po-container>
+    <pagination-controls
+      class="po-md-12"
+      (pageChange)="paginated = $event"
+    ></pagination-controls>
+  </div>
+</div>
+
+<po-modal #amplifyModal [p-title]="highlightProduct.model">
+  <po-container p-no-shadow p-no-padding>
+    <div class="po-row">
+      <div class="po-md-6 po-mt-1">
+        <img [src]="highlightProduct.photo" alt="" />
+      </div>
+      <div class="po-md-6 po-mt-1">
+        <po-info
+          p-label="Referência"
+          [p-value]="highlightProduct.reference"
+        ></po-info>
+        <po-info
+          p-label="Categoria"
+          [p-value]="highlightProduct.category"
+        ></po-info>
+      </div>
+    </div>
+  </po-container>
+  <po-table
+    p-hide-columns-manager
+    [p-columns]="priceListColumns"
+    [p-items]="highlightProduct.priceList"
+  ></po-table>
+</po-modal>

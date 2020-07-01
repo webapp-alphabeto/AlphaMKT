@@ -5,7 +5,6 @@ import {
   PoModalComponent,
   PoPageFilter,
   PoProgressStatus,
-  PoComboOption,
   PoDisclaimerGroup,
   PoDisclaimer,
   PoButtonComponent,
@@ -15,7 +14,6 @@ import { Router } from "@angular/router";
 import { IProductPhotoFilter } from "src/app/pages/marketing/interfaces/iproduct-photo-filter";
 import { IProductView } from "src/app/pages/marketing/interfaces/iproduct-view";
 import { ProductEditComponent } from "../product-edit/product-edit.component";
-import { UtilProdutoService } from "src/app/shared/services/util-produto.service";
 import { ProductPhotoService } from "src/app/pages/marketing/services/product-photo.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { IArrayForVirtualSdk } from "src/app/pages/marketing/interfaces/iarray-for-virtual-sdk";
@@ -76,7 +74,7 @@ export class ProductsComponent implements OnInit {
       this.productEditModal.close();
       this.productEditComponent
         .updateComplementaryProductInformation()
-        .subscribe((x) => {
+        .subscribe(() => {
           this.getProducts();
         });
     },
@@ -114,9 +112,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private productPhotoService: ProductPhotoService,
-    private router: Router,
-    private utilProductService: UtilProdutoService
-  ) {}
+    private router: Router  ) {}
 
   ngOnInit() {
     this.disclaimerGroup = {
