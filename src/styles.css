@@ -8,13 +8,11 @@
   --color-primary: #e18b34;
   --color-toolbar-color-title: var(--color-primary);
   --color-page-header-color-title: var(--color-primary);
-  /* --color-toolbar-background-color-toolbar: var(--color-primary); */
-  /* --font-family-theme-bold: Fredoka One; */
-  /* --color-toolbar-color-default: #ffffff; */
-  /* --color-toolbar-color-title: var(--color-toolbar-color-default); */
-  /* --color-toolbar-color-title: var(--color-primary); */
   --color-widget-color-default: black;
   --color-page-login-background-color: white;
+
+  --color-button-group-background-selected: var(--color-primary);
+  --color-button-group-border-selected: var(--color-primary);
 }
 
 .titulo-alphabeto {
@@ -34,6 +32,11 @@
 .centralizar {
   margin: 0 auto;
   width: 50%;
+}
+
+.img-border {
+  border-radius: 3px;
+  box-shadow: 5 px 5px 5px whitesmoke;
 }
 
 body {

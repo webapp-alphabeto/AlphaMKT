@@ -19,6 +19,11 @@ export const SCREEN_LOCK_NO_MESSAGE = {
   'X-PO-No-Message': 'true' 
 };
 
+export const ACCEPT_CSV = { 
+  'X-PO-Screen-Lock': 'true', 
+  'responseType': "arraybuffer"
+};
+
 export const SEM_FOTO = 'https://alphastorageshared.blob.core.windows.net/imagens-de-produto/sem-foto.jpg'
 
 /*

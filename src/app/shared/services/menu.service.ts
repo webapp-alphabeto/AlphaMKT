@@ -81,6 +81,7 @@ export class MenuService {
         { label: "Integração", link: "/administracao/monitor-de-integracao" },
         { label: "Oportunidade de vendas", link: "/oportunidade-de-venda" },
         { label: "Tabela  de preços", link: "/tabela-de-precos" },
+        { label: "Estoque virtual", link:"/estoque-virtual" },
       ],
     },
   ];

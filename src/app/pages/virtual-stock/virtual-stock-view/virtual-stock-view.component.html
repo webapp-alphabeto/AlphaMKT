@@ -1,0 +1,140 @@
+<po-page-default p-title="Estoque virtual">
+  <po-container p-no-shadow>
+    <div class="po-row">
+      <po-combo
+        class="po-md-4"
+        p-label="Oportunidade de venda"
+        [p-filter-service]="serviceApiSalesOpportunity"
+        [(ngModel)]="salesOpportunityId"
+        (p-change)="get()"
+      >
+      </po-combo>
+
+      <po-button
+        #importationModel
+        class="po-md-2 po-mt-4"
+        p-label="Modelo de importação"
+        p-icon="po-icon-download"
+        (p-click)="download()"
+      ></po-button>
+
+      <po-popover [p-target]="importationModelRef" p-trigger="hover">
+        <p>Clique aqui para fazer</p>
+        <p>o download de todos</p>
+        <p>produtos, preencha a</p>
+        <p>planilha com os valores</p>
+        <p>e em seguida importe</p>
+        <p>o arquivo.</p>
+      </po-popover>
+
+      <po-button
+        class="po-md-2 po-mt-4"
+        p-label="Importar"
+        p-icon="po-icon-upload"
+        (p-click)="uploadFileModal.open(); poUpload.clear()"
+      ></po-button>
+
+      <po-info
+        class="po-md-1 po-mt-5"
+        p-label="Saldo Total"
+        [p-value]="sumBalance() | number "
+        p-orientation="horizontal"
+      ></po-info>
+    </div>
+  </po-container>
+
+  <po-container p-no-shadow p-no-padding>
+    <po-button-group
+      class="po-md-12 po-mt-1"
+      [p-buttons]="buttons"
+      p-toggle="single"
+    >
+    </po-button-group>
+
+    <div class="po-row">
+      <po-input
+        class="po-md-12"
+        p-icon="po-icon-search"
+        p-placeholder="Referência"
+        p-clean
+        [(ngModel)]="referenceFilter"
+        (p-enter)="paginated = 1"
+      ></po-input>
+    </div>
+
+    <div class="po-row">
+      <po-table
+        class="po-md-12"
+        p-hide-columns-manager
+        [p-items]="
+          references
+            | filterByReference: referenceFilter
+            | paginate: { itemsPerPage: 5, currentPage: paginated }
+        "
+        [p-columns]="columns"
+        p-striped="true"
+      >
+        <ng-template p-table-cell-template let-column="column" let-row="row">
+          <div
+            *ngIf="column.property === 'photo'"
+            class="po-row"
+            style="align-items: center;"
+          >
+            <img class="img-border" [src]="row.photo" alt="" height="150" />
+            <po-button
+              p-type="link"
+              p-icon="po-icon po-icon-eye"
+              p-tooltip="ampliar"
+              (p-click)="highlightReference = row; amplifyModal.open()"
+            ></po-button>
+          </div>
+          <div *ngIf="column.property === 'sizes'">
+            <app-table-sizes
+              [sizes]="row.sizes"
+              (update)="update($event)"
+            ></app-table-sizes>
+          </div>
+        </ng-template>
+      </po-table>
+    </div>
+  </po-container>
+
+  <pagination-controls
+    class="po-md-12"
+    (pageChange)="paginated = $event"
+  ></pagination-controls>
+
+  <po-modal #amplifyModal [p-title]="highlightReference.model">
+    <po-container p-no-shadow p-no-padding>
+      <div class="po-row">
+        <div class="po-md-6 po-mt-1">
+          <img [src]="highlightReference.photo" height="200" alt="" />
+        </div>
+        <div class="po-md-6 po-mt-1">
+          <po-info
+            p-label="Referência"
+            [p-value]="highlightReference.reference"
+          ></po-info>
+        </div>
+      </div>
+    </po-container>
+
+    <app-table-sizes
+      [sizes]="highlightReference.sizes"
+      (update)="update($event)"
+    ></app-table-sizes>
+  </po-modal>
+
+  <po-modal #uploadFileModal p-title="Atualizar estoque virtual">
+    <po-upload
+      #poUpload
+      p-label="Upload"
+      p-drag-drop
+      p-auto-upload
+      [p-url]="serviceApiUpload"
+      (p-upload)="upload($event)"
+      (p-success)="get()"
+    >
+    </po-upload>
+  </po-modal>
+</po-page-default>

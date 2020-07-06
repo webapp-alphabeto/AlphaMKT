@@ -47,6 +47,13 @@ const routes: Routes = [
     canActivate: [AdministratorGuard],
   },
 
+    {
+      path: 'estoque-virtual', 
+      loadChildren: () => import('./pages/virtual-stock/virtual-stock.module').then(
+        (m) => m.VirtualStockModule),
+        canActivate: [AdministratorGuard]
+    },
+  
   {
     path: "tabela-de-precos",
     loadChildren: () =>

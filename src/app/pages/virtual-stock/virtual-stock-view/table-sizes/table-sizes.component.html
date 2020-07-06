@@ -1,0 +1,19 @@
+<po-table
+
+  p-hide-columns-manager
+  [p-columns]="sizeColumns"
+  [p-items]="sizes"
+>
+  <ng-template p-table-cell-template let-column="column" let-row="row">
+    <po-number
+      p-icon="po-icon-stock"
+      (p-change)="inUpdate(row)"
+      [(ngModel)]="row.balance"
+    ></po-number>
+  </ng-template>
+</po-table>
+<po-info
+  p-label="Total"
+  p-orientation="horizontal"
+  [p-value]="sumBalanceByReference(sizes) | number " 
+></po-info>
