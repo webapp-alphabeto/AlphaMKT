@@ -38,14 +38,27 @@
   <div class="po-row">
     <div class="po-md-3">
       <div class="po-row">
-        <a href="" class="my-breadcrumb po-mr-1">home</a>
+        <a
+          [routerLink]="['']"
+          routerLinkActive="router-link-active"
+          class="my-breadcrumb po-mr-1"
+          >home</a
+        >
         <span class="my-breadcrumb po-mr-1">></span>
         <span href="" class="my-breadcrumb">{{
           opportunityActive?.name | lowercase
         }}</span>
       </div>
 
-      <h1 class="titulo-alphabeto">filtros</h1>
+      <div class="po-row po-mt-1 flex-box">
+        <img
+          style="margin-left: -10px;"
+          src="../../../../assets/dinossauro.png"
+          alt=""
+          srcset=""
+        />
+        <h1 class="po-ml-1 filter-title">filtros</h1>
+      </div>
       <po-divider></po-divider>
 
       <div class="po-row">
@@ -64,7 +77,7 @@
       <div class="po-row">
         <po-container p-no-shadow p-no-border p-height="300" class="po-md-12">
           <a
-            class="filter  cursor-hand po-mr-1 po-row"
+            class="filter cursor-hand po-mr-1 po-row"
             [class.filter-active]="categoryActive == category"
             *ngFor="let category of filterActive?.categories"
             (click)="categoryActive = category; getProducts()"
@@ -76,7 +89,7 @@
     </div>
 
     <div class="po-md-9">
-      <div class="po-row">
+      <div class="po-row flex-box">
         <h4 class="body-title">
           {{
             filterActive?.collection +
@@ -86,24 +99,36 @@
               categoryActive | lowercase
           }}
         </h4>
+        <po-divider class="po-md-12"></po-divider>
       </div>
       <div class="po-row po-mt-1">
-        <a *ngFor="let item of products" class="po-md-4 po-mb-2 card-product" [title]="item.model">
-          <img [src]="item.photo" [alt]="item.model" width="100%" />
+        <a
+          *ngFor="let item of products"
+          class="po-md-4 po-mb-2 card-product"
+          [title]="item.model"
+        >
+          <div>
+            <img
+              [src]="item.photo"
+              height="300px"
+              [alt]="item.model"
+              width="100%"
+            />
+          </div>
           <h3 class="model">
             {{
               (item.model | slice: 0:26) + (item.model.length > 26 ? ".." : "")
+                | lowercase
             }}
           </h3>
+          <p class="reference">{{ item.reference }}</p>
           <h5 class="price">{{ item.price | currency: "BRL" }}</h5>
 
-          <div class="card-complement" >
-            <div class="card-complement-bottom">
-
-              <a class="addbag" >ADICIONAR A SACOLA</a>
+          <div class="card-complement">
+            <div class="card-complement-buttom">
+              <a class="button-bag"><span>adicionar a sacola </span></a>
             </div>
           </div>
-
         </a>
       </div>
     </div>
