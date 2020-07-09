@@ -1,0 +1,111 @@
+<po-page-default>
+  <div class="po-row top">
+    <div class="po-mt-1">
+      <img
+        class="po-mr-2 po-ml-2"
+        src="../../../../assets/logo-alphabeto.png"
+        alt=""
+        srcset=""
+        width="150px"
+      />
+    </div>
+
+    <div class="po-mt-1 po-mr-3">
+      <span class="po-icon po-icon-search po-mr-1 icon-search"></span>
+      <input class="search" placeholder="procure aqui" />
+    </div>
+
+    <div class="po-mt-2" *ngFor="let opportunity of opportunitys">
+      <a
+        class="po-mr-2 po-ml-2 opportunity cursor-hand"
+        [class.opportunity-active]="opportunity.id == opportunityActive.id"
+        (click)="opportunityActive = opportunity"
+      >
+        {{ opportunity.name | uppercase }}</a
+      >
+    </div>
+  </div>
+
+  <div class="po-row po-mt-2 body-page">
+    <po-slide
+      *ngIf="opportunityActive?.banners"
+      [p-slides]="opportunityActive.banners"
+      p-height="390"
+    >
+    </po-slide>
+  </div>
+
+  <div class="po-row">
+    <div class="po-md-3">
+      <div class="po-row">
+        <a href="" class="my-breadcrumb po-mr-1">home</a>
+        <span class="my-breadcrumb po-mr-1">></span>
+        <span href="" class="my-breadcrumb">{{
+          opportunityActive?.name | lowercase
+        }}</span>
+      </div>
+
+      <h1 class="titulo-alphabeto">filtros</h1>
+      <po-divider></po-divider>
+
+      <div class="po-row">
+        <a
+          class="filter titulo-alphabeto cursor-hand"
+          [class.filter-active]="filterActive == filter"
+          *ngFor="let filter of opportunityActive?.filters"
+          (click)="filterActive = filter"
+        >
+          {{ filter.collection + " | " + filter.map | lowercase }}
+        </a>
+      </div>
+
+      <po-divider></po-divider>
+
+      <div class="po-row">
+        <po-container p-no-shadow p-no-border p-height="300" class="po-md-12">
+          <a
+            class="filter  cursor-hand po-mr-1 po-row"
+            [class.filter-active]="categoryActive == category"
+            *ngFor="let category of filterActive?.categories"
+            (click)="categoryActive = category; getProducts()"
+          >
+            {{ category | lowercase }}
+          </a>
+        </po-container>
+      </div>
+    </div>
+
+    <div class="po-md-9">
+      <div class="po-row">
+        <h4 class="body-title">
+          {{
+            filterActive?.collection +
+              " | " +
+              filterActive?.map +
+              " | " +
+              categoryActive | lowercase
+          }}
+        </h4>
+      </div>
+      <div class="po-row po-mt-1">
+        <a *ngFor="let item of products" class="po-md-4 po-mb-2 card-product" [title]="item.model">
+          <img [src]="item.photo" [alt]="item.model" width="100%" />
+          <h3 class="model">
+            {{
+              (item.model | slice: 0:26) + (item.model.length > 26 ? ".." : "")
+            }}
+          </h3>
+          <h5 class="price">{{ item.price | currency: "BRL" }}</h5>
+
+          <div class="card-complement" >
+            <div class="card-complement-bottom">
+
+              <a class="addbag" >ADICIONAR A SACOLA</a>
+            </div>
+          </div>
+
+        </a>
+      </div>
+    </div>
+  </div>
+</po-page-default>

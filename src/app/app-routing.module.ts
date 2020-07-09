@@ -47,13 +47,15 @@ const routes: Routes = [
     canActivate: [AdministratorGuard],
   },
 
-    {
-      path: 'estoque-virtual', 
-      loadChildren: () => import('./pages/virtual-stock/virtual-stock.module').then(
-        (m) => m.VirtualStockModule),
-        canActivate: [AdministratorGuard]
-    },
-  
+  {
+    path: "estoque-virtual",
+    loadChildren: () =>
+      import("./pages/virtual-stock/virtual-stock.module").then(
+        (m) => m.VirtualStockModule
+      ),
+    canActivate: [AdministratorGuard],
+  },
+
   {
     path: "tabela-de-precos",
     loadChildren: () =>
@@ -61,6 +63,13 @@ const routes: Routes = [
         (m) => m.PriceListModule
       ),
     canActivate: [AdministratorGuard],
+  },
+
+  {
+    path: "sales",
+    loadChildren: () =>
+      import("./pages/sales/sales.module").then((m) => m.SalesModule),
+    canActivate: [RepresentativeGuard],
   },
 
   { path: "", pathMatch: "full", redirectTo: "home" },

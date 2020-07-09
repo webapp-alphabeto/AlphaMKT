@@ -5,7 +5,6 @@ import { VirtualStockGroupView } from "../interfaces/VirtualStockGroupView";
 import {
   SCREEN_LOCK,
   environment,
-  ACCEPT_CSV,
 } from "src/environments/environment";
 import { VirtualStockEdit } from "../interfaces/VirtualStockEdit";
 import { map } from "rxjs/operators";

@@ -13,22 +13,22 @@ export class MenuService {
   constructor() {}
 
   public checkShowMenu(router: Router) {
-    if (router.isActive("/home/principal", true)) {
-      this.exibirMenu.next(true);
-      return;
-    }
+    // if (router.isActive("/home/principal", true)) {
+    //   this.exibirMenu.next(true);
+    //   return;
+    // }
 
-    if (router.isActive("/home/meu-perfil", true)) {
-      this.exibirMenu.next(true);
-      return;
-    }
+    // if (router.isActive("/home/meu-perfil", true)) {
+    //   this.exibirMenu.next(true);
+    //   return;
+    // }
 
-    if (router.isActive("/home/alterar-senha", true)) {
-      this.exibirMenu.next(true);
-      return;
-    }
+    // if (router.isActive("/home/alterar-senha", true)) {
+    //   this.exibirMenu.next(true);
+    //   return;
+    // }
 
-    this.exibirMenu.next(false);
+    // this.exibirMenu.next(false);
   }
 
   getMenu(nivelDeAcesso: AccessLevel) {

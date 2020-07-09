@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ICommercialReference } from '../models/ICommercialReference';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+// TODO: Esse serviço está no lugar errado
 @Injectable({
   providedIn: 'root'
 })

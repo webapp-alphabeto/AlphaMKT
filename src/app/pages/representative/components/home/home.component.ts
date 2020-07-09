@@ -37,6 +37,6 @@ export class HomeComponent implements OnInit {
   }
 
   irParaVendas() {
-    console.log("rota para vendas");
+   this.route.navigateByUrl('/sales/check-in')
   }
 }

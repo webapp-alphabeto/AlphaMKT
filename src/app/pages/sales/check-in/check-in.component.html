@@ -1,0 +1,31 @@
+<po-page-default>
+  <div class="po-row flex-box">
+    <h1 class="titulo-alphabeto slide-in-left">Check-In</h1>
+  </div>
+
+  <div class="po-row flex-box po-mt-1">
+    <po-lookup
+    #lookUp
+      class="po-md-4 slide-in-left"
+      p-label="Cliente"
+      name="lookup"
+      p-field-label="fantasyName"
+      p-field-value="id"
+      [p-filter-service]="serviceApiClient"
+      [p-columns]="clientColumns"
+      [(ngModel)]="clientId"
+    >
+    </po-lookup>
+  </div>
+
+  <div class="po-row flex-box po-mt-1">
+
+    <po-button
+      class="slide-in-bottom"
+      p-label="Iniciar"
+      p-type="primary"
+      p-icon="po-icon-star"
+      (p-click)="iniciar(lookUp)"
+    ></po-button>
+  </div>
+</po-page-default>

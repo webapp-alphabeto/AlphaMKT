@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { TokenService } from './token.service';
 import { ProfileService } from 'src/app/shared/services/profile.service';
+import { CheckInService } from 'src/app/shared/services/check-in.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private tokenService: TokenService,
-    private profileService: ProfileService) { }
+    private profileService: ProfileService,
+    private checkInService: CheckInService) { }
 
   Authenticated = new BehaviorSubject<boolean>(this.hasToken());
 
@@ -33,6 +35,7 @@ export class AuthService {
   logout(): void {
     this.tokenService.resetToken();    
     this.profileService.resetarProfile();
+    this.checkInService.resetarCheckIn();
     this.Authenticated.next(false);
   }
 }

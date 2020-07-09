@@ -13,16 +13,25 @@
 
   --color-button-group-background-selected: var(--color-primary);
   --color-button-group-border-selected: var(--color-primary);
+  /* --font-family-theme-bold: "Fredoka One" */
+}
+
+.po-toolbar-title {
+  font-family: "Fredoka One", cursive;
 }
 
 .titulo-alphabeto {
-  font-family: 'Fredoka One', cursive;
+  font-family: "Fredoka One", cursive;
   color: var(--color-primary);
   text-align: center;
 }
 
 .white {
   color: #ffffff;
+}
+
+.orange-background {
+ background-color: #e18b34;
 }
 
 .cursor-hand {
@@ -37,6 +46,12 @@
 .img-border {
   border-radius: 3px;
   box-shadow: 5 px 5px 5px whitesmoke;
+}
+
+.flex-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 body {

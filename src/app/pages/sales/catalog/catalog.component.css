@@ -1,0 +1,114 @@
+.search {
+  font-family: "Fredoka One", cursive;
+  height: 80%;
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: whitesmoke;
+  color: #e18b34;
+}
+
+.search:focus {
+  border-color: #e18b34;
+}
+
+.icon-search {
+  color: #e18b34;
+}
+
+.opportunity,
+.filter {
+  color: #858585;
+}
+
+.opportunity:hover,
+.filter-active:hover {
+  color: #e18b34;
+}
+
+.filter {
+  font-family: "Fredoka One", cursive;
+}
+
+.opportunity-active,
+.filter-active {
+  color: #e18b34;
+}
+
+.my-breadcrumb {
+  font-family: "Fredoka One", fantasy;
+  color: #858585;
+}
+
+.top {
+  position: fixed;
+  top: 0;
+  left: -20px;
+  margin-left: 15px;
+  z-index: 999;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+}
+
+.body-page {
+  margin-top: 60px;
+}
+
+.body-title {
+  color: #858585;
+  font-family: "Fredoka One", cursive;
+}
+
+.card-product {
+  color: #e18b34;
+  text-align: center;
+  border: 1px solid white;
+  padding-bottom: 5px;
+  position: relative;
+}
+
+.model {
+  color: #858585;
+}
+
+.price {
+  font-family: "Fredoka One", cursive;
+}
+
+.card-product:hover {
+  border: 1px solid #e18b34;
+}
+
+
+.card-complement  {
+  width:100%; 
+  height:100%; 
+  position:absolute;
+  top:0;
+  left:0;
+  opacity: 0;
+
+}
+
+.card-complement:hover {
+  opacity: 1;
+}
+
+.card-complement-bottom {
+  background-color: rgba(255, 255, 255, 0.5);
+  width:100%; 
+  height:100%; 
+  top: 50%;
+  position: relative;
+  
+}
+
+.addbag {
+  background-color: #57504A;
+  font-family: "Fredoka One", cursive;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  margin-top: 50px;
+}
+
