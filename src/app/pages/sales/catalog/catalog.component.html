@@ -1,8 +1,5 @@
 <po-page-default>
-  <ab-navbar
-    [items]="opportunitys"
-    (select)="opportunityActive = $event"
-  >
+  <ab-navbar [items]="opportunitys" (select)="opportunityActive = $event">
     <div class="po-row">
       <ab-banner
         class="po-md-12"
@@ -19,7 +16,7 @@
       ></ab-filter>
 
       <div class="po-md-9">
-         <div class="po-row flex-box">
+        <div class="po-row flex-box">
           <h4 class="body-title" *ngIf="abFilter.filterActive">
             {{
               abFilter.filterActive?.collection +
@@ -31,36 +28,13 @@
           </h4>
           <po-divider class="po-md-12"></po-divider>
         </div>
-        <div class="po-row po-mt-1 po-mb-2">
-          <a
-            *ngFor="let item of products"
+        <div class="po-row po-mt-1">
+          <ab-card-product
             class="po-md-4 po-mb-2 card-product"
-            [title]="item.model"
-          >
-            <div>
-              <img
-                [src]="item.photo"
-                height="300px"
-                [alt]="item.model"
-                width="100%"
-              />
-            </div>
-            <h3 class="model">
-              {{
-                (item.model | slice: 0:26) +
-                  (item.model.length > 26 ? ".." : "") | lowercase
-              }}
-            </h3>
-            <p class="reference">{{ item.reference }}</p>
-            <h5 class="price">{{ item.price | currency: "BRL" }}</h5>
-
-            <div class="card-complement">
-              <div class="card-complement-buttom">
-                <a class="button-bag"><span>adicionar a sacola </span></a>
-              </div>
-            </div>
-          </a>
-        </div> 
+            [product]="item"
+            *ngFor="let item of products"
+          ></ab-card-product>
+        </div>
       </div>
     </div>
   </ab-navbar>
