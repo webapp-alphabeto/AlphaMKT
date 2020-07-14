@@ -17,7 +17,7 @@ import { AppComponent } from "./app.component";
 
 import { TokenApiService } from './core/interceptors/token-api.service';
 import { InvalidTokenApiService } from './core/interceptors/invalid-token-api.service';
-import { PoTemplatesModule } from '@po-ui/ng-templates';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +27,8 @@ import { PoTemplatesModule } from '@po-ui/ng-templates';
     AppRoutingModule,
     SharedModule,
     PortinariModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    LayoutModule
   ],
   providers: [
     {

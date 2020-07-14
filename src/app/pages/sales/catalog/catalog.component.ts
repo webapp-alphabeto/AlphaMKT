@@ -1,12 +1,12 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { CatalogService } from "../services/catalog.service";
 import { TokenService } from "src/app/core/services/token.service";
 import { CheckInService } from "src/app/shared/services/check-in.service";
 import { MenuService } from "src/app/shared/services/menu.service";
 import { CatalogOpportunity } from "../interfaces/CatalogOpportunity";
 import { ToolBarService } from "src/app/shared/services/tool-bar.service";
-import { CatalogFilterProducts } from "../interfaces/CatalogFilterProducts";
 import { CatalogProduct } from "../interfaces/CatalogProduct";
+import { ParamsFilter } from "../interfaces/ParamsFilter";
 
 @Component({
   selector: "app-catalog",
@@ -16,8 +16,6 @@ import { CatalogProduct } from "../interfaces/CatalogProduct";
 export class CatalogComponent implements OnInit {
   opportunitys: Array<CatalogOpportunity>;
   opportunityActive: CatalogOpportunity;
-  filterActive: CatalogFilterProducts;
-  categoryActive: string;
   products: Array<CatalogProduct>;
 
   constructor(
@@ -44,20 +42,15 @@ export class CatalogComponent implements OnInit {
       .subscribe((x) => {
         this.opportunitys = x;
         this.opportunityActive = x[0];
-        this.filterActive = this.opportunityActive.filters[0];
-        this.categoryActive = this.filterActive.categories[0];
-        this.getProducts();
+        // this.getProducts(this.categoryActive);
       });
   }
 
-  getProducts() {
+  getProducts(filter: ParamsFilter) {
+    if (filter == null) return;
+
     this.catalogServices
-      .getProducts(
-        this.opportunityActive.id,
-        this.filterActive.collection,
-        this.filterActive.map,
-        this.categoryActive
-      )
+      .getProducts(filter)
       .subscribe((x) => (this.products = x));
   }
 }

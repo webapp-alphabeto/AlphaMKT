@@ -1,0 +1,143 @@
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: "Fredoka One", fantasy;
+  color: #858585;
+  top: 0;
+  position: fixed;
+  background-color: white;
+  z-index: 1;
+  width: 100%;
+  margin-left: -16px;
+}
+
+ul.topnav li {
+  float: left;
+}
+
+ul.topnav li a {
+  display: block;
+  color: #858585;
+  text-align: center;
+  padding: 26px 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logo {
+  padding: 9px 2px !important;
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+ul.topnav li a:hover:not(.active) {
+  background-color: whitesmoke;
+  color: #e18b34;
+}
+
+ul.topnav li a.active {
+  color: #e18b34;
+}
+
+ul.topnav li a.active::before,
+.sidenav a.active::before {
+  content: url("../../../../../assets/folha.png");
+  margin-right: 1px;
+  margin-right: 3px;
+  left: -10px;
+}
+ul.topnav li.right {
+  float: right;
+}
+
+@media screen and (max-width: 700px) {
+  ul.topnav li {
+    float: none;
+    display: none;
+  }
+  ul.topnav li:nth-child(-n + 2),
+  ul.topnav li:nth-last-child(1) {
+    display: inline-block;
+  }
+  ul.topnav li:nth-child(1) {
+    float: left;
+  }
+  ul.topnav li:nth-child(2) a img {
+    margin-left: 50%;
+    margin-top: 8px;
+  }
+  ul.topnav li:nth-last-child(1) {
+    float: right;
+  }
+
+  .logo img {
+    width: 150px;
+  }
+}
+
+.button-menu {
+  width: 60px;
+  display: none;
+}
+
+.button-menu a {
+  font-size: 20px;
+}
+
+.button-bag a {
+  width: 60px;
+  padding: 17px 2px !important;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  /* background-color: #111; */
+  background-color: #f9526e;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+  transition: 0.3s;
+  font-family: "Fredoka one", fantasy;
+  color: #fcbd00;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.sidenav a.active {
+  color: #f1f1f1;
+}
+
+@media screen and (max-height: 700px) {
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+.main {
+  margin-top: 70px;
+}

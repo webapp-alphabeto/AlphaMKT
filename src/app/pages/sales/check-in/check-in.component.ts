@@ -1,10 +1,17 @@
 import { Component, OnInit } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { TokenService } from "src/app/core/services/token.service";
-import { PoLookupColumn, PoLookupComponent } from "@po-ui/ng-components";
+import {
+  PoLookupColumn,
+  PoLookupComponent,
+  PoBreadcrumb,
+  PoBreadcrumbItem,
+} from "@po-ui/ng-components";
 import { CheckInService } from "src/app/shared/services/check-in.service";
 import { CheckIn } from "src/app/shared/interfaces/check-in.interface";
 import { Router } from "@angular/router";
+import { ToolBarService } from "src/app/shared/services/tool-bar.service";
+import { MenuService } from "src/app/shared/services/menu.service";
 
 @Component({
   selector: "app-check-in",
@@ -21,11 +28,26 @@ export class CheckInComponent implements OnInit {
     { property: "fantasyName", label: "Nome" },
   ];
 
+  breadcrumb: PoBreadcrumb = {
+    items: [
+      {
+        label: "Home",
+        link: "/representante/home",
+      },
+      {
+        label: "Check-in",
+      },
+    ],
+  };
+
   constructor(
     private tokenService: TokenService,
     private checkinService: CheckInService,
-    private router: Router
-  ) {}
+    private router: Router,
+    toolbarService: ToolBarService
+  ) {
+    toolbarService.exibir();
+  }
 
   ngOnInit(): void {
     if (this.checkinService.checkin)

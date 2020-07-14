@@ -1,0 +1,14 @@
+<po-slide
+  *ngIf="items && items.length > 0 && show; else semBanner"
+  [p-slides]="items"
+  p-height="390"
+>
+</po-slide>
+
+<ng-template #semBanner>
+  <po-divider class="po-md-12"></po-divider>
+  <div class="por-row titulo-alphabeto po-md-12 po-m-2">
+    <h1 class="flex-box">Vestindo criança como criança</h1>
+  </div>
+  <po-divider class="po-md-12"></po-divider>
+</ng-template>

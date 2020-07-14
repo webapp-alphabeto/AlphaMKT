@@ -1,0 +1,19 @@
+
+
+<ng-template #bodyView><ng-content select="[body]"></ng-content></ng-template>
+
+<ng-content select="[title]"></ng-content>
+
+<div *ngIf="isMobile">
+
+  <ng-container *ngTemplateOutlet="bodyView"></ng-container>
+  
+</div>
+
+<div *ngIf="!isMobile">
+  <div class="sidenav" [style.width]="showSideMenu ? '100%' : 0">
+    <a class="closebtn" (click)="showSideMenu = false">&times;</a>
+    <ng-content select="[titleSide]"></ng-content>
+    <ng-container *ngTemplateOutlet="bodyView"></ng-container>
+  </div>
+</div>

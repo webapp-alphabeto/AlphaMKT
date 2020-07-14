@@ -1,0 +1,27 @@
+<div class="po-row">
+    <a
+      [routerLink]="['../check-in']"
+      routerLinkActive="router-link-active"
+      class="filter-breadcrumb po-mr-1"
+      >check-in</a
+    >
+    <span class="my-breadcrumb po-mr-1">></span>
+    <span href="" class="filter-breadcrumb">{{
+      title | lowercase
+    }}</span>
+  </div>
+
+  <div class="po-row po-mt-1 flex-box">
+    <img
+      style="margin-left: -10px;"
+      src="../../../../assets/dinossauro.png"
+      alt=""
+      srcset=""
+    />
+
+    <h1 class="po-ml-1 filter-title" (click)="titleClick()">
+      filtros
+    </h1>
+  </div>
+
+  <po-divider></po-divider>

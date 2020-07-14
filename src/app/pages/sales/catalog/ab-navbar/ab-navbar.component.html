@@ -1,0 +1,43 @@
+
+<ul class="topnav">
+  <li class="button-menu">
+    <a class="po-icon po-icon-menu" (click)="openNav()"></a>
+  </li>
+  <li>
+    <a class="logo" routerLink="">
+      <img
+        src="../../../../assets/logo-alphabeto.png"
+        alt=""
+        srcset=""
+        width="220px"
+      />
+    </a>
+  </li>
+
+  <li *ngFor="let item of items">
+    <a [class.active]="itemActive == item" (click)="selectItem(item)">{{
+      item.name
+    }}</a>
+  </li>
+
+  <li class="right button-bag">
+    <a
+      ><img src="../../../../../assets/bolsa-de-compras.png" alt="" srcset=""
+    /></a>
+  </li>
+</ul>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+
+  <a
+    *ngFor="let item of items"
+    [class.active]="itemActive == item"
+    (click)="selectItem(item)"
+    >{{ item.name }}</a
+  >
+</div>
+
+<div class="main">
+  <ng-content></ng-content>
+</div>

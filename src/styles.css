@@ -4,6 +4,11 @@
 @import "./animista.css";
 /* @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap'); */
 
+@font-face {
+  font-family: always;
+  src: url('./assets/always.ttf') format("opentype");
+}
+
 :root {
   --color-primary: #e18b34;
   --color-toolbar-color-title: var(--color-primary);

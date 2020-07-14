@@ -1,23 +1,35 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { SalesRoutingModule } from './sales-routing.module';
-import { CheckInComponent } from './check-in/check-in.component';
-import { PortinariModule } from 'src/app/portinari/portinari.module';
-import { FormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenApiService } from 'src/app/core/interceptors/token-api.service';
-import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-api.service';
-import { CatalogComponent } from './catalog/catalog.component';
-
+import { SalesRoutingModule } from "./sales-routing.module";
+import { CheckInComponent } from "./check-in/check-in.component";
+import { PortinariModule } from "src/app/portinari/portinari.module";
+import { FormsModule } from "@angular/forms";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { TokenApiService } from "src/app/core/interceptors/token-api.service";
+import { InvalidTokenApiService } from "src/app/core/interceptors/invalid-token-api.service";
+import { CatalogComponent } from "./catalog/catalog.component";
+import { AbNavbarComponent } from "./catalog/ab-navbar/ab-navbar.component";
+import { AbBannerComponent } from "./catalog/ab-banner/ab-banner.component";
+import { AbFilterComponent } from './catalog/ab-filter/ab-filter.component';
+import { AbSideMenuComponent } from './catalog/ab-filter/ab-side-menu/ab-side-menu.component';
+import { AbFilterTitleComponent } from './catalog/ab-filter/ab-filter-title/ab-filter-title.component';
 
 @NgModule({
-  declarations: [CheckInComponent, CatalogComponent],
+  declarations: [
+    CheckInComponent,
+    CatalogComponent,
+    AbNavbarComponent,
+    AbBannerComponent,
+    AbFilterComponent,
+    AbSideMenuComponent,
+    AbFilterTitleComponent,
+  ],
   imports: [
     CommonModule,
     SalesRoutingModule,
     PortinariModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [
     {
@@ -32,4 +44,4 @@ import { CatalogComponent } from './catalog/catalog.component';
     },
   ],
 })
-export class SalesModule { }
+export class SalesModule {}

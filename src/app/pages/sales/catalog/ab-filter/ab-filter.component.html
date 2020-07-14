@@ -1,0 +1,45 @@
+<ab-side-menu #sideMenu>
+  <div title>
+    <ab-filter-title
+      [title]="opportunityActive?.name"
+      (actionTitleClick)="sideMenu.showSideMenu = true"
+    ></ab-filter-title>
+  </div>
+
+  <div titleSide>
+    <ab-filter-title
+      [title]="opportunityActive?.name"
+      (actionTitleClick)="sideMenu.showSideMenu = true"
+    ></ab-filter-title>
+  </div>
+
+  <div body>
+    <div class="po-row">
+      <div class="po-md-12">
+        <a
+          class="filter titulo-alphabeto cursor-hand filter-active po-row"
+          [class.filter-active]="filterActive == filter"
+          *ngFor="let filter of opportunityActive?.filters"
+          (click)="filterActive = filter; changeFilter()"
+        >
+          {{ filter.map | lowercase }}
+        </a>
+      </div>
+    </div>
+
+    <po-divider></po-divider>
+
+    <div class="po-row">
+      <po-container class="po-md-12" p-no-shadow p-no-border p-height="300">
+        <a
+          class="filter cursor-hand po-mr-1 po-row"
+          [class.filter-active]="categoryActive == category"
+          *ngFor="let category of filterActive?.categories"
+          (click)="categoryActive = category; setFilter()"
+        >
+          {{ category | lowercase }}
+        </a>
+      </po-container>
+    </div>
+  </div>
+</ab-side-menu>
