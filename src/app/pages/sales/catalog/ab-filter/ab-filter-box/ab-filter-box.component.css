@@ -1,0 +1,17 @@
+
+.filter {
+    font-family: "Fredoka One", cursive;
+    color: #858585;
+  }
+  .filter-active {
+    color: #e18b34;
+  }
+  .filter-active:hover {
+    color: #e18b34;
+  }
+  .filter-title {
+    font-family: "always", cursive;
+    color: #858585;
+    font-size: 24px;
+  }
+  

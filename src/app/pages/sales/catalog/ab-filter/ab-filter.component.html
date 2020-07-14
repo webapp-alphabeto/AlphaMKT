@@ -15,31 +15,27 @@
 
   <div body>
     <div class="po-row">
-      <div class="po-md-12">
-        <a
-          class="filter titulo-alphabeto cursor-hand filter-active po-row"
-          [class.filter-active]="filterActive == filter"
-          *ngFor="let filter of opportunityActive?.filters"
-          (click)="filterActive = filter; changeFilter()"
-        >
-          {{ filter.map | lowercase }}
-        </a>
-      </div>
+      <ab-filter-box
+        class="po-md-12"
+        [filterActive]="filterActive"
+        [filters]="opportunityActive?.filters"
+        title="mapas"
+        fieldIterator="map"
+        (filterClick)="filterActive = $event; changeFilter()"
+      ></ab-filter-box>
     </div>
 
     <po-divider></po-divider>
 
     <div class="po-row">
-      <po-container class="po-md-12" p-no-shadow p-no-border p-height="300">
-        <a
-          class="filter cursor-hand po-mr-1 po-row"
-          [class.filter-active]="categoryActive == category"
-          *ngFor="let category of filterActive?.categories"
-          (click)="categoryActive = category; setFilter()"
-        >
-          {{ category | lowercase }}
-        </a>
-      </po-container>
+      <ab-filter-box
+        class="po-md-12"
+        [filterActive]="categoryActive"
+        [filters]="filterActive?.categories"
+        title="categorias"
+        height="300"
+        (filterClick)="categoryActive = $event; setFilter()"
+      ></ab-filter-box>
     </div>
   </div>
 </ab-side-menu>
