@@ -2,14 +2,12 @@
   font-family: "Fredoka One", fantasy;
   color: #858585;
 }
-
 .filter-title {
   font-family: "Fredoka One", cursive;
   color: #e18b34;
 }
-
-@media screen and (max-height: 700px) {
-    .filter-title::after {
-      content: ' +';
-    }
+.filter-title::before {
+  content: "[ ";
+  font-family: "always", fantasy;
 }
+

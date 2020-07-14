@@ -16,6 +16,7 @@ import { AbSideMenuComponent } from './catalog/ab-filter/ab-side-menu/ab-side-me
 import { AbFilterTitleComponent } from './catalog/ab-filter/ab-filter-title/ab-filter-title.component';
 import { AbCardProductComponent } from './catalog/ab-card-product/ab-card-product.component';
 import { AbFilterBoxComponent } from './catalog/ab-filter/ab-filter-box/ab-filter-box.component';
+import { BigTextPipe } from './pipes/big-text.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AbFilterBoxComponent } from './catalog/ab-filter/ab-filter-box/ab-filte
     AbFilterTitleComponent,
     AbCardProductComponent,
     AbFilterBoxComponent,
+    BigTextPipe
   ],
   imports: [
     CommonModule,

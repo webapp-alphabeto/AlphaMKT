@@ -28,14 +28,18 @@
     <po-divider></po-divider>
 
     <div class="po-row">
-      <ab-filter-box
-        class="po-md-12"
-        [filterActive]="categoryActive"
-        [filters]="filterActive?.categories"
-        title="categorias"
-        height="300"
-        (filterClick)="categoryActive = $event; setFilter()"
-      ></ab-filter-box>
+      <po-container  p-no-shadow p-no-border p-height="300">
+        <div  *ngFor="let item of filterActive?.groups">
+          <ab-filter-box
+            
+            [filterActive]="categoryActive"
+            [filters]="item?.categories"
+            [title]="item.group"            
+            (filterClick)="categoryActive = $event; setFilter()"
+          ></ab-filter-box>
+        </div>
+      </po-container>
+
     </div>
   </div>
 </ab-side-menu>

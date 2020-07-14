@@ -1,11 +1,24 @@
-<p class="filter-title flex-box">{{ title }}</p>
-<po-container class="po-md-12" p-no-shadow p-no-border [p-height]="height">
+<a class="filter-title" (click)="showFilters = !showFilters" [title]="title">
+  {{ "[]" + title | bigText: 14 | lowercase }}
+</a>
+<po-container
+  class="po-md-12"
+  p-no-shadow
+  p-no-border
+  [p-height]="height"
+  *ngIf="showFilters"
+  [@slideIn]
+>
   <a
+    [style.height]="showFilters ? '100%' : 0"
     class="filter cursor-hand po-row"
     [class.filter-active]="filterActive == filter"
     *ngFor="let filter of filters"
     (click)="actionFilterClick(filter)"
+    [title]="fieldIterator ? filter[fieldIterator] : filter"
   >
-    {{ (fieldIterator ? filter[fieldIterator] : filter) | lowercase }}
+    {{
+      (fieldIterator ? filter[fieldIterator] : filter) | bigText: 15 | lowercase
+    }}
   </a>
 </po-container>

@@ -3,11 +3,10 @@
     <img [src]="product.photo" height="300px" [alt]="product.model" />
   </div>
   <h3 class="model">
-    {{
-      (product.model | slice: 0:26) + (product.model.length > 26 ? ".." : "")
-        | lowercase
-    }}
+    {{ product.model | bigText: 26 | lowercase }}
   </h3>
+  <!-- (product.model | slice: 0:26) + (product.model.length > 26 ? ".." : "")
+  | lowercase -->
   <p class="reference">{{ product.reference }}</p>
   <h5 class="price">{{ product.price | currency: "BRL" }}</h5>
 

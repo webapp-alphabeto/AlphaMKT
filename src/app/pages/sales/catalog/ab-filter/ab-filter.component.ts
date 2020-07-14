@@ -25,10 +25,7 @@ export class AbFilterComponent implements OnInit, OnChanges {
 
   constructor() {}
 
-  ngOnInit(): void {
-
-  }
-
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.opportunityActive) {
@@ -38,7 +35,7 @@ export class AbFilterComponent implements OnInit, OnChanges {
   }
 
   changeFilter() {
-    this.categoryActive = this.filterActive?.categories[0];
+    this.categoryActive = this.filterActive?.groups[0].categories[0];
 
     this.setFilter();
   }
@@ -49,7 +46,6 @@ export class AbFilterComponent implements OnInit, OnChanges {
       return;
     }
 
-    
     this.paramsFilter = {
       category: this.categoryActive,
       collection: this.filterActive.collection,
@@ -59,8 +55,4 @@ export class AbFilterComponent implements OnInit, OnChanges {
 
     this.getFilter.emit(this.paramsFilter);
   }
-
-
-
-
 }
