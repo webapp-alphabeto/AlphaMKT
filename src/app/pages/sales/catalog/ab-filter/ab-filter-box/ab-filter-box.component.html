@@ -12,7 +12,7 @@
   <a
     [style.height]="showFilters ? '100%' : 0"
     class="filter cursor-hand po-row"
-    [class.filter-active]="filterActive == filter"
+    [class.filter-active]="checkActive(filterActive, filter)"
     *ngFor="let filter of filters"
     (click)="actionFilterClick(filter)"
     [title]="fieldIterator ? filter[fieldIterator] : filter"

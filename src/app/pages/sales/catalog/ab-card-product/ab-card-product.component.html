@@ -8,20 +8,24 @@
 
   <p class="reference">{{ product.reference }}</p>
 
-  <div class="po-row po-mt-3">
-    <div class="po-md-4 origin-price">
-      <p>venda por</p>
-      <h5>{{ product.originPrice | currency: "BRL" }}</h5>
-    </div>
-    <div class="po-md-8 buy-price">
+  <div class="po-row">
+    <div class="po-md-12 po-mt-1 buy-price">
       <p>compre por</p>
       <h5
-        [class.buy-price-active]="listPriceId == price.id"
+        [hidden]="listPriceId != price.id"
         *ngFor="let price of product.prices"
       >
         {{ price.price | currency: "BRL" }}
-      </h5>
+      </h5>      
+  </div>
+  
+    <div class="po-md-12 price">
+  
+        <p>venda por</p>
+        <h5>{{ product.originPrice | currency: "BRL" }}</h5>
+      
     </div>
+
   </div>
 
   <div class="card-complement">

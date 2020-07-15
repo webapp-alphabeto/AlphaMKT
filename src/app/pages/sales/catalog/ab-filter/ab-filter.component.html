@@ -14,23 +14,24 @@
   </div>
 
   <div body>
-
     <div class="po-row">
       <ab-filter-box
+        *ngIf="opportunityActive"
         class="po-md-12"
+        [filters]="opportunityActive.priceList"
         [filterActive]="priceActive"
-        [filters]="opportunityActive?.priceList"
         title="Preços"
         fieldIterator="name"
-        (filterClick)="priceActive = $event;"      
+        (filterClick)="priceActive = $event; SetPrice($event)"
       ></ab-filter-box>
     </div>
 
     <div class="po-row">
       <ab-filter-box
+      *ngIf="opportunityActive"
         class="po-md-12"
         [filterActive]="filterActive"
-        [filters]="opportunityActive?.filters"
+        [filters]="opportunityActive.filters"
         title="mapas"
         fieldIterator="map"
         (filterClick)="filterActive = $event; changeFilter()"
@@ -40,18 +41,16 @@
     <po-divider></po-divider>
 
     <div class="po-row">
-      <po-container  p-no-shadow p-no-border p-height="300">
-        <div  *ngFor="let item of filterActive?.groups">
+      <po-container *ngIf="opportunityActive" p-no-shadow p-no-border p-height="300">
+        <div *ngFor="let item of filterActive?.groups">
           <ab-filter-box
-            
             [filterActive]="categoryActive"
             [filters]="item?.categories"
-            [title]="item.group"            
+            [title]="item.group"
             (filterClick)="categoryActive = $event; setFilter()"
           ></ab-filter-box>
         </div>
       </po-container>
-
     </div>
   </div>
 </ab-side-menu>

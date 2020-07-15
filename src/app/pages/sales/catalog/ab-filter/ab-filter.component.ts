@@ -10,8 +10,9 @@ import {
 import { CatalogFilterProducts } from "../../interfaces/CatalogFilterProducts";
 import { CatalogOpportunity } from "../../interfaces/CatalogOpportunity";
 import { ParamsFilter } from "../../interfaces/ParamsFilter";
-import { PriceListByMkup } from 'src/app/shared/models/PriceListByMkup';
-import { PriceListByMkupView } from '../../interfaces/PriceListByMkupView';
+import { PriceListByMkup } from "src/app/shared/models/PriceListByMkup";
+import { PriceListByMkupView } from "../../interfaces/PriceListByMkupView";
+import { CheckInService } from "src/app/shared/services/check-in.service";
 
 @Component({
   selector: "ab-filter",
@@ -26,7 +27,10 @@ export class AbFilterComponent implements OnInit, OnChanges {
   categoryActive: string;
   paramsFilter: ParamsFilter;
 
-  constructor() {}
+  constructor(private checkinService: CheckInService) {
+    this.priceActive = this.checkinService.checkin.priceList;
+
+  }
 
   ngOnInit(): void {}
 
@@ -57,5 +61,11 @@ export class AbFilterComponent implements OnInit, OnChanges {
     };
 
     this.getFilter.emit(this.paramsFilter);
+  }
+
+  SetPrice(event: PriceListByMkupView) {
+    var checkin = this.checkinService.checkin;
+    checkin.priceList = event;
+    this.checkinService.checkin = checkin;
   }
 }
