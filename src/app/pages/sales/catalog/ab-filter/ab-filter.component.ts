@@ -10,6 +10,8 @@ import {
 import { CatalogFilterProducts } from "../../interfaces/CatalogFilterProducts";
 import { CatalogOpportunity } from "../../interfaces/CatalogOpportunity";
 import { ParamsFilter } from "../../interfaces/ParamsFilter";
+import { PriceListByMkup } from 'src/app/shared/models/PriceListByMkup';
+import { PriceListByMkupView } from '../../interfaces/PriceListByMkupView';
 
 @Component({
   selector: "ab-filter",
@@ -20,6 +22,7 @@ export class AbFilterComponent implements OnInit, OnChanges {
   @Input() opportunityActive: CatalogOpportunity;
   @Output() getFilter = new EventEmitter();
   filterActive: CatalogFilterProducts;
+  priceActive: PriceListByMkupView;
   categoryActive: string;
   paramsFilter: ParamsFilter;
 

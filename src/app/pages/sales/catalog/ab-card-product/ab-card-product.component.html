@@ -5,10 +5,24 @@
   <h3 class="model">
     {{ product.model | bigText: 26 | lowercase }}
   </h3>
-  <!-- (product.model | slice: 0:26) + (product.model.length > 26 ? ".." : "")
-  | lowercase -->
+
   <p class="reference">{{ product.reference }}</p>
-  <h5 class="price">{{ product.price | currency: "BRL" }}</h5>
+
+  <div class="po-row po-mt-3">
+    <div class="po-md-4 origin-price">
+      <p>venda por</p>
+      <h5>{{ product.originPrice | currency: "BRL" }}</h5>
+    </div>
+    <div class="po-md-8 buy-price">
+      <p>compre por</p>
+      <h5
+        [class.buy-price-active]="listPriceId == price.id"
+        *ngFor="let price of product.prices"
+      >
+        {{ price.price | currency: "BRL" }}
+      </h5>
+    </div>
+  </div>
 
   <div class="card-complement">
     <div class="card-complement-buttom">

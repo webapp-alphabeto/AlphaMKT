@@ -1,87 +1,99 @@
+.model {
+  font-family: "Fredoka One", cursive;
+  color: #858585;
+}
 
-
-  
-  .model {
-    font-family: "Fredoka One", cursive;
-    color: #858585;
-  }
-
-  
 .reference {
-    font-family: "Fredoka One", cursive;
-    color: #858585;
-    font-size: small;
-  }
+  font-family: "Fredoka One", cursive;
+  color: #858585;
+  font-size: small;
+}
 
-  .price {
-    font-family: "Fredoka One", cursive;
-  }
+.origin-price {
+  font-family: "Fredoka One", cursive;
 
-  .card-complement {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-  }
-  
-  .card-complement:hover {
-    opacity: 1;
-  }
+  font-size: 24px;
+}
+.origin-price p {
+  color: #858585;
+  font-size: small;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.buy-price {
+  font-family: "Fredoka One", cursive;
+  color: #858585;
+  float: right;
+}
+.buy-price h5 {
+  color: #858585;
+  font-size: small;
+  text-decoration: line-through;
+}
+.buy-price-active {
+  color: #e18b34 !important;
+  text-decoration: none !important;
+  font-size: 23px !important;
+}
 
-  .card-complement-buttom {
-    background-color: rgba(255, 255, 255, 0.5);
-    width: 100%;
-    height: 25%;
-    top: 60%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+.card-complement {
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.card-complement:hover {
+  opacity: 1;
+}
+.card-complement-buttom {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 25%;
+  top: 60%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  
+
 .button-bag {
-    background-color: #57504a;
-    border-radius: 20px;
-    font-family: "Fredoka One", cursive;
-    height: 40px;
-    cursor: pointer;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-  
-    transition: all 0.5s;
-  }
-  
-  .button-bag span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-  }
-  
-  .button-bag span:after {
-    font-family: PoIcon !important;
-    content: "\e966";
-    margin-top: 2px;
-    text-align: center;
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-  }
-  
-  .button-bag:hover span {
-    padding-right: 25px;
-  }
-  
-  .button-bag:hover span:after {
-    opacity: 1;
-    right: 0;
-  }
+  background-color: #57504a;
+  border-radius: 20px;
+  font-family: "Fredoka One", cursive;
+  height: 40px;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  transition: all 0.5s;
+}
+.button-bag span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button-bag span:after {
+  font-family: PoIcon !important;
+  content: "\e966";
+  margin-top: 2px;
+  text-align: center;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button-bag:hover span {
+  padding-right: 25px;
+}
+.button-bag:hover span:after {
+  opacity: 1;
+  right: 0;
+}

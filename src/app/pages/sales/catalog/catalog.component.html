@@ -32,6 +32,7 @@
           <ab-card-product
             class="po-md-4 po-mb-2 card-product"
             [product]="item"
+            [listPriceId]="abFilter.priceActive?.id"
             *ngFor="let item of products"
           ></ab-card-product>
         </div>

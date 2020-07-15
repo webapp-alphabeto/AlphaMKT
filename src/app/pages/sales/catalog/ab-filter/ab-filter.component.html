@@ -14,6 +14,18 @@
   </div>
 
   <div body>
+
+    <div class="po-row">
+      <ab-filter-box
+        class="po-md-12"
+        [filterActive]="priceActive"
+        [filters]="opportunityActive?.priceList"
+        title="Preços"
+        fieldIterator="name"
+        (filterClick)="priceActive = $event;"      
+      ></ab-filter-box>
+    </div>
+
     <div class="po-row">
       <ab-filter-box
         class="po-md-12"
