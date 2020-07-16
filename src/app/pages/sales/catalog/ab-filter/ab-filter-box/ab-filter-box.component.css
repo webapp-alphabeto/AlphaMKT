@@ -16,7 +16,9 @@
     color: #858585;
     font-size: 32px;
     cursor: pointer;
- 
+  }
+  .filter-box{
+    display: block;
   }
 
 

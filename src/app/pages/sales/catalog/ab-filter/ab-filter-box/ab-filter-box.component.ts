@@ -6,33 +6,11 @@ import {
   animate,
   state,
 } from "@angular/animations";
+import { slideIn } from "../../../../../shared/animations/animations";
 
 @Component({
   selector: "ab-filter-box",
-  animations: [
-    trigger("enterAnimation", [
-      transition(":enter", [
-        style({ transform: "height:100%", opacity: 0 }),
-        animate("0.5s", style({ transform: "height:0", opacity: 1 })),
-      ]),
-      transition(":leave", [
-        style({ transform: "height:0", opacity: 1 }),
-        animate("0.5s", style({ transform: "height:100%", opacity: 0 })),
-      ]),
-    ]),
-    trigger("slideIn", [
-      state("*", style({ "overflow-y": "hidden" })),
-      state("void", style({ "overflow-y": "hidden" })),
-      transition("* => void", [
-        style({ height: "*" }),
-        animate(250, style({ height: 0 })),
-      ]),
-      transition("void => *", [
-        style({ height: "0" }),
-        animate(250, style({ height: "*" })),
-      ]),
-    ]),
-  ],
+  animations: [slideIn],
   templateUrl: "./ab-filter-box.component.html",
   styleUrls: ["./ab-filter-box.component.css"],
 })

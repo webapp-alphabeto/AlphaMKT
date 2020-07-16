@@ -47,7 +47,7 @@
             [filterActive]="categoryActive"
             [filters]="item?.categories"
             [title]="item.group"
-            (filterClick)="categoryActive = $event; setFilter()"
+            (filterClick)="categoryActive = $event; setParamsFilter()"
           ></ab-filter-box>
         </div>
       </po-container>

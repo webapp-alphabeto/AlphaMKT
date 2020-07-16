@@ -10,7 +10,6 @@ import {
 import { CatalogFilterProducts } from "../../interfaces/CatalogFilterProducts";
 import { CatalogOpportunity } from "../../interfaces/CatalogOpportunity";
 import { ParamsFilter } from "../../interfaces/ParamsFilter";
-import { PriceListByMkup } from "src/app/shared/models/PriceListByMkup";
 import { PriceListByMkupView } from "../../interfaces/PriceListByMkupView";
 import { CheckInService } from "src/app/shared/services/check-in.service";
 
@@ -29,7 +28,6 @@ export class AbFilterComponent implements OnInit, OnChanges {
 
   constructor(private checkinService: CheckInService) {
     this.priceActive = this.checkinService.checkin.priceList;
-
   }
 
   ngOnInit(): void {}
@@ -43,13 +41,43 @@ export class AbFilterComponent implements OnInit, OnChanges {
 
   changeFilter() {
     this.categoryActive = this.filterActive?.groups[0].categories[0];
-
-    this.setFilter();
+    this.setParamsFilter();
   }
 
-  setFilter() {
+  public nextFilter(): ParamsFilter {
+    let groupIndex = this.getGroupIndex();
+    let groupLength = this.filterActive.groups.length;
+
+    let categorieIndex = this.getCategorieIndex(groupIndex);
+    let categorieLength = this.filterActive.groups[groupIndex].categories
+      .length;
+    console.log(categorieIndex, categorieLength);
+    if (categorieIndex < categorieLength - 1) {
+      this.categoryActive = this.filterActive.groups[groupIndex].categories[
+        categorieIndex + 1
+      ];
+      this.setParamsFilter(false);
+    }
+
+    return this.paramsFilter;
+  }
+
+  getGroupIndex() {
+    let actualyGroup = this.filterActive.groups.find((g) =>
+      g.categories.some((c) => c == this.categoryActive)
+    );
+    return this.filterActive.groups.indexOf(actualyGroup);
+  }
+
+  getCategorieIndex(groupIndex) {
+    return this.filterActive.groups[groupIndex].categories.indexOf(
+      this.categoryActive
+    );
+  }
+
+  setParamsFilter(emit: boolean = true) {
     if (!this.filterActive) {
-      this.getFilter.emit(null);
+      if (emit) this.getFilter.emit(null);
       return;
     }
 
@@ -59,8 +87,7 @@ export class AbFilterComponent implements OnInit, OnChanges {
       map: this.filterActive.map,
       opportunityId: this.opportunityActive?.id,
     };
-
-    this.getFilter.emit(this.paramsFilter);
+    if (emit) this.getFilter.emit(this.paramsFilter);
   }
 
   SetPrice(event: PriceListByMkupView) {
