@@ -24,6 +24,7 @@ export class AbFilterComponent implements OnInit, OnChanges {
   filterActive: CatalogFilterProducts;
   priceActive: PriceListByMkupView;
   categoryActive: string;
+  groupActive: string;
   paramsFilter: ParamsFilter;
 
   constructor(private checkinService: CheckInService) {
@@ -41,30 +42,45 @@ export class AbFilterComponent implements OnInit, OnChanges {
 
   changeFilter() {
     this.categoryActive = this.filterActive?.groups[0].categories[0];
-    this.setParamsFilter();
+    this.groupActive = this.filterActive?.groups[0].group;
+    this.setParamsFilter(true, this.groupActive);
   }
 
   public nextFilter(): ParamsFilter {
     let groupIndex = this.getGroupIndex();
-    let groupLength = this.filterActive.groups.length;
+    let groupLength = this.filterActive.groups.length - 1;
 
     let categorieIndex = this.getCategorieIndex(groupIndex);
     let categorieLength = this.filterActive.groups[groupIndex].categories
       .length;
-    console.log(categorieIndex, categorieLength);
-    if (categorieIndex < categorieLength - 1) {
+
+    categorieIndex++;
+    if (categorieIndex == categorieLength) {
+      categorieIndex = 0;
+
+      if (groupIndex < groupLength) {
+        groupIndex++;
+        this.groupActive = this.filterActive.groups[groupIndex].group;
+      }
+
+      categorieLength =
+        this.filterActive.groups[groupIndex].categories.length - 1;
+    }
+
+    if (categorieIndex <= categorieLength) {
       this.categoryActive = this.filterActive.groups[groupIndex].categories[
-        categorieIndex + 1
+        categorieIndex
       ];
-      this.setParamsFilter(false);
+      this.setParamsFilter(false, this.groupActive);
     }
 
     return this.paramsFilter;
   }
 
+  
   getGroupIndex() {
-    let actualyGroup = this.filterActive.groups.find((g) =>
-      g.categories.some((c) => c == this.categoryActive)
+    let actualyGroup = this.filterActive.groups.find(
+      (g) => g.group == this.groupActive
     );
     return this.filterActive.groups.indexOf(actualyGroup);
   }
@@ -75,7 +91,7 @@ export class AbFilterComponent implements OnInit, OnChanges {
     );
   }
 
-  setParamsFilter(emit: boolean = true) {
+  setParamsFilter(emit: boolean = true, group: string) {
     if (!this.filterActive) {
       if (emit) this.getFilter.emit(null);
       return;
@@ -85,6 +101,7 @@ export class AbFilterComponent implements OnInit, OnChanges {
       category: this.categoryActive,
       collection: this.filterActive.collection,
       map: this.filterActive.map,
+      group: group,
       opportunityId: this.opportunityActive?.id,
     };
     if (emit) this.getFilter.emit(this.paramsFilter);

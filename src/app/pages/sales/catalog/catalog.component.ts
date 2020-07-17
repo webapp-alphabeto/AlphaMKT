@@ -17,13 +17,14 @@ import { ToolBarService } from "src/app/shared/services/tool-bar.service";
 import { CatalogProduct } from "../interfaces/CatalogProduct";
 import { ParamsFilter } from "../interfaces/ParamsFilter";
 import { AbFilterComponent } from "./ab-filter/ab-filter.component";
-import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
 import { GroupCatalogProduct } from "../interfaces/GroupCatalogProduct";
+import { entrance } from "src/app/shared/animations/animations";
 
 @Component({
   selector: "app-catalog",
   templateUrl: "./catalog.component.html",
   styleUrls: ["./catalog.component.css"],
+  animations: [entrance],
 })
 export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("abFilter", { static: true }) _abFilter: AbFilterComponent;
@@ -33,6 +34,8 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   groupProducts: GroupCatalogProduct;
   groups: Array<GroupCatalogProduct> = [];
   showBanner = true;
+  showFabButton = false;
+  screen: any;
 
   constructor(
     private catalogServices: CatalogService,
@@ -57,13 +60,21 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   onScroll(event: any) {
     if (event.srcElement.className === "po-page-content") {
+      this.screen = event;
       let scrollIndex = event.target.offsetHeight + event.target.scrollTop;
 
       if (scrollIndex >= event.target.scrollHeight) {
         let filter = this._abFilter.nextFilter();
         this.getProducts(filter);
+        this.showFabButton = true;
       }
     }
+  }
+
+  goToTop() {
+    if (!this.screen) return;
+
+    this.screen.target.scrollTo({ top: 300, behavior: "smooth" });
   }
 
   ngOnDestroy() {
@@ -86,8 +97,11 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getProductsByClick(filter: ParamsFilter) {
     if (filter == null) return;
+
     this.groups.length = 0;
-    // console.log('teste', this.groups.length)
+    this.goToTop();
+
+    this.showFabButton = false;
 
     this.getProducts(filter);
   }
@@ -96,15 +110,17 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     if (filter == null) return;
 
     this.catalogServices.getProducts(filter).subscribe((x) => {
-      if (
-        !this.groups.find(
-          (g) =>
-            g.collection == x.collection &&
-            g.map == x.map &&
-            g.category == x.category
-        )
-      )
-        this.groups.push(x);
+      if (this.groupExists(x)) this.groups.push(x);
     });
+  }
+
+  private groupExists(x: GroupCatalogProduct): boolean {
+    return !this.groups.find(
+      (g) =>
+        g.collection == x.collection &&
+        g.map == x.map &&
+        g.category == x.category &&
+        g.group == x.group
+    );
   }
 }

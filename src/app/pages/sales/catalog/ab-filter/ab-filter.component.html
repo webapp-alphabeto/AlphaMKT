@@ -28,7 +28,7 @@
 
     <div class="po-row">
       <ab-filter-box
-      *ngIf="opportunityActive"
+        *ngIf="opportunityActive"
         class="po-md-12"
         [filterActive]="filterActive"
         [filters]="opportunityActive.filters"
@@ -41,13 +41,22 @@
     <po-divider></po-divider>
 
     <div class="po-row">
-      <po-container *ngIf="opportunityActive" p-no-shadow p-no-border p-height="300">
+      <po-container
+        *ngIf="opportunityActive"
+        p-no-shadow
+        p-no-border
+
+      >
         <div *ngFor="let item of filterActive?.groups">
           <ab-filter-box
             [filterActive]="categoryActive"
             [filters]="item?.categories"
             [title]="item.group"
-            (filterClick)="categoryActive = $event; setParamsFilter()"
+            (filterClick)="
+              categoryActive = $event;
+              groupActive = item.group;
+              setParamsFilter(true, item.group)
+            "
           ></ab-filter-box>
         </div>
       </po-container>

@@ -26,6 +26,10 @@
         >
         </ab-showcase>
       </div>
+
+      <div class="fab-info flex-box" *ngIf="showFabButton" [@entrance] (click)="goToTop()">
+        <h1>↑</h1>
+      </div>
     </div>
   </ab-navbar>
 </po-page-default>
