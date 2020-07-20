@@ -18,6 +18,7 @@ import { AbCardProductComponent } from './catalog/ab-card-product/ab-card-produc
 import { AbFilterBoxComponent } from './catalog/ab-filter/ab-filter-box/ab-filter-box.component';
 import { BigTextPipe } from './pipes/big-text.pipe';
 import { AbShowcaseComponent } from './catalog/ab-showcase/ab-showcase.component';
+import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { AbShowcaseComponent } from './catalog/ab-showcase/ab-showcase.component
     SalesRoutingModule,
     PortinariModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BarecodeScannerLivestreamModule
+
   ],
   providers: [
     {

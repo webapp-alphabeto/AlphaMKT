@@ -21,6 +21,7 @@ import {
   distinctUntilChanged,
   tap,
 } from "rxjs/operators";
+import { BarecodeScannerLivestreamComponent } from 'ngx-barcode-scanner';
 
 @Component({
   selector: "ab-filter",
@@ -29,6 +30,8 @@ import {
 })
 export class AbFilterComponent implements OnInit, OnChanges {
   @ViewChild("inputSearch") input: ElementRef;
+  @ViewChild(BarecodeScannerLivestreamComponent)
+    barecodeScanner: BarecodeScannerLivestreamComponent;
 
   @Input() opportunityActive: CatalogOpportunity;
   @Output() getFilter = new EventEmitter();
@@ -44,9 +47,22 @@ export class AbFilterComponent implements OnInit, OnChanges {
     this.priceActive = this.checkinService.checkin.priceList;
   }
 
+  barcodeValue;
+ 
+
+  onValueChanges(result){
+      this.barcodeValue = result.codeResult.code;
+      console.log(result)
+  }
+
+  onStarted(started){
+      console.log(started);
+  }
   ngOnInit(): void {}
 
   ngAfterViewInit() {
+    this.barecodeScanner.start();
+
     fromEvent(this.input.nativeElement, "keyup")
       .pipe(
         filter(Boolean),

@@ -14,6 +14,14 @@
   </div>
 
   <div body>
+    <barcode-scanner-livestream
+      type="code_128"
+      (valueChanges)="onValueChanges($event)"
+      (started)="onStarted"
+    ></barcode-scanner-livestream>
+    <div>
+      {{ barcodeValue }}
+    </div>
     <div class="po-row po-mb-2 search">
       <i class="po-icon po-icon-search po-md-2"></i>
       <input

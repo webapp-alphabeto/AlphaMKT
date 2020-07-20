@@ -26,9 +26,11 @@
     "file-saver": "^2.0.2",
     "jwt-decode": "^2.2.0",
     "moment": "^2.27.0",
+    "ngx-barcode-scanner": "0.0.7",
     "ngx-mask": "^9.1.2",
     "ngx-pagination": "^5.0.0",
     "ngx-virtual-scroller": "^4.0.3",
+    "quagga": "^0.12.1",
     "rxjs": "~6.5.5",
     "tslib": "^1.11.1",
     "zone.js": "~0.10.3"
