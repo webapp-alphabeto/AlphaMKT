@@ -14,6 +14,23 @@
   </div>
 
   <div body>
+    <div class="po-row po-mb-2 search">
+      <i class="po-icon po-icon-search po-md-2"></i>
+      <input
+        #inputSearch
+        class="search po-md-10"
+        type="text"
+        name="search"
+        placeholder="referência"
+        [(ngModel)]="cod"
+        onfocus="this.value=''"
+        (keyup.enter)="getByCod(cod)"
+      />
+      <div class="po-md-12 flex-box po-mt-1">
+        <a class="button-search" (click)="getByCod(cod)"><span>buscar</span></a>
+      </div>
+    </div>
+
     <div class="po-row">
       <ab-filter-box
         *ngIf="opportunityActive"
@@ -41,12 +58,7 @@
     <po-divider></po-divider>
 
     <div class="po-row">
-      <po-container
-        *ngIf="opportunityActive"
-        p-no-shadow
-        p-no-border
-
-      >
+      <po-container *ngIf="opportunityActive" p-no-shadow p-no-border>
         <div *ngFor="let item of filterActive?.groups">
           <ab-filter-box
             [filterActive]="categoryActive"

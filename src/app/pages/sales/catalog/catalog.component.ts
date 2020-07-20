@@ -75,6 +75,8 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!this.screen) return;
 
     this.screen.target.scrollTo({ top: 300, behavior: "smooth" });
+
+    this.showFabButton = false;
   }
 
   ngOnDestroy() {
@@ -114,6 +116,15 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  getProductByCod(cod: string) {
+    this.catalogServices
+      .getProductByCod(this.opportunityActive.id, cod)
+      .subscribe((x) => {
+        this.groups.length = 0;
+        this.groups.push(x);
+      });
+  }
+
   private groupExists(x: GroupCatalogProduct): boolean {
     return !this.groups.find(
       (g) =>
@@ -122,5 +133,8 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
         g.category == x.category &&
         g.group == x.group
     );
+  }
+  changeOpportunity(event) {
+    if (!event.isTrusted) this.opportunityActive = event;
   }
 }

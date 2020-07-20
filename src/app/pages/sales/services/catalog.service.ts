@@ -34,4 +34,12 @@ export class CatalogService {
       .append("category", paramsFilter.category);
     return this.http.get<GroupCatalogProduct>(url, { params });
   }
+
+  getProductByCod(opportunityId:number, cod: string): Observable<GroupCatalogProduct> {
+    const url = `${environment.serviceApi}catalog/products-by-cod`;
+    let params = new HttpParams()
+      .append("opportunityId", opportunityId.toString())
+      .append("cod", cod);
+    return this.http.get<GroupCatalogProduct>(url, { params });
+  }
 }

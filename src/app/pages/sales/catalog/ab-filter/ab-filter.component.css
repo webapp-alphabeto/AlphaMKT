@@ -1,0 +1,37 @@
+.search {
+  outline: 0;
+  border-color: #858585;
+  color: #858585;
+  font-family: "always", fantasy;
+  transition: step-end 0.3s;
+  border-width: 0 0 2px;
+  font-size: 24px;
+}
+.search i {
+    color: #e18b34; 
+}
+
+.search:focus {
+    color: #e18b34;
+    border-color: #e18b34;
+}
+
+.button-search {
+    font-family: "Fredoka one", cursive;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #57504a;
+    color: #858585;
+    padding: 4px 12px 4px 12px;
+    border-radius: 18px;
+    transition:  0.3s;
+    background-color: white;
+}
+
+.button-search:hover {
+    background-color:  #e18b34; 
+    color: white;
+    border: 1px solid  #e18b34;
+
+}
+

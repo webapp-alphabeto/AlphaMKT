@@ -33,7 +33,7 @@
   <a
     *ngFor="let item of items"
     [class.active]="itemActive == item"
-    (click)="selectItem(item)"
+    (onclick)="selectItem(item)"
     >{{ item.name }}</a
   >
 </div>

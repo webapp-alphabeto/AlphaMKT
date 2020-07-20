@@ -6,12 +6,21 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
+  ElementRef,
+  ViewChild,
 } from "@angular/core";
 import { CatalogFilterProducts } from "../../interfaces/CatalogFilterProducts";
 import { CatalogOpportunity } from "../../interfaces/CatalogOpportunity";
 import { ParamsFilter } from "../../interfaces/ParamsFilter";
 import { PriceListByMkupView } from "../../interfaces/PriceListByMkupView";
 import { CheckInService } from "src/app/shared/services/check-in.service";
+import { fromEvent } from "rxjs";
+import {
+  filter,
+  debounceTime,
+  distinctUntilChanged,
+  tap,
+} from "rxjs/operators";
 
 @Component({
   selector: "ab-filter",
@@ -19,19 +28,36 @@ import { CheckInService } from "src/app/shared/services/check-in.service";
   styleUrls: ["./ab-filter.component.css"],
 })
 export class AbFilterComponent implements OnInit, OnChanges {
+  @ViewChild("inputSearch") input: ElementRef;
+
   @Input() opportunityActive: CatalogOpportunity;
   @Output() getFilter = new EventEmitter();
+  @Output() search = new EventEmitter();
   filterActive: CatalogFilterProducts;
   priceActive: PriceListByMkupView;
   categoryActive: string;
   groupActive: string;
   paramsFilter: ParamsFilter;
+  cod: string;
 
   constructor(private checkinService: CheckInService) {
     this.priceActive = this.checkinService.checkin.priceList;
   }
 
   ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    fromEvent(this.input.nativeElement, "keyup")
+      .pipe(
+        filter(Boolean),
+        debounceTime(1000),
+        distinctUntilChanged(),
+        tap((text: string) => {
+          if (this.cod) this.getByCod(this.cod);
+        })
+      )
+      .subscribe();
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.opportunityActive) {
@@ -77,7 +103,6 @@ export class AbFilterComponent implements OnInit, OnChanges {
     return this.paramsFilter;
   }
 
-  
   getGroupIndex() {
     let actualyGroup = this.filterActive.groups.find(
       (g) => g.group == this.groupActive
@@ -111,5 +136,9 @@ export class AbFilterComponent implements OnInit, OnChanges {
     var checkin = this.checkinService.checkin;
     checkin.priceList = event;
     this.checkinService.checkin = checkin;
+  }
+
+  getByCod(cod: string) {
+    this.search.emit(cod);
   }
 }
