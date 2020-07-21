@@ -9,6 +9,7 @@ import { CatalogProduct } from "../../interfaces/CatalogProduct";
 export class AbCardProductComponent implements OnInit {
   @Input() product: CatalogProduct;
   @Input() listPriceId: number;
+  @Input() opportunityId: number;
   constructor() {}
 
   ngOnInit(): void {}

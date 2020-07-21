@@ -12,6 +12,7 @@ import { ToolBarService } from "./shared/services/tool-bar.service";
 import { ProfileService } from "./shared/services/profile.service";
 import { TokenService } from "./core/services/token.service";
 import { MenuService } from "./shared/services/menu.service";
+import { AccessLevel } from './core/enums/access-level.enum';
 
 @Component({
   selector: "app-root",
@@ -55,6 +56,7 @@ export class AppComponent {
 
   private verificarSeUsuarioJaEstaAutenticado() {
     this.auth.Authenticated$().subscribe((autenticado: boolean) => {
+      
       if (!autenticado) {
         this.router.navigateByUrl("/login");
       }

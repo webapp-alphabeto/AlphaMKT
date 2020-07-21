@@ -16,6 +16,7 @@
     class="po-md-4 po-mb-2 card-product"
     [product]="item"
     [listPriceId]="priceActive?.id"
+    [opportunityId]="filterActive.salesOpportunityId"
     *ngFor="let item of groupProduct?.catalogProduct"
   ></ab-card-product>
 </div>

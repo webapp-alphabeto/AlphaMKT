@@ -16,21 +16,22 @@
         *ngFor="let price of product.prices"
       >
         {{ price.price | currency: "BRL" }}
-      </h5>      
-  </div>
-  
-    <div class="po-md-12 price">
-  
-        <p>venda por</p>
-        <h5>{{ product.originPrice | currency: "BRL" }}</h5>
-      
+      </h5>
     </div>
 
+    <div class="po-md-12 price">
+      <p>venda por</p>
+      <h5>{{ product.originPrice | currency: "BRL" }}</h5>
+    </div>
   </div>
 
   <div class="card-complement">
     <div class="card-complement-buttom">
-      <a class="button-bag"><span>adicionar a sacola </span></a>
+      <a
+        class="button-bag"
+        [routerLink]="['../product', product.reference, opportunityId]"
+        ><span>adicionar a sacola </span></a
+      >
     </div>
   </div>
 </a>

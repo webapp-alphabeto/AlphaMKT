@@ -1,3 +1,4 @@
+<app-animacao-entre-rotas *ngIf="!opportunitys"></app-animacao-entre-rotas>
 <po-page-default>
   <ab-navbar [items]="opportunitys" (select)="changeOpportunity($event)">
     <div class="po-row">
@@ -17,15 +18,32 @@
         (search)="getProductByCod($event)"
       ></ab-filter>
 
-      <div class="po-md-10">
-        <ab-showcase
-          *ngFor="let group of groups"
-          [filterActive]="abFilter.filterActive"
-          [categoryActive]="abFilter.categoryActive"
-          [priceActive]="abFilter.priceActive"
-          [groupProduct]="group"
-        >
-        </ab-showcase>
+      <div class="po-md-10 po-mb-5">
+        <div *ngIf="groups.length > 0; else nothingToShow">
+          <ab-showcase
+            *ngFor="let group of groups"
+            [filterActive]="abFilter.filterActive"
+            [categoryActive]="abFilter.categoryActive"
+            [priceActive]="abFilter.priceActive"
+            [groupProduct]="group"
+          >
+          </ab-showcase>
+          <div class="po-md-12 flex-box" style="height: 50px;">
+            <a
+              class="button-more-load"
+              *ngIf="showMoreLoad"
+              (click)="loadMore()"
+              ><span>carregar mais</span></a
+            >
+          </div>
+        </div>
+        <ng-template #nothingToShow>
+          <div class="flex-box">
+            <h1 class="nothing-to-show">
+              Nenhum produto encontrado :(
+            </h1>
+          </div>
+        </ng-template>
       </div>
 
       <div

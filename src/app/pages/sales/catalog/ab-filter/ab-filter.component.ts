@@ -21,7 +21,9 @@ import {
   distinctUntilChanged,
   tap,
 } from "rxjs/operators";
-import { BarecodeScannerLivestreamComponent } from 'ngx-barcode-scanner';
+import { AbSideMenuComponent } from "./ab-side-menu/ab-side-menu.component";
+import { INextFilter } from "../../interfaces/INextFilter";
+import { PoContainerComponent } from "@po-ui/ng-components";
 
 @Component({
   selector: "ab-filter",
@@ -30,8 +32,9 @@ import { BarecodeScannerLivestreamComponent } from 'ngx-barcode-scanner';
 })
 export class AbFilterComponent implements OnInit, OnChanges {
   @ViewChild("inputSearch") input: ElementRef;
-  @ViewChild(BarecodeScannerLivestreamComponent)
-    barecodeScanner: BarecodeScannerLivestreamComponent;
+  @ViewChild("sideMenu", { static: true }) _sideMenu: AbSideMenuComponent;
+  @ViewChild("categoryContainer")
+  _categoryContainer: PoContainerComponent;
 
   @Input() opportunityActive: CatalogOpportunity;
   @Output() getFilter = new EventEmitter();
@@ -47,26 +50,17 @@ export class AbFilterComponent implements OnInit, OnChanges {
     this.priceActive = this.checkinService.checkin.priceList;
   }
 
-  barcodeValue;
- 
-
-  onValueChanges(result){
-      this.barcodeValue = result.codeResult.code;
-      console.log(result)
-  }
-
-  onStarted(started){
-      console.log(started);
-  }
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    this.barecodeScanner.start();
+    this.searchInputDebounce();
+  }
 
+  private searchInputDebounce() {
     fromEvent(this.input.nativeElement, "keyup")
       .pipe(
         filter(Boolean),
-        debounceTime(1000),
+        debounceTime(500),
         distinctUntilChanged(),
         tap((text: string) => {
           if (this.cod) this.getByCod(this.cod);
@@ -88,7 +82,26 @@ export class AbFilterComponent implements OnInit, OnChanges {
     this.setParamsFilter(true, this.groupActive);
   }
 
-  public nextFilter(): ParamsFilter {
+  public nextMapFilter(): INextFilter {
+    let nextFilter = {} as INextFilter;
+    nextFilter.hasNext = true;
+    let indexMap = this.opportunityActive.filters.findIndex(
+      (x) => x.map == this.filterActive.map
+    );
+    const filterLength = this.opportunityActive.filters.length - 1;
+    if (indexMap <= filterLength) {
+      indexMap++;
+      this.filterActive = this.opportunityActive?.filters[indexMap];
+      this.changeFilter();
+      if (indexMap == filterLength) nextFilter.hasNext = false;
+    }
+    nextFilter.params = this.paramsFilter;
+    return nextFilter;
+  }
+
+  public nextGroupAndCategoryFilter(): INextFilter {
+    let nextFilter = {} as INextFilter;
+    nextFilter.hasNext = false;
     let groupIndex = this.getGroupIndex();
     let groupLength = this.filterActive.groups.length - 1;
 
@@ -103,6 +116,13 @@ export class AbFilterComponent implements OnInit, OnChanges {
       if (groupIndex < groupLength) {
         groupIndex++;
         this.groupActive = this.filterActive.groups[groupIndex].group;
+      } else {
+        let indexMap = this.opportunityActive.filters.findIndex(
+          (x) => x.map == this.filterActive.map
+        );
+        const filterLength = this.opportunityActive.filters.length - 1;
+        if (indexMap == filterLength) nextFilter.hasNext = false;
+        else nextFilter.hasNext = true;
       }
 
       categorieLength =
@@ -116,7 +136,9 @@ export class AbFilterComponent implements OnInit, OnChanges {
       this.setParamsFilter(false, this.groupActive);
     }
 
-    return this.paramsFilter;
+    nextFilter.params = this.paramsFilter;
+
+    return nextFilter;
   }
 
   getGroupIndex() {
@@ -155,6 +177,8 @@ export class AbFilterComponent implements OnInit, OnChanges {
   }
 
   getByCod(cod: string) {
+    this._sideMenu.showSideMenu = false;
     this.search.emit(cod);
   }
+
 }

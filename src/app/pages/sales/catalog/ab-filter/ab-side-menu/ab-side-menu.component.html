@@ -13,7 +13,7 @@
 <div *ngIf="!isMobile">
   <div class="sidenav" [style.width]="showSideMenu ? '100%' : 0">
     <a class="closebtn" (click)="showSideMenu = false">&times;</a>
-    <ng-content select="[titleSide]"></ng-content>
+    <ng-content  select="[titleSide]"></ng-content>
     <ng-container *ngTemplateOutlet="bodyView"></ng-container>
   </div>
 </div>

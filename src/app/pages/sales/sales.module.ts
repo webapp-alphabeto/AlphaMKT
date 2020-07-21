@@ -11,14 +11,16 @@ import { InvalidTokenApiService } from "src/app/core/interceptors/invalid-token-
 import { CatalogComponent } from "./catalog/catalog.component";
 import { AbNavbarComponent } from "./catalog/ab-navbar/ab-navbar.component";
 import { AbBannerComponent } from "./catalog/ab-banner/ab-banner.component";
-import { AbFilterComponent } from './catalog/ab-filter/ab-filter.component';
-import { AbSideMenuComponent } from './catalog/ab-filter/ab-side-menu/ab-side-menu.component';
-import { AbFilterTitleComponent } from './catalog/ab-filter/ab-filter-title/ab-filter-title.component';
-import { AbCardProductComponent } from './catalog/ab-card-product/ab-card-product.component';
-import { AbFilterBoxComponent } from './catalog/ab-filter/ab-filter-box/ab-filter-box.component';
-import { BigTextPipe } from './pipes/big-text.pipe';
-import { AbShowcaseComponent } from './catalog/ab-showcase/ab-showcase.component';
-import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
+import { AbFilterComponent } from "./catalog/ab-filter/ab-filter.component";
+import { AbSideMenuComponent } from "./catalog/ab-filter/ab-side-menu/ab-side-menu.component";
+import { AbFilterTitleComponent } from "./catalog/ab-filter/ab-filter-title/ab-filter-title.component";
+import { AbCardProductComponent } from "./catalog/ab-card-product/ab-card-product.component";
+import { AbFilterBoxComponent } from "./catalog/ab-filter/ab-filter-box/ab-filter-box.component";
+import { BigTextPipe } from "./pipes/big-text.pipe";
+import { AbShowcaseComponent } from "./catalog/ab-showcase/ab-showcase.component";
+import { SharedModule } from "src/app/shared/shared.module";
+import { ProductComponent } from './product/product.component';
+import { ShoppingComponent } from './shopping/shopping.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
     AbCardProductComponent,
     AbFilterBoxComponent,
     BigTextPipe,
-    AbShowcaseComponent
+    AbShowcaseComponent,
+    ProductComponent,
+    ShoppingComponent,
   ],
   imports: [
     CommonModule,
@@ -40,8 +44,7 @@ import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
     PortinariModule,
     FormsModule,
     ReactiveFormsModule,
-    BarecodeScannerLivestreamModule
-
+    SharedModule,
   ],
   providers: [
     {

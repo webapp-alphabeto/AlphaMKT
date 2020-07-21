@@ -1,4 +1,3 @@
-
 ul.topnav {
   list-style-type: none;
   margin: 0;
@@ -44,7 +43,8 @@ ul.topnav li a.active {
 
 ul.topnav li a.active::before,
 .sidenav a.active::before {
-  content: url("../../../../../assets/folha.png");
+  content: "]";
+  font-family: "always", cursive;
   margin-right: 1px;
   margin-right: 3px;
   left: -10px;

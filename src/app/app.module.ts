@@ -28,7 +28,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     SharedModule,
     PortinariModule,
     NgxPaginationModule,
-    LayoutModule
+    LayoutModule,
+    
   ],
   providers: [
     {

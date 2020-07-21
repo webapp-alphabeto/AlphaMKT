@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { environment } from "src/environments/environment";
+import { environment, NO_MESSAGE } from "src/environments/environment";
 import { CatalogOpportunity } from "../interfaces/CatalogOpportunity";
 import { CatalogProduct } from "../interfaces/CatalogProduct";
 import { ParamsFilter } from "../interfaces/ParamsFilter";
@@ -40,6 +40,6 @@ export class CatalogService {
     let params = new HttpParams()
       .append("opportunityId", opportunityId.toString())
       .append("cod", cod);
-    return this.http.get<GroupCatalogProduct>(url, { params });
+    return this.http.get<GroupCatalogProduct>(url, { headers: NO_MESSAGE, params });
   }
 }

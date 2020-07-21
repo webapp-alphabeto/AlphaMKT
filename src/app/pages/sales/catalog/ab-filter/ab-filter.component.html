@@ -14,15 +14,6 @@
   </div>
 
   <div body>
-    <barcode-scanner-livestream
-      type="ean"
-      (valueChanges)="onValueChanges($event)"
-      (started)="onStarted"
-    ></barcode-scanner-livestream>
-    <div>
-      Código
-      {{ barcodeValue }}
-    </div>
     <div class="po-row po-mb-2 search">
       <i class="po-icon po-icon-search po-md-2"></i>
       <input
@@ -66,8 +57,13 @@
 
     <po-divider></po-divider>
 
-    <div class="po-row">
-      <po-container *ngIf="opportunityActive" p-no-shadow p-no-border>
+    <div class="po-row"   *ngIf="opportunityActive">
+      <po-container #categoryContainer
+      
+        p-no-shadow
+        p-no-border
+        p-height="300"
+      >
         <div *ngFor="let item of filterActive?.groups">
           <ab-filter-box
             [filterActive]="categoryActive"

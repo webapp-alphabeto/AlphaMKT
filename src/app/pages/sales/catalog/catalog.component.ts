@@ -1,8 +1,6 @@
 import {
   Component,
   OnInit,
-  ViewEncapsulation,
-  HostListener,
   ViewChild,
   ElementRef,
   AfterViewInit,
@@ -14,7 +12,6 @@ import { CheckInService } from "src/app/shared/services/check-in.service";
 import { MenuService } from "src/app/shared/services/menu.service";
 import { CatalogOpportunity } from "../interfaces/CatalogOpportunity";
 import { ToolBarService } from "src/app/shared/services/tool-bar.service";
-import { CatalogProduct } from "../interfaces/CatalogProduct";
 import { ParamsFilter } from "../interfaces/ParamsFilter";
 import { AbFilterComponent } from "./ab-filter/ab-filter.component";
 import { GroupCatalogProduct } from "../interfaces/GroupCatalogProduct";
@@ -31,10 +28,11 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
 
   opportunitys: Array<CatalogOpportunity>;
   opportunityActive: CatalogOpportunity;
-  groupProducts: GroupCatalogProduct;
+
   groups: Array<GroupCatalogProduct> = [];
   showBanner = true;
   showFabButton = false;
+  showMoreLoad = false;
   screen: any;
 
   constructor(
@@ -58,17 +56,30 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
       .querySelector("po-page-content")
       .addEventListener("scroll", this.onScroll.bind(this), true);
   }
+
   onScroll(event: any) {
     if (event.srcElement.className === "po-page-content") {
       this.screen = event;
       let scrollIndex = event.target.offsetHeight + event.target.scrollTop;
 
+      if (scrollIndex < 1000) this.showFabButton = false;
+
       if (scrollIndex >= event.target.scrollHeight) {
-        let filter = this._abFilter.nextFilter();
-        this.getProducts(filter);
+        this._abFilter._categoryContainer.height = undefined;
+
+        let nextFilter = this._abFilter.nextGroupAndCategoryFilter();
+        this.getProducts(nextFilter.params);
         this.showFabButton = true;
+
+        this.showMoreLoad = nextFilter.hasNext;
       }
     }
+  }
+
+  loadMore() {
+    let nextFilter = this._abFilter.nextMapFilter();
+    this.showMoreLoad = nextFilter.hasNext;
+    this.getProducts(nextFilter.params);
   }
 
   goToTop() {
@@ -105,6 +116,9 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.showFabButton = false;
 
+    if (this._abFilter._categoryContainer)
+      this._abFilter._categoryContainer.height = 300;
+
     this.getProducts(filter);
   }
 
@@ -117,12 +131,22 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getProductByCod(cod: string) {
+    this.showFabButton = false;
+
+    if (this._abFilter._categoryContainer)
+      this._abFilter._categoryContainer.height = 300;
+
     this.catalogServices
       .getProductByCod(this.opportunityActive.id, cod)
-      .subscribe((x) => {
-        this.groups.length = 0;
-        this.groups.push(x);
-      });
+      .subscribe(
+        (x) => {
+          this.groups.length = 0;
+          this.groups.push(x);
+        },
+        () => {
+          this.groups.length = 0;
+        }
+      );
   }
 
   private groupExists(x: GroupCatalogProduct): boolean {
@@ -135,6 +159,9 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
   changeOpportunity(event) {
-    if (!event.isTrusted) this.opportunityActive = event;
+    if (!event.isTrusted) {
+      this.groups.length = 0;
+      this.opportunityActive = event;
+    }
   }
 }

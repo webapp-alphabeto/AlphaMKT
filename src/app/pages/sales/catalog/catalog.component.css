@@ -17,6 +17,28 @@
 .fab-info:hover {
   background-color: #858585;
 }
-html {
-  scroll-behavior: smooth;
+
+.nothing-to-show{
+  color: #858585;
+  font-family: "Fredoka One", cursive;
+}
+
+
+.button-more-load {
+  font-family: "Fredoka one", cursive;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid #57504a;
+  color: #858585;
+  padding: 4px 12px 4px 12px;
+  border-radius: 18px;
+  transition:  0.3s;
+  background-color: white;
+
+}
+
+.button-more-load:hover {
+  background-color:  #e18b34; 
+  color: white;
+  border: 1px solid  #e18b34;
 }
