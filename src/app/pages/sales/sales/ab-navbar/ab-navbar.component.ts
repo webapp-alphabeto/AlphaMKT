@@ -16,7 +16,7 @@ import { CatalogOpportunity } from "../../interfaces/CatalogOpportunity";
 export class AbNavbarComponent implements OnInit, OnChanges {
   
   @Input() items: Array<CatalogOpportunity>;
-  @Output() select = new EventEmitter();
+  @Output() selectOpportunity = new EventEmitter<CatalogOpportunity>();
   itemActive: CatalogOpportunity;
   constructor() {}
 
@@ -30,7 +30,7 @@ export class AbNavbarComponent implements OnInit, OnChanges {
 
   selectItem(item: CatalogOpportunity) {
     this.itemActive = item;
-    this.select.emit(item);
+    this.selectOpportunity.emit(item);
   }
 
   openNav() {

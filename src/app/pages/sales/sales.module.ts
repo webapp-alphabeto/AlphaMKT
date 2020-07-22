@@ -9,7 +9,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenApiService } from "src/app/core/interceptors/token-api.service";
 import { InvalidTokenApiService } from "src/app/core/interceptors/invalid-token-api.service";
 import { CatalogComponent } from "./catalog/catalog.component";
-import { AbNavbarComponent } from "./catalog/ab-navbar/ab-navbar.component";
+import { AbNavbarComponent } from "./sales/ab-navbar/ab-navbar.component";
 import { AbBannerComponent } from "./catalog/ab-banner/ab-banner.component";
 import { AbFilterComponent } from "./catalog/ab-filter/ab-filter.component";
 import { AbSideMenuComponent } from "./catalog/ab-filter/ab-side-menu/ab-side-menu.component";
@@ -20,7 +20,8 @@ import { BigTextPipe } from "./pipes/big-text.pipe";
 import { AbShowcaseComponent } from "./catalog/ab-showcase/ab-showcase.component";
 import { SharedModule } from "src/app/shared/shared.module";
 import { ProductComponent } from './product/product.component';
-import { ShoppingComponent } from './shopping/shopping.component';
+import { SalesComponent } from './sales/sales.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { ShoppingComponent } from './shopping/shopping.component';
     BigTextPipe,
     AbShowcaseComponent,
     ProductComponent,
-    ShoppingComponent,
+    SalesComponent
   ],
   imports: [
     CommonModule,

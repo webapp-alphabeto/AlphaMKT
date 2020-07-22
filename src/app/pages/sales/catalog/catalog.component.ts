@@ -16,6 +16,7 @@ import { ParamsFilter } from "../interfaces/ParamsFilter";
 import { AbFilterComponent } from "./ab-filter/ab-filter.component";
 import { GroupCatalogProduct } from "../interfaces/GroupCatalogProduct";
 import { entrance } from "src/app/shared/animations/animations";
+import { switchMap } from "rxjs/operators";
 
 @Component({
   selector: "app-catalog",
@@ -26,19 +27,15 @@ import { entrance } from "src/app/shared/animations/animations";
 export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("abFilter", { static: true }) _abFilter: AbFilterComponent;
 
-  opportunitys: Array<CatalogOpportunity>;
-  opportunityActive: CatalogOpportunity;
-
   groups: Array<GroupCatalogProduct> = [];
   showBanner = true;
   showFabButton = false;
   showMoreLoad = false;
   screen: any;
+  opportunityActiveId: number;
 
   constructor(
-    private catalogServices: CatalogService,
-    private tokenServices: TokenService,
-    private checkinServices: CheckInService,
+    public catalogServices: CatalogService,
     private menuService: MenuService,
     private toolBarService: ToolBarService,
     private elementRef: ElementRef
@@ -48,13 +45,22 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getOpportunitys();
+    this.catalogServices.opportunityActive.subscribe((x) => {
+        this.groups.length = 0;
+        this.opportunityActiveId = x.id;
+    });
   }
 
   ngAfterViewInit() {
     this.elementRef.nativeElement
       .querySelector("po-page-content")
       .addEventListener("scroll", this.onScroll.bind(this), true);
+  }
+
+  ngOnDestroy() {
+    this.elementRef.nativeElement
+      .querySelector("po-page-content")
+      .removeEventListener("scroll", this.onScroll.bind(this), true);
   }
 
   onScroll(event: any) {
@@ -84,28 +90,27 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
 
   goToTop() {
     if (!this.screen) return;
-
     this.screen.target.scrollTo({ top: 300, behavior: "smooth" });
 
     this.showFabButton = false;
   }
 
-  ngOnDestroy() {
-    this.elementRef.nativeElement
-      .querySelector("po-page-content")
-      .removeEventListener("scroll", this.onScroll.bind(this), true);
+  getProducts(filter: ParamsFilter) {
+    if (filter == null) return;
+
+    this.catalogServices.getProducts(filter).subscribe((x) => {
+      if (this.groupExists(x)) this.groups.push(x);
+    });
   }
 
-  getOpportunitys() {
-    this.catalogServices
-      .getOpportunitys(
-        this.tokenServices.Claims.representativeId,
-        this.checkinServices.checkin.clientId
-      )
-      .subscribe((x) => {
-        this.opportunitys = x;
-        this.opportunityActive = x[0];
-      });
+  private groupExists(x: GroupCatalogProduct): boolean {
+    return !this.groups.find(
+      (g) =>
+        g.collection == x.collection &&
+        g.map == x.map &&
+        g.category == x.category &&
+        g.group == x.group
+    );
   }
 
   getProductsByClick(filter: ParamsFilter) {
@@ -122,14 +127,6 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     this.getProducts(filter);
   }
 
-  getProducts(filter: ParamsFilter) {
-    if (filter == null) return;
-
-    this.catalogServices.getProducts(filter).subscribe((x) => {
-      if (this.groupExists(x)) this.groups.push(x);
-    });
-  }
-
   getProductByCod(cod: string) {
     this.showFabButton = false;
 
@@ -137,31 +134,16 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
       this._abFilter._categoryContainer.height = 300;
 
     this.catalogServices
-      .getProductByCod(this.opportunityActive.id, cod)
+      .getProductByCod(this.opportunityActiveId, cod)
       .subscribe(
         (x) => {
           this.groups.length = 0;
           this.groups.push(x);
         },
-        () => {
+        (err) => {
           this.groups.length = 0;
         }
       );
   }
 
-  private groupExists(x: GroupCatalogProduct): boolean {
-    return !this.groups.find(
-      (g) =>
-        g.collection == x.collection &&
-        g.map == x.map &&
-        g.category == x.category &&
-        g.group == x.group
-    );
-  }
-  changeOpportunity(event) {
-    if (!event.isTrusted) {
-      this.groups.length = 0;
-      this.opportunityActive = event;
-    }
-  }
 }

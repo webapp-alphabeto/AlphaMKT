@@ -1,16 +1,29 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { environment, NO_MESSAGE } from "src/environments/environment";
 import { CatalogOpportunity } from "../interfaces/CatalogOpportunity";
-import { CatalogProduct } from "../interfaces/CatalogProduct";
 import { ParamsFilter } from "../interfaces/ParamsFilter";
-import { GroupCatalogProduct } from '../interfaces/GroupCatalogProduct';
+import { GroupCatalogProduct } from "../interfaces/GroupCatalogProduct";
 
 @Injectable({
   providedIn: "root",
 })
 export class CatalogService {
+  private $opportunitys = new Subject<Array<CatalogOpportunity>>();
+  private $opportunityActive = new Subject<CatalogOpportunity>();
+
+  opportunitys = this.$opportunitys.asObservable();
+  opportunityActive = this.$opportunityActive.asObservable();
+
+  setOpportunitys(data: Array<CatalogOpportunity>) {
+    this.$opportunitys.next(data);
+  }
+
+  setOpportunityActive(data: CatalogOpportunity) {
+    this.$opportunityActive.next(data);
+  }
+
   constructor(private http: HttpClient) {}
 
   getOpportunitys(
@@ -35,11 +48,17 @@ export class CatalogService {
     return this.http.get<GroupCatalogProduct>(url, { params });
   }
 
-  getProductByCod(opportunityId:number, cod: string): Observable<GroupCatalogProduct> {
+  getProductByCod(
+    opportunityId: number,
+    cod: string
+  ): Observable<GroupCatalogProduct> {
     const url = `${environment.serviceApi}catalog/products-by-cod`;
     let params = new HttpParams()
       .append("opportunityId", opportunityId.toString())
       .append("cod", cod);
-    return this.http.get<GroupCatalogProduct>(url, { headers: NO_MESSAGE, params });
+    return this.http.get<GroupCatalogProduct>(url, {
+      headers: NO_MESSAGE,
+      params,
+    });
   }
 }

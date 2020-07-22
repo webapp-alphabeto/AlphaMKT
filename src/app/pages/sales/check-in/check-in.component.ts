@@ -60,6 +60,6 @@ export class CheckInComponent implements OnInit {
       clientId: x.valueToModel,
       representativeId: this.tokenService.Claims.representativeId,
     };
-    this.router.navigateByUrl("sales/catalog");
+    this.router.navigateByUrl("sales");
   }
 }

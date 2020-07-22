@@ -1,59 +1,54 @@
-<app-animacao-entre-rotas *ngIf="!opportunitys"></app-animacao-entre-rotas>
 <po-page-default>
-  <ab-navbar [items]="opportunitys" (select)="changeOpportunity($event)">
-    <div class="po-row">
-      <ab-banner
-        *ngIf="showBanner"
-        class="po-md-12"
-        [items]="opportunityActive?.banners"
-      ></ab-banner>
-    </div>
 
-    <div class="po-row">
-      <ab-filter
-        #abFilter
-        class="po-md-2"
-        [opportunityActive]="opportunityActive"
-        (getFilter)="getProductsByClick($event)"
-        (search)="getProductByCod($event)"
-      ></ab-filter>
+  <div class="po-row">
+    <ab-banner
+      *ngIf="showBanner"
+      class="po-md-12"
+      [items]="(this.catalogServices.opportunityActive | async)?.banners"
+    ></ab-banner>
+  </div>
 
-      <div class="po-md-10 po-mb-5">
-        <div *ngIf="groups.length > 0; else nothingToShow">
-          <ab-showcase
-            *ngFor="let group of groups"
-            [filterActive]="abFilter.filterActive"
-            [categoryActive]="abFilter.categoryActive"
-            [priceActive]="abFilter.priceActive"
-            [groupProduct]="group"
+  <div class="po-row">
+    <ab-filter
+      #abFilter
+      class="po-md-2"
+      [opportunityActive]="this.catalogServices.opportunityActive | async"
+      (getFilter)="getProductsByClick($event)"
+      (search)="getProductByCod($event)"
+    ></ab-filter>
+
+    <div class="po-md-10 po-mb-5">
+      <div *ngIf="groups.length > 0; else nothingToShow">
+        <ab-showcase
+          *ngFor="let group of groups"
+          [filterActive]="abFilter.filterActive"
+          [categoryActive]="abFilter.categoryActive"
+          [priceActive]="abFilter.priceActive"
+          [groupProduct]="group"
+        >
+        </ab-showcase>
+        <div class="po-md-12 flex-box" style="height: 50px;">
+          <a class="button-more-load" *ngIf="showMoreLoad" (click)="loadMore()"
+            ><span>carregar mais</span></a
           >
-          </ab-showcase>
-          <div class="po-md-12 flex-box" style="height: 50px;">
-            <a
-              class="button-more-load"
-              *ngIf="showMoreLoad"
-              (click)="loadMore()"
-              ><span>carregar mais</span></a
-            >
-          </div>
         </div>
-        <ng-template #nothingToShow>
-          <div class="flex-box">
-            <h1 class="nothing-to-show">
-              Nenhum produto encontrado :(
-            </h1>
-          </div>
-        </ng-template>
       </div>
-
-      <div
-        class="fab-info flex-box"
-        *ngIf="showFabButton"
-        [@entrance]
-        (click)="goToTop()"
-      >
-        <h1>↑</h1>
-      </div>
+      <ng-template #nothingToShow>
+        <div class="flex-box">
+          <h1 class="nothing-to-show">
+            Nenhum produto encontrado :(
+          </h1>
+        </div>
+      </ng-template>
     </div>
-  </ab-navbar>
+
+    <div
+      class="fab-info flex-box"
+      *ngIf="showFabButton"
+      [@entrance]
+      (click)="goToTop()"
+    >
+      <h1>↑</h1>
+    </div>
+  </div>
 </po-page-default>
