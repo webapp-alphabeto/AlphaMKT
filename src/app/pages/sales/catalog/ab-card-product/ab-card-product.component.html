@@ -29,7 +29,12 @@
     <div class="card-complement-buttom">
       <a
         class="button-bag"
-        [routerLink]="['../product', product.reference, opportunityId]"
+        [routerLink]="[
+          '/sales/product',
+          opportunityId,
+          product.reference,
+          listPriceId
+        ]"
         ><span>adicionar a sacola </span></a
       >
     </div>

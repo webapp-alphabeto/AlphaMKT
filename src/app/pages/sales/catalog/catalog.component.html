@@ -4,7 +4,7 @@
     <ab-banner
       *ngIf="showBanner"
       class="po-md-12"
-      [items]="(this.catalogServices.opportunityActive | async)?.banners"
+      [items]="(catalogServices.opportunityActive | async)?.banners"
     ></ab-banner>
   </div>
 
@@ -12,7 +12,7 @@
     <ab-filter
       #abFilter
       class="po-md-2"
-      [opportunityActive]="this.catalogServices.opportunityActive | async"
+      [opportunityActive]="catalogServices.opportunityActive | async"
       (getFilter)="getProductsByClick($event)"
       (search)="getProductByCod($event)"
     ></ab-filter>
@@ -27,7 +27,7 @@
           [groupProduct]="group"
         >
         </ab-showcase>
-        <div class="po-md-12 flex-box" style="height: 50px;">
+        <div class="po-md-12 flex-box po-mb-5">
           <a class="button-more-load" *ngIf="showMoreLoad" (click)="loadMore()"
             ><span>carregar mais</span></a
           >

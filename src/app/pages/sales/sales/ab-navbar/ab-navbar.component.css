@@ -5,12 +5,13 @@ ul.topnav {
   overflow: hidden;
   font-family: "Fredoka One", fantasy;
   color: #858585;
-  top: 0;
-  position: fixed;
+  /* top: 30;
+  position: fixed; */
   background-color: white;
   z-index: 1;
   width: 100%;
   margin-left: -16px;
+  transition: 0.3s;
 }
 
 ul.topnav li {
@@ -21,7 +22,7 @@ ul.topnav li a {
   display: block;
   color: #858585;
   text-align: center;
-  padding: 26px 16px;
+  padding: 12px 16px;
   text-decoration: none;
   cursor: pointer;
 }
@@ -87,10 +88,10 @@ ul.topnav li.right {
   font-size: 20px;
 }
 
-.button-bag a {
+/* .button-bag a {
   width: 60px;
   padding: 17px 2px !important;
-}
+} */
 
 .sidenav {
   height: 100%;
@@ -138,6 +139,6 @@ ul.topnav li.right {
   }
 }
 
-.main {
-  margin-top: 70px;
-}
+/* .main {
+  margin-top: 10px;
+} */

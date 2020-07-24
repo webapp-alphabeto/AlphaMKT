@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { Observable, Subject } from "rxjs";
+import { Observable, Subject, BehaviorSubject } from "rxjs";
 import { environment, NO_MESSAGE } from "src/environments/environment";
 import { CatalogOpportunity } from "../interfaces/CatalogOpportunity";
 import { ParamsFilter } from "../interfaces/ParamsFilter";
@@ -10,8 +10,8 @@ import { GroupCatalogProduct } from "../interfaces/GroupCatalogProduct";
   providedIn: "root",
 })
 export class CatalogService {
-  private $opportunitys = new Subject<Array<CatalogOpportunity>>();
-  private $opportunityActive = new Subject<CatalogOpportunity>();
+  private $opportunitys = new BehaviorSubject<Array<CatalogOpportunity>>(null);
+  private $opportunityActive = new BehaviorSubject<CatalogOpportunity>(null);
 
   opportunitys = this.$opportunitys.asObservable();
   opportunityActive = this.$opportunityActive.asObservable();

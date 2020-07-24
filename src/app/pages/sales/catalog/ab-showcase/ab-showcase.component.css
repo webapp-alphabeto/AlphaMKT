@@ -1,15 +1,4 @@
-.card-product {
-    color: #e18b34;
-    text-align: center;
-    border: 1px solid white;
-    padding-bottom: 5px;
-    position: relative;
-  }
-  .card-product:hover {
-    border: 1px solid #e18b34;
-  }
-  
-  
+
 .body-title {
     color: #858585;
     font-family: "Fredoka One", cursive;

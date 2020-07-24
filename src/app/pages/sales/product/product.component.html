@@ -1,0 +1,107 @@
+<ul class="breadcrumb">
+  <li><a routerLink="/sales">catalogo</a></li>
+  <li>
+    <span>{{ reference }}</span>
+  </li>
+</ul>
+
+<po-page-default class="po-mb-5">
+  <div class="po-row" *ngIf="!load" [@slideIn]>
+    <div class="po-md-5">
+      <div class="po-row">
+        <po-slide
+          class="po-mt-2"
+          p-height="500"
+          [p-slides]="product?.photos"
+        ></po-slide>
+      </div>
+    </div>
+
+    <div class="po-md-3 description">
+      <po-divider></po-divider>
+      <div>
+        <h4>Descrição</h4>
+        <p>{{ product?.complementary.friendlyDescription | lowercase }}</p>
+      </div>
+      <po-divider></po-divider>
+      <div>
+        <h4>Composição</h4>
+        <p>{{ product?.complementary.feature | lowercase }}</p>
+      </div>
+      <po-divider></po-divider>
+      <div>
+        <h4>Tamanhos</h4>
+        <p>{{ product?.complementary.friendlySize | lowercase }}</p>
+      </div>
+    </div>
+
+    <div class="po-md-4 description">
+      <po-divider></po-divider>
+
+      <div>
+        <h3>{{ product?.model }}</h3>
+        <span>ref.: {{ product?.reference }}</span>
+      </div>
+      <div class="po-mt-3">
+        <span>compre por</span>
+        <h2>{{ product?.price | currency: "BRL" }}</h2>
+        <span>venda por</span>
+        <h3>{{ product?.originPrice | currency: "BRL" }}</h3>
+      </div>
+
+      <po-divider></po-divider>
+
+      <div>
+        <h4>Pedido</h4>
+
+        <po-tabs>
+          <po-tab
+            [p-active]="i == 0"
+            [p-label]="item.color"
+            *ngFor="let item of product?.balance; let i = index"
+          >
+            <po-table
+              [p-columns]="columSizes"
+              [p-items]="item.balance"
+              p-hide-columns-manager
+            >
+              <ng-template
+                p-table-cell-template
+                let-column="column"
+                let-row="row"
+              >
+                <div *ngIf="column.property === 'purchase'">
+                  <po-number [(ngModel)]="row.purchase"></po-number>
+                </div>
+              </ng-template>
+            </po-table>
+          </po-tab>
+        </po-tabs>
+      </div>
+    </div>
+  </div>
+  <ng-template #animation>
+    <app-animacao-entre-rotas></app-animacao-entre-rotas>
+  </ng-template>
+  <div *ngIf="!load && product?.relatedProducts.length > 0" [@slideIn] class="po-row see-too">
+    <h1>Veja também</h1>
+
+    <div class="po-row">
+      <ab-card-product
+        *ngFor="let item of product?.relatedProducts"
+        class="po-md-3 po-mb-2 card-product"
+        [product]="item"
+        [listPriceId]="priceListId"
+        [opportunityId]="opportunityId"
+      ></ab-card-product>
+    </div>
+  </div>
+  <div class="po-mb-5">
+    <div class="po-row">
+      FOOTER
+    </div>
+    <div class="po-row">
+      FOOTER
+    </div>
+  </div>
+</po-page-default>

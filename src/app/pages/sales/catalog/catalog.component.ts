@@ -17,6 +17,7 @@ import { AbFilterComponent } from "./ab-filter/ab-filter.component";
 import { GroupCatalogProduct } from "../interfaces/GroupCatalogProduct";
 import { entrance } from "src/app/shared/animations/animations";
 import { switchMap } from "rxjs/operators";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-catalog",
@@ -32,7 +33,7 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   showFabButton = false;
   showMoreLoad = false;
   screen: any;
-  opportunityActiveId: number;
+  opportunityActive: CatalogOpportunity;
 
   constructor(
     public catalogServices: CatalogService,
@@ -41,13 +42,13 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     private elementRef: ElementRef
   ) {
     this.menuService.exibirMenu.next(true);
-    this.toolBarService.ocultar();
+    this.toolBarService.exibir();
   }
 
   ngOnInit(): void {
     this.catalogServices.opportunityActive.subscribe((x) => {
-        this.groups.length = 0;
-        this.opportunityActiveId = x.id;
+      this.groups.length = 0;
+      this.opportunityActive = x;
     });
   }
 
@@ -58,9 +59,9 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.elementRef.nativeElement
-      .querySelector("po-page-content")
-      .removeEventListener("scroll", this.onScroll.bind(this), true);
+    // this.elementRef.nativeElement
+    //   .querySelector("po-page-content")
+    //   .removeEventListener("scroll", this.onScroll.bind(this), true);
   }
 
   onScroll(event: any) {
@@ -68,7 +69,12 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
       this.screen = event;
       let scrollIndex = event.target.offsetHeight + event.target.scrollTop;
 
-      if (scrollIndex < 1000) this.showFabButton = false;
+      if (scrollIndex < 1000) {
+        this.showFabButton = false;
+        this.toolBarService.exibir();
+      } else {
+        this.toolBarService.ocultar();
+      }
 
       if (scrollIndex >= event.target.scrollHeight) {
         this._abFilter._categoryContainer.height = undefined;
@@ -134,7 +140,7 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
       this._abFilter._categoryContainer.height = 300;
 
     this.catalogServices
-      .getProductByCod(this.opportunityActiveId, cod)
+      .getProductByCod(this.opportunityActive.id, cod)
       .subscribe(
         (x) => {
           this.groups.length = 0;
@@ -145,5 +151,4 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       );
   }
-
 }

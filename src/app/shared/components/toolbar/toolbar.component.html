@@ -1,5 +1,6 @@
 <po-toolbar
   *ngIf="(auth.Authenticated$() | async) && (toolBarService.Show | async)"
+  [@slideIn]
   [p-profile]="profileService.profile"
   [p-profile-actions]="profileActions"
   p-title="AlphaBuy"

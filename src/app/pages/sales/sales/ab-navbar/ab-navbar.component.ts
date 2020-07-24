@@ -7,6 +7,7 @@ import {
   OnChanges,
   SimpleChanges} from "@angular/core";
 import { CatalogOpportunity } from "../../interfaces/CatalogOpportunity";
+import { ToolBarService } from 'src/app/shared/services/tool-bar.service';
 
 @Component({
   selector: "ab-navbar",
@@ -18,7 +19,7 @@ export class AbNavbarComponent implements OnInit, OnChanges {
   @Input() items: Array<CatalogOpportunity>;
   @Output() selectOpportunity = new EventEmitter<CatalogOpportunity>();
   itemActive: CatalogOpportunity;
-  constructor() {}
+  constructor(public toolbarService: ToolBarService) {}
 
   ngOnInit(): void {}
 

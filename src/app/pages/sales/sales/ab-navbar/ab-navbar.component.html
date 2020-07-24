@@ -1,5 +1,4 @@
-
-<ul class="topnav">
+<ul class="topnav" >
   <li class="button-menu">
     <a class="po-icon po-icon-menu" (click)="openNav()"></a>
   </li>
@@ -9,22 +8,22 @@
         src="../../../../assets/logo-alphabeto.png"
         alt=""
         srcset=""
-        width="220px"
+        width="130px"
       />
     </a>
   </li>
 
   <li *ngFor="let item of items">
     <a [class.active]="itemActive == item" (click)="selectItem(item)">{{
-      item.name
+      item.name | uppercase
     }}</a>
   </li>
 
-  <li class="right button-bag">
+  <!-- <li class="right button-bag">
     <a
       ><img src="../../../../../assets/bolsa-de-compras.png" alt="" srcset=""
     /></a>
-  </li>
+  </li> -->
 </ul>
 
 <div id="mySidenav" class="sidenav">

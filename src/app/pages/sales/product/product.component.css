@@ -1,0 +1,50 @@
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  font-family: "Fredoka One", cursive;
+}
+ul.breadcrumb li {
+  display: inline;
+  font-size: 13px;
+}
+ul.breadcrumb li + li:before {
+  padding: 8px;
+  color: #858585;
+  content: "/\00a0";
+}
+ul.breadcrumb li a {
+  color: #858585;
+  text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+  color: #e18b34;
+}
+ul.breadcrumb li span {
+  color: #e18b34;
+}
+
+.description {
+  color: #e18b34;
+  font-family: "Fredoka One", cursive;
+}
+
+.description span {
+  font-size: 18px;
+  font-family: "always", cursive;
+}
+
+.description h2,
+h4,
+p,
+span {
+  color: #858585;
+}
+
+.description p {
+  font-size: 12px;
+}
+
+.see-too h1 {
+  color: #e18b34;
+  font-family: "Fredoka One", cursive;
+}

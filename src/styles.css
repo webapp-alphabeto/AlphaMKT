@@ -18,8 +18,15 @@
 
   --color-button-group-background-selected: var(--color-primary);
   --color-button-group-border-selected: var(--color-primary);
+  --color-tab-button-color: #858585;
+  --color-tab-button-box-shadow-active: var(--color-primary);
   /* --font-family-theme-bold: "Fredoka One" */
 }
+
+.po-tab-button-active, .po-tab-button {
+  outline: none;
+}
+ 
 
 .po-toolbar-title {
   font-family: "Fredoka One", cursive;
@@ -58,6 +65,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.card-product {
+  color: #e18b34;
+  text-align: center;
+  border: 1px solid white;
+  padding-bottom: 5px;
+  position: relative;
+}
+.card-product:hover {
+  border: 1px solid #e18b34;
+}
+
+
 
 body {
   overflow: hidden;

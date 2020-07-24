@@ -4,11 +4,13 @@ import { ToolBarService } from "src/app/shared/services/tool-bar.service";
 import { ProfileService } from "src/app/shared/services/profile.service";
 import { PoToolbarAction, PoNotificationService, PoDialogService } from "@po-ui/ng-components";
 import { Router } from "@angular/router";
+import { entrance, slideIn } from '../../animations/animations';
 
 @Component({
   selector: "app-toolbar",
   templateUrl: "./toolbar.component.html",
   styleUrls: ["./toolbar.component.css"],
+  animations:[entrance, slideIn]
 })
 export class ToolbarComponent implements OnInit {
   profileActions: Array<PoToolbarAction> = [

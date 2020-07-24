@@ -2,11 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { CatalogService } from "../services/catalog.service";
 import { CheckInService } from "src/app/shared/services/check-in.service";
 import { TokenService } from "src/app/core/services/token.service";
+import { slideIn } from 'src/app/shared/animations/animations';
 
 @Component({
   selector: "app-sales",
   templateUrl: "./sales.component.html",
   styleUrls: ["./sales.component.css"],
+  animations:[slideIn]
 })
 export class SalesComponent implements OnInit {
   constructor(

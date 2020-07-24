@@ -1,10 +1,11 @@
 <app-animacao-entre-rotas
-  *ngIf="!(this.catalogServices.opportunitys | async)"
+  *ngIf="!(catalogServices.opportunitys | async)"
 ></app-animacao-entre-rotas>
 
 <ab-navbar
-  [items]="this.catalogServices.opportunitys | async"
-  (selectOpportunity)="this.catalogServices.setOpportunityActive($event)"
+  [@slideIn]
+  [items]="catalogServices.opportunitys | async"
+  (selectOpportunity)="catalogServices.setOpportunityActive($event)"
 >
   <router-outlet></router-outlet>
 </ab-navbar>

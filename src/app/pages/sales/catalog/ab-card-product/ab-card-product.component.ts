@@ -8,7 +8,7 @@ import { CatalogProduct } from "../../interfaces/CatalogProduct";
 })
 export class AbCardProductComponent implements OnInit {
   @Input() product: CatalogProduct;
-  @Input() listPriceId: number;
+  @Input() listPriceId: number = 0;
   @Input() opportunityId: number;
   constructor() {}
 
