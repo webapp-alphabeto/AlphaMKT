@@ -22,6 +22,7 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { ProductComponent } from './product/product.component';
 import { SalesComponent } from './sales/sales.component';
 import { CatalogService } from './services/catalog.service';
+import { AbSearchComponent } from './catalog/ab-filter/ab-search/ab-search.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { CatalogService } from './services/catalog.service';
     BigTextPipe,
     AbShowcaseComponent,
     ProductComponent,
-    SalesComponent
+    SalesComponent,
+    AbSearchComponent
   ],
   imports: [
     CommonModule,

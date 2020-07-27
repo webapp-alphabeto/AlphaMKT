@@ -20,7 +20,7 @@ import { switchMap } from "rxjs/operators";
 import { Subscription } from "rxjs";
 
 @Component({
-  selector: "app-catalog",
+  selector: "ab-catalog",
   templateUrl: "./catalog.component.html",
   styleUrls: ["./catalog.component.css"],
   animations: [entrance],
@@ -28,12 +28,13 @@ import { Subscription } from "rxjs";
 export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("abFilter", { static: true }) _abFilter: AbFilterComponent;
 
+  opportunityActive: CatalogOpportunity;
   groups: Array<GroupCatalogProduct> = [];
   showBanner = true;
   showFabButton = false;
   showMoreLoad = false;
+  showProductNav = false;
   screen: any;
-  opportunityActive: CatalogOpportunity;
 
   constructor(
     public catalogServices: CatalogService,
@@ -71,6 +72,7 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
 
       if (scrollIndex < 1000) {
         this.showFabButton = false;
+        this._abFilter.fixedFilter = false;
         this.toolBarService.exibir();
       } else {
         this.toolBarService.ocultar();
@@ -78,6 +80,7 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
 
       if (scrollIndex >= event.target.scrollHeight) {
         this._abFilter._categoryContainer.height = undefined;
+        this._abFilter.fixedFilter = true;
 
         let nextFilter = this._abFilter.nextGroupAndCategoryFilter();
         this.getProducts(nextFilter.params);
@@ -145,6 +148,7 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
         (x) => {
           this.groups.length = 0;
           this.groups.push(x);
+          this.goToTop()
         },
         (err) => {
           this.groups.length = 0;

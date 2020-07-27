@@ -39,6 +39,7 @@ export class AbFilterComponent implements OnInit, OnChanges {
   @Input() opportunityActive: CatalogOpportunity;
   @Output() getFilter = new EventEmitter();
   @Output() search = new EventEmitter();
+  fixedFilter = false;
   filterActive: CatalogFilterProducts;
   priceActive: PriceListByMkupView;
   categoryActive: string;

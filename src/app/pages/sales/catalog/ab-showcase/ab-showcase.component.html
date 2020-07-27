@@ -18,5 +18,6 @@
     [listPriceId]="priceActive?.id"
     [opportunityId]="filterActive.salesOpportunityId"
     *ngFor="let item of groupProduct?.catalogProduct"
+    (bagClick)="internalCardProductClick()"
   ></ab-card-product>
 </div>

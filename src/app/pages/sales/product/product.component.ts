@@ -1,16 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { ToolBarService } from "src/app/shared/services/tool-bar.service";
 import { ActivatedRoute } from "@angular/router";
 import { ProductService } from "./services/product.service";
 import { SalesProduct } from "./interfaces/SalesProducts";
 import { PoTableColumn } from "@po-ui/ng-components";
-import { entrance, slideIn } from 'src/app/shared/animations/animations';
+import { slideIn } from "src/app/shared/animations/animations";
+import { BalanceView } from "./interfaces/BalanceView";
+import { BalanceGroupByColor } from "./interfaces/BalanceGroupByColor";
 
 @Component({
   selector: "app-product",
   templateUrl: "./product.component.html",
   styleUrls: ["./product.component.css"],
-  animations:[slideIn]
+  animations: [slideIn],
 })
 export class ProductComponent implements OnInit {
   reference: string;
@@ -53,6 +54,26 @@ export class ProductComponent implements OnInit {
       .subscribe((x) => {
         this.product = x;
         this.load = false;
+      });
+  }
+
+  purchase(sign: string, row: BalanceView) {
+    if (sign == "-") if (row.purchase > 0) row.purchase--;
+
+    if (sign == "+") if (row.purchase < row.balance) row.purchase++;
+  }
+
+  grid(item: BalanceGroupByColor, value: number = item.grid) {
+    if (value != null)
+    item.grid = value;
+      item.balance.forEach((y) => {
+        if (item.grid > 0) y.purchase = item.grid;
+        else {
+          y.purchase = 0;
+          return;
+        }
+        if (item.grid < y.balance) y.purchase = item.grid;
+        else y.purchase = y.balance;
       });
   }
 }

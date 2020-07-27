@@ -59,8 +59,7 @@ ul.topnav li.right {
     float: none;
     display: none;
   }
-  ul.topnav li:nth-child(-n + 2),
-  ul.topnav li:nth-last-child(1) {
+  ul.topnav li:nth-child(-n + 2){
     display: inline-block;
   }
   ul.topnav li:nth-child(1) {
@@ -70,9 +69,9 @@ ul.topnav li.right {
     margin-left: 50%;
     margin-top: 8px;
   }
-  ul.topnav li:nth-last-child(1) {
+  /* ul.topnav li:nth-last-child(1) {
     float: right;
-  }
+  } */
 
   .logo img {
     width: 150px;
