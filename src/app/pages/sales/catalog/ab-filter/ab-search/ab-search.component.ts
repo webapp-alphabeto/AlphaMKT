@@ -8,24 +8,26 @@ import {
   ViewChild,
   ElementRef,
 } from "@angular/core";
-import { fromEvent } from 'rxjs';
-import { filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { fromEvent } from "rxjs";
+import {
+  filter,
+  debounceTime,
+  distinctUntilChanged,
+  tap,
+} from "rxjs/operators";
+import { SearchService } from "../../../services/search.service";
 
 @Component({
-  selector: "app-ab-search",
+  selector: "ab-search",
   templateUrl: "./ab-search.component.html",
   styleUrls: ["./ab-search.component.css"],
 })
 export class AbSearchComponent implements OnInit, AfterViewInit {
   @ViewChild("inputSearch") input: ElementRef;
-  @Input() label: string;
-  @Input("name") name: string;
-  @Input() isReadOnly = false;
-  @Output() search = new EventEmitter();
   fixedFilter = false;
 
   cod: string;
-  constructor() {}
+  constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {}
   ngAfterViewInit(): void {
@@ -39,9 +41,41 @@ export class AbSearchComponent implements OnInit, AfterViewInit {
         debounceTime(500),
         distinctUntilChanged(),
         tap((text: string) => {
-          if (this.cod) this.search.emit(this.cod);
+          this.search();
         })
       )
       .subscribe();
+  }
+
+  private innerValue: any;
+
+  get value() {
+    return this.innerValue;
+  }
+
+  set value(v: any) {
+    if (v !== this.innerValue) {
+      this.innerValue = v;
+      this.onChangeCb(v);
+    }
+  }
+
+  onChangeCb: (_: any) => void = () => {};
+  onTouchedCb: (_: any) => void = () => {};
+
+  writeValue(v: any): void {
+    this.value = v;
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChangeCb = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouchedCb = fn;
+  }
+
+  search() {
+    if (this.cod) this.searchService.setValue(this.cod);
   }
 }

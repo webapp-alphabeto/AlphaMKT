@@ -31,7 +31,6 @@ import { PoContainerComponent } from "@po-ui/ng-components";
   styleUrls: ["./ab-filter.component.css"],
 })
 export class AbFilterComponent implements OnInit, OnChanges {
-  @ViewChild("inputSearch") input: ElementRef;
   @ViewChild("sideMenu", { static: true }) _sideMenu: AbSideMenuComponent;
   @ViewChild("categoryContainer")
   _categoryContainer: PoContainerComponent;
@@ -52,23 +51,6 @@ export class AbFilterComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {}
-
-  ngAfterViewInit() {
-    this.searchInputDebounce();
-  }
-
-  private searchInputDebounce() {
-    fromEvent(this.input.nativeElement, "keyup")
-      .pipe(
-        filter(Boolean),
-        debounceTime(500),
-        distinctUntilChanged(),
-        tap((text: string) => {
-          if (this.cod) this.getByCod(this.cod);
-        })
-      )
-      .subscribe();
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.opportunityActive) {
@@ -177,9 +159,9 @@ export class AbFilterComponent implements OnInit, OnChanges {
     this.checkinService.checkin = checkin;
   }
 
-  getByCod(cod: string) {
-    this._sideMenu.showSideMenu = false;
-    this.search.emit(cod);
-  }
+  // getByCod(cod: string) {
+  //   this._sideMenu.showSideMenu = false;
+  //   this.search.emit(cod);
+  // }
 
 }

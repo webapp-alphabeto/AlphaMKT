@@ -18,6 +18,8 @@ import { GroupCatalogProduct } from "../interfaces/GroupCatalogProduct";
 import { entrance } from "src/app/shared/animations/animations";
 import { switchMap } from "rxjs/operators";
 import { Subscription } from "rxjs";
+import { AbNavbarComponent } from "../sales/ab-navbar/ab-navbar.component";
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: "ab-catalog",
@@ -40,7 +42,8 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     public catalogServices: CatalogService,
     private menuService: MenuService,
     private toolBarService: ToolBarService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private searchService: SearchService
   ) {
     this.menuService.exibirMenu.next(true);
     this.toolBarService.exibir();
@@ -51,6 +54,15 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
       this.groups.length = 0;
       this.opportunityActive = x;
     });
+
+
+    this.searchService.searchValue.subscribe((x)=> {
+      if(x != null)
+      this.getProductByCod(x);      
+
+    });
+
+
   }
 
   ngAfterViewInit() {
@@ -148,7 +160,7 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
         (x) => {
           this.groups.length = 0;
           this.groups.push(x);
-          this.goToTop()
+          this.goToTop();
         },
         (err) => {
           this.groups.length = 0;

@@ -1,106 +1,117 @@
 <po-page-default class="po-mb-5">
-  <div class="po-row" *ngIf="!load" [@slideIn]>
-    <div class="po-md-5">
-      <div class="po-row">
-        <po-slide
-          class="po-mt-2"
-          p-height="500"
-          [p-slides]="product?.photos"
-        ></po-slide>
-      </div>
-    </div>
-
-    <div class="po-md-3 description">
-      <po-divider></po-divider>
-      <div>
-        <h4>Descrição</h4>
-        <p>{{ product?.complementary.friendlyDescription | lowercase }}</p>
-      </div>
-      <po-divider></po-divider>
-      <div>
-        <h4>Composição</h4>
-        <p>{{ product?.complementary.feature | lowercase }}</p>
-      </div>
-      <po-divider></po-divider>
-      <div>
-        <h4>Tamanhos</h4>
-        <p>{{ product?.complementary.friendlySize | lowercase }}</p>
-      </div>
-    </div>
-
-    <div class="po-md-4 description">
-      <po-divider></po-divider>
-
-      <div>
-        <h3>{{ product?.model }}</h3>
-        <span>ref.: {{ product?.reference }}</span>
-      </div>
-      <div class="po-mt-3">
-        <span>compre por</span>
-        <h2>{{ product?.price | currency: "BRL" }}</h2>
-        <span>venda por</span>
-        <h3>{{ product?.originPrice | currency: "BRL" }}</h3>
+  <ab-search ></ab-search>
+  <div class="po-row" *ngIf="!load; else animation" [@slideIn]>
+    <div *ngIf="product; else productNotFound">
+      <div class="po-md-5">
+        <div class="po-row">
+          <po-slide
+            class="po-mt-2"
+            p-height="500"
+            [p-slides]="product?.photos"
+          ></po-slide>
+        </div>
       </div>
 
-      <po-divider></po-divider>
+      <div class="po-md-3 description">
+        <po-divider></po-divider>
+        <div>
+          <h4>Descrição</h4>
+          <p>{{ product?.complementary.friendlyDescription | lowercase }}</p>
+        </div>
+        <po-divider></po-divider>
+        <div>
+          <h4>Composição</h4>
+          <p>{{ product?.complementary.feature | lowercase }}</p>
+        </div>
+        <po-divider></po-divider>
+        <div>
+          <h4>Tamanhos</h4>
+          <p>{{ product?.complementary.friendlySize | lowercase }}</p>
+        </div>
+      </div>
 
-      <div>
-        <h4>Pedido</h4>
+      <div class="po-md-4 description">
+        <po-divider></po-divider>
 
-        <po-tabs *ngIf="product">
-          <po-tab
-            [p-active]="i == 0"
-            [p-label]="item.color"
-            *ngFor="let item of product?.balance; let i = index"
-          >
-            <div class="po-row">
-              <a class="purchase-button" (click)="item.grid = item.grid - 1"
-                ><span>-</span></a
-              >
+        <div>
+          <h3>{{ product?.model }}</h3>
+          <span>ref.: {{ product?.reference }}</span>
+        </div>
+        <div class="po-mt-3">
+          <span>compre por</span>
+          <h2>{{ product?.price | currency: "BRL" }}</h2>
+          <span>venda por</span>
+          <h3>{{ product?.originPrice | currency: "BRL" }}</h3>
+        </div>
 
-              <po-number
-                class="po-md-6"
-                [(ngModel)]="item.grid"
-                (p-change-model)="grid(item, $event)"
-              ></po-number>
-              <a class="purchase-button" (click)="item.grid = item.grid + 1"
-                ><span>+</span></a
-              >
-            </div>
-            <po-table
-              [p-columns]="columSizes"
-              [p-items]="item.balance"
-              p-hide-columns-manager
+        <po-divider></po-divider>
+
+        <div>
+          <h4>Pedido</h4>
+
+          <po-tabs *ngIf="product">
+            <po-tab
+              [p-active]="i == 0"
+              [p-label]="item.color"
+              *ngFor="let item of product?.balance; let i = index"
             >
-              <ng-template
-                p-table-cell-template
-                let-column="column"
-                let-row="row"
+              <div class="po-row">
+                <a class="purchase-button" (click)="item.grid = item.grid - 1"
+                  ><span>-</span></a
+                >
+
+                <po-number
+                  class="po-md-6"
+                  [(ngModel)]="item.grid"
+                  (p-change-model)="grid(item, $event)"
+                ></po-number>
+                <a class="purchase-button" (click)="item.grid = item.grid + 1"
+                  ><span>+</span></a
+                >
+              </div>
+              <po-table
+                [p-columns]="columSizes"
+                [p-items]="item.balance"
+                p-hide-columns-manager
               >
-                <div *ngIf="column.property === 'purchase'">
-                  <div class="po-row">
-                    <a class="purchase-button" (click)="purchase('-', row)"
-                      ><span>-</span></a
-                    >
-                    <po-number
-                      class="po-md-6"
-                      [(ngModel)]="row.purchase"
-                    ></po-number>
-                    <a class="purchase-button" (click)="purchase('+', row)"
-                      ><span>+</span></a
-                    >
+                <ng-template
+                  p-table-cell-template
+                  let-column="column"
+                  let-row="row"
+                >
+                  <div *ngIf="column.property === 'purchase'">
+                    <div class="po-row">
+                      <a class="purchase-button" (click)="purchase('-', row)"
+                        ><span>-</span></a
+                      >
+                      <po-number
+                        class="po-md-6"
+                        [(ngModel)]="row.purchase"
+                      ></po-number>
+                      <a class="purchase-button" (click)="purchase('+', row)"
+                        ><span>+</span></a
+                      >
+                    </div>
                   </div>
-                </div>
-              </ng-template>
-            </po-table>
-          </po-tab>
-        </po-tabs>
+                </ng-template>
+              </po-table>
+            </po-tab>
+          </po-tabs>
+        </div>
       </div>
     </div>
+    <ng-template #productNotFound>
+      <div class="flex-box">
+        <h1 class="nothing-to-show">
+          Nenhum produto encontrado :(
+        </h1>
+      </div>
+    </ng-template>
   </div>
   <ng-template #animation>
     <app-animacao-entre-rotas></app-animacao-entre-rotas>
   </ng-template>
+
   <div
     *ngIf="!load && product?.relatedProducts.length > 0"
     [@slideIn]

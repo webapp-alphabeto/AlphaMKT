@@ -8,6 +8,7 @@ import {
   SimpleChanges} from "@angular/core";
 import { CatalogOpportunity } from "../../interfaces/CatalogOpportunity";
 import { ToolBarService } from 'src/app/shared/services/tool-bar.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: "ab-navbar",

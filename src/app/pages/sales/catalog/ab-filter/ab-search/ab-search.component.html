@@ -1,16 +1,12 @@
-<div class="po-row po-mb-2 search" [class.search-fixed]="fixedFilter">
-    <i class="po-icon po-icon-search po-md-2"></i>
-    <input
-      #inputSearch
-      class="search po-md-10"
-      type="text"
-      name="search"
-      placeholder="referência"
-      [(ngModel)]="cod"
-      onfocus="this.value=''"
-      (keyup.enter)="this.search.emit(cod)"
-    />
-    <div class="po-md-12 flex-box po-mt-1">
-      <a class="button-search" (click)="this.search.emit(cod)"><span>buscar</span></a>
-    </div>
-  </div>
+<div class="search-container">
+  <input
+    #inputSearch
+    type="text"
+    placeholder="Pesquisar"
+    name="search"
+    [(ngModel)]="cod"
+  />
+  <button (click)="this.search()">
+    <i class="po-icon po-icon-search"></i>
+  </button>
+</div>

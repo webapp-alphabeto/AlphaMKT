@@ -67,27 +67,6 @@ span {
 .purchase-button span {
   color: white;
   font-family: "Fredoka One", cursive;
-  /* font-size: 18px; */
   cursor: pointer;
-  /* display: inline-block;
-  position: relative; */
   transition: 0.5s;
 }
-/* .purchase-button span:after {
-  font-family: PoIcon !important;
-  content: "\e966";
-  margin-top: 2px;
-  text-align: center;
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-.purchase-button:hover span {
-  padding-right: 25px;
-}
-.purchase-button:hover span:after {
-  opacity: 1;
-  right: 0;
-} */

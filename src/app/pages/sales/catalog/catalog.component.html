@@ -19,6 +19,7 @@
 
     <div class="po-md-10 po-mb-5">
       <div *ngIf="groups.length > 0; else nothingToShow">
+   
         <ab-showcase
           *ngFor="let group of groups"
           [filterActive]="abFilter.filterActive"

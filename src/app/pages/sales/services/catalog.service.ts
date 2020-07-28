@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { Observable, Subject, BehaviorSubject } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 import { environment, NO_MESSAGE } from "src/environments/environment";
 import { CatalogOpportunity } from "../interfaces/CatalogOpportunity";
 import { ParamsFilter } from "../interfaces/ParamsFilter";
