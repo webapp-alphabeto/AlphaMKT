@@ -25,16 +25,11 @@
     </div>
   </div>
 
-  <div class="card-complement">
+  <div class="card-complement" (click)="internalBagClick()">
     <div class="card-complement-buttom">
       <a (click)="internalBagClick()"
         class="button-bag"
-        [routerLink]="[
-          '/sales/product',
-          opportunityId,
-          product.reference,
-          listPriceId
-        ]"
+        
         ><span>adicionar a sacola </span></a
       >
     </div>

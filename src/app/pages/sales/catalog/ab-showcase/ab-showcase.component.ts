@@ -2,14 +2,11 @@ import {
   Component,
   OnInit,
   Input,
-  OnChanges,
-  SimpleChanges,
   Output,
   EventEmitter,
 } from "@angular/core";
 import { CatalogFilterProducts } from "../../interfaces/CatalogFilterProducts";
 import { PriceListByMkupView } from "../../interfaces/PriceListByMkupView";
-import { CatalogProduct } from "../../interfaces/CatalogProduct";
 import { GroupCatalogProduct } from "../../interfaces/GroupCatalogProduct";
 
 

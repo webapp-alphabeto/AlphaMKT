@@ -19,7 +19,7 @@ import { entrance } from "src/app/shared/animations/animations";
 import { switchMap } from "rxjs/operators";
 import { Subscription } from "rxjs";
 import { AbNavbarComponent } from "../sales/ab-navbar/ab-navbar.component";
-import { SearchService } from '../services/search.service';
+import { SearchService } from "../services/search.service";
 
 @Component({
   selector: "ab-catalog",
@@ -55,14 +55,9 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
       this.opportunityActive = x;
     });
 
-
-    this.searchService.searchValue.subscribe((x)=> {
-      if(x != null)
-      this.getProductByCod(x);      
-
+    this.searchService.searchValue.subscribe((x) => {
+      if (x != null) this.getProductByCod(x);
     });
-
-
   }
 
   ngAfterViewInit() {
@@ -86,6 +81,7 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
         this.showFabButton = false;
         this._abFilter.fixedFilter = false;
         this.toolBarService.exibir();
+        this._abFilter._categoryContainer.height = 300;
       } else {
         this.toolBarService.ocultar();
       }
@@ -113,6 +109,11 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!this.screen) return;
     this.screen.target.scrollTo({ top: 300, behavior: "smooth" });
 
+    if (this.groups.length > 0) this.groups.splice(1, this.groups.length - 1);
+
+    if (this._abFilter._categoryContainer)
+    this._abFilter._categoryContainer.height = 300;
+
     this.showFabButton = false;
   }
 
@@ -120,7 +121,9 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     if (filter == null) return;
 
     this.catalogServices.getProducts(filter).subscribe((x) => {
-      if (this.groupExists(x)) this.groups.push(x);
+      if (this.groupExists(x)) {
+        this.groups.push(x);
+      }
     });
   }
 
@@ -128,7 +131,6 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     return !this.groups.find(
       (g) =>
         g.collection == x.collection &&
-        g.map == x.map &&
         g.category == x.category &&
         g.group == x.group
     );

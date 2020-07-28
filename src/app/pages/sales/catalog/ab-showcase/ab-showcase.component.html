@@ -3,8 +3,6 @@
     {{
       groupProduct?.collection +
         " | " +
-        groupProduct?.map +
-        " | " +
         groupProduct?.category | lowercase
     }}
   </h4>
@@ -13,11 +11,11 @@
 
 <div class="po-row po-mt-1 po-mb-5">
   <ab-card-product
+    *ngFor="let item of groupProduct?.catalogProduct; let i = index"
     class="po-md-4 po-mb-2 card-product"
     [product]="item"
     [listPriceId]="priceActive?.id"
     [opportunityId]="filterActive.salesOpportunityId"
-    *ngFor="let item of groupProduct?.catalogProduct"
     (bagClick)="internalCardProductClick()"
   ></ab-card-product>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { CatalogProduct } from "../../interfaces/CatalogProduct";
-
+import { Router } from "@angular/router";
 
 @Component({
   selector: "ab-card-product",
@@ -12,11 +12,17 @@ export class AbCardProductComponent implements OnInit {
   @Input() listPriceId: number = 0;
   @Input() opportunityId: number;
   @Output() bagClick = new EventEmitter();
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
-  internalBagClick(){
+  internalBagClick() {
+    this.router.navigate([
+      "/sales/product",
+      this.opportunityId,
+      this.product.reference,
+      this.listPriceId,
+    ]);
     this.bagClick.emit(null);
   }
 }

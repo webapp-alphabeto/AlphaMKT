@@ -16,17 +16,22 @@
         <po-divider></po-divider>
         <div>
           <h4>Descrição</h4>
-          <p>{{ product?.complementary.friendlyDescription | lowercase }}</p>
+          <p>{{ product?.complementary?.friendlyDescription | lowercase }}</p>
         </div>
         <po-divider></po-divider>
         <div>
           <h4>Composição</h4>
-          <p>{{ product?.complementary.feature | lowercase }}</p>
+          <p>{{ product?.complementary?.feature | lowercase }}</p>
         </div>
         <po-divider></po-divider>
         <div>
           <h4>Tamanhos</h4>
-          <p>{{ product?.complementary.friendlySize | lowercase }}</p>
+          <p>{{ product?.complementary?.friendlySize | lowercase }}</p>
+        </div>
+        <po-divider></po-divider>
+        <div>
+          <h4>Mapa</h4>
+          <p>{{ product?.map | lowercase }}</p>
         </div>
       </div>
 

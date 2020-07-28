@@ -6,7 +6,6 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  ElementRef,
   ViewChild,
 } from "@angular/core";
 import { CatalogFilterProducts } from "../../interfaces/CatalogFilterProducts";
@@ -14,13 +13,6 @@ import { CatalogOpportunity } from "../../interfaces/CatalogOpportunity";
 import { ParamsFilter } from "../../interfaces/ParamsFilter";
 import { PriceListByMkupView } from "../../interfaces/PriceListByMkupView";
 import { CheckInService } from "src/app/shared/services/check-in.service";
-import { fromEvent } from "rxjs";
-import {
-  filter,
-  debounceTime,
-  distinctUntilChanged,
-  tap,
-} from "rxjs/operators";
 import { AbSideMenuComponent } from "./ab-side-menu/ab-side-menu.component";
 import { INextFilter } from "../../interfaces/INextFilter";
 import { PoContainerComponent } from "@po-ui/ng-components";
@@ -68,16 +60,9 @@ export class AbFilterComponent implements OnInit, OnChanges {
   public nextMapFilter(): INextFilter {
     let nextFilter = {} as INextFilter;
     nextFilter.hasNext = true;
-    let indexMap = this.opportunityActive.filters.findIndex(
-      (x) => x.map == this.filterActive.map
-    );
+
     const filterLength = this.opportunityActive.filters.length - 1;
-    if (indexMap <= filterLength) {
-      indexMap++;
-      this.filterActive = this.opportunityActive?.filters[indexMap];
-      this.changeFilter();
-      if (indexMap == filterLength) nextFilter.hasNext = false;
-    }
+
     nextFilter.params = this.paramsFilter;
     return nextFilter;
   }
@@ -100,12 +85,9 @@ export class AbFilterComponent implements OnInit, OnChanges {
         groupIndex++;
         this.groupActive = this.filterActive.groups[groupIndex].group;
       } else {
-        let indexMap = this.opportunityActive.filters.findIndex(
-          (x) => x.map == this.filterActive.map
-        );
+    
         const filterLength = this.opportunityActive.filters.length - 1;
-        if (indexMap == filterLength) nextFilter.hasNext = false;
-        else nextFilter.hasNext = true;
+
       }
 
       categorieLength =
@@ -146,7 +128,6 @@ export class AbFilterComponent implements OnInit, OnChanges {
     this.paramsFilter = {
       category: this.categoryActive,
       collection: this.filterActive.collection,
-      map: this.filterActive.map,
       group: group,
       opportunityId: this.opportunityActive?.id,
     };
@@ -159,9 +140,5 @@ export class AbFilterComponent implements OnInit, OnChanges {
     this.checkinService.checkin = checkin;
   }
 
-  // getByCod(cod: string) {
-  //   this._sideMenu.showSideMenu = false;
-  //   this.search.emit(cod);
-  // }
 
 }

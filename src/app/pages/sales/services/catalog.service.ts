@@ -42,7 +42,6 @@ export class CatalogService {
     let params = new HttpParams()
       .append("opportunityId", paramsFilter.opportunityId.toString())
       .append("collection", paramsFilter.collection)
-      .append("map", paramsFilter.map)
       .append("group", paramsFilter.group)
       .append("category", paramsFilter.category);
     return this.http.get<GroupCatalogProduct>(url, { params });
