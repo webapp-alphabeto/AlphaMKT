@@ -12,12 +12,15 @@ import {
   PoTableColumn,
   PoButtonGroupItem,
   PoButtonComponent,
+  PoDialogType,
+  PoDialogService,
 } from "@po-ui/ng-components";
 import { VirtualStockGroupView } from "../interfaces/VirtualStockGroupView";
 import { VirtualStockService } from "../services/virtual-stock.service";
 import { VirtualStockBySize } from "../interfaces/VirtualStockBySize";
 import { VirtualStockEdit } from "../interfaces/VirtualStockEdit";
 import { saveAs } from "file-saver";
+import { MenuService } from "src/app/shared/services/menu.service";
 
 @Component({
   selector: "app-virtual-stock-view",
@@ -50,7 +53,13 @@ export class VirtualStockViewComponent implements OnInit, OnChanges {
   highlightReference = {} as VirtualStockGroupByReference;
   referenceFilter: string;
 
-  constructor(private virtualStockServices: VirtualStockService) {}
+  constructor(
+    private virtualStockServices: VirtualStockService,
+    private poDialog: PoDialogService,
+    menuService: MenuService
+  ) {
+    menuService.exibirMenu();
+  }
 
   ngOnInit(): void {}
 
@@ -128,7 +137,26 @@ export class VirtualStockViewComponent implements OnInit, OnChanges {
       });
   }
 
-  upload(event : any) {
+  upload(event: any) {
     event.data.salesOpportunityId = this.salesOpportunityId;
+  }
+
+  delete() {
+    this.poDialog.openDialog(PoDialogType.Confirm, {
+      confirm: () => {
+        this.deleteAll();
+      },
+      message:
+        "Deseja deletar todo o estoque, se já houver vendas essa operação não será possível",
+      title: "Estoque virtual",
+    });
+  }
+
+  deleteAll() {
+    this.virtualStockServices
+      .deleteAll(this.salesOpportunityId)
+      .subscribe(() => {
+        this.get();
+      });
   }
 }

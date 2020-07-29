@@ -21,6 +21,8 @@ import { ClientEditComponent } from "./client/client-edit/client-edit.component"
 
 import { TokenApiService } from 'src/app/core/interceptors/token-api.service';
 import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-api.service';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,9 @@ import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-
     RepresentativeEditComponent,
     ClientComponent,
     ClientEditComponent,
+    HomeAdminComponent,
   ],
-  imports: [CommonModule, AdminRoutingModule, PortinariModule],
+  imports: [CommonModule, AdminRoutingModule, PortinariModule, SharedModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

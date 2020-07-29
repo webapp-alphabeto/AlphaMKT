@@ -7,24 +7,24 @@ import { PortinariModule } from 'src/app/portinari/portinari.module';
 import { HomeRoutingModule } from "./home-routing.module";
 
 import { PrincipalComponent } from "./principal/principal.component";
-import { CardMenuComponent } from "./card-menu/card-menu.component";
+
 import { MyProfileComponent } from "./my-profile/my-profile.component";
 import { ChangePasswordComponent } from "./my-profile/change-password/change-password.component";
-import { CommonPresentationComponent } from "./common-presentation/common-presentation.component";
+
 
 import { TokenApiService } from 'src/app/core/interceptors/token-api.service';
 import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-api.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
     PrincipalComponent,
-    CardMenuComponent,
+    
     MyProfileComponent,
     ChangePasswordComponent,
-    CommonPresentationComponent,
+    
   ],
-  imports: [CommonModule, HomeRoutingModule, PortinariModule, FormsModule],
-  exports: [CommonPresentationComponent],
+  imports: [CommonModule, HomeRoutingModule, PortinariModule, FormsModule, SharedModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

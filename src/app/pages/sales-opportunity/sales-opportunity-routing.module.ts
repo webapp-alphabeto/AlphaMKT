@@ -2,18 +2,27 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { SalesOpportunityViewComponent } from "./sales-opportunity-view/sales-opportunity-view.component";
 import { SalesOpportunityEditComponent } from "./sales-opportunity-edit/sales-opportunity-edit.component";
+import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
-  { path: "", component: SalesOpportunityViewComponent },
   {
-    path: "oportunidade-de-venda-novo",
-    component: SalesOpportunityEditComponent,
-  },
-  {
-    path: "oportunidade-de-venda-editar/:id",
-    component: SalesOpportunityEditComponent,
+    path: "",
+    component: HomeComponent,
+    children: [
+      { path: "", component: SalesOpportunityViewComponent },
+      {
+        path: "oportunidade-de-venda-novo",
+        component: SalesOpportunityEditComponent,
+      },
+      {
+        path: "oportunidade-de-venda-editar/:id",
+        component: SalesOpportunityEditComponent,
+      },
+      { path: "", pathMatch: "full", redirectTo: "" },
+    ],
   },
   { path: "", pathMatch: "full", redirectTo: "" },
+  
 ];
 
 @NgModule({

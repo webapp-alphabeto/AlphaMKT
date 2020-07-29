@@ -3,37 +3,25 @@ import { Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
 import { AccessLevel } from "src/app/core/enums/access-level.enum";
 import { PoMenuItemNivelDeAcesso } from "../interfaces/po-menu-item-nivel-de-acesso";
-import { PoMenuItem } from "@po-ui/ng-components";
 
 @Injectable({
   providedIn: "root",
 })
 export class MenuService {
-  exibirMenu = new BehaviorSubject<boolean>(true);
+  private $show = new BehaviorSubject<boolean>(false);
+  public showMenu = this.$show.asObservable();
   constructor() {}
 
-  public checkShowMenu(router: Router) {
-    // if (router.isActive("/home/principal", true)) {
-    //   this.exibirMenu.next(true);
-    //   return;
-    // }
-
-    // if (router.isActive("/home/meu-perfil", true)) {
-    //   this.exibirMenu.next(true);
-    //   return;
-    // }
-
-    // if (router.isActive("/home/alterar-senha", true)) {
-    //   this.exibirMenu.next(true);
-    //   return;
-    // }
-
-    // this.exibirMenu.next(false);
+  public checkShowMenu(router: Router) {}
+  exibirMenu() {
+    this.$show.next(true);
+  }
+  ocultarMenu() {
+    this.$show.next(false);
   }
 
   getMenu(nivelDeAcesso: AccessLevel) {
     if (nivelDeAcesso == AccessLevel.Administracao) {
-      // this.menuFiltrado = this.menu;
       return this.menu;
     }
 
@@ -81,7 +69,7 @@ export class MenuService {
         { label: "Integração", link: "/administracao/monitor-de-integracao" },
         { label: "Oportunidade de vendas", link: "/oportunidade-de-venda" },
         { label: "Tabela  de preços", link: "/tabela-de-precos" },
-        { label: "Estoque virtual", link:"/estoque-virtual" },
+        { label: "Estoque virtual", link: "/estoque-virtual" },
       ],
     },
   ];

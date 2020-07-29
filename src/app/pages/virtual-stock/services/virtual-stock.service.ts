@@ -41,4 +41,11 @@ export class VirtualStockService {
     const url = `${environment.serviceApi}virtual-stock`;
     return this.http.post<any>(url, virtualStock);
   }
+
+  deleteAll(opportunityId: number): Observable<any> {
+    const url = `${environment.serviceApi}virtual-stock/${opportunityId}`;
+    return this.http.delete<any>(url, {
+      headers: SCREEN_LOCK,
+    });
+  }
 }

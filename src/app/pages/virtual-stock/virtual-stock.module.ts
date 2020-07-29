@@ -16,7 +16,7 @@ import { TableSizesComponent } from './virtual-stock-view/table-sizes/table-size
   declarations: [
     VirtualStockViewComponent,
     FilterByReferencePipe,
-    TableSizesComponent
+    TableSizesComponent,
   ],
   imports: [
     CommonModule,

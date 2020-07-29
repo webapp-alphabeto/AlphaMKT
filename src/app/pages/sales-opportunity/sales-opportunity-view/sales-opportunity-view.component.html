@@ -14,6 +14,7 @@
           p-no-autocomplete
           [(ngModel)]="filter.start"
           (p-change)="get()"
+          [p-disabled]="filter.onlyActive"
         ></po-datepicker>
 
         <po-datepicker
@@ -24,6 +25,7 @@
           p-no-autocomplete
           [(ngModel)]="filter.end"
           (p-change)="get()"
+          [p-disabled]="filter.onlyActive"
         ></po-datepicker>
 
         <po-switch

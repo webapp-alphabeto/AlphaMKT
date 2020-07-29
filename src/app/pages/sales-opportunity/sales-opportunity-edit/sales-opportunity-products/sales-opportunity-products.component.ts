@@ -27,6 +27,7 @@ export class SalesOpportunityProductsComponent implements OnInit {
   columns: Array<PoTableColumn> = [
     { property: "id", visible: false },
     { property: "name", label: "Filtro" },
+    { property: "deliveryDate", label: "Data de entrega", type: "cellTemplate" },
   ];
 
   actions: Array<PoTableAction> = [
@@ -68,9 +69,15 @@ export class SalesOpportunityProductsComponent implements OnInit {
     );
   }
 
-  update() {
+  updateSalesOpportunity() {
     this.salesOpportunityServices
       .put(this.salesOpportunity)
       .subscribe(() => {});
   }
+
+  updateDeliveryDate(filter: RestrictionByFilterProductView) {
+
+    this.restricitionServices.put(filter.id, filter.deliveryDate).subscribe();
+  }
+
 }

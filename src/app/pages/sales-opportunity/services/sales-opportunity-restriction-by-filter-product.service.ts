@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
-import { RestrictionByFilterProductView } from '../interfaces/RestrictionByFilterProductView';
-import { SalesOpportunityRestrictionByFilterProducts } from 'src/app/shared/models/SalesOpportunityRestrictionByFilterProducts';
+import { RestrictionByFilterProductView } from "../interfaces/RestrictionByFilterProductView";
+import { SalesOpportunityRestrictionByFilterProducts } from "src/app/shared/models/SalesOpportunityRestrictionByFilterProducts";
 
 @Injectable({
   providedIn: "root",
@@ -22,7 +22,18 @@ export class SalesOpportunityRestrictionByFilterProductService {
     filterProduct: SalesOpportunityRestrictionByFilterProducts
   ): Observable<SalesOpportunityRestrictionByFilterProducts> {
     const url = `${environment.serviceApi}sales-opportunity-restriction-by-filter-product`;
-    return this.http.post<SalesOpportunityRestrictionByFilterProducts>(url, filterProduct);
+    return this.http.post<SalesOpportunityRestrictionByFilterProducts>(
+      url,
+      filterProduct
+    );
+  }
+
+  put(
+    id: number,
+    deliveryDate: string
+  ): Observable<SalesOpportunityRestrictionByFilterProducts> {
+    const url = `${environment.serviceApi}sales-opportunity-restriction-by-filter-product/${id}/${deliveryDate}`;
+    return this.http.put<SalesOpportunityRestrictionByFilterProducts>(url, {});
   }
 
   delete(id: number): Observable<SalesOpportunityRestrictionByFilterProducts> {

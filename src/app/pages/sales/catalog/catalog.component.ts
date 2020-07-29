@@ -45,7 +45,7 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     private elementRef: ElementRef,
     private searchService: SearchService
   ) {
-    this.menuService.exibirMenu.next(true);
+    this.menuService.exibirMenu()
     this.toolBarService.exibir();
   }
 

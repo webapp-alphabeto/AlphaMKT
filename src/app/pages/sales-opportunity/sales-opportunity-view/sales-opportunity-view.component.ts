@@ -23,7 +23,7 @@ export class SalesOpportunityViewComponent implements OnInit {
   filter: FilterDateOnlyActive = {
     start: moment().subtract(1, "month").toDate(),
     end: new Date(),
-    onlyActive: false,
+    onlyActive: true
   };
 
   public readonly actions: Array<PoPageAction> = [

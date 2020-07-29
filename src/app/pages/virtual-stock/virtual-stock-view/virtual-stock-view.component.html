@@ -34,10 +34,18 @@
         (p-click)="uploadFileModal.open(); poUpload.clear()"
       ></po-button>
 
+      <po-button
+        class="po-md-2 po-mt-4"
+        p-label="Deletar"
+        p-icon="po-icon po-icon-delete"
+        p-type="danger"
+        (p-click)="delete()"
+      ></po-button>
+
       <po-info
         class="po-md-1 po-mt-5"
         p-label="Saldo Total"
-        [p-value]="sumBalance() | number "
+        [p-value]="sumBalance() | number"
         p-orientation="horizontal"
       ></po-info>
     </div>

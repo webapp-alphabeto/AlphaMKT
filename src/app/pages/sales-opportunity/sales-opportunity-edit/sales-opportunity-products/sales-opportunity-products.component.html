@@ -18,7 +18,7 @@
       { label: 'Filtro', value: 1 }
     ]"
     [(ngModel)]="salesOpportunity.typeRestrictionProduct"
-    (p-change)="update()"
+    (p-change)="updateSalesOpportunity()"
   >
   </po-radio-group>
 </div>
@@ -43,6 +43,12 @@
     >
     </po-combo>
 
+    <po-datepicker
+      class="po-md-2"
+      p-label="Data de entrega"
+      [(ngModel)]="filterProduct.deliveryDate"
+    ></po-datepicker>
+
     <po-button class="po-mt-4" p-icon="po-icon-plus" (p-click)="add()">
     </po-button>
   </div>
@@ -51,6 +57,14 @@
     [p-columns]="columns"
     [p-items]="filterProducts"
     [p-actions]="actions"
+  >
+    <ng-template p-table-cell-template let-column="column" let-row="row">
+      <div *ngIf="column.property === 'deliveryDate'">
+        <po-datepicker
+          [(ngModel)]="row.deliveryDate"
+          (p-change)="updateDeliveryDate(row)"
+        ></po-datepicker>
+      </div> </ng-template
   ></po-table>
 </div>
 
