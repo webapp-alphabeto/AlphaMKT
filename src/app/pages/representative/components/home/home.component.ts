@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { IApresentacaoButtons } from "src/app/shared/interfaces/iapresentacao-buttons";
 import { Router } from '@angular/router';
 import { ToolBarService } from 'src/app/shared/services/tool-bar.service';
+import { MenuService } from 'src/app/shared/services/menu.service';
 
 @Component({
   selector: "app-home",
@@ -26,10 +27,13 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  constructor(private route: Router, private toolBarService: ToolBarService) {}
+  constructor(private route: Router, toolBarService: ToolBarService, menuService: MenuService) {
+    toolBarService.exibir();
+    menuService.ocultarMenu();
+
+  }
 
   ngOnInit(): void {
-    this.toolBarService.exibir();
   }
 
   irParaCliente() {

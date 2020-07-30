@@ -1,10 +1,9 @@
-import { PriceView } from './PriceView';
 
 export interface CatalogProduct {
   reference: string;
   model: string;
   balance: number;
-  prices: PriceView[];
+  price: number;
   originPrice: number;
   storageName: string;
   photo: string;

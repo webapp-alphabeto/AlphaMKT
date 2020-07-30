@@ -8,6 +8,7 @@ import {
 import { CatalogFilterProducts } from "../../interfaces/CatalogFilterProducts";
 import { PriceListByMkupView } from "../../interfaces/PriceListByMkupView";
 import { GroupCatalogProduct } from "../../interfaces/GroupCatalogProduct";
+import { BagHead } from 'src/app/shared/models/BagHead';
 
 
 @Component({
@@ -16,9 +17,8 @@ import { GroupCatalogProduct } from "../../interfaces/GroupCatalogProduct";
   styleUrls: ["./ab-showcase.component.css"],
 })
 export class AbShowcaseComponent implements OnInit {
-  @Input() filterActive: CatalogFilterProducts;
-  @Input() categoryActive: string;
-  @Input() priceActive: PriceListByMkupView;
+
+  @Input() bagId: number;
   @Input() groupProduct: GroupCatalogProduct;
   @Output() cardProductClick = new EventEmitter();
 

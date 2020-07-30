@@ -7,7 +7,6 @@ import { slideIn } from "src/app/shared/animations/animations";
 import { BalanceView } from "./interfaces/BalanceView";
 import { BalanceGroupByColor } from "./interfaces/BalanceGroupByColor";
 import { SearchService } from "../services/search.service";
-import { Product } from "src/app/shared/models/Product";
 import { AbSearchComponent } from "../catalog/ab-filter/ab-search/ab-search.component";
 
 @Component({
@@ -19,7 +18,7 @@ import { AbSearchComponent } from "../catalog/ab-filter/ab-search/ab-search.comp
 export class ProductComponent implements OnInit {
   @ViewChild(AbSearchComponent, { static: true }) search: AbSearchComponent;
   reference: string;
-  opportunityId: number;
+  bagHeadId: number;
   priceListId: number;
   load: boolean = true;
   product: SalesProduct;
@@ -45,8 +44,7 @@ export class ProductComponent implements OnInit {
   ) {
     this.route.params.subscribe((x) => {
       this.reference = x["reference"];
-      this.opportunityId = x["opportunityId"];
-      this.priceListId = x["priceListId"];
+      this.bagHeadId = x["bagHeadId"];
       this.get();
       if (this.search) this.search.cod = "";
     });
@@ -58,9 +56,8 @@ export class ProductComponent implements OnInit {
         this.reference = x;
         this.router.navigate([
           "sales/product",
-          this.opportunityId,
+          this.bagHeadId,
           this.reference,
-          this.priceListId,
         ]);
       }
     });
@@ -70,7 +67,7 @@ export class ProductComponent implements OnInit {
     this.load = true;
     this.product = undefined;
     this.productService
-      .get(this.reference, this.opportunityId, this.priceListId)
+      .get(this.reference, this.bagHeadId)
       .subscribe(
         (x) => {
           this.product = x;

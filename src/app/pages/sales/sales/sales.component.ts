@@ -3,6 +3,7 @@ import { CatalogService } from "../services/catalog.service";
 import { CheckInService } from "src/app/shared/services/check-in.service";
 import { TokenService } from "src/app/core/services/token.service";
 import { slideIn } from 'src/app/shared/animations/animations';
+import { MenuService } from 'src/app/shared/services/menu.service';
 
 @Component({
   selector: "app-sales",
@@ -14,8 +15,11 @@ export class SalesComponent implements OnInit {
   constructor(
     public catalogServices: CatalogService,
     private tokenServices: TokenService,
-    private checkinServices: CheckInService
-  ) {}
+    private checkinServices: CheckInService,
+    menuService: MenuService
+  ) {
+    menuService.ocultarMenu();
+  }
 
   ngOnInit(): void {
     this.getOpportunitys();

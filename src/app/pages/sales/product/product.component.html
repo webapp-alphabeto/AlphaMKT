@@ -1,5 +1,5 @@
 <po-page-default class="po-mb-5">
-  <ab-search ></ab-search>
+  <ab-search></ab-search>
   <div class="po-row" *ngIf="!load; else animation" [@slideIn]>
     <div *ngIf="product; else productNotFound">
       <div class="po-md-5">
@@ -51,10 +51,10 @@
 
         <po-divider></po-divider>
 
-        <div>
+        <div *ngIf="product?.balance.length > 0; else noStock">
           <h4>Pedido</h4>
 
-          <po-tabs *ngIf="product">
+          <po-tabs>
             <po-tab
               [p-active]="i == 0"
               [p-label]="item.color"
@@ -103,6 +103,13 @@
             </po-tab>
           </po-tabs>
         </div>
+        <ng-template #noStock>
+          <div class="flex-box">
+            <h1 class="noStock">
+              Produto sem estoque: (
+            </h1>
+          </div>
+        </ng-template>
       </div>
     </div>
     <ng-template #productNotFound>
@@ -129,8 +136,7 @@
         *ngFor="let item of product?.relatedProducts"
         class="po-md-3 po-mb-2 card-product"
         [product]="item"
-        [listPriceId]="priceListId"
-        [opportunityId]="opportunityId"
+        [bagId]="bagHeadId"
       ></ab-card-product>
     </div>
   </div>

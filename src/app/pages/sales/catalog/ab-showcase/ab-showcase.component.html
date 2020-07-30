@@ -1,5 +1,5 @@
 <div class="po-row flex-box">
-  <h4 class="body-title" *ngIf="filterActive">
+  <h4 class="body-title" *ngIf="groupProduct">
     {{
       groupProduct?.collection +
         " | " +
@@ -14,8 +14,7 @@
     *ngFor="let item of groupProduct?.catalogProduct; let i = index"
     class="po-md-4 po-mb-2 card-product"
     [product]="item"
-    [listPriceId]="priceActive?.id"
-    [opportunityId]="filterActive.salesOpportunityId"
+    [bagId]="bagId"
     (bagClick)="internalCardProductClick()"
   ></ab-card-product>
 </div>

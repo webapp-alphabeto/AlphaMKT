@@ -7,3 +7,5 @@ export interface Banner extends SalesOpportunityNavigate {
     bannerType: BannerType;
 }
 
+
+

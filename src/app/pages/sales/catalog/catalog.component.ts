@@ -7,8 +7,6 @@ import {
   OnDestroy,
 } from "@angular/core";
 import { CatalogService } from "../services/catalog.service";
-import { TokenService } from "src/app/core/services/token.service";
-import { CheckInService } from "src/app/shared/services/check-in.service";
 import { MenuService } from "src/app/shared/services/menu.service";
 import { CatalogOpportunity } from "../interfaces/CatalogOpportunity";
 import { ToolBarService } from "src/app/shared/services/tool-bar.service";
@@ -16,10 +14,13 @@ import { ParamsFilter } from "../interfaces/ParamsFilter";
 import { AbFilterComponent } from "./ab-filter/ab-filter.component";
 import { GroupCatalogProduct } from "../interfaces/GroupCatalogProduct";
 import { entrance } from "src/app/shared/animations/animations";
-import { switchMap } from "rxjs/operators";
-import { Subscription } from "rxjs";
-import { AbNavbarComponent } from "../sales/ab-navbar/ab-navbar.component";
 import { SearchService } from "../services/search.service";
+import { BagHeadService } from "../services/bag-head.service";
+import { BagHead } from "src/app/shared/models/BagHead";
+import { CheckInService } from "src/app/shared/services/check-in.service";
+import { PoModalAction, PoModalComponent } from "@po-ui/ng-components";
+import { BagComponent } from "../bag/bag.component";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "ab-catalog",
@@ -29,9 +30,12 @@ import { SearchService } from "../services/search.service";
 })
 export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("abFilter", { static: true }) _abFilter: AbFilterComponent;
+  @ViewChild(BagComponent, { static: true }) bagForm: BagComponent;
+  @ViewChild(PoModalComponent, { static: true }) bagModal: PoModalComponent;
 
   opportunityActive: CatalogOpportunity;
   groups: Array<GroupCatalogProduct> = [];
+  bagHead: BagHead;
   showBanner = true;
   showFabButton = false;
   showMoreLoad = false;
@@ -43,9 +47,11 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     private menuService: MenuService,
     private toolBarService: ToolBarService,
     private elementRef: ElementRef,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private bagService: BagHeadService,
+    private checkInService: CheckInService
   ) {
-    this.menuService.exibirMenu()
+    this.menuService.ocultarMenu();
     this.toolBarService.exibir();
   }
 
@@ -53,6 +59,8 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     this.catalogServices.opportunityActive.subscribe((x) => {
       this.groups.length = 0;
       this.opportunityActive = x;
+
+      this.getBagHead();
     });
 
     this.searchService.searchValue.subscribe((x) => {
@@ -81,7 +89,7 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
         this.showFabButton = false;
         this._abFilter.fixedFilter = false;
         this.toolBarService.exibir();
-        this._abFilter._categoryContainer.height = 300;
+        // this._abFilter._categoryContainer.height = 300;
       } else {
         this.toolBarService.ocultar();
       }
@@ -111,8 +119,8 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this.groups.length > 0) this.groups.splice(1, this.groups.length - 1);
 
-    if (this._abFilter._categoryContainer)
-    this._abFilter._categoryContainer.height = 300;
+    // if (this._abFilter._categoryContainer)
+    //   this._abFilter._categoryContainer.height = 300;
 
     this.showFabButton = false;
   }
@@ -168,5 +176,48 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
           this.groups.length = 0;
         }
       );
+  }
+
+  getBagHead() {
+    if (this.opportunityActive != null) {
+      this.bagService
+        .get(this.opportunityActive.id, this.checkInService.checkin.clientId)
+        .subscribe((x) => {
+          this.bagHead = x;
+          if (!this.bagHead) {
+            this.bagModal.open();
+            this.bagForm.setBagHead(this.newBagHead());
+          }
+        });
+    }
+  }
+
+  bagModalPrimaryAction: PoModalAction = {
+    label: "Salvar",
+    action: () => {
+      this.saveBagHead();
+      this.bagModal.close();
+    },
+  };
+
+  private newBagHead() {
+    let bagHead = {} as BagHead;
+    (bagHead.clientId = this.checkInService.checkin.clientId),
+      (bagHead.opportunityId = this.opportunityActive.id),
+      (bagHead.representativeId = this.checkInService.checkin.representativeId);
+    return bagHead;
+  }
+
+  saveBagHead() {
+    const bagHead = this.bagForm.getBagHead();
+   
+    let service: Observable<BagHead>;
+    if (!this.bagHead) service = this.bagService.post(bagHead);
+    else service = this.bagService.put(bagHead, bagHead.id);
+
+    service.subscribe((x) => {
+      this.bagHead = x;
+      this.bagForm.setBagHead(x);
+    });
   }
 }

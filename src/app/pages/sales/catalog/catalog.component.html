@@ -1,5 +1,4 @@
-<po-page-default class="po-mb-5" [hidden]="showProductNav">
-
+<po-page-default class="po-mb-5" [hidden]="showProductNav" >
   <div class="po-row">
     <ab-banner
       *ngIf="showBanner"
@@ -15,18 +14,16 @@
       [opportunityActive]="catalogServices.opportunityActive | async"
       (getFilter)="getProductsByClick($event)"
       (search)="getProductByCod($event)"
+      [bagId]="bagHead?.id"
     ></ab-filter>
 
     <div class="po-md-10 po-mb-5">
       <div *ngIf="groups.length > 0; else nothingToShow">
-   
         <ab-showcase
           *ngFor="let group of groups"
-          [filterActive]="abFilter.filterActive"
-          [categoryActive]="abFilter.categoryActive"
-          [priceActive]="abFilter.priceActive"
           [groupProduct]="group"
           (cardProductClick)="showProductNav = true"
+          [bagId]="bagHead?.id"
         >
         </ab-showcase>
         <div class="po-md-12 flex-box po-mb-5">
@@ -40,6 +37,7 @@
           <h1 class="nothing-to-show">
             Nenhum produto encontrado :(
           </h1>
+          <pre>{{ bagHead | json }}</pre>
         </div>
       </ng-template>
     </div>
@@ -59,3 +57,8 @@
   <a class="closebtn" (click)="showProductNav = false">&times;</a>
   <router-outlet></router-outlet>
 </div>
+
+
+<po-modal  [p-primary-action]="bagModalPrimaryAction">
+  <app-bag ></app-bag>
+</po-modal>

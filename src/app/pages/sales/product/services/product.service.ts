@@ -12,14 +12,13 @@ export class ProductService {
 
   get(
     reference: string,
-    opportunityId: number,
-    priceListId: number
+    bagHeadId: number,
   ): Observable<SalesProduct> {
     const url = `${environment.serviceApi}sales-product`;
     let params = new HttpParams()
       .append("reference", reference)
-      .append("opportunityId", opportunityId.toString())
-      .append("priceListId", priceListId.toString());
+      .append("bagHeadId", bagHeadId.toString());
+
     return this.http.get<SalesProduct>(url, { params, headers: NO_MESSAGE });
   }
 }

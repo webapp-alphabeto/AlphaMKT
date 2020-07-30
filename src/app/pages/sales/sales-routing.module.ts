@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: "catalog", component: CatalogComponent },
       {
-        path: "product/:opportunityId/:reference/:priceListId",
+        path: "product/:bagHeadId/:reference",
         component: ProductComponent,
       },
       { path: "", pathMatch: "full", redirectTo: "catalog" },

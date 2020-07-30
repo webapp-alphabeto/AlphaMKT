@@ -12,10 +12,8 @@
     <div class="po-md-12 po-mt-1 buy-price">
       <p>compre por</p>
       <h5
-        [hidden]="listPriceId != price.id"
-        *ngFor="let price of product.prices"
       >
-        {{ price.price | currency: "BRL" }}
+        {{ product.price | currency: "BRL" }}
       </h5>
     </div>
 

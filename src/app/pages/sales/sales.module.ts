@@ -23,6 +23,7 @@ import { ProductComponent } from './product/product.component';
 import { SalesComponent } from './sales/sales.component';
 import { CatalogService } from './services/catalog.service';
 import { AbSearchComponent } from './catalog/ab-filter/ab-search/ab-search.component';
+import { BagComponent } from './bag/bag.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { AbSearchComponent } from './catalog/ab-filter/ab-search/ab-search.compo
     AbShowcaseComponent,
     ProductComponent,
     SalesComponent,
-    AbSearchComponent
+    AbSearchComponent,
+    BagComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,10 @@
+<div class="po-row">
+  <po-combo
+    name="priceList"
+    [p-filter-service]="priceListApi"
+    [(ngModel)]="bagHead.priceListId"
+    p-label="Escolha uma tabela de preço"
+  ></po-combo>
+</div>
+
+<pre>{{ bagHead | json }}</pre>

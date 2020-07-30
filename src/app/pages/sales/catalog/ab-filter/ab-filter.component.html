@@ -14,40 +14,8 @@
   </div>
 
   <div body>
-
-    <div class="po-row">
-      <ab-filter-box
-        *ngIf="opportunityActive"
-        class="po-md-12"
-        [filters]="opportunityActive.priceList"
-        [filterActive]="priceActive"
-        title="Preços"
-        fieldIterator="name"
-        (filterClick)="priceActive = $event; SetPrice($event)"
-      ></ab-filter-box>
-    </div>
-
-    <!-- <div class="po-row">
-      <ab-filter-box
-        *ngIf="opportunityActive"
-        class="po-md-12"
-        [filterActive]="filterActive"
-        [filters]="opportunityActive.filters"
-        title="mapas"
-        fieldIterator="map"
-        (filterClick)="filterActive = $event; changeFilter()"
-      ></ab-filter-box>
-    </div> -->
-
-    <po-divider></po-divider>
-
-    <div class="po-row"   *ngIf="opportunityActive">
-      <po-container #categoryContainer
-      
-        p-no-shadow
-        p-no-border
-        p-height="300"
-      >
+    <div class="po-row" *ngIf="opportunityActive">
+      <po-container #categoryContainer p-no-shadow p-no-border p-height="300">
         <div *ngFor="let item of filterActive?.groups">
           <ab-filter-box
             [filterActive]="categoryActive"

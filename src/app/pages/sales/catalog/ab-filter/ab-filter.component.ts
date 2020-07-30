@@ -28,19 +28,17 @@ export class AbFilterComponent implements OnInit, OnChanges {
   _categoryContainer: PoContainerComponent;
 
   @Input() opportunityActive: CatalogOpportunity;
+  @Input() bagId: number;
   @Output() getFilter = new EventEmitter();
   @Output() search = new EventEmitter();
   fixedFilter = false;
   filterActive: CatalogFilterProducts;
-  priceActive: PriceListByMkupView;
   categoryActive: string;
   groupActive: string;
   paramsFilter: ParamsFilter;
   cod: string;
 
-  constructor(private checkinService: CheckInService) {
-    this.priceActive = this.checkinService.checkin.priceList;
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 
@@ -130,15 +128,12 @@ export class AbFilterComponent implements OnInit, OnChanges {
       collection: this.filterActive.collection,
       group: group,
       opportunityId: this.opportunityActive?.id,
+      bagId: 0
     };
     if (emit) this.getFilter.emit(this.paramsFilter);
   }
 
-  SetPrice(event: PriceListByMkupView) {
-    var checkin = this.checkinService.checkin;
-    checkin.priceList = event;
-    this.checkinService.checkin = checkin;
-  }
+
 
 
 }

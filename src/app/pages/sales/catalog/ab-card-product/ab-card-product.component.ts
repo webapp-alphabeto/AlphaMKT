@@ -9,8 +9,7 @@ import { Router } from "@angular/router";
 })
 export class AbCardProductComponent implements OnInit {
   @Input() product: CatalogProduct;
-  @Input() listPriceId: number = 0;
-  @Input() opportunityId: number;
+  @Input() bagId: number;
   @Output() bagClick = new EventEmitter();
   constructor(private router: Router) {}
 
@@ -19,9 +18,8 @@ export class AbCardProductComponent implements OnInit {
   internalBagClick() {
     this.router.navigate([
       "/sales/product",
-      this.opportunityId,
-      this.product.reference,
-      this.listPriceId,
+      this.bagId,
+      this.product.reference
     ]);
     this.bagClick.emit(null);
   }

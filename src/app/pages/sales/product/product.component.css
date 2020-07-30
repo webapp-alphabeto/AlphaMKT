@@ -70,3 +70,7 @@ span {
   cursor: pointer;
   transition: 0.5s;
 }
+.noStock {
+  font-family: "Fredoka One", cursive;
+  color: #858585;
+}
