@@ -1,6 +1,7 @@
 .filter-breadcrumb {
   font-family: "Fredoka One", fantasy;
   color: #858585;
+  text-decoration: none;
 }
 .filter-title {
   font-family: "Fredoka One", cursive;

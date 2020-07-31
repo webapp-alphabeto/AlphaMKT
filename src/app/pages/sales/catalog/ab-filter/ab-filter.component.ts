@@ -128,7 +128,6 @@ export class AbFilterComponent implements OnInit, OnChanges {
       collection: this.filterActive.collection,
       group: group,
       opportunityId: this.opportunityActive?.id,
-      bagId: 0
     };
     if (emit) this.getFilter.emit(this.paramsFilter);
   }

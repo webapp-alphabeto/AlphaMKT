@@ -20,7 +20,7 @@ import { BagHead } from "src/app/shared/models/BagHead";
 import { CheckInService } from "src/app/shared/services/check-in.service";
 import { PoModalAction, PoModalComponent } from "@po-ui/ng-components";
 import { BagComponent } from "../bag/bag.component";
-import { Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 
 @Component({
   selector: "ab-catalog",
@@ -126,21 +126,20 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getProducts(filter: ParamsFilter) {
-    if (filter == null) return;
+    if (filter == null || !this.bagHead) return;
 
-    this.catalogServices.getProducts(filter).subscribe((x) => {
-      if (this.groupExists(x)) {
-        this.groups.push(x);
-      }
-    });
+    this.catalogServices
+      .getProducts(filter, this.bagHead?.id)
+      .subscribe((x) => {
+        if (this.groupExists(x)) {
+          this.groups.push(x);
+        }
+      });
   }
 
   private groupExists(x: GroupCatalogProduct): boolean {
     return !this.groups.find(
-      (g) =>
-        g.collection == x.collection &&
-        g.category == x.category &&
-        g.group == x.group
+      (g) => g.category == x.category && g.group == x.group
     );
   }
 
@@ -187,6 +186,8 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
           if (!this.bagHead) {
             this.bagModal.open();
             this.bagForm.setBagHead(this.newBagHead());
+          } else {
+            this.getProducts(this._abFilter.paramsFilter);
           }
         });
     }
@@ -210,7 +211,7 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
 
   saveBagHead() {
     const bagHead = this.bagForm.getBagHead();
-   
+
     let service: Observable<BagHead>;
     if (!this.bagHead) service = this.bagService.post(bagHead);
     else service = this.bagService.put(bagHead, bagHead.id);
