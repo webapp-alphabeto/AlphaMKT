@@ -28,13 +28,6 @@ export class SalesOpportunityRestrictionByFilterProductService {
     );
   }
 
-  put(
-    id: number,
-    deliveryDate: string
-  ): Observable<SalesOpportunityRestrictionByFilterProducts> {
-    const url = `${environment.serviceApi}sales-opportunity-restriction-by-filter-product/${id}/${deliveryDate}`;
-    return this.http.put<SalesOpportunityRestrictionByFilterProducts>(url, {});
-  }
 
   delete(id: number): Observable<SalesOpportunityRestrictionByFilterProducts> {
     const url = `${environment.serviceApi}sales-opportunity-restriction-by-filter-product/${id}`;

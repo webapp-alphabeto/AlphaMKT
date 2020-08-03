@@ -43,12 +43,6 @@
     >
     </po-combo>
 
-    <po-datepicker
-      class="po-md-2"
-      p-label="Data de entrega"
-      [(ngModel)]="filterProduct.deliveryDate"
-    ></po-datepicker>
-
     <po-button class="po-mt-4" p-icon="po-icon-plus" (p-click)="add()">
     </po-button>
   </div>
@@ -57,15 +51,54 @@
     [p-columns]="columns"
     [p-items]="filterProducts"
     [p-actions]="actions"
+    p-hide-columns-manager
   >
-    <ng-template p-table-cell-template let-column="column" let-row="row">
-      <div *ngIf="column.property === 'deliveryDate'">
-        <po-datepicker
-          [(ngModel)]="row.deliveryDate"
-          (p-change)="updateDeliveryDate(row)"
-        ></po-datepicker>
-      </div> </ng-template
-  ></po-table>
+    <ng-template p-table-row-template let-rowItem let-i="rowIndex">
+      <div class="po-row">
+        <div class="po-md-4">
+          <div class="po-row">
+            <po-datepicker
+              #dateForm
+              class="po-md-6"
+              p-label="Nova data de entrega"
+              [(ngModel)]="deliveryDate.date"
+            ></po-datepicker>
+
+            <po-button
+              class="po-mt-4"
+              p-icon="po-icon-plus"
+              (p-click)="addDate(rowItem)"
+            >
+            </po-button>
+          </div>
+        </div>
+
+        <div class="po-md-4">
+          <po-table
+            [p-items]="rowItem.deliveryDates"
+            [p-columns]="deliveryDateColumns"
+            [p-actions]="deliveryDateActions"
+            p-hide-columns-manager
+          >
+            <ng-template
+              p-table-cell-template
+              let-column="column"
+              let-row="row"
+            >
+              <div *ngIf="column.property === 'date'">
+                <po-datepicker
+                  [(ngModel)]="row.date"
+                  (ngModelChange)="updateDeliveryDate(row)"
+                ></po-datepicker>
+              </div>
+            </ng-template>
+          </po-table>
+        </div>
+      </div>
+
+      <po-divider></po-divider>
+    </ng-template>
+  </po-table>
 </div>
 
 <ng-template #product></ng-template>

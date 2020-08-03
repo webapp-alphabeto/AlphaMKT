@@ -5,10 +5,16 @@
       <div class="po-md-5">
         <div class="po-row">
           <po-slide
+            *ngIf="showSlide; else slideDebounce"
             class="po-mt-2"
             p-height="500"
             [p-slides]="product?.photos"
           ></po-slide>
+          <ng-template #slideDebounce>
+            <h1 class="wait">
+              Aguarde...
+            </h1>
+          </ng-template>
         </div>
       </div>
 
@@ -33,6 +39,26 @@
           <h4>Mapa</h4>
           <p>{{ product?.map | lowercase }}</p>
         </div>
+        <po-divider></po-divider>
+        <h4>Totais</h4>
+        <div class="po-row">
+          <div class="po-md-6">
+            <p>Peças</p>
+            <h4>{{ getTotalPurchase() }}</h4>
+          </div>
+
+          <div class="po-md-6">
+            <p>Total</p>
+            <h4>{{ getTotalPurchase() * product.price | currency: "BRL" }}</h4>
+          </div>
+        </div>
+        <po-divider></po-divider>
+        <button
+          [class.disabled]="getTotalPurchase() == 0 || product.price == 0"
+          class="po-md-12 button-bag wave"
+        >
+          Confirmar
+        </button>
       </div>
 
       <div class="po-md-4 description">
@@ -61,7 +87,9 @@
               *ngFor="let item of product?.balance; let i = index"
             >
               <div class="po-row">
-                <a class="purchase-button" (click)="item.grid = item.grid - 1"
+                <a
+                  class="purchase-button wave"
+                  (click)="item.grid = item.grid - 1"
                   ><span>-</span></a
                 >
 
@@ -70,7 +98,9 @@
                   [(ngModel)]="item.grid"
                   (p-change-model)="grid(item, $event)"
                 ></po-number>
-                <a class="purchase-button" (click)="item.grid = item.grid + 1"
+                <a
+                  class="purchase-button wave"
+                  (click)="item.grid = item.grid + 1"
                   ><span>+</span></a
                 >
               </div>
@@ -86,14 +116,18 @@
                 >
                   <div *ngIf="column.property === 'purchase'">
                     <div class="po-row">
-                      <a class="purchase-button" (click)="purchase('-', row)"
+                      <a
+                        class="purchase-button wave"
+                        (click)="purchase('-', row)"
                         ><span>-</span></a
                       >
                       <po-number
                         class="po-md-6"
                         [(ngModel)]="row.purchase"
                       ></po-number>
-                      <a class="purchase-button" (click)="purchase('+', row)"
+                      <a
+                        class="purchase-button wave"
+                        (click)="purchase('+', row)"
                         ><span>+</span></a
                       >
                     </div>

@@ -8,6 +8,7 @@ import { BalanceView } from "./interfaces/BalanceView";
 import { BalanceGroupByColor } from "./interfaces/BalanceGroupByColor";
 import { SearchService } from "../services/search.service";
 import { AbSearchComponent } from "../catalog/ab-filter/ab-search/ab-search.component";
+import { debounceTime, tap } from "rxjs/operators";
 
 @Component({
   selector: "app-product",
@@ -22,6 +23,7 @@ export class ProductComponent implements OnInit {
   priceListId: number;
   load: boolean = true;
   product: SalesProduct;
+  showSlide: boolean = false;
 
   columSizes: Array<PoTableColumn> = [
     { property: "productId", visible: false },
@@ -54,11 +56,7 @@ export class ProductComponent implements OnInit {
     this.searchService.searchValue.subscribe((x) => {
       if (x != null) {
         this.reference = x;
-        this.router.navigate([
-          "sales/product",
-          this.bagHeadId,
-          this.reference,
-        ]);
+        this.router.navigate(["sales/product", this.bagHeadId, this.reference]);
       }
     });
   }
@@ -66,17 +64,19 @@ export class ProductComponent implements OnInit {
   get() {
     this.load = true;
     this.product = undefined;
-    this.productService
-      .get(this.reference, this.bagHeadId)
-      .subscribe(
-        (x) => {
-          this.product = x;
-          this.load = false;
-        },
-        () => {
-          this.load = false;
-        }
-      );
+    this.showSlide = false;
+    this.productService.get(this.reference, this.bagHeadId).subscribe(
+      (x) => {
+        this.product = x;
+        this.load = false;
+        setTimeout(() => {
+          this.showSlide=true;
+        }, 300);
+      },
+      () => {
+        this.load = false;
+      }
+    );
   }
 
   purchase(sign: string, row: BalanceView) {
@@ -96,5 +96,14 @@ export class ProductComponent implements OnInit {
       if (item.grid < y.balance) y.purchase = item.grid;
       else y.purchase = y.balance;
     });
+  }
+
+  getTotalPurchase(): number {
+    if (!this.product) return 0;
+    return this.product.balance
+      .flatMap((p) => p.balance.map((b) => b.purchase))
+      .reduce((x, y) => {
+        return x + y;
+      });
   }
 }

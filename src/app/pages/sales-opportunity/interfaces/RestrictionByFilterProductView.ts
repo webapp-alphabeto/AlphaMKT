@@ -1,7 +1,9 @@
+import { DeliveryDateView } from './DeliveryDateView';
 
 
 export interface RestrictionByFilterProductView {
   id: number;
   name: string;
-  deliveryDate: string;
+  deliveryDates: DeliveryDateView[];
 }
+

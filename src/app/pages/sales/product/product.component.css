@@ -63,6 +63,7 @@ span {
   margin-top: 12px;
 
   transition: all 0.5s;
+  user-select: none;
 }
 .purchase-button span {
   color: white;
@@ -70,7 +71,45 @@ span {
   cursor: pointer;
   transition: 0.5s;
 }
-.noStock {
+.noStock, .nothing-to-show, .wait {
   font-family: "Fredoka One", cursive;
   color: #858585;
+}
+
+.wave {
+  background-position: center;
+  transition: background 0.8s;
+}
+.wave:hover {
+  background: #e18b34 radial-gradient(circle, transparent 1%, #e18b34 1%) center/15000%;
+}
+.wave:active {
+  background-color: #858585;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.button-bag {
+  background-color: #57504a;
+  border-radius: 20px;
+  font-family: "Fredoka One", cursive;
+  height: 40px;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+
+  transition: all 0.5s;
+  outline: 0;
+  border: none;
+}
+
+.disabled {
+  cursor: not-allowed;
+  pointer-events:none;
+  background-color:gainsboro;
+
 }

@@ -7,3 +7,5 @@ export interface BagHead extends IEntityIdentity {
     opportunityId: number;
     priceListId: number;
 }
+
+

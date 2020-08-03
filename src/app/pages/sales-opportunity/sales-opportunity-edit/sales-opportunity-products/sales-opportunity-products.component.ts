@@ -8,6 +8,9 @@ import { RestrictionByFilterProductView } from "../../interfaces/RestrictionByFi
 import { SalesOpportunity } from "src/app/shared/models/SalesOpportunity";
 import { TypeRestrictionProduct } from "src/app/shared/enums/TypeRestrictionProduct";
 import { SalesOpportunityService } from "../../services/sales-opportunity.service";
+import { DeliveryDate } from "src/app/shared/models/DeliveryDate";
+import { DeliveryDateService } from "../../services/delivery-date.service";
+import { DeliveryDateView } from "../../interfaces/DeliveryDateView";
 
 @Component({
   selector: "app-sales-opportunity-products",
@@ -24,19 +27,30 @@ export class SalesOpportunityProductsComponent implements OnInit {
   filterProducts: Array<RestrictionByFilterProductView> = [];
   filterProduct = {} as SalesOpportunityRestrictionByFilterProducts;
 
+  deliveryDate = {} as DeliveryDate;
+
   columns: Array<PoTableColumn> = [
     { property: "id", visible: false },
     { property: "name", label: "Filtro" },
-    { property: "deliveryDate", label: "Data de entrega", type: "cellTemplate" },
   ];
 
   actions: Array<PoTableAction> = [
     { label: "Deletar", action: this.delete.bind(this) },
   ];
 
+  deliveryDateColumns: Array<PoTableColumn> = [
+    { property: "id", visible: false },
+    { property: "date", label: "Datas de entrega", type: "cellTemplate" },
+  ];
+
+  deliveryDateActions: Array<PoTableAction> = [
+    { label: "Deletar", action: this.deleteDate.bind(this) },
+  ];
+
   constructor(
     private restricitionServices: SalesOpportunityRestrictionByFilterProductService,
-    private salesOpportunityServices: SalesOpportunityService
+    private salesOpportunityServices: SalesOpportunityService,
+    private deliveryDateService: DeliveryDateService
   ) {}
 
   ngOnInit(): void {
@@ -75,9 +89,23 @@ export class SalesOpportunityProductsComponent implements OnInit {
       .subscribe(() => {});
   }
 
-  updateDeliveryDate(filter: RestrictionByFilterProductView) {
-
-    this.restricitionServices.put(filter.id, filter.deliveryDate).subscribe();
+  deleteDate(date: DeliveryDate) {
+    this.deliveryDateService.delete(date.id).subscribe(() => {
+      this.filterProducts.flatMap((f) => {
+        const i = f.deliveryDates.findIndex((d) => d.id == date.id);
+        f.deliveryDates.splice(i, 1);
+      });
+    });
   }
 
+  addDate(filter: RestrictionByFilterProductView) {
+    this.deliveryDate.salesOpportunityRestrictionByFiterProductId = filter.id;
+    this.deliveryDateService.post(this.deliveryDate).subscribe((x) => {
+      filter.deliveryDates.push(x);
+    });
+  }
+
+  updateDeliveryDate(row: DeliveryDateView) {
+    this.deliveryDateService.put(row.id, row.date).subscribe(() => {});
+  }
 }

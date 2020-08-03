@@ -113,9 +113,9 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     this.getProducts(nextFilter.params);
   }
 
-  goToTop() {
+  goToTop(top: number = 300) {
     if (!this.screen) return;
-    this.screen.target.scrollTo({ top: 300, behavior: "smooth" });
+    this.screen.target.scrollTo({ top, behavior: "smooth" });
 
     if (this.groups.length > 0) this.groups.splice(1, this.groups.length - 1);
 
@@ -162,19 +162,16 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this._abFilter._categoryContainer)
       this._abFilter._categoryContainer.height = 300;
-
-    this.catalogServices
-      .getProductByCod(this.opportunityActive.id, cod)
-      .subscribe(
-        (x) => {
-          this.groups.length = 0;
-          this.groups.push(x);
-          this.goToTop();
-        },
-        (err) => {
-          this.groups.length = 0;
-        }
-      );
+    this.catalogServices.getProductByCod(this.bagHead.id, cod).subscribe(
+      (x) => {
+        this.groups.length = 0;
+        if (x.catalogProduct.length) this.groups.push(x);
+        this.goToTop(0);
+      },
+      (err) => {
+        this.groups.length = 0;
+      }
+    );
   }
 
   getBagHead() {
