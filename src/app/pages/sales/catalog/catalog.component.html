@@ -1,4 +1,4 @@
-<po-page-default class="po-mb-5" [hidden]="showProductNav" >
+<po-page-default class="po-mb-5" [hidden]="productNavService.showProductNav | async " >
   <div class="po-row">
     <ab-banner
       *ngIf="showBanner"
@@ -22,7 +22,7 @@
         <ab-showcase
           *ngFor="let group of groups"
           [groupProduct]="group"
-          (cardProductClick)="showProductNav = true"
+          (cardProductClick)="productNavService.show()"
           [bagId]="bagHead?.id"
         >
         </ab-showcase>
@@ -52,8 +52,8 @@
   </div>
 </po-page-default>
 
-<div class="product-nav" [style.width]="showProductNav ? '100%' : 0">
-  <a class="closebtn" (click)="showProductNav = false">&times;</a>
+<div class="product-nav" [style.width]="(productNavService.showProductNav | async)  ? '100%' : 0">
+  <a class="closebtn" (click)="productNavService.hide()">&times;</a>
   <router-outlet></router-outlet>
 </div>
 

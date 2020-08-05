@@ -21,6 +21,7 @@ import { CheckInService } from "src/app/shared/services/check-in.service";
 import { PoModalAction, PoModalComponent } from "@po-ui/ng-components";
 import { BagComponent } from "../bag/bag.component";
 import { Observable, BehaviorSubject } from "rxjs";
+import { ProductNavService } from '../services/product-nav.service';
 
 @Component({
   selector: "ab-catalog",
@@ -39,17 +40,19 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
   showBanner = true;
   showFabButton = false;
   showMoreLoad = false;
-  showProductNav = false;
+  // showProductNav = false;
   screen: any;
 
   constructor(
     public catalogServices: CatalogService,
+    public productNavService: ProductNavService,
     private menuService: MenuService,
     private toolBarService: ToolBarService,
     private elementRef: ElementRef,
     private searchService: SearchService,
     private bagService: BagHeadService,
-    private checkInService: CheckInService
+    private checkInService: CheckInService,
+    
   ) {
     this.menuService.ocultarMenu();
     this.toolBarService.exibir();

@@ -99,9 +99,10 @@ export class SalesOpportunityProductsComponent implements OnInit {
   }
 
   addDate(filter: RestrictionByFilterProductView) {
-    this.deliveryDate.salesOpportunityRestrictionByFiterProductId = filter.id;
+    this.deliveryDate.salesOpportunityRestrictionByFilterProductsId = filter.id;
     this.deliveryDateService.post(this.deliveryDate).subscribe((x) => {
       filter.deliveryDates.push(x);
+      this.deliveryDate = {} as DeliveryDate;
     });
   }
 

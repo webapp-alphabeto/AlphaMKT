@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Output,
+  EventEmitter,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ProductService } from "./services/product.service";
 import { SalesProduct } from "./interfaces/SalesProducts";
@@ -8,7 +14,7 @@ import { BalanceView } from "./interfaces/BalanceView";
 import { BalanceGroupByColor } from "./interfaces/BalanceGroupByColor";
 import { SearchService } from "../services/search.service";
 import { AbSearchComponent } from "../catalog/ab-filter/ab-search/ab-search.component";
-import { debounceTime, tap } from "rxjs/operators";
+import { ProductNavService } from "../services/product-nav.service";
 
 @Component({
   selector: "app-product",
@@ -42,7 +48,8 @@ export class ProductComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private searchService: SearchService,
-    private router: Router
+    private router: Router,
+    private productNavService: ProductNavService
   ) {
     this.route.params.subscribe((x) => {
       this.reference = x["reference"];
@@ -70,7 +77,7 @@ export class ProductComponent implements OnInit {
         this.product = x;
         this.load = false;
         setTimeout(() => {
-          this.showSlide=true;
+          this.showSlide = true;
         }, 300);
       },
       () => {
@@ -105,5 +112,9 @@ export class ProductComponent implements OnInit {
       .reduce((x, y) => {
         return x + y;
       });
+  }
+
+  confirm() {
+    this.productNavService.hide();
   }
 }

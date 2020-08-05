@@ -3,6 +3,7 @@ import { ProductImageView } from "./ProductImageView";
 import { RelatedProducts } from "./RelatedProducts";
 import { CatalogProduct } from "../../interfaces/CatalogProduct";
 import { BalanceGroupByColor } from "./BalanceGroupByColor";
+import { PoComboOption } from '@po-ui/ng-components';
 
 export interface SalesProduct {
   reference: string;
@@ -18,4 +19,5 @@ export interface SalesProduct {
   complementary: IComplementaryProductInformation;
   photos: string[];
   relatedProducts: CatalogProduct[];
+  deliveryDates: PoComboOption[];
 }

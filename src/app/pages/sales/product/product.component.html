@@ -53,9 +53,15 @@
           </div>
         </div>
         <po-divider></po-divider>
+        <div>
+          <h4>Entrega</h4>
+          <po-combo [p-options]="product.deliveryDates"></po-combo>
+        </div>
+        <po-divider></po-divider>
         <button
           [class.disabled]="getTotalPurchase() == 0 || product.price == 0"
           class="po-md-12 button-bag wave"
+          (click)="confirm()"
         >
           Confirmar
         </button>
@@ -161,7 +167,7 @@
   <div
     *ngIf="!load && product?.relatedProducts.length > 0"
     [@slideIn]
-    class="po-row see-too"
+    class="po-row see-too po-mt-5"
   >
     <h1>Veja também</h1>
 
