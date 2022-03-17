@@ -6,4 +6,5 @@ export interface IComplementaryProductInformation extends IEntityIdentity {
     feature: string;
     friendlyDescription: string;
     keyWords: string;
+    secondDescription: string;
 }

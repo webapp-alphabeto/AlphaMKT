@@ -33,7 +33,7 @@ export class ProductEditComponent implements OnInit {
   ngOnInit() {
 
   }
-
+  
   runQueries(reference: string) {
     this.reference = reference;
     this.getComplementaryProductInformation(reference);

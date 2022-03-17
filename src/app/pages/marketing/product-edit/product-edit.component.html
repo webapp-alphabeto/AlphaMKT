@@ -2,6 +2,7 @@
     <po-tab p-label="Informação complementar"
         p-active="true">
         <form #produtoEditForm="ngForm">
+
             <po-input class="po-md-12" 
                 name="tamanhoAmigabel" 
                 [(ngModel)]="complementaryProductInformation.friendlySize" 
@@ -20,7 +21,14 @@
                 p-label="Descrição" 
                 p-rows="3">
             </po-textarea>
-        
+
+            <po-textarea class="po-md-12" 
+            name="descricaoSecundaria" 
+            [(ngModel)]="complementaryProductInformation.secondDescription" 
+            p-label="Nome E-commerce" 
+            p-rows="3">
+            </po-textarea>
+
             <po-textarea class="po-md-12" 
                 name="palavrasChaves" 
                 [(ngModel)]="complementaryProductInformation.keyWords" 

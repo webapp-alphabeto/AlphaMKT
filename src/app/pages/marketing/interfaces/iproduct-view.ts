@@ -5,6 +5,7 @@ export interface IProductView {
     feature: string;
     friendlyDescription: string;
     palavrasChave: string;
+    SecondDescription: string;
     coverPhoto: string;
     numberOfImages: number;
 }
