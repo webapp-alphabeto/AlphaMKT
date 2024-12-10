@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  serviceApi: 'http://10.10.0.14:80/v1/'
+  serviceApi: 'https://integracao-alphabuyapi.azurewebsites.net/v1/'
 };
 
 export const TOKEN_STORAGE = 'NOME_CHAVE_TOKEN';
