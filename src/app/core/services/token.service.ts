@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { TOKEN_STORAGE } from "src/environments/environment";
-import * as jwt_decode from "jwt-decode";
 import { IClaims } from "../interfaces/iclaims";
 import { ProfileService } from "src/app/shared/services/profile.service";
 import { PoToolbarProfile } from "@po-ui/ng-components";
@@ -34,7 +33,7 @@ export class TokenService {
 
   get Claims(): IClaims {
     try {
-      let decode = jwt_decode(this.token);
+      const decode = this.decodeJwt(this.token);
       decode.id = parseInt(decode.id);
       decode.representativeId = parseInt(decode.representativeId);
       decode.accessLevel = parseInt(decode.accessLevel);
@@ -46,5 +45,26 @@ export class TokenService {
 
   resetToken() {
     localStorage.removeItem(TOKEN_STORAGE);
+  }
+
+  /**
+   * Decodes a JWT token without using external libraries.
+   * @param token The JWT token to decode.
+   * @returns The decoded payload as an object.
+   */
+  private decodeJwt(token: string): any {
+    if (!token) {
+      throw new Error("Token is not provided");
+    }
+
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map((c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
+        .join("")
+    );
+    return JSON.parse(jsonPayload);
   }
 }
