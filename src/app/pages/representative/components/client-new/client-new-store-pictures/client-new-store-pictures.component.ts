@@ -11,7 +11,7 @@ import { UploadResponse } from '../../../interfaces/UploadResponse';
   styleUrls: ["./client-new-store-pictures.component.css"],
 })
 export class ClientNewStorePicturesComponent implements OnInit {
-  @Input() cnpj: string;
+  @Input() cnpj: string = ''; // Inicialize com uma string vazia
   @Input() fotos: UploadResponse[];
   serviceApi = `${environment.serviceApi}area-do-representante/novo-cliente/upload`;
   fotoPadrao = SEM_FOTO;

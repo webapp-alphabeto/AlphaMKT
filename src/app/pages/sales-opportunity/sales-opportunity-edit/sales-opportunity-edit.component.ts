@@ -10,7 +10,7 @@ import { SalesOpportunity } from "src/app/shared/models/SalesOpportunity";
   styleUrls: ["./sales-opportunity-edit.component.css"],
 })
 export class SalesOpportunityEditComponent implements OnInit {
-  salesOpportunityId: number;
+  salesOpportunityId: number = 0;
   salesOpportunity = {} as SalesOpportunity;
 
   public readonly breadcrumb: PoBreadcrumb = {

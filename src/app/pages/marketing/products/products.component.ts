@@ -61,13 +61,13 @@ export class ProductsComponent implements OnInit {
   };
 
   public readonly poPageFilter: PoPageFilter = {
-    action: "filterAction",
+    action: () => this.filterAction(), // Aqui, `action` é uma função que chama `filterAction`
     advancedAction: () => {
       this.advancedFilterModal.open();
     },
-    ngModel: "selectedReference",
     placeholder: "Referência",
   };
+
 
   public readonly saveProduct: PoModalAction = {
     action: () => {
