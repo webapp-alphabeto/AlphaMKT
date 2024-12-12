@@ -53,6 +53,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "postcss": "^8.4.49",
+    "postcss-loader": "^8.1.1",
     "ts-node": "~7.0.0",
     "typescript": "~4.4.4"
   }
