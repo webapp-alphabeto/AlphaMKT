@@ -13,7 +13,7 @@
           {{ message }}
         </div>
         <div class="po-font-display titulo-alphabeto tracking-in-expand">
-          AlphaBuy
+          AlphaMKT
         </div>
         <po-divider></po-divider>
         <div class="po-font-text-large-bold po-mb-3 slide-in-right">
@@ -21,7 +21,7 @@
         </div>
         <div *ngFor="let item of buttons" >
 
-          <po-button 
+          <po-button
             class="po-md-12 po-mb-1 slide-in-bottom"
             [p-label]="item.buttonLabel"
             (p-click)="item.buttonAction.call()"

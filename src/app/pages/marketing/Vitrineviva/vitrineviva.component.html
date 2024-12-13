@@ -1,0 +1,43 @@
+<po-page-default p-title="Vitrine Viva">
+  <div class="po-row">
+    <po-container class="po-md-12" p-no-shadow>
+      <po-button
+        p-danger="boolean"
+        p-disabled="boolean"
+        p-kind="string"
+        p-label="Adicionar Pasta"
+        p-loading="boolean"
+        p-size="string"
+        p-type="PoButtonType" >
+      </po-button>
+      <po-button
+        p-danger="boolean"
+        p-disabled="boolean"
+        p-kind="string"
+        p-label="Upload"
+        p-loading="boolean"
+        p-size="string"
+        p-type="PoButtonType" >
+      </po-button>
+
+      <po-combo
+        class="po-md-4"
+        p-label="Filtrar Pasta"
+        [p-filter-service]="serviceApiSalesOpportunity"
+        [(ngModel)]="salesOpportunityId">
+      </po-combo>
+
+
+    </po-container>
+  </div>
+
+
+  <!-- Criar tabela -->
+  <po-table [p-items]=""
+        [p-columns]=""
+        p-striped="true">
+    </po-table>
+
+
+
+</po-page-default>

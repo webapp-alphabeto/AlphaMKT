@@ -30,47 +30,47 @@ const routes: Routes = [
       import("./pages/admin/admin.module").then((m) => m.AdministracaoModule),
     canActivate: [AdministratorGuard],
   },
-  {
-    path: "representante",
-    loadChildren: () =>
-      import("./pages/representative/representative.module").then(
-        (m) => m.RepresentanteModule
-      ),
-    canActivate: [RepresentativeGuard],
-  },
-  {
-    path: "oportunidade-de-venda",
-    loadChildren: () =>
-      import("./pages/sales-opportunity/sales-opportunity.module").then(
-        (m) => m.SalesOpportunityModule
-      ),
-    canActivate: [AdministratorGuard],
-  },
+  // {
+  //   path: "representante",
+  //   loadChildren: () =>
+  //     import("./pages/representative/representative.module").then(
+  //       (m) => m.RepresentanteModule
+  //     ),
+  //   canActivate: [RepresentativeGuard],
+  // },
+  // {
+  //   path: "oportunidade-de-venda",
+  //   loadChildren: () =>
+  //     import("./pages/sales-opportunity/sales-opportunity.module").then(
+  //       (m) => m.SalesOpportunityModule
+  //     ),
+  //   canActivate: [AdministratorGuard],
+  // },
 
-  {
-    path: "estoque-virtual",
-    loadChildren: () =>
-      import("./pages/virtual-stock/virtual-stock.module").then(
-        (m) => m.VirtualStockModule
-      ),
-    canActivate: [AdministratorGuard],
-  },
+  // {
+  //   path: "estoque-virtual",
+  //   loadChildren: () =>
+  //     import("./pages/virtual-stock/virtual-stock.module").then(
+  //       (m) => m.VirtualStockModule
+  //     ),
+  //   canActivate: [AdministratorGuard],
+  // },
 
-  {
-    path: "tabela-de-precos",
-    loadChildren: () =>
-      import("./pages/price-list/price-list.module").then(
-        (m) => m.PriceListModule
-      ),
-    canActivate: [AdministratorGuard],
-  },
+  // {
+  //   path: "tabela-de-precos",
+  //   loadChildren: () =>
+  //     import("./pages/price-list/price-list.module").then(
+  //       (m) => m.PriceListModule
+  //     ),
+  //   canActivate: [AdministratorGuard],
+  // },
 
-  {
-    path: "sales",
-    loadChildren: () =>
-      import("./pages/sales/sales.module").then((m) => m.SalesModule),
-    canActivate: [RepresentativeGuard],
-  },
+  // {
+  //   path: "sales",
+  //   loadChildren: () =>
+  //     import("./pages/sales/sales.module").then((m) => m.SalesModule),
+  //   canActivate: [RepresentativeGuard],
+  // },
 
   { path: "", pathMatch: "full", redirectTo: "home" },
 ];

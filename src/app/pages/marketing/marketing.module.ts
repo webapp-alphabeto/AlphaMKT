@@ -19,12 +19,15 @@ import { TokenApiService } from 'src/app/core/interceptors/token-api.service';
 import { InvalidTokenApiService } from 'src/app/core/interceptors/invalid-token-api.service';
 import { BannersComponent } from './banners/banners.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VitrinevivaComponent } from './Vitrineviva/vitrineviva.component';
 
 @NgModule({
   declarations: [
-    ProductsComponent, 
-    ProductViewComponent, 
-    ProductEditComponent, BannersComponent
+    ProductsComponent,
+    ProductViewComponent,
+    ProductEditComponent,
+    BannersComponent,
+    VitrinevivaComponent
   ],
   imports: [
     CommonModule,

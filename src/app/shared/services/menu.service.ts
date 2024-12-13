@@ -49,6 +49,7 @@ export class MenuService {
       subItems: [
         { label: "Fotos de Produtos", link: "/marketing/produtos" },
         { label: "Banners", link: "/marketing/banners" },
+        { label: "Vitrine Viva", link: "/marketing/vitrineviva" },
       ],
     },
     {
@@ -57,19 +58,19 @@ export class MenuService {
       shortLabel: "Administração",
       nivelDeAcesso: [AccessLevel.Administracao],
       subItems: [
-        { label: "Cliente", link: "administracao/home-admin/cliente" },
-        { label: "Representante", link: "administracao/home-admin/representante" },
+        // { label: "Cliente", link: "administracao/home-admin/cliente" },
+        // { label: "Representante", link: "administracao/home-admin/representante" },
         { label: "Usuário", link: "administracao/home-admin/usuario" },
-        { label: "Grupo de vendas", link: "administracao/home-admin/grupo-de-vendas" },
-        { label: "Natureza", link: "administracao/home-admin/natureza" },
-        {
-          label: "Condições de pagamento",
-          link: "administracao/home-admin/condicoes-de-pagamento",
-        },
+        // { label: "Grupo de vendas", link: "administracao/home-admin/grupo-de-vendas" },
+        // { label: "Natureza", link: "administracao/home-admin/natureza" },
+        // {
+          // label: "Condições de pagamento",
+          // link: "administracao/home-admin/condicoes-de-pagamento",
+        // },
         { label: "Integração", link: "administracao/home-admin/monitor-de-integracao" },
-        { label: "Oportunidade de vendas", link: "/oportunidade-de-venda" },
-        { label: "Tabela  de preços", link: "/tabela-de-precos" },
-        { label: "Estoque virtual", link: "/estoque-virtual" },
+        // { label: "Oportunidade de vendas", link: "/oportunidade-de-venda" },
+        // { label: "Tabela  de preços", link: "/tabela-de-precos" },
+        // { label: "Estoque virtual", link: "/estoque-virtual" },
       ],
     },
   ];
